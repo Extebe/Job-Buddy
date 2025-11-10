@@ -15,6 +15,21 @@ class Annonce{
     private ?Particulier $auteur;
     private ?string $motifSuppression; 
 
+    public function __construct(?string $id=null, ?string $titre=null, ?string $description=null, ?int $etat=null, ?int $typeService=null, ?string $datePublication=null, ?string $dateDebut=null, ?string $dateFin=null, ?array $assocEtudiantDate=null, ?Particulier $auteur=null, ?string $motifSuppression=null)
+    {
+        $this->$id = $id;
+        $this->$titre = $titre;
+        $this->$description = $description;
+        $this->$etat = $etat;
+        $this->$typeService = $typeService;
+        $this->$datePublication = $datePublication;
+        $this->$dateDebut = $dateDebut;
+        $this->$dateFin = $dateFin;
+        $this->$assocEtudiantDate = $assocEtudiantDate;
+        $this->$auteur = $auteur;
+        $this->$motifSuppression = $motifSuppression;
+    }
+
     /**
      * Get the value of id
      */
