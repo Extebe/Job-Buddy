@@ -16,61 +16,54 @@ CREATE TABLE Utilisateur(
 );
 
 CREATE TABLE Annonce(
-   code INT,
+   id INT,
    dateDebutRealisation DATE,
    dateFinRealisation DATE,
    etat VARCHAR(20) NOT NULL,
    typeService VARCHAR(25),
    titre VARCHAR(100),
    description VARCHAR(1000),
-   datePublication DATE,
-   code_1 VARCHAR(15) NOT NULL,
-   PRIMARY KEY(code),
-   FOREIGN KEY(code_1) REFERENCES Utilisateur(code)
+   datePublication DATETIME,
+   dateSupression DATETIME,
+   motifSupression VARCHAR(50),
+   idParticulier VARCHAR(15) NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(idParticulier) REFERENCES Utilisateur(id)
 );
 
 CREATE TABLE Signalement(
-   code INT,
-   dateSignalement DATE,
+   id INT,
+   dateSignalement DATETIME NOT NULL,
    motif VARCHAR(20),
    description VARCHAR(500),
-   code_1 VARCHAR(15) NOT NULL,
-   code_2 INT,
-   code_3 VARCHAR(15),
-   PRIMARY KEY(code),
-   FOREIGN KEY(code_1) REFERENCES Utilisateur(code),
-   FOREIGN KEY(code_2) REFERENCES Annonce(code),
-   FOREIGN KEY(code_3) REFERENCES Utilisateur(code)
+   idSignaleur VARCHAR(15) NOT NULL,
+   idAnnonceSignale INT,
+   idUtilisateurSignale VARCHAR(15),
+   PRIMARY KEY(id),
+   FOREIGN KEY(idSignaleur) REFERENCES Utilisateur(id),
+   FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
+   FOREIGN KEY(idSignale) REFERENCES Utilisateur(id)
 );
 
 CREATE TABLE Postuler(
-   code INT,
-   code_1 VARCHAR(15),
-   datePostulat DATE NOT NULL,
+   idAnnonce INT,
+   idEtudiant VARCHAR(15),
+   datePostulat DATETIME NOT NULL,
    estAccepte LOGICAL NOT NULL,
-   PRIMARY KEY(code, code_1),
-   FOREIGN KEY(code) REFERENCES Annonce(code),
-   FOREIGN KEY(code_1) REFERENCES Utilisateur(code)
+   PRIMARY KEY(id, id),
+   FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
+   FOREIGN KEY(idEtudiant) REFERENCES Utilisateur(id)
 );
 
-CREATE TABLE PublierNote(
-   code INT,
-   code_1 VARCHAR(15),
-   code_2 VARCHAR(15),
-   note BYTE NOT NULL,
+CREATE TABLE Note(
+   id INT,
+   idAnnonce INT NOT NULL;
+   idUtilisateurNoteur VARCHAR(15) NOT NULL,
+   idUtilisateurNote VARCHAR(15) NOT NULL,
+   note SMALLINT NOT NULL,
    commentaire VARCHAR(100),
-   PRIMARY KEY(code, code_1, code_2),
-   FOREIGN KEY(code) REFERENCES Annonce(code),
-   FOREIGN KEY(code_1) REFERENCES Utilisateur(code),
-   FOREIGN KEY(code_2) REFERENCES Utilisateur(code)
-);
-
-CREATE TABLE supprimer(
-   code INT,
-   dateSuppression DATE NOT NULL,
-   motifSuppression VARCHAR(50),
-   code_1 VARCHAR(15) NOT NULL,
-   PRIMARY KEY(code),
-   FOREIGN KEY(code) REFERENCES Annonce(code),
-   FOREIGN KEY(code_1) REFERENCES Utilisateur(code)
+   PRIMARY KEY(id),
+   FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
+   FOREIGN KEY(idUtilisateurNoteur) REFERENCES Utilisateur(id),
+   FOREIGN KEY(idUtilisateurNote) REFERENCES Utilisateur(id)
 );
