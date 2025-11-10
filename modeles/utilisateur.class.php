@@ -37,14 +37,10 @@ class Utilisateur{
 
     /**
      * Set the value of id
-     *
-     * @return  self
      */ 
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -57,14 +53,10 @@ class Utilisateur{
 
     /**
      * Set the value of nom
-     *
-     * @return  self
      */ 
     public function setNom($nom)
     {
         $this->nom = $nom;
-
-        return $this;
     }
 
     /**
@@ -77,14 +69,10 @@ class Utilisateur{
 
     /**
      * Set the value of prenom
-     *
-     * @return  self
      */ 
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-
-        return $this;
     }
 
     /**
@@ -97,14 +85,10 @@ class Utilisateur{
 
     /**
      * Set the value of telephone
-     *
-     * @return  self
      */ 
     public function setTelephone($telephone)
     {
         $this->telephone = $telephone;
-
-        return $this;
     }
 
     /**
@@ -117,14 +101,10 @@ class Utilisateur{
 
     /**
      * Set the value of dateNaiss
-     *
-     * @return  self
      */ 
     public function setDateNaiss($dateNaiss)
     {
         $this->dateNaiss = $dateNaiss;
-
-        return $this;
     }
 
     /**
@@ -137,14 +117,10 @@ class Utilisateur{
 
     /**
      * Set the value of email
-     *
-     * @return  self
      */ 
     public function setEmail($email)
     {
         $this->email = $email;
-
-        return $this;
     }
 
     /**
@@ -157,14 +133,10 @@ class Utilisateur{
 
     /**
      * Set the value of mdp
-     *
-     * @return  self
      */ 
     public function setMdp($mdp)
     {
         $this->mdp = $mdp;
-
-        return $this;
     }
 
     /**
@@ -177,14 +149,10 @@ class Utilisateur{
 
     /**
      * Set the value of adresse
-     *
-     * @return  self
      */ 
     public function setAdresse($adresse)
     {
         $this->adresse = $adresse;
-
-        return $this;
     }
 
     /**
@@ -197,14 +165,10 @@ class Utilisateur{
 
     /**
      * Set the value of ville
-     *
-     * @return  self
      */ 
     public function setVille($ville)
     {
         $this->ville = $ville;
-
-        return $this;
     }
 
     /**
@@ -217,14 +181,10 @@ class Utilisateur{
 
     /**
      * Set the value of codePostal
-     *
-     * @return  self
      */ 
     public function setCodePostal($codePostal)
     {
         $this->codePostal = $codePostal;
-
-        return $this;
     }
 }
 ?>
