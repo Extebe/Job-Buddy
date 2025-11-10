@@ -7,7 +7,12 @@
         private ?string $motif;
         private ?string $description;
 
-
+        public function __construct(?Utilisateur $signaleur=null, ?string $dateSignalement=null, ?string $motif=null, ?string $description=null){
+                $this->signaleur=$signaleur;
+                $this->dateSignalement=$dateSignalement;
+                $this->motif=$motif;
+                $this->description=$description;
+        }
 
 
         // GETTER ET SETTER DE SIGNALEUR
