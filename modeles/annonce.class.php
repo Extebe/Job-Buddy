@@ -121,7 +121,7 @@ class Annonce{
     /**
      * Set the value of datePublication
      */
-    public function setDatePublication(?string $datePublication): self
+    public function setDatePublication(?string $datePublication): void
     {
         $this->datePublication = $datePublication;
     }
@@ -169,7 +169,7 @@ class Annonce{
     /**
      * Set the value of assocEtudiantDate
      */
-    public function setAssocEtudiantDate(?array $assocEtudiantDate): self
+    public function setAssocEtudiantDate(?array $assocEtudiantDate): void
     {
         $this->assocEtudiantDate = $assocEtudiantDate;
     }
@@ -201,7 +201,7 @@ class Annonce{
     /**
      * Set the value of motifSuppression
      */
-    public function setMotifSuppression(?string $motifSuppression): self
+    public function setMotifSuppression(?string $motifSuppression): void
     {
         $this->motifSuppression = $motifSuppression;
     }
