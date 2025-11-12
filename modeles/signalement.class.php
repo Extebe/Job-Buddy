@@ -19,7 +19,6 @@
         /**
          * Get the value of signaleur
          *
-         * @return ?Utilisateur
          */
         public function getSignaleur(): ?Utilisateur
         {
@@ -28,7 +27,6 @@
         /**
          * Set the value of signaleur
          *
-         * @param ?Utilisateur $signaleur
          */
         public function setSignaleur(?Utilisateur $signaleur): void
         {
@@ -41,7 +39,6 @@
         /**
          * Get the value of dateSignalement
          *
-         * @return ?string
          */
         public function getDateSignalement(): ?string
         {
@@ -50,7 +47,6 @@
         /**
          * Set the value of dateSignalement
          *
-         * @param ?string $dateSignalement
          */
         public function setDateSignalement(?string $dateSignalement): void
         {
@@ -62,7 +58,6 @@
         /**
          * Get the value of motif
          *
-         * @return ?string
          */
         public function getMotif(): ?string
         {
@@ -71,7 +66,6 @@
         /**
          * Set the value of motif
          *
-         * @param ?string $motif
          */
         public function setMotif(?string $motif): void
         {
@@ -84,7 +78,6 @@
         /**
          * Get the value of description
          *
-         * @return ?string
          */
         public function getDescription(): ?string
         {
@@ -94,7 +87,6 @@
         /**
          * Set the value of description
          *
-         * @param ?string $description
          */
         public function setDescription(?string $description): void
         {
