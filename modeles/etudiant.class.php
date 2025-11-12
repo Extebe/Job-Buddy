@@ -19,4 +19,20 @@ class Etudiant extends Utilisateur{
         $this->ville = $ville;
         $this->codePostal = $codePostal;
     }
+
+    /**
+     * Get the value of codeEtudiant
+     */ 
+    public function getCodeEtudiant()
+    {
+        return $this->codeEtudiant;
+    }
+
+    /**
+     * Set the value of codeEtudiant
+     */ 
+    public function setCodeEtudiant($codeEtudiant)
+    {
+        $this->codeEtudiant = $codeEtudiant;
+    }
 }
