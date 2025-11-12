@@ -27,11 +27,20 @@ class AnnonceDao{
 
     public function find(?int $id): ?Annonce
     {
+        $sql = "SELECT * FROM annonce WHERE id= :id";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute();
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'annonce');
+        $annonce = $pdoStatement->fetch();
+        return $annonce;
+    }
+
+    public function findAll(){
         $sql = "SELECT * FROM annonce";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute();
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Annonce');
-        $annonce = $pdoStatement->fetch();
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'annonce');
+        $annonce = $pdoStatement->fetchAll();
         return $annonce;
     }
 }
