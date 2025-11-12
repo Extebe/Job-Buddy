@@ -1,6 +1,8 @@
+
+
 CREATE TABLE Utilisateur(
    id VARCHAR(15),
-   role VARCHAR(11) NOT NULL,
+   role VARCHAR(14) NOT NULL CHECK (role IN ('PARTICULIER', 'ETUDIANT', 'ADMINISTRATEUR')),
    codeINE VARCHAR(20),
    nom VARCHAR(50) NOT NULL,
    prenom VARCHAR(50) NOT NULL,
@@ -17,9 +19,9 @@ CREATE TABLE Utilisateur(
 
 CREATE TABLE Annonce(
    id INT,
-   dateDebutRealisation DATE,
-   dateFinRealisation DATE,
-   etat VARCHAR(20) NOT NULL,
+   dateDebutRealisation DATETIME,
+   dateFinRealisation DATETIME CHECK (dateFinRealisation > dateDebutRealisation),
+   etat VARCHAR(20) NOT NULL CHECK (etat IN ('DISPONIBLE','ACCEPTE','TERMINE')),
    typeService VARCHAR(25),
    titre VARCHAR(100),
    description VARCHAR(1000),
@@ -41,26 +43,26 @@ CREATE TABLE Signalement(
    idUtilisateurSignale VARCHAR(15),
    PRIMARY KEY(id),
    FOREIGN KEY(idSignaleur) REFERENCES Utilisateur(id),
-   FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
-   FOREIGN KEY(idSignale) REFERENCES Utilisateur(id)
+   FOREIGN KEY(idAnnonceSignale) REFERENCES Annonce(id),
+   FOREIGN KEY(idUtilisateurSignale) REFERENCES Utilisateur(id)
 );
 
 CREATE TABLE Postuler(
    idAnnonce INT,
    idEtudiant VARCHAR(15),
    datePostulat DATETIME NOT NULL,
-   estAccepte LOGICAL NOT NULL,
-   PRIMARY KEY(id, id),
+   estAccepte BOOLEAN NOT NULL,
+   PRIMARY KEY(idAnnonce, idEtudiant),
    FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
    FOREIGN KEY(idEtudiant) REFERENCES Utilisateur(id)
 );
 
 CREATE TABLE Note(
    id INT,
-   idAnnonce INT NOT NULL;
+   idAnnonce INT NOT NULL,
    idUtilisateurNoteur VARCHAR(15) NOT NULL,
    idUtilisateurNote VARCHAR(15) NOT NULL,
-   note SMALLINT NOT NULL,
+   note SMALLINT NOT NULL CHECK (note >= 0 AND note <= 5),
    commentaire VARCHAR(100),
    PRIMARY KEY(id),
    FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
