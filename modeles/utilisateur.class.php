@@ -13,6 +13,9 @@ class Utilisateur{
     private ?string $adresse;
     private ?string $ville;
     private ?string $codePostal;
+    private array $notesDonnees = [];
+    private array $notesRecues = [];
+
 
     public function __construct(?string $id = null, ?string $nom = null, ?string $prenom = null, ?string $telephone = null, ?string $dateNaiss = null, ?string $email = null, ?string $mdp = null, ?string $adresse = null, ?string $ville = null, ?string $codePostal = null){
         $this->id = $id;
@@ -186,5 +189,58 @@ class Utilisateur{
     {
         $this->codePostal = $codePostal;
     }
+
+    public function getNotesDonnees(): array {
+        return $this->notesDonnees;
+    }
+
+    public function getNotesRecues(): array {
+        return $this->notesRecues;
+    }
+
+    public function setNotesDonnees(array $notes): void {
+        $this->notesDonnees = $notes;
+    }
+
+    public function setNotesRecues(array $notes): void {
+        $this->notesRecues = $notes;
+    }
+
+    public function lierNoteEcrite(Note $note, ?Utilisateur $receveur, ?Annonce $annonce){
+        $this->notesDonnees[] = $note;
+        $receveur->notesRecues[] = $note;
+        $note->setAuteur($this);
+        $note->setReceveur($receveur);
+        $note->setAnnonce($annonce);
+    }
+
+    public function delierNote(Note $note){
+        if (in_array($note,$this->getNotesDonnees())){//si la note est dans les notes données
+            $this->setNotesDonnees(array_filter($this->getNotesDonnees(), fn($f) => $f !== $note));//supression liason entre note et receveur(qui n'est pas this)
+            $note->getReceveur()->setNotesRecues(array_filter($note->getReceveur()->getNotesRecues(), fn($f) => $f !== $note));//supression liason entre note et this
+        }
+        elseif (in_array($note,$this->getNotesRecues())){//si la note est dans les notes reçues
+            $note->getAuteur()->setNotesDonnees(array_filter($note->getAuteur()->getNotesDonnees(), fn($f) => $f !== $note));//supression liason entre note et auteur(qui n'est pas this)
+            $this->setNotesRecues(array_filter($this->getNotesRecues(), fn($f) => $f !== $note));//supression liason entre note et this
+        }
+        $note->setAuteur(null);
+        $note->setReceveur(null);
+        $note->setAnnonce(null);
+    }
+
+
+
+
+    public function calculerMoyenneNotes(): float {
+        $total = 0;
+        $count = count($this->notesRecues);
+        if ($count === 0) {
+            return 0.0;
+        }
+        foreach ($this->notesRecues as $note) {
+            $total += $note->getValeur();
+        }
+        return $total / $count;
+    }   
 }
 ?>

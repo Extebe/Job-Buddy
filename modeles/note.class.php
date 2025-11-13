@@ -69,7 +69,12 @@ class Note {
         $this->annonce = $annonce;
     }
 
-
+    public function __toString(): string {
+        return "Note [id=" . $this->id . ", valeur=" . $this->valeur . ", commentaire=" . $this->commentaire . 
+               ", auteur=" . ($this->auteur ? $this->auteur->getId() : "null") . 
+               ", receveur=" . ($this->receveur ? $this->receveur->getId() : "null") . 
+               ", annonce=" . ($this->annonce ? $this->annonce->getId() : "null") . "]";
+    }
     
     
 }
