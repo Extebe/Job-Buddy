@@ -205,6 +205,23 @@ class Annonce{
     {
         $this->motifSuppression = $motifSuppression;
     }
+
+    public function delierParticulier(){
+        if($this->getAuteur() != null){
+            $p = $this->getAuteur();
+            $this->setAuteur(null);
+            $p->delierAnnoncePublie($this);
+        }
+    }
+
+    public function lierParticulier($p){
+        $this->delierParticulier();
+        $this->setAuteur($p);
+        $p->lierAnnoncePublie($this);
+    }
+
+    public function __toString(): string
+    {return $this->getId() . $this->getAuteur();}
 }
 
 ?>
