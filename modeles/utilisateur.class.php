@@ -13,6 +13,9 @@ class Utilisateur{
     private ?string $adresse;
     private ?string $ville;
     private ?string $codePostal;
+    private $notesDonne = new ArrayObject();
+    private $notesRecu = new ArrayObject();
+
 
     public function __construct(?string $id = null, ?string $nom = null, ?string $prenom = null, ?string $telephone = null, ?string $dateNaiss = null, ?string $email = null, ?string $mdp = null, ?string $adresse = null, ?string $ville = null, ?string $codePostal = null){
         $this->id = $id;
@@ -185,6 +188,18 @@ class Utilisateur{
     public function setCodePostal($codePostal)
     {
         $this->codePostal = $codePostal;
+    }
+
+    public function ecrireNote(Note $note, Utilisateur $receveur, Annonce $annonce){
+        $this->notesDonne->append($note);
+        $receveur->recevoirNote($note, $this, $annonce);
+        $note->setAuteur($this);
+        $note->setReceveur($receveur);
+        $note->setAnnonce($annonce);
+    }
+
+     public function recevoirNote(Note $note){
+        $this->notesRecu->append($note);
     }
 }
 ?>
