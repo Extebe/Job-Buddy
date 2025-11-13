@@ -21,6 +21,7 @@ require_once 'modeles/particulier.dao.php';
 require_once "modeles/annonce.class.php";
 require_once "modeles/annonce.dao.php";
 
+// Ajout du modèle qui gère la connexion à la base de données mySQL
 require_once "modeles/bd.class.php";
 
 require_once "modeles/signalement.class.php";
