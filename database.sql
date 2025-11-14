@@ -39,26 +39,22 @@ CREATE TABLE Signalement(
    motif VARCHAR(20),
    description VARCHAR(500),
    idSignaleur VARCHAR(15) NOT NULL,
-   idAnnonceSignale VARCHAR(15),
-   idUtilisateurSignale VARCHAR(15),
    PRIMARY KEY(id),
    FOREIGN KEY(idSignaleur) REFERENCES Utilisateur(id),
-   FOREIGN KEY(idAnnonceSignale) REFERENCES Annonce(id),
-   FOREIGN KEY(idUtilisateurSignale) REFERENCES Utilisateur(id)
 );
 
 CREATE TABLE SignalementUtilisateur(
-   idSignaleur VARCHAR(15),
+   idSignalement VARCHAR(15),
    idUtilisateurSignale VARCHAR(15),
-   FOREIGN KEY(idSignaleur) REFERENCES Utilisateur(id),
+   FOREIGN KEY(idSignalement) REFERENCES Signalement(id),
    FOREIGN KEY(idUtilisateurSignale) REFERENCES Utilisateur(id),
    PRIMARY KEY(idSignaleur,idUtilisateurSignale)
 );
 
 CREATE TABLE SignalementAnonce(
-   idSignaleur VARCHAR(15),
+   idSignalement VARCHAR(15),
    idAnonnceSignale VARCHAR(15),
-   FOREIGN KEY(idSignaleur) REFERENCES Utilisateur(id),
+   FOREIGN KEY(idSignalement) REFERENCES Signalement(id),
    FOREIGN KEY(idAnnonceSignale) REFERENCES Annonce(id),
    PRIMARY KEY(idSignaleur,idAnnonceSignale)
 );
