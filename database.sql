@@ -18,7 +18,7 @@ CREATE TABLE Utilisateur(
 );
 
 CREATE TABLE Annonce(
-   id INT,
+   id VARCHAR(15),
    dateDebutRealisation DATETIME,
    dateFinRealisation DATETIME CHECK (dateFinRealisation > dateDebutRealisation),
    etat VARCHAR(20) NOT NULL CHECK (etat IN ('DISPONIBLE','ACCEPTE','TERMINE')),
@@ -34,21 +34,33 @@ CREATE TABLE Annonce(
 );
 
 CREATE TABLE Signalement(
-   id INT,
+   id VARCHAR(15),
    dateSignalement DATETIME NOT NULL,
    motif VARCHAR(20),
    description VARCHAR(500),
    idSignaleur VARCHAR(15) NOT NULL,
-   idAnnonceSignale INT,
-   idUtilisateurSignale VARCHAR(15),
    PRIMARY KEY(id),
    FOREIGN KEY(idSignaleur) REFERENCES Utilisateur(id),
+);
+
+CREATE TABLE SignalementUtilisateur(
+   idSignalement VARCHAR(15),
+   idUtilisateurSignale VARCHAR(15),
+   FOREIGN KEY(idSignalement) REFERENCES Signalement(id),
+   FOREIGN KEY(idUtilisateurSignale) REFERENCES Utilisateur(id),
+   PRIMARY KEY(idSignaleur,idUtilisateurSignale)
+);
+
+CREATE TABLE SignalementAnonce(
+   idSignalement VARCHAR(15),
+   idAnonnceSignale VARCHAR(15),
+   FOREIGN KEY(idSignalement) REFERENCES Signalement(id),
    FOREIGN KEY(idAnnonceSignale) REFERENCES Annonce(id),
-   FOREIGN KEY(idUtilisateurSignale) REFERENCES Utilisateur(id)
+   PRIMARY KEY(idSignaleur,idAnnonceSignale)
 );
 
 CREATE TABLE Postuler(
-   idAnnonce INT,
+   idAnnonce VARCHAR(15),
    idEtudiant VARCHAR(15),
    datePostulat DATETIME NOT NULL,
    estAccepte BOOLEAN NOT NULL,
@@ -58,8 +70,8 @@ CREATE TABLE Postuler(
 );
 
 CREATE TABLE Note(
-   id INT,
-   idAnnonce INT NOT NULL,
+   id VARCHAR(15),
+   idAnnonce VARCHAR(15) NOT NULL,
    idUtilisateurNoteur VARCHAR(15) NOT NULL,
    idUtilisateurNote VARCHAR(15) NOT NULL,
    note SMALLINT NOT NULL CHECK (note >= 0 AND note <= 5),
