@@ -33,4 +33,6 @@ require_once "modeles/signalementAnnonce.dao.php";
 require_once "modeles/signalementUtilisateur.class.php";
 require_once "modeles/signalementUtilisateur.dao.php";
 
-
+// Controleurs
+require_once "controllers/controller.class.php";
+require_once "controllers/controller.factory.php";
