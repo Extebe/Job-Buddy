@@ -2,9 +2,37 @@
 
 require_once 'include.php';
 
-$pdo = Bd::getInstance()->getConnexion();
 
-$managerAnnonce = new AnnonceDao($pdo);
+try  {
+    if (isset($_GET['controleur'])){
+        $controllerName=$_GET['controleur'];
+    }else{
+        $controllerName='';
+    }
 
-$annonce = $managerAnnonce->findAll();
-var_dump($annonce);
+    if (isset($_GET['methode'])){
+        $methode=$_GET['methode'];
+    }else{
+        $methode='';
+    }
+
+    //Gestion de la page d'accueil par défaut
+    if ($controllerName == '' && $methode ==''){
+        $controllerName='annonce';
+        $methode='afficher';
+    }
+
+    if ($controllerName == '' ){
+        throw new Exception('Le controleur n\'est pas défini');
+    }
+
+    if ($methode == '' ){
+        throw new Exception('La méthode n\'est pas définie');
+    }
+
+    $controller = ControllerFactory::getController($controllerName, $loader, $twig);
+  
+    $controller->call($methode);
+}catch (Exception $e) {
+   die('Erreur : ' . $e->getMessage());
+}
