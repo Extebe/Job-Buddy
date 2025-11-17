@@ -7,8 +7,8 @@ class ControllerNote extends Controller {
     }
 
     public function afficher(){
-        $template = $this->getTwig();
+        $template = $this->getTwig()->load('noteUtilisateur.html.twig');
 
-        echo $template->render('index.html.twig');
+        echo $template->render(array('utilisateur' => $_SESSION['utilisateur'], 'noteUtilisateur' => $this->getModel('noteUtilisateur')->findAll()));
     }
 }
