@@ -1,0 +1,13 @@
+# Connexion à la base de données : 
+database:
+  host : monhost.fr
+  name : monNomDeBD
+  user : monUserName
+  pass : monPassword
+
+# 
+website:
+  title : Jobbuddy
+  version : 1.0
+  desc : Des petits boulots de grandes opportunitées !
+  language : fr
