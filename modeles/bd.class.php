@@ -5,10 +5,12 @@ require_once "include.php";
 class Bd {
     private static ?Bd $instance = null;
     private ?PDO $pdo;
+    private $constantes;
 
-    private function __construct() {
+    private function __construct($constantes) {
         try {
-            $this->pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME,DB_USER, DB_PASS);
+            $this->constantes = $constantes;
+            $this->pdo = new PDO('mysql:host=' . $constantes['database']['host'] . ';dbname=' . $constantes['database']['name'], $constantes['database']['user'], $constantes['database']['pass']);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (PDOException $e) {
@@ -16,9 +18,9 @@ class Bd {
         }
     }
 
-    public static function getInstance(): Bd {
+    public static function getInstance($constantes): Bd {
         if (self::$instance == null) {
-            self::$instance = new Bd();
+            self::$instance = new Bd($constantes);
         }
         return self::$instance;
     }

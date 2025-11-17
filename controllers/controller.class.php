@@ -8,9 +8,9 @@ class Controller
     private ?array $get = null;
     private ?array $post = null;
 
-    public function __construct(\Twig\Environment $twig, \Twig\Loader\FilesystemLoader $loader)
+    public function __construct(\Twig\Environment $twig, \Twig\Loader\FilesystemLoader $loader, $constantes)
     {
-        $db = Bd::getInstance();
+        $db = Bd::getInstance($constantes);
         $this->pdo = $db->getConnexion();
         $this->loader = $loader;
         $this->twig = $twig;
