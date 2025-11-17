@@ -1,9 +1,9 @@
 <?php
 
 class ControllerAnnonce extends Controller {
-    public function __construct(\Twig\Environment $twig, \Twig\Loader\FilesystemLoader $loader, $constantes)
+    public function __construct(\Twig\Environment $twig, \Twig\Loader\FilesystemLoader $loader)
     {
-        parent::__construct($twig, $loader, $constantes);
+        parent::__construct($twig, $loader);
     }
 
     public function afficher(){
