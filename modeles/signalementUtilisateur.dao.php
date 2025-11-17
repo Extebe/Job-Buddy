@@ -3,25 +3,32 @@
     require_once "include.php";
     class SignalementUtilisateurDao extends Signalement{
         public function findAll(){
-            $sql="SELECT * FROM signalement WHERE idAnnonceSignale IS NULL AND idUtilisateurSignale IS NOT NULL";
+            $sql="SELECT * FROM signalementUtilisateur SU 
+                  INNER JOIN signalement S ON SU.idSignalement=S.id
+                  INNER JOIN Utilisateur U ON SU.idUtilisateurSignale=U.id";
             $pdoStatement=$this->getPdo()->prepare($sql);
             $pdoStatement->execute();
-            $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"signalement");
+            $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"signalementUtilisateur");
             
             $signalement=$pdoStatement->fetchAll();
             return $signalement;
         }
         public function find(?int $id):SignalementUtilisateur{
-            $sql="SELECT * FROM signalement WHERE idAnnonceSignale IS NULL AND idUtilisateurSignale =:id";
+            $sql="SELECT * FROM signalementUtilisateur SU 
+            INNER JOIN signalement S ON SU.idSignalement=S.id
+            INNER JOIN Utilisateur U ON SU.idUtilisateurSignale=U.id
+            WHERE  SU.idUtilisateurSignale =:id";
             $pdoStatement=$this->getPdo()->prepare($sql);
             $pdoStatement->execute(array("id"=>$id));
-            $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"signalement");
+            $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"signalementUtilisateur");
             
             $signalement=$pdoStatement->fetch();
             return $signalement;
         }
         public function findAllAssoc(){
-            $sql="SELECT * FROM signalement WHERE idAnnonceSignale IS NULL AND idUtilisateurSignale IS NOT NULL";
+            $sql="SELECT * FROM signalementUtilisateur SU 
+            INNER JOIN signalement S ON SU.idSignalement=S.id
+            INNER JOIN Utilisateur U ON SU.idUtilisateurSignale=U.id";
             $pdoStatement=$this->getPdo()->prepare($sql);
             $pdoStatement->execute();
             $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
@@ -30,7 +37,10 @@
             return $signalement;
         }
         public function findAssoc(?int $id):SignalementUtilisateur{
-            $sql="SELECT * FROM signalement WHERE idAnnonceSignale IS NULL AND idUtilisateurSignale =:id";
+            $sql="SELECT * FROM signalementUtilisateur SU 
+            INNER JOIN signalement S ON SU.idSignalement=S.id
+            INNER JOIN Utilisateur U ON SU.idUtilisateurSignale=U.id
+            WHERE  SU.idUtilisateurSignale =:id";
             $pdoStatement=$this->getPdo()->prepare($sql);
             $pdoStatement->execute(array("id"=>$id));
             $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
