@@ -57,7 +57,7 @@ CREATE TABLE PublierNote(
    code INT,
    code_1 VARCHAR(15),
    code_2 VARCHAR(15),
-   note BYTE NOT NULL,
+   note FLOAT(1,1) NOT NULL,
    commentaire VARCHAR(100),
    PRIMARY KEY(code, code_1, code_2),
    FOREIGN KEY(code) REFERENCES Annonce(code),
