@@ -22,7 +22,7 @@ CREATE TABLE Annonce(
    dateDebutRealisation DATETIME,
    dateFinRealisation DATETIME CHECK (dateFinRealisation > dateDebutRealisation),
    etat VARCHAR(20) NOT NULL CHECK (etat IN ('DISPONIBLE','ACCEPTE','TERMINE')),
-   typeService VARCHAR(25) CHECK (typeService IN ('baby-sitting', 'jardinage', 'bricolage','ménage', 'transport', 'aide informatique', 'autre')),
+   typeService VARCHAR(25) CHECK (typeService IN ('baby-sitting', 'jardinage', 'bricolage','ménage', 'transport', 'aide informatique', 'aide aux devoirs', 'autre')),
    titre VARCHAR(100),
    description VARCHAR(1000),
    datePublication DATETIME,
