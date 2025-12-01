@@ -1,12 +1,12 @@
 <?php
 
     require_once "include.php";
-    class SignalementUtilisateurDao extends Signalement{
+    class SignalementUtilisateurDao extends SignalementDao{
         public function findAll(){
             $sql="SELECT * FROM signalementUtilisateur SU 
                   INNER JOIN signalement S ON SU.idSignalement=S.id
                   INNER JOIN Utilisateur U ON SU.idUtilisateurSignale=U.id";
-            $pdoStatement=$this->getPdo()->prepare($sql);
+            $pdoStatement = $this->getPdo()->prepare($sql);
             $pdoStatement->execute();
             $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"signalementUtilisateur");
             
