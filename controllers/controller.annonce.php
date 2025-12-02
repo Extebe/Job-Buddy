@@ -9,9 +9,9 @@ class ControllerAnnonce extends Controller {
     public function afficher(){
         $template = $this->getTwig();
 
-        // $managerAnnonce = new AnnonceDao($this->getPdo());
+        $managerAnnonce = new AnnonceDao($this->getPdo());
 
-        // $annonces = $managerAnnonce->findAll();
+        $annonces = $managerAnnonce->find("A001");
 
         echo $template->render('index.html.twig');
     }

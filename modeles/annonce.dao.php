@@ -25,7 +25,7 @@ class AnnonceDao{
         $this->pdo = $pdo;
     }
 
-    public function find(?int $id): ?Annonce
+    public function find(?string $id): ?Annonce
     {
         $sql = "SELECT * FROM Annonce WHERE id= :id";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -39,7 +39,7 @@ class AnnonceDao{
         $sql = "SELECT * FROM Annonce";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute();
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'annonce');
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Annonce');
         $annonce = $pdoStatement->fetchAll();
         return $annonce;
     }
