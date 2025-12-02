@@ -6,16 +6,17 @@ class Annonce{
     private ?string $id;
     private ?string $titre;
     private ?string $description;
-    private ?int $etat; // int qui correspond à un état
-    private ?int $typeService; // int qui correspond à un service
+    private ?string $etat;
+    private ?string $typeService;
     private ?string $datePublication;
-    private ?string $dateDebut;
-    private ?string $dateFin;
-    private ?array $assocEtudiantDate; // Demander au prof pour le type
-    private ?Particulier $auteur;
-    private ?string $motifSuppression; 
+    private ?string $dateDebutRealisation;
+    private ?string $dateFinRealisation;
+    private ?array $assocEtudiantDate;
+    private ?string $motifSuppression;
+    private ?string $dateSuppression;
+    private ?string $idParticulier;
 
-    public function __construct(?string $id=null, ?string $titre=null, ?string $description=null, ?int $etat=null, ?int $typeService=null, ?string $datePublication=null, ?string $dateDebut=null, ?string $dateFin=null, ?array $assocEtudiantDate=null, ?Particulier $auteur=null, ?string $motifSuppression=null)
+    public function __construct(?string $id=null, ?string $titre=null, ?string $description=null, ?string $etat=null, ?string $typeService=null, ?string $datePublication=null, ?string $dateDebutRealisation=null, ?string $dateFinRealisation=null, ?array $assocEtudiantDate=null, ?Particulier $auteur=null, ?string $motifSuppression=null, ?string $dateSuppression=null, ?string $idParticulier=null)
     {
         $this->id = $id;
         $this->titre = $titre;
@@ -23,11 +24,12 @@ class Annonce{
         $this->etat = $etat;
         $this->typeService = $typeService;
         $this->datePublication = $datePublication;
-        $this->dateDebut = $dateDebut;
-        $this->dateFin = $dateFin;
+        $this->dateDebutRealisation = $dateDebutRealisation;
+        $this->dateFinRealisation = $dateFinRealisation;
         $this->assocEtudiantDate = $assocEtudiantDate;
-        $this->auteur = $auteur;
         $this->motifSuppression = $motifSuppression;
+        $this->dateSuppression = $dateSuppression;
+        $this->idParticulier = $idParticulier;
     }
 
     /**
@@ -81,7 +83,7 @@ class Annonce{
     /**
      * Get the value of etat
      */
-    public function getEtat(): ?int
+    public function getEtat(): ?string
     {
         return $this->etat;
     }
@@ -89,7 +91,7 @@ class Annonce{
     /**
      * Set the value of etat
      */
-    public function setEtat(?int $etat): void
+    public function setEtat(?string $etat): void
     {
         $this->etat = $etat;
     }
@@ -97,7 +99,7 @@ class Annonce{
     /**
      * Get the value of typeService
      */
-    public function getTypeService(): ?int
+    public function getTypeService(): ?string
     {
         return $this->typeService;
     }
@@ -105,7 +107,7 @@ class Annonce{
     /**
      * Set the value of typeService
      */
-    public function setTypeService(?int $typeService): void
+    public function setTypeService(?string $typeService): void
     {
         $this->typeService = $typeService;
     }
@@ -127,35 +129,35 @@ class Annonce{
     }
 
     /**
-     * Get the value of dateDebut
+     * Get the value of dateDebutRealisation
      */
-    public function getDateDebut(): ?string
+    public function getDateDebutRealisation(): ?string
     {
-        return $this->dateDebut;
+        return $this->dateDebutRealisation;
     }
 
     /**
-     * Set the value of dateDebut
+     * Set the value of dateDebutRealisation
      */
-    public function setDateDebut(?string $dateDebut): void
+    public function setDateDebutRealisation(?string $dateDebutRealisation): void
     {
-        $this->dateDebut = $dateDebut;
+        $this->dateDebutRealisation = $dateDebutRealisation;
     }
 
     /**
-     * Get the value of dateFin
+     * Get the value of dateFinRealisation
      */
-    public function getDateFin(): ?string
+    public function getDateFinRealisation(): ?string
     {
-        return $this->dateFin;
+        return $this->dateFinRealisation;
     }
 
     /**
-     * Set the value of dateFin
+     * Set the value of dateFinRealisation
      */
-    public function setDateFin(?string $dateFin): void
+    public function setDateFinRealisation(?string $dateFinRealisation): void
     {
-        $this->dateFin = $dateFin;
+        $this->dateFinRealisation = $dateFinRealisation;
     }
 
     /**
@@ -177,18 +179,6 @@ class Annonce{
     /**
      * Get the value of auteur
      */
-    public function getAuteur(): ?Particulier
-    {
-        return $this->auteur;
-    }
-
-    /**
-     * Set the value of auteur
-     */
-    public function setAuteur(?Particulier $auteur): void
-    {
-        $this->auteur = $auteur;
-    }
 
     /**
      * Get the value of motifSuppression
@@ -204,6 +194,30 @@ class Annonce{
     public function setMotifSuppression(?string $motifSuppression): void
     {
         $this->motifSuppression = $motifSuppression;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDateSuppression(): ?string
+    {
+        return $this->dateSuppression;
+    }
+
+    /**
+     * @param string|null $dateSuppression
+     */
+    public function setDateSuppression(?string $dateSuppression): void
+    {
+        $this->dateSuppression = $dateSuppression;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getIdParticulier(): ?string
+    {
+        return $this->idParticulier;
     }
 
     public function delierParticulier(){
