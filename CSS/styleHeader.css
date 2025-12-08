@@ -1,0 +1,19 @@
+body{
+    background-color: #E6D8C3;
+    color:#4B352A
+}
+header{
+    background-color:#E6D8C3;
+}
+
+.nav-item-searchBar{
+    margin-left: 30px;
+}
+
+.nav-item-filter{
+    margin-left: 10px;
+}
+
+.row{
+    background-color: #E6D8C3;
+}
