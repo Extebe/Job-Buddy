@@ -26,8 +26,8 @@ CREATE TABLE Annonce(
    titre VARCHAR(100),
    description VARCHAR(1000),
    datePublication DATETIME,
-   dateSupression DATETIME,
-   motifSupression VARCHAR(50),
+   dateSuppression DATETIME,
+   motifSuppression VARCHAR(50),
    idParticulier VARCHAR(15) NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(idParticulier) REFERENCES Utilisateur(id)
