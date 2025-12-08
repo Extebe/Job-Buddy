@@ -1,0 +1,12 @@
+database:
+  host : 0.0.0.0
+  name : name
+  user : user
+  pass : pw
+
+
+website:
+  title : Jobbuddy
+  version : 1.0
+  desc : Des petits boulots de grandes opportunitées !
+  language : fr

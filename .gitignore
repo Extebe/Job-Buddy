@@ -1,9 +1,6 @@
 # les fichiers du dossier config
 /config/constantes.yaml
-/config
 /vendor
-composer.json
-composer.lock
 composer.phar
 .idea/
 node_modules
