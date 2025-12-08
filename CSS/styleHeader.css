@@ -17,3 +17,6 @@ header{
 .row{
     background-color: #E6D8C3;
 }
+.btn_connexion{
+    list-style-type: none;
+}

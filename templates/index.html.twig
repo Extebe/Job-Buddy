@@ -1,5 +1,15 @@
 {% extends 'base_template.html.twig' %}
 
+
+    {% block headerListe %}
+        <li {# class="btn_connexion" #} style="list-style-type: none;">  
+                <button class="btn btn-outline-success" type="submit">Se connecter</button>
+        </li>
+        <li style="list-style-type: none;">      _
+                <button class="btn btn-outline-success" type="submit">S'inscrire</button>
+        </li>
+        
+    {% endblock %}
     {% block content %}
         <h1>
             Bienvenue sur le super site de super Jobbuddy.
