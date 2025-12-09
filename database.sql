@@ -9,7 +9,7 @@ CREATE TABLE Utilisateur(
    tel CHAR(10),
    dateNaiss DATE NOT NULL,
    email VARCHAR(50) NOT NULL,
-   mdp VARCHAR(50) NOT NULL,
+   mdp VARCHAR(250) NOT NULL,
    dateSuppression DATE,
    ville VARCHAR(50),
    adresse VARCHAR(50),
