@@ -75,19 +75,19 @@ class ControllerUtilisateur extends Controller
                         echo '<h1>Erreur : Compte existant</h1>';
                         echo '<p>Ce compte existe déjà.</p>';
                         echo '<a href="#">Mot de passe oublié ?</a><br>';
-                        echo '<a href="inscription.html">Retour au formulaire d\'inscription</a>';
+                        echo '<a href="index.php?controleur=utilisateur&methode=pageConnexion">Retour au formulaire d\'inscription</a>';
                         break;
 
                     case "mdp_faible":
                         echo '<h1>Erreur : Mot de passe invalide</h1>';
                         echo '<p>Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.</p>';
-                        echo '<a href="inscription.php">Retour au formulaire d\'inscription</a>';
+                        echo '<a href="index.php?controleur=utilisateur&methode=pageConnexion">Retour au formulaire d\'inscription</a>';
                         break;
 
                     default:
                         echo "<h1>Une erreur inattendue est survenue</h1>";
                         echo "<p>{$e->getMessage()}</p>";
-                        echo '<a href="inscription.php">Retour au formulaire d\'inscription</a>';
+                        echo '<a href="index.php?controleur=utilisateur&methode=pageConnexion">Retour au formulaire d\'inscription</a>';
                         break;
                 }
             }
