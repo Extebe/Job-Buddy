@@ -7,15 +7,35 @@ class ControllerUtilisateur extends Controller
         parent::__construct($twig, $loader);
     }
     public function pageConnexion(){
+        if(isset($_SESSION['role'])){
+            //À faire, verifier qu'ils sont valides
+            $role = $_SESSION['role'];
+        }
+        else{
+            $role = "non_connecte";
+        }
+
         $template = $this->getTwig();
 
-        echo $template->render('PageDeConnexion.html.twig');
+        echo $template->render('pageInscription.html.twig', [
+            'role' => $role
+        ]);
     }
 
     public function pageInscription(){
+        if(isset($_SESSION['role'])){
+            //À faire, verifier qu'ils sont valides
+            $role = $_SESSION['role'];
+        }
+        else{
+            $role = "non_connecte";
+        }
+
         $template = $this->getTwig();
 
-        echo $template->render('PageInscription.html.twig');
+        echo $template->render('pageInscription.html.twig', [
+            'role' => $role
+        ]);
     }
 
     public function inscriptionBd(string $nom, string $prenom, string $email, string $password){
