@@ -34,6 +34,7 @@ require_once "modeles/signalementUtilisateur.dao.php";
 // Controleurs
 require_once "controllers/controller.class.php";
 require_once "controllers/controller.factory.php";
+require_once "controllers/controller.utilisateur.php";
 
 // Constantes
 require_once "config/constantes.class.php";

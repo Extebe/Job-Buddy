@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <!-- Marque/Logo -->
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="index.php">
                 <img src="./images/icons/broom(1).png" alt="Logo" width="40" height="40" class="d-inline-block align-text-center">
                 Jobbuddy
             </a>
@@ -29,7 +29,12 @@
                 <li class="nav-item-filter d-flex align-items-center ml-2">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filtrer</button>
                 </li>
-                {% block headerListe %}{% endblock %}
+                {% if role == "non_connecte" %}
+                    <a href="index.php?controleur=utilisateur&methode=pageConnexion"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">se connecter</button></a>
+                    <a href="index.php?controleur=utilisateur&methode=pageInscription"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">s'inscrire</button></a>
+                {% endif %}
+                {% block headerListe %}
+                {% endblock %}
             </ul>
         </div>
     </nav>
