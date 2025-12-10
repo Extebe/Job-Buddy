@@ -1,9 +1,18 @@
 body{
     background-color: #E6D8C3;
-    color:#4B352A
+    color:#4B352A;
 }
 header{
-    background-color:#E6D8C3;
+    background-color: #fbf2dd;
+    position: sticky;
+    top: 0; /* Le header reste en haut de la page */
+    z-index: 100; /* Assure que le header reste au-dessus des autres éléments */
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Ombre légère */
+}
+
+footer{
+    text-align: center;
 }
 
 .nav-item-searchBar{
@@ -16,4 +25,8 @@ header{
 
 .row{
     background-color: #E6D8C3;
+}
+
+.btn-compte{
+    padding: 10px;
 }

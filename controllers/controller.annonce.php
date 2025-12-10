@@ -19,11 +19,11 @@ class ControllerAnnonce extends Controller {
             $role = "non_connecte";
         }
 
-        $annonces = $managerAnnonce->find("A001");
+        //$annonces = $managerAnnonce->find(1);
 
         echo $template->render('index.html.twig', [
             'role' => $role,
-            'annonces' => $annonces // Si tu veux aussi passer les annonces au template
+            //'annonces' => $annonces
         ]);
     }
 

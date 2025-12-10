@@ -13,7 +13,7 @@ CREATE TABLE Utilisateur(
    dateSuppression DATE,
    ville VARCHAR(50),
    adresse VARCHAR(50),
-   codePostale VARCHAR(5),
+   codePostal VARCHAR(5),
    PRIMARY KEY(id)
 );
 

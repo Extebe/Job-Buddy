@@ -3,11 +3,13 @@
 require_once "include.php";
 
 class Utilisateur{
-    private ?string $id;
+    private ?int $id;
     private ?string $nom;
     private ?string $prenom;
     private ?string $telephone;
     private ?string $dateNaiss;
+    private ?string $role;
+    private ?string $codeINE;
     private ?string $email;
     private ?string $mdp;
     private ?string $adresse;
@@ -17,12 +19,14 @@ class Utilisateur{
     private array $notesRecues = [];
 
 
-    public function __construct(?string $id = null, ?string $nom = null, ?string $prenom = null, ?string $telephone = null, ?string $dateNaiss = null, ?string $email = null, ?string $mdp = null, ?string $adresse = null, ?string $ville = null, ?string $codePostal = null){
+    public function __construct(?int $id=null, ?string $nom=null, ?string $prenom=null, ?string $telephone=null, ?string $dateNaiss=null, ?string $role=null, ?string $codeINE=null, ?string $email=null, ?string $mdp=null, ?string $adresse=null, ?string $ville=null, ?string $codePostal=null){
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->telephone = $telephone;
         $this->dateNaiss = $dateNaiss;
+        $this->role = $role;
+        $this->codeINE = $codeINE;
         $this->email = $email;
         $this->mdp = $mdp;
         $this->adresse = $adresse;
@@ -110,6 +114,21 @@ class Utilisateur{
         $this->dateNaiss = $dateNaiss;
     }
 
+    public function getRole(){
+        return $this->role;
+    }
+
+    public function setRole($role){
+        $this->role = $role;
+    }
+
+    public function getCodeINE(){
+        return $this->codeINE;
+    }
+
+    public function setCodeINE($codeINE){
+        $this->codeINE = $codeINE;
+    }
     /**
      * Get the value of email
      */ 

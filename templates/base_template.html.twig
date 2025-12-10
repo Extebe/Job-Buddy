@@ -29,13 +29,15 @@
                 <li class="nav-item-filter d-flex align-items-center ml-2">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filtrer</button>
                 </li>
+            </ul>
                 {% if role == "non_connecte" %}
-                    <a href="index.php?controleur=utilisateur&methode=pageConnexion"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">se connecter</button></a>
-                    <a href="index.php?controleur=utilisateur&methode=pageInscription"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">s'inscrire</button></a>
+                    <div class="btn-compte">
+                        <a href="index.php?controleur=utilisateur&methode=pageConnexion"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">se connecter</button></a>
+                        <a href="index.php?controleur=utilisateur&methode=pageInscription"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">s'inscrire</button></a>
+                    </div>
                 {% endif %}
                 {% block headerListe %}
                 {% endblock %}
-            </ul>
         </div>
     </nav>
 </header>
@@ -51,7 +53,7 @@
 
 
 
-<footer class="fixed-bottom">
+<footer>
     <div class="container-fluid">
         <div class="row" style="min-height: 100px;">
             <div class="col-sm-6 d-flex justify-content-center align-items-center">

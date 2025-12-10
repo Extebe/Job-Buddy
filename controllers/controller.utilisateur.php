@@ -38,15 +38,15 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
-    public function inscriptionBd(string $nom, string $prenom, string $email, string $password){
+    public function inscriptionBd(Utilisateur $user){
         // Vérifie si le mot de passe est robuste
-        if (!Valide::estRobuste($password))
+        if (!Valide::estRobuste($user->getMdp()))
         {
             throw new Exception("mdp_faible");
         }
 
         // Vérifie si l'email existe déjà
-        if (Valide::emailExiste($email))
+        if (Valide::emailExiste($user->getEmail()))
         {
             throw new Exception("compte_existant");
         }
@@ -55,17 +55,26 @@ class ControllerUtilisateur extends Controller
         $baseDeDonnees = Bd::getInstance();
 
         // Hachage du mot de passe
-        $passwordHache = password_hash($password, PASSWORD_BCRYPT);
+        $passwordHache = password_hash($user->getMdp(), PASSWORD_BCRYPT);
 
         // Préparation de la requête d'insertion
         $requete = $baseDeDonnees->getConnexion()->prepare(
-            'INSERT INTO Utilisateur (id, role, nom, prenom, dateNaiss, email, mdp) VALUES ("005", "Etudiant", "nom", "prenom", "2006-11-20", :email, :password)'
+            'INSERT INTO Utilisateur (role, codeINE, nom, prenom, tel, dateNaiss, email, mdp, ville, adresse, codePostal) VALUES (:role, :codeINE, :nom, :prenom, :tel, :dateNaiss, :email, :password, :ville, :adresse, :codePostal)'
         );
 
         // Exécution de la requête
         $requete->execute([
-            'email' => $email,
+            'role' => $user->getRole(),
+            'codeINE' => $user->getCodeINE(),
+            'nom' => $user->getNom(),
+            'prenom' => $user->getPrenom(),
+            'tel' => $user->getTelephone(),
+            'dateNaiss' => $user->getDateNaiss(),
+            'email' => $user->getEmail(),
             'password' => $passwordHache,
+            'ville' => $user->getVille(),
+            'adresse' => $user->getAdresse(),
+            'codePostal' => $user->getCodePostal()
         ]);
     }
 
@@ -76,12 +85,21 @@ class ControllerUtilisateur extends Controller
             // Récupération des données envoyées par le formulaire
             $nom = $_POST['nom'] ?? '';
             $prenom = $_POST['prenom'] ?? '';
+            $dateNaiss = $_POST['datenaiss'] ?? '';
+            $phone = $_POST['phone'] ?? '';
+            $role = $_POST['role'] ?? '';
+            $codeINE = $_POST['codeINE'] ?? '';
+            $ville = $_POST['ville'] ?? '';
+            $adresse = $_POST['adresse'] ?? '';
+            $codePostal = $_POST['codePostal'] ?? '';
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
+
+            $user = new Utilisateur(null, $nom, $prenom, $phone, $dateNaiss, $role, $codeINE, $email, $password, $adresse, $ville, $codePostal);
             try
             {
                 // Tentative d'inscription
-                $this->inscriptionBd($nom, $prenom, $email, $password);
+                $this->inscriptionBd($user);
 
                 // Si l'utilisateur a pu être inscrit en BD, affichage du succès
                 echo "<h1>Inscription réussie !</h1>";
@@ -102,6 +120,7 @@ class ControllerUtilisateur extends Controller
                         echo '<h1>Erreur : Mot de passe invalide</h1>';
                         echo '<p>Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.</p>';
                         echo '<a href="index.php?controleur=utilisateur&methode=pageConnexion">Retour au formulaire d\'inscription</a>';
+                        echo $user->getMdp();
                         break;
 
                     default:
