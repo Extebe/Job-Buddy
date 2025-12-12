@@ -30,3 +30,8 @@ footer{
 .btn-compte{
     padding: 10px;
 }
+form{
+    max-width: 400px;
+    border: 1.5px solid #4B352A;
+    border-radius: 8px;
+}

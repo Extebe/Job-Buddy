@@ -17,7 +17,7 @@ class ControllerUtilisateur extends Controller
 
         $template = $this->getTwig();
 
-        echo $template->render('pageInscription.html.twig', [
+        echo $template->render('pageDeConnexion.html.twig', [
             'role' => $role
         ]);
     }
