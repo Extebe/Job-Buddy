@@ -3,4 +3,19 @@
         <h1>
             Bienvenue sur le super site de super Jobbuddy.
         </h1>
+        <div id="zone_cartes" class="row row-cols-3">
+            {% for annonce in annonces %}
+
+                <!--Les cartes-->
+                <a href="index.php?controleur=annonce&methode=listerAnnonce&id_categorie={{categorie.id}}" class="col mb-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body bg-primary">
+                            <h5>{{annonce.titre}}</h5>
+                        </div>
+                    </div>
+                </a>
+
+            {% endfor %}
+
+        </div>
     {% endblock %}

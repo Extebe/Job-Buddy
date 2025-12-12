@@ -9,8 +9,6 @@ class ControllerAnnonce extends Controller {
     public function afficher(){
         $template = $this->getTwig();
 
-        $managerAnnonce = new AnnonceDao($this->getPdo());
-
         if(isset($_SESSION['role'])){
             //À faire, verifier qu'ils sont valides
             $role = $_SESSION['role'];
@@ -19,13 +17,22 @@ class ControllerAnnonce extends Controller {
             $role = "non_connecte";
         }
 
-        //$annonces = $managerAnnonce->find(1);
+        //recupération des annonces
+        $managerAnnonce = new AnnonceDao($this->getPdo());
+        $tableau = $managerAnnonce->findAllAssoc();
+        $annonces = $managerAnnonce->hydrateAll($tableau);
 
         echo $template->render('index.html.twig', [
             'role' => $role,
+            'annonces' => $annonces
             //'annonces' => $annonces
         ]);
+
+
     }
 
+    public function listerAnnonces(){
+
+    }
 
 }
