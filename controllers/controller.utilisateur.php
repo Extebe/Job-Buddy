@@ -113,22 +113,39 @@ class ControllerUtilisateur extends Controller
                         echo '<h1>Erreur : Compte existant</h1>';
                         echo '<p>Ce compte existe déjà.</p>';
                         echo '<a href="#">Mot de passe oublié ?</a><br>';
-                        echo '<a href="index.php?controleur=utilisateur&methode=pageConnexion">Retour au formulaire d\'inscription</a>';
+                        echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
                         break;
 
                     case "mdp_faible":
                         echo '<h1>Erreur : Mot de passe invalide</h1>';
                         echo '<p>Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.</p>';
-                        echo '<a href="index.php?controleur=utilisateur&methode=pageConnexion">Retour au formulaire d\'inscription</a>';
+                        echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
                         echo $user->getMdp();
                         break;
 
                     default:
                         echo "<h1>Une erreur inattendue est survenue</h1>";
                         echo "<p>{$e->getMessage()}</p>";
-                        echo '<a href="index.php?controleur=utilisateur&methode=pageConnexion">Retour au formulaire d\'inscription</a>';
+                        echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
                         break;
                 }
+            }
+        }
+    }
+    
+    //Appeler depuis pageDeConnexion.html.twig
+    public function connexion(){
+        if($_SERVER['REQUEST_METHOD']=== 'POST'){
+            //Récupération des données du formulaire
+            $email = $_POST['email']??'';
+            $mdp = $_POST['mdp']??'';
+
+            //Création d'une instance utilisateur avec les données récupérés
+            $utilisateur = new Utilisateur($email,$mdp);
+
+            try{
+                //Tentative de connexion
+
             }
         }
     }
