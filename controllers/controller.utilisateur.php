@@ -118,7 +118,43 @@ class ControllerUtilisateur extends Controller
         }
     }
 
-    //Appeler depuis pageDeConnexion.html.twig
+    //Authentifie un utilisateur
+    public function authentification(Utilisateur $user):bool{
+        // création d'une instance de la bd
+        $baseDeDonnees = Bd::getInstance();
+
+        // Recherche de l'utilisateur
+        $requete=$baseDeDonnees->prepare(
+            'SELECT id, mdp FROM utilisateur WHERE email =:email'
+        );
+
+        // Exécution de la requête avec l'email de l'utilisateur
+        $requete->execute(['email' => $user->getEmail()]);
+
+        // Récupération des info de l'utilisateur
+        $donneeUtilisateurEnBD=$requete->fetch(PDO::FETCH_ASSOC);
+
+        // Vérifie si l'utilisateur en BD existe
+        if($donneeUtilisateurEnBD){
+            // Vérification du mot de passe avec la fonction password_verify
+            if(password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
+                // Synchronisation de l'identifiant récupéré de la base de données avec l'objet courant
+                $user->setId($donneeUtilisateurEnBD['id']);
+
+                // Réinitialisation du mot de passe pour éviter de conserver des données sensibles
+                $user->setMdp('');
+
+                return true; // Authentification réussie
+            }
+        }
+        return false; // Authentification échouée
+    }
+
+    /*Appeler depuis pageDeConnexion.html.twig, permet de se connecter en appelant la méthode authentification
+     *
+     * 
+     * 
+     */
     public function connexion(){
         if($_SERVER['REQUEST_METHOD']=== 'POST'){
             //Récupération des données du formulaire
@@ -130,9 +166,21 @@ class ControllerUtilisateur extends Controller
 
             try{
                 //Tentative de connexion
+                if($this->authentification($utilisateur)){
+                    echo "Connexion réussie.";
+                }
+                else{
+                    echo "Erreur : Email ou mot de passe incorrect.";
+                    echo '<br><a href="index.php?controleur=utilisateur&methode=pageConnexion">Retourner à la page de connexion</a>';
+                }
                 return true;
             }
-            catch (Exception $e){}
+            catch (Exception $e){
+                switch($e ->getMessage()){
+                    case "email_ou_mdp_incorrect":
+
+                }
+            }
         }
     }
 }
