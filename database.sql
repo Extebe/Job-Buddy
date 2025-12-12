@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS Utilisateur;
 
 
 CREATE TABLE Utilisateur(
-   id int,
+   id int AUTO_INCREMENT,
    role VARCHAR(14) NOT NULL CHECK (role IN ('PARTICULIER', 'ETUDIANT', 'ADMINISTRATEUR')),
    codeINE VARCHAR(20),
    nom VARCHAR(50) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE Utilisateur(
 );
 
 CREATE TABLE Annonce(
-   id int,
+   id int AUTO_INCREMENT,
    dateDebutRealisation DATETIME,
    dateFinRealisation DATETIME CHECK (dateFinRealisation > dateDebutRealisation),
    etat VARCHAR(20) NOT NULL CHECK (etat IN ('DISPONIBLE','ACCEPTE','TERMINE')),
@@ -44,7 +44,7 @@ CREATE TABLE Annonce(
 );
 
 CREATE TABLE Signalement(
-   id int,
+   id int AUTO_INCREMENT,
    dateSignalement DATETIME NOT NULL,
    motif VARCHAR(20),
    description VARCHAR(500),
@@ -80,7 +80,7 @@ CREATE TABLE Postuler(
 );
 
 CREATE TABLE Note(
-   id int,
+   id int AUTO_INCREMENT,
    idAnnonce int NOT NULL,
    idUtilisateurNoteur int NOT NULL,
    idUtilisateurNote int NOT NULL,
