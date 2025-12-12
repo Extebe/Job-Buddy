@@ -57,25 +57,10 @@ class ControllerUtilisateur extends Controller
         // Hachage du mot de passe
         $passwordHache = password_hash($user->getMdp(), PASSWORD_BCRYPT);
 
-        // Préparation de la requête d'insertion
-        $requete = $baseDeDonnees->getConnexion()->prepare(
-            'INSERT INTO Utilisateur (role, codeINE, nom, prenom, tel, dateNaiss, email, mdp, ville, adresse, codePostal) VALUES (:role, :codeINE, :nom, :prenom, :tel, :dateNaiss, :email, :password, :ville, :adresse, :codePostal)'
-        );
-
-        // Exécution de la requête
-        $requete->execute([
-            'role' => $user->getRole(),
-            'codeINE' => $user->getCodeINE(),
-            'nom' => $user->getNom(),
-            'prenom' => $user->getPrenom(),
-            'tel' => $user->getTelephone(),
-            'dateNaiss' => $user->getDateNaiss(),
-            'email' => $user->getEmail(),
-            'password' => $passwordHache,
-            'ville' => $user->getVille(),
-            'adresse' => $user->getAdresse(),
-            'codePostal' => $user->getCodePostal()
-        ]);
+        // Requête d'insertion
+        $pdo = $baseDeDonnees->getConnexion();
+        $utilisateurDao = new UtilisateurDao($pdo);
+        $utilisateurDao->insererUtilisateur($user, $passwordHache);
     }
 
 
@@ -132,7 +117,7 @@ class ControllerUtilisateur extends Controller
             }
         }
     }
-    
+
     //Appeler depuis pageDeConnexion.html.twig
     public function connexion(){
         if($_SERVER['REQUEST_METHOD']=== 'POST'){
@@ -145,8 +130,9 @@ class ControllerUtilisateur extends Controller
 
             try{
                 //Tentative de connexion
-
+                return true;
             }
+            catch (Exception $e){}
         }
     }
 }
