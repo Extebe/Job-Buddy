@@ -121,7 +121,7 @@ class ControllerUtilisateur extends Controller
     //Authentifie un utilisateur
     public function authentification(Utilisateur $user):bool{
         // création d'une instance de la bd
-        $baseDeDonnees = Bd::getInstance();
+        $baseDeDonnees = Bd::getInstance()->getConnexion();
 
         // Recherche de l'utilisateur
         $requete=$baseDeDonnees->prepare(
