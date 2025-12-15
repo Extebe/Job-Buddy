@@ -37,7 +37,7 @@ class UtilisateurDao{
             ':tel' => $user->getTelephone(),
             ':dateNaiss' => $user->getDateNaiss(),
             ':email' => $user->getEmail(),
-            ':mdp' => $user->getMdp(),
+            ':mdp' => $passwordHache,
             ':ville' => $user->getVille(),
             ':adresse' => $user->getAdresse(),
             ':codePostal' => $user->getCodePostal()

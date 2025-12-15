@@ -121,10 +121,12 @@ class ControllerUtilisateur extends Controller
     //Authentifie un utilisateur
     public function authentification(Utilisateur $user):bool{
         // création d'une instance de la bd
-        $baseDeDonnees = Bd::getInstance()->getConnexion();
+        $baseDeDonnees = Bd::getInstance();
+
+        $pdo = $baseDeDonnees->getConnexion();
 
         // Recherche de l'utilisateur
-        $requete=$baseDeDonnees->prepare(
+        $requete= $pdo->prepare(
             'SELECT id, mdp FROM utilisateur WHERE email =:email'
         );
 
@@ -132,18 +134,18 @@ class ControllerUtilisateur extends Controller
         $requete->execute(['email' => $user->getEmail()]);
 
         // Récupération des info de l'utilisateur
-        $donneeUtilisateurEnBD=$requete->fetch(PDO::FETCH_ASSOC);
-
+        $donneeUtilisateurEnBD = $requete->fetch(PDO::FETCH_ASSOC);
         // Vérifie si l'utilisateur en BD existe
         if($donneeUtilisateurEnBD){
             // Vérification du mot de passe avec la fonction password_verify
+            var_dump(password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp']));
             if(password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
                 // Synchronisation de l'identifiant récupéré de la base de données avec l'objet courant
                 $user->setId($donneeUtilisateurEnBD['id']);
 
                 // Réinitialisation du mot de passe pour éviter de conserver des données sensibles
                 $user->setMdp('');
-
+                $_SESSION['role'] = $user->getRole();
                 return true; // Authentification réussie
             }
         }
@@ -156,10 +158,10 @@ class ControllerUtilisateur extends Controller
      * 
      */
     public function connexion(){
-        if($_SERVER['REQUEST_METHOD']=== 'POST'){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
             //Récupération des données du formulaire
-            $email = $_POST['email']??'';
-            $mdp = $_POST['mdp']??'';
+            $email = $_POST['email'] ?? '';
+            $mdp = $_POST['mdp'] ?? '';
 
             //Création d'une instance utilisateur avec les données récupérés
             $utilisateur = new Utilisateur(null, null, null, null, null, null, null, $email,$mdp);
@@ -168,6 +170,8 @@ class ControllerUtilisateur extends Controller
                 //Tentative de connexion
                 if($this->authentification($utilisateur)){
                     echo "Connexion réussie.";
+                    echo "<br><a href='index.php'>Retourner à l'accueil</a>";
+                    echo $_SESSION['role'];
                 }
                 else{
                     echo "Erreur : Email ou mot de passe incorrect.";
