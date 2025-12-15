@@ -10,7 +10,7 @@ class NoteDao{
         $this->pdo = $pdo;
     }
     
-    public function findAll(): array{
+    public function findAllAssoc(): array{
         //requete
         $sql = "SELECT * FROM Note";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -24,7 +24,7 @@ class NoteDao{
 
     public function findByUser(string $idAuteur): array{
         //requete
-        $sql = "SELECT * FROM Note where idAuteur = :idAuteur";
+        $sql = "SELECT * FROM Note where idUtilisateurNote = :idAuteur";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(['idAuteur' => $idAuteur]);
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
@@ -35,18 +35,26 @@ class NoteDao{
 
     public function hydrate ($tableau): ?Note{
         $note = new Note();
-        $note->setId($tableau['idNote'] ?? null);
-        $note->setValeur($tableau['valeur'] ?? null);
+        $note->setId($tableau['id'] ?? null);
+        $note->setValeur($tableau['note'] ?? null);
         $note->setCommentaire($tableau['commentaire'] ?? null);
-        $note->setAuteur($tableau['idAuteur'] ?? null);
-        $note->setReceveur($tableau['idReceveur'] ?? null);
-        $note->setAnnonce($tableau['idAnnonce'] ?? null);
+        //hydratation de annonce
+        $annonceDAO=new AnnonceDAO($this->pdo);
+        $annonce=$annonceDAO->find($tableau['idAnnonce'] ?? null);
+        $note->setAnnonce($annonce ?? null);
+        //hydratation des utilisateurs
+        $utilisateurDAO=new UtilisateurDAO($this->pdo);
+        $auteur=$utilisateurDAO->findById($tableau['idUtilisateurNoteur'] ?? null);
+        $note->setAuteur($auteur ?? null);
+        $receveur=$utilisateurDAO->findById($tableau['idUtilisateurNote'] ?? null);
+        $note->setReceveur($receveur ?? null);
+        
         return $note;
 
     }
 
         public function hydrateAll($tableau): ?array{
-        $note = [];
+        $notes = [];
         foreach($tableau as $tableauAssoc){//tableauAssoc = chaque ligne
             $note = $this->hydrate($tableauAssoc);
             $notes[] = $note;

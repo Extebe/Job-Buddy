@@ -3,7 +3,7 @@
 require_once "include.php";
 
 class Note {
-    private ?string $id;
+    private ?int $id;
     private ?int $valeur; //Note entre 0 et 5
     private ?string $commentaire;
     private ?Utilisateur $auteur;
@@ -11,7 +11,7 @@ class Note {
     private ?Annonce $annonce;
 
     // Constructeur
-    public function __construct(string|null $id = null, int|null $valeur = null, string|null $commentaire = null, Utilisateur|null $auteur = null, Utilisateur|null $receveur = null, Annonce|null $annonce = null) {
+    public function __construct(?int $id = null, ?int $valeur = null, ?string $commentaire = null, ?Utilisateur $auteur = null, ?Utilisateur $receveur = null, ?Annonce $annonce = null) {
         $this->id = $id;
         $this->valeur = $valeur;
         $this->commentaire = $commentaire;
@@ -21,7 +21,7 @@ class Note {
     }
 
     // Getters et Setters
-    public function getId(): ?string {
+    public function getId(): ?int {
         return $this->id;
     }
 
@@ -71,9 +71,9 @@ class Note {
 
     public function __toString(): string {
         return "Note [id=" . $this->id . ", valeur=" . $this->valeur . ", commentaire=" . $this->commentaire . 
-               ", auteur=" . ($this->auteur ? $this->auteur->getId() : "null") . 
-               ", receveur=" . ($this->receveur ? $this->receveur->getId() : "null") . 
-               ", annonce=" . ($this->annonce ? $this->annonce->getId() : "null") . "]";
+               ", auteur=" . ($this->auteur ? $this->auteur->getNom(): "null") . 
+               ", receveur=" . ($this->receveur ? $this->receveur->getNom() : "null") . 
+               ", annonce=" . ($this->annonce ? $this->annonce->getTitre(): "null") . "]";
     }
     
     
