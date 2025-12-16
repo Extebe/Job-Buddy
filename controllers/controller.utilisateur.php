@@ -105,7 +105,6 @@ class ControllerUtilisateur extends Controller
                         echo '<h1>Erreur : Mot de passe invalide</h1>';
                         echo '<p>Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.</p>';
                         echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
-                        echo $user->getMdp();
                         break;
 
                     default:
@@ -121,19 +120,20 @@ class ControllerUtilisateur extends Controller
     //Authentifie un utilisateur
     public function authentification(Utilisateur $user):bool{
         // création d'une instance de la bd
-        $baseDeDonnees = Bd::getInstance()->getConnexion();
+        $baseDeDonnees = Bd::getInstance();
+
+        $pdo = $baseDeDonnees->getConnexion();
 
         // Recherche de l'utilisateur
-        $requete=$baseDeDonnees->prepare(
-            'SELECT id, mdp FROM utilisateur WHERE email =:email'
+        $requete= $pdo->prepare(
+            'SELECT id, mdp, role FROM utilisateur WHERE email =:email'
         );
 
         // Exécution de la requête avec l'email de l'utilisateur
         $requete->execute(['email' => $user->getEmail()]);
 
         // Récupération des info de l'utilisateur
-        $donneeUtilisateurEnBD=$requete->fetch(PDO::FETCH_ASSOC);
-
+        $donneeUtilisateurEnBD = $requete->fetch(PDO::FETCH_ASSOC);
         // Vérifie si l'utilisateur en BD existe
         if($donneeUtilisateurEnBD){
             // Vérification du mot de passe avec la fonction password_verify
@@ -143,7 +143,7 @@ class ControllerUtilisateur extends Controller
 
                 // Réinitialisation du mot de passe pour éviter de conserver des données sensibles
                 $user->setMdp('');
-
+                $_SESSION['role'] = $donneeUtilisateurEnBD['role'];
                 return true; // Authentification réussie
             }
         }
@@ -156,10 +156,10 @@ class ControllerUtilisateur extends Controller
      * 
      */
     public function connexion(){
-        if($_SERVER['REQUEST_METHOD']=== 'POST'){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
             //Récupération des données du formulaire
-            $email = $_POST['email']??'';
-            $mdp = $_POST['mdp']??'';
+            $email = $_POST['email'] ?? '';
+            $mdp = $_POST['mdp'] ?? '';
 
             //Création d'une instance utilisateur avec les données récupérés
             $utilisateur = new Utilisateur(null, null, null, null, null, null, null, $email,$mdp);
@@ -168,6 +168,7 @@ class ControllerUtilisateur extends Controller
                 //Tentative de connexion
                 if($this->authentification($utilisateur)){
                     echo "Connexion réussie.";
+                    echo "<br><a href='index.php'>Retourner à l'accueil</a>";
                 }
                 else{
                     echo "Erreur : Email ou mot de passe incorrect.";
