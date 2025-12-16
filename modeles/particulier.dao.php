@@ -17,8 +17,9 @@ class ParticulierDAO extends UtilisateurDAO{
         $sql = "SELECT id, role, nom, prenom, tel, dateNaiss, email, mdp, dateSuppression, ville, adresse, codePostal FROM Utilisateur WHERE id = :id AND role = 'PARTICULIER'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$id));
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Particulier');
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
         $particulier = $pdoStatement->fetch();
+        $particulier = $this->hydrate($particulier);
         return $particulier;
     }
 
@@ -42,32 +43,36 @@ class ParticulierDAO extends UtilisateurDAO{
     }
 
     public function findByAnnonce($annonceId): ?Particulier{
-        $sql = "SELECT idParticulier FROM Annonce WHERE id= :id";
+        $sql = "SELECT UTILISATEUR.* FROM Annonce JOIN UTILISATEUR ON UTILISATEUR.id=Annonce.idParticulier WHERE Annonce.id = :id AND UTILISATEUR.role = 'PARTICULIER'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$annonceId));
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
-        $particulierId = $pdoStatement->fetch();
-        $particulierId = $this->hydrate($particulierId);
-        return $particulierId;
+        $row = $pdoStatement->fetch();        
+          if ($row === false) {
+        return null;
     }
+
+    return $this->hydrate($row);
+}
 
 
     public function hydrate($tableauAssoc): ?Particulier
     {
         $particulier = new Particulier();
-        $particulier->setId($tableauAssoc["id"]);
-        $particulier->setNom($tableauAssoc["nom"]);
-        $particulier->setPrenom($tableauAssoc["prenom"]);
-        $particulier->setTel($tableauAssoc["tel"]);
-        $particulier->setDateNaiss($tableauAssoc["dateNaiss"]);
-        $particulier->setRole($tableauAssoc["role"]);
-        $particulier->setEmail($tableauAssoc["email"]);
-        $particulier->setMdp($tableauAssoc["mdp"]);
-        $particulier->setAdresse($tableauAssoc["adresse"]);
-        $particulier->setVille($tableauAssoc["ville"]);
-        $particulier->setCodePostal($tableauAssoc["codePostal"]);
-        return $particulier;
-    }
+        $particulier->setId($tableauAssoc['id'] ?? null);
+        $particulier->setNom($tableauAssoc['nom'] ?? null);
+        $particulier->setPrenom($tableauAssoc['prenom'] ?? null);
+        $particulier->setTel($tableauAssoc['tel'] ?? null);
+        $particulier->setDateNaiss($tableauAssoc['dateNaiss'] ?? null);
+        $particulier->setRole($tableauAssoc['role'] ?? null);
+        $particulier->setEmail($tableauAssoc['email'] ?? null);
+        $particulier->setMdp($tableauAssoc['mdp'] ?? null);
+        $particulier->setAdresse($tableauAssoc['adresse'] ?? null);
+        $particulier->setVille($tableauAssoc['ville'] ?? null);
+        $particulier->setCodePostal($tableauAssoc['codePostal'] ?? null);
+
+    return $particulier;
+}
 
         
 

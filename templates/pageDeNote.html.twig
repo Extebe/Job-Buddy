@@ -16,7 +16,6 @@
     {{ note.annonce.getTitre() }} - {{ note.auteur.getNom() }} {{ note.auteur.getPrenom() }} 
     <div class="stars"> {% for i in 1..5 %} <i class="bi {{ i <= note.valeur ? 'bi-star-fill' : 'bi-star' }}"></i> {% endfor %} </div>
 
-    <h4>{{ note.auteur.getNom() }}</h4>
   </div>
   <div class="card-body">
     <figure>

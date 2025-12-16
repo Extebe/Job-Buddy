@@ -48,10 +48,9 @@ class UtilisateurDAO{
         $utilisateur = new Utilisateur();
         $utilisateur->setId($tableau['idUtilisateur'] ?? null);
         $utilisateur->setRole($tableau['role'] ?? null);
-        $utilisateur->setCodeINE($tableau['codeINE'] ?? null);
         $utilisateur->setNom($tableau['nom'] ?? null);
         $utilisateur->setPrenom($tableau['prenom'] ?? null);
-        $utilisateur->setTelephone($tableau['tel'] ?? null);
+        $utilisateur->setTel($tableau['tel'] ?? null);
         $utilisateur->setDateNaiss($tableau['dateNaiss'] ?? null);
         $utilisateur->setEmail($tableau['email'] ?? null);
         $utilisateur->setMdp($tableau['mdp'] ?? null);
