@@ -185,10 +185,6 @@ class ControllerUtilisateur extends Controller
             if(!password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
                 throw new Exception("mdp_invalide");
             }
-            // Vérification du mail
-            if(!Valide::emailExiste($user->getEmail())){
-                throw new Exception("mail_invalide");
-            }
             // Synchronisation de l'identifiant récupéré de la base de données avec l'objet courant
             $user->setId($donneeUtilisateurEnBD['id']);
 
@@ -197,7 +193,8 @@ class ControllerUtilisateur extends Controller
             $_SESSION['role'] = $donneeUtilisateurEnBD['role'];
             return true; // Authentification réussie
         }
-        return false; // Authentification échouée
+        throw new Exception("mail_invalide");
+        // return false; // Authentification échouée
     }
 
     /*==============================
