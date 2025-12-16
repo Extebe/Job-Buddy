@@ -7,11 +7,31 @@ class ControllerParticulier extends Controller {
     }
 
     public function pageAjouterAnnonce() {
+
+        if(isset($_SESSION['role'])){
+            //À faire, verifier qu'ils sont valides
+            $role = $_SESSION['role'];
+        }
+        else{
+            $role = "non_connecte";
+        }
+
         $template = $this->getTwig();
 
-        echo $template->render('ajouterAnnonce.html.twig');
+        echo $template->render('ajouterAnnonce.html.twig', [
+            'role' => $role
+        ]);
     }
     public function ajouterAnnonce(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $titre = $_POST['titre'];
+            $typeService = $_POST['typeService'];
+            $dateDebut = $_POST['dateDebut'];
+            $dateFin = $_POST['dateFin'];
+            $description = $_POST['description'];
 
+            //Appel de la requête qui créé l'annonce
+
+        }
     }
 }
