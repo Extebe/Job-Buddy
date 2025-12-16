@@ -105,7 +105,6 @@ class ControllerUtilisateur extends Controller
                         echo '<h1>Erreur : Mot de passe invalide</h1>';
                         echo '<p>Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.</p>';
                         echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
-                        echo $user->getMdp();
                         break;
 
                     default:
@@ -127,7 +126,7 @@ class ControllerUtilisateur extends Controller
 
         // Recherche de l'utilisateur
         $requete= $pdo->prepare(
-            'SELECT id, mdp FROM utilisateur WHERE email =:email'
+            'SELECT id, mdp, role FROM utilisateur WHERE email =:email'
         );
 
         // Exécution de la requête avec l'email de l'utilisateur
@@ -138,14 +137,13 @@ class ControllerUtilisateur extends Controller
         // Vérifie si l'utilisateur en BD existe
         if($donneeUtilisateurEnBD){
             // Vérification du mot de passe avec la fonction password_verify
-            var_dump(password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp']));
             if(password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
                 // Synchronisation de l'identifiant récupéré de la base de données avec l'objet courant
                 $user->setId($donneeUtilisateurEnBD['id']);
 
                 // Réinitialisation du mot de passe pour éviter de conserver des données sensibles
                 $user->setMdp('');
-                $_SESSION['role'] = $user->getRole();
+                $_SESSION['role'] = $donneeUtilisateurEnBD['role'];
                 return true; // Authentification réussie
             }
         }
@@ -171,7 +169,6 @@ class ControllerUtilisateur extends Controller
                 if($this->authentification($utilisateur)){
                     echo "Connexion réussie.";
                     echo "<br><a href='index.php'>Retourner à l'accueil</a>";
-                    echo $_SESSION['role'];
                 }
                 else{
                     echo "Erreur : Email ou mot de passe incorrect.";
