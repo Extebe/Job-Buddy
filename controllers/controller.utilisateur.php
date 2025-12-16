@@ -1,5 +1,11 @@
 <?php
 require_once "include.php";
+// Nombre maximum de tentatives échouées avant désactivation du compte
+define('MAX_CONNEXIONS_ECHOUEES', 3);
+
+// Délai d'attente après désactivation (en secondes)
+define('DELAI_ATTENTE_CONNEXION', 30 * 60); // 30 minutes
+
 class ControllerUtilisateur extends Controller
 {
     public function __construct(\Twig\Environment $twig, \Twig\Loader\FilesystemLoader $loader)
@@ -151,6 +157,104 @@ class ControllerUtilisateur extends Controller
             }
         }
     }
+    
+    /*=======================================
+     *
+     *  Réinitialise les tentatives échouées 
+     * après une authentification réussie
+     *
+     =======================================*/
+    public function reinitialiserTentativesConnexion(Utilisateur $user):void{
+        // Remet à zéro les tentatives échouées
+        $user->setTentativesEchouees(0);
+        $user->setDateDernierEchecConnexion(null);
+
+        // Mise à jour dans la base de données
+        $bd=Bd::getInstance()->getConnexion();
+        $requete=$bd->prepare('UPDATE Utilisateur 
+                           SET tentativesEchouees = 0, 
+                               dateDernierEchecConnexion = NULL 
+                           WHERE id = :id');
+        $requete->execute(['id'=>$user->getId()]);
+
+    }
+
+    /*=======================================
+     *
+     *  Calcul le temps restant avant que le 
+     *  compte soit débloqué
+     *
+     =======================================*/
+    public function tempsRestantAvantDeblocage(Utilisateur $user):int{
+        if(!$user->getDateDernierEchecConnexion()){
+            // Si aucune tentative échouée n'a été enregistrée
+            return 0;
+        }
+        $dernierEchecTimestamp = strtotime($user->getDateDernierEchecConnexion());
+        $tempsEcoule = time() - $dernierEchecTimestamp;
+        $tempsRestant = DELAI_ATTENTE_CONNEXION -$tempsEcoule;
+        return $tempsRestant > 0 ? $tempsRestant : 0;
+    }
+
+    /*=======================================
+     *
+     *  Réactive le compte une fois que le 
+     *  délai soit écoulé
+     *
+     =======================================*/
+     public function reactiverCompte(Utilisateur $user):void{
+        //Mise à jour des attributs de l'utilisateur
+        $user->setTentativesEchouees(0);
+        $user->setDateDernierEchecConnexion(null);
+        $user->setStatutCompte('actif');
+
+        // Mise à jour dans la base de données
+        $bd=Bd::getInstance()->getConnexion();
+        $requete=$bd->prepare('UPDATE Utilisateur 
+                               SET tentativesEchouees = 0, 
+                                   dateDernierEchecConnexion = NULL, 
+                                   statutCompte = "actif" 
+                               WHERE id = :id');   
+        $requete->execute(['ide'=>$user->getId()]);
+     }
+
+     /*=======================================
+     *
+     *  Gère les échecs de connexion,
+     *  incrémente le nombre de tentative échouée
+     *  et désactive le compte si le nombre de tentatives 
+     *  est supérieur au maximum autorisé (3)
+     *
+     =======================================*/
+     public function gererEchecConnexion(Utilisateur $user):void{
+        $user->setTentativesEchouees($user->getTentativesEchouees() + 1);
+        $bd=Bd::getInstance()->getConnexion();
+
+        if($user->getTentativesEchouees() >= MAX_CONNEXIONS_ECHOUEES){
+            // Désactivation du compte
+            $requete = $bd->prepare(
+                'UPDATE Utilisateur 
+                 SET tentativesEchouees = :tentatives, 
+                 dateDernierEchecConnexion = NOW(), 
+                 statut_compte = "desactive" 
+                 WHERE identifiant = :id'
+            );
+            $user->setStatutCompte('desactive');
+        }
+        else{
+            // Mise à jour des tentatives échouées
+            $requete = $bd->prepare(
+                'UPDATE Utilisateur 
+                 SET tentativesEchouees = :tentatives, 
+                 dateDernierEchecConnexion = NOW() 
+                 WHERE identifiant = :id'
+            );
+        }
+        $requete->execute([
+            'tentatives' => $user->getTentativesEchouees(),
+            'id' => $user->getId()
+        ]);
+     }
 
     /*=======================================
      *
@@ -186,17 +290,25 @@ class ControllerUtilisateur extends Controller
         $user->setTentativesEchouees($donneeUtilisateurEnBD['tentativesEchouees']);
         $user->setDateDernierEchecConnexion($donneeUtilisateurEnBD['dateDernierEchecConnexion']);
         $user->setStatutCompte($donneeUtilisateurEnBD['statutCompte']);
-        
-        // Vérification du mot de passe avec la fonction password_verify
-        if(!password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
-            throw new Exception("mdp_invalide");
-        }
-        $user->setId($donneeUtilisateurEnBD['id']);
 
-        // Réinitialisation du mot de passe pour éviter de conserver des données sensibles
-        $user->setMdp('');
-        $_SESSION['role'] = $donneeUtilisateurEnBD['role'];
-        return true; // Authentification réussie
+        // Vérification du statut du compte
+        if($user->getStatutCompte() === 'desactive'){
+            if($this->tempsRestantAvantDeblocage($user)!==0){
+                throw new Exception("compte_desactive");
+            }
+            $this->reactiverCompte($user);
+        }
+
+        // Vérification du mot de passe avec la fonction password_verify
+        if(password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
+            // throw new Exception("mdp_invalide");
+            if($user->getTentativesEchouees() > 0){
+                $this->reinitialiserTentativesConnexion($user);
+            }
+            return true;
+        }
+        $this->gererEchecConnexion($user);
+        return false; // Authentification réussie
         
         // return false; // Authentification échouée
     }
