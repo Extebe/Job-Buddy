@@ -223,6 +223,7 @@ class ControllerUtilisateur extends Controller
                 }
             }
             catch (Exception $e){
+                echo "salut";
                 switch($e ->getMessage()){
                     case "identifiant_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
