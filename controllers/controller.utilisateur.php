@@ -14,6 +14,11 @@ class ControllerUtilisateur extends Controller
      * 
      ===============================*/
     public function pageConnexion(){
+        //En cas d'erreur 
+        if(isset($_SESSION['msg_erreur'])){
+            echo "<p style='color: red;'>".$_SESSION['msg_erreur']."</p>";
+            unset($_SESSION['msg_erreur']);
+        }
         if(isset($_SESSION['role'])){
             //À faire, verifier qu'ils sont valides
             $role = $_SESSION['role'];
@@ -220,9 +225,10 @@ class ControllerUtilisateur extends Controller
             catch (Exception $e){
                 switch($e ->getMessage()){
                     case "identifiant_invalide":
-                        echo "L'email ou le mot de passe est incorrect<br>";
-                        echo "<a href='index.php?controleur=utilisateur&methode=pageConnexion'>Retour à la page de connexion</a><br>";
-
+                        header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+                        $_SESSION['msg_erreur']="L'email ou le mot de passe est incorrect";
+                        exit();
+                        break;                     
                 }
             }
         }
