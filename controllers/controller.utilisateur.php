@@ -176,9 +176,11 @@ class ControllerUtilisateur extends Controller
                 return true;
             }
             catch (Exception $e){
+                echo "salut";
                 switch($e ->getMessage()){
                     case "email_ou_mdp_incorrect":
-
+                        echo "coucou";
+                        
                 }
             }
         }

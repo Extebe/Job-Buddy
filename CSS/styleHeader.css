@@ -1,4 +1,6 @@
 body{
+    display: flex;
+    flex-direction: column;
     background-color: #E6D8C3;
     color:#4B352A;
 }
