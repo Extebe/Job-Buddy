@@ -15,11 +15,14 @@ class Utilisateur{
     protected ?string $ville;
     protected ?string $codePostal;
     protected ?string $dateSuppression;
+    protected int $tentativesEchouees;
+    protected ?string $dateDernierEchecConnexion;
+    protected ?string $statutCompte; // Statut du comppte (actif ou désactivé)
     protected array $notesDonnees = [];
     protected array $notesRecues = [];
 
     // Paramètre codeINE non utilisé pour les utilisateurs génériques
-    public function __construct(?int $id=null, ?string $nom=null, ?string $prenom=null, ?string $tel=null, ?string $dateNaiss=null, ?string $role=null, ?string $email=null, ?string $mdp=null, ?string $adresse=null, ?string $ville=null, ?string $codePostal=null, ?string $dateSuppression=null){
+    public function __construct(?int $id=null, ?string $nom=null, ?string $prenom=null, ?string $tel=null, ?string $dateNaiss=null, ?string $role=null, ?string $email=null, ?string $mdp=null, ?string $adresse=null, ?string $ville=null, ?string $codePostal=null, ?string $dateSuppression=null, ?int $tentativesEchouees=0, ?string $dateDernierEchecConnexion=null, ?string $statutCompte='actif'){
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -32,6 +35,9 @@ class Utilisateur{
         $this->ville = $ville;
         $this->codePostal = $codePostal;
         $this->dateSuppression = $dateSuppression;
+        $this->tentativesEchouees = $tentativesEchouees;
+        $this->dateDernierEchecConnexion = $dateDernierEchecConnexion;
+        $this->statutCompte = $statutCompte;
     }
 
     /**
@@ -232,6 +238,25 @@ class Utilisateur{
 
     public function setNotesRecues(array $notes): void {
         $this->notesRecues = $notes;
+    }
+
+    public function getTentativesEchouees(): int {
+        return $this->tentativesEchouees;
+    }
+    public function setTentativesEchouees(int $tentatives): void {
+        $this->tentativesEchouees = $tentatives;
+    }
+    public function getDateDernierEchecConnexion(): ?string {
+        return $this->dateDernierEchecConnexion;
+    }
+    public function setDateDernierEchecConnexion(?string $date): void {
+        $this->dateDernierEchecConnexion = $date;
+    }
+    public function getStatutCompte(): ?string {
+        return $this->statutCompte;
+    }
+    public function setStatutCompte(?string $statut): void {
+        $this->statutCompte = $statut;
     }
 
     public function lierNoteEcrite(Note $note, ?Utilisateur $receveur, ?Annonce $annonce){

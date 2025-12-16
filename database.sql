@@ -24,6 +24,9 @@ CREATE TABLE Utilisateur(
    ville VARCHAR(50),
    adresse VARCHAR(50),
    codePostal VARCHAR(5),
+   tentativesEchouees INT DEFAULT 0 NOT NULL,
+   dateDernierEchecConnexion DATETIME DEFAULT NULL, -- Date et heure du dernier échec de connexion
+   statutCompte ENUM('actif', 'desactive') DEFAULT 'actif',
    PRIMARY KEY(id)
 );
 
