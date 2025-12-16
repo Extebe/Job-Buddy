@@ -36,6 +36,11 @@ class ControllerUtilisateur extends Controller
      * 
      ===============================*/
     public function pageInscription(){
+        //En cas d'erreur 
+        if(isset($_SESSION['msg_erreur'])){
+            echo "<p style='color: red;'>".$_SESSION['msg_erreur']."</p>";
+            unset($_SESSION['msg_erreur']);
+        }
         if(isset($_SESSION['role'])){
             //À faire, verifier qu'ils sont valides
             $role = $_SESSION['role'];
@@ -51,12 +56,13 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
-    /*==============================
+    /*=========================================
      *
-     *  
-     *   
+     *  Permet d'inscrire les données de
+     *  l'utilisateur dans la base de données
+     *  tout en chiffrant le mot de passe
      * 
-     ===============================*/
+     =========================================*/
     public function inscriptionBd(Utilisateur $user){
         // Vérifie si le mot de passe est robuste
         if (!Valide::estRobuste($user->getMdp()))
@@ -82,7 +88,13 @@ class ControllerUtilisateur extends Controller
         $utilisateurDao->insererUtilisateur($user, $passwordHache);
     }
 
-
+    /*========================================
+     *
+     *  Permet de récupérer les informations
+     *  de l'utilisateur depuis le formulaire
+     *  et les inscrits dans la BD
+     * 
+     =========================================*/
     public function inscription(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
@@ -105,38 +117,47 @@ class ControllerUtilisateur extends Controller
                 // Tentative d'inscription
                 $this->inscriptionBd($user);
 
-                // Si l'utilisateur a pu être inscrit en BD, affichage du succès
-                echo "<h1>Inscription réussie !</h1>";
-                echo '<a href="index.php?controleur=utilisateur&methode=pageConnexion">Se connecter</a>';
+                // Si l'utilisateur a pu être inscrit en BD, affichage de la page de connexion
+                header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+                exit();
             }
+            //sinon affiche des messages d'erreurs selon le probleme
             catch (Exception $e)
             {
                 switch ($e->getMessage())
                 {
                     case "compte_existant":
-                        echo '<h1>Erreur : Compte existant</h1>';
-                        echo '<p>Ce compte existe déjà.</p>';
-                        echo '<a href="#">Mot de passe oublié ?</a><br>';
-                        echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
+                        $_SESSION['msg_erreur']="Ce compte existe déjà.<a href='#'>Mot de passe oublié ?";
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
+                        exit();
                         break;
 
                     case "mdp_faible":
-                        echo '<h1>Erreur : Mot de passe invalide</h1>';
-                        echo '<p>Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.</p>';
-                        echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
+                        $_SESSION['msg_erreur']="Erreur : Mot de passe invalide. 
+                        Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
+                        exit();
                         break;
+                        
 
                     default:
+                        $_SESSION['msg_erreur']="Une erreur inattendue est survenue : {$e->getMessage()}";
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
                         echo "<h1>Une erreur inattendue est survenue</h1>";
-                        echo "<p>{$e->getMessage()}</p>";
-                        echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
+                        exit();
                         break;
                 }
             }
         }
     }
 
-    //Authentifie un utilisateur
+    /*=======================================
+     *
+     *  Vérifie si les identifiants récupérés
+     *  correspondent à ceux de la base 
+     *  de données
+     *
+     =======================================*/
     public function authentification(Utilisateur $user):bool{
         // création d'une instance de la bd
         $baseDeDonnees = Bd::getInstance();
@@ -165,16 +186,21 @@ class ControllerUtilisateur extends Controller
                 $_SESSION['role'] = $donneeUtilisateurEnBD['role'];
                 return true; // Authentification réussie
             }
-            throw new Exception("mdp_invalide");
+            throw new Exception("identifiant_invalide");
         }
         return false; // Authentification échouée
     }
 
-    /*Appeler depuis pageDeConnexion.html.twig, permet de se connecter en appelant la méthode authentification
+    /*==============================
      *
+     *  Récupère les informations de connexions
+     *  de l'utilisateur, vérifie
+     *  s'ils sont valides et 
+     *  affiche la page d'accueil
+     *  selon le role de l'utilisateur
+     *  (particulier - étudiant)
      * 
-     * 
-     */
+     ===============================*/
     public function connexion(){
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             //Récupération des données du formulaire
@@ -187,13 +213,13 @@ class ControllerUtilisateur extends Controller
             try{
                 //Tentative de connexion
                 if($this->authentification($utilisateur)){
-                    echo "Connexion réussie.";
-                    echo "<br><a href='index.php'>Retourner à l'accueil</a>";
+                    header("Location: index.php");
+                    exit();
                 }
             }
             catch (Exception $e){
                 switch($e ->getMessage()){
-                    case "mdp_invalide":
+                    case "identifiant_invalide":
                         echo "L'email ou le mot de passe est incorrect<br>";
                         echo "<a href='index.php?controleur=utilisateur&methode=pageConnexion'>Retour à la page de connexion</a><br>";
 
