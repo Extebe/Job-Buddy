@@ -6,6 +6,13 @@ class ControllerUtilisateur extends Controller
     {
         parent::__construct($twig, $loader);
     }
+    
+    /*==============================
+     *
+     *  Pous se connecter à la page 
+     *  de connexion
+     * 
+     ===============================*/
     public function pageConnexion(){
         if(isset($_SESSION['role'])){
             //À faire, verifier qu'ils sont valides
@@ -22,6 +29,12 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
+    /*==============================
+     *
+     *  Pous se connecter à la page 
+     *  d'inscription
+     * 
+     ===============================*/
     public function pageInscription(){
         if(isset($_SESSION['role'])){
             //À faire, verifier qu'ils sont valides
@@ -38,6 +51,12 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
+    /*==============================
+     *
+     *  
+     *   
+     * 
+     ===============================*/
     public function inscriptionBd(Utilisateur $user){
         // Vérifie si le mot de passe est robuste
         if (!Valide::estRobuste($user->getMdp()))
@@ -126,7 +145,7 @@ class ControllerUtilisateur extends Controller
 
         // Recherche de l'utilisateur
         $requete= $pdo->prepare(
-            'SELECT id, mdp, role FROM utilisateur WHERE email =:email'
+            'SELECT id, mdp, role FROM Utilisateur WHERE email =:email'
         );
 
         // Exécution de la requête avec l'email de l'utilisateur
@@ -146,6 +165,7 @@ class ControllerUtilisateur extends Controller
                 $_SESSION['role'] = $donneeUtilisateurEnBD['role'];
                 return true; // Authentification réussie
             }
+            throw new Exception("mdp_invalide");
         }
         return false; // Authentification échouée
     }
@@ -170,18 +190,14 @@ class ControllerUtilisateur extends Controller
                     echo "Connexion réussie.";
                     echo "<br><a href='index.php'>Retourner à l'accueil</a>";
                 }
-                else{
-                    echo "Erreur : Email ou mot de passe incorrect.";
-                    echo '<br><a href="index.php?controleur=utilisateur&methode=pageConnexion">Retourner à la page de connexion</a>';
-                }
-                return true;
             }
             catch (Exception $e){
                 echo "salut";
                 switch($e ->getMessage()){
-                    case "email_ou_mdp_incorrect":
-                        echo "coucou";
-                        
+                    case "mdp_invalide":
+                        echo "L'email ou le mot de passe est incorrect<br>";
+                        echo "<a href='index.php?controleur=utilisateur&methode=pageConnexion'>Retour à la page de connexion</a><br>";
+
                 }
             }
         }
