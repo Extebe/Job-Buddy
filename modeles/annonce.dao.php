@@ -55,17 +55,22 @@ class AnnonceDao{
 
     public function hydrate($tableauAssoc): ?Annonce
     {
-        $annonce = new Annonce();
-        $annonce->setId($tableauAssoc['id']);
-        $annonce->setTitre($tableauAssoc['titre']);
-        $annonce->setDescription($tableauAssoc['description']);
-        $annonce->setEtat($tableauAssoc['etat']);
-        $annonce->setTypeService($tableauAssoc['typeService']);
-        $annonce->setDatePublication($tableauAssoc['datePublication']);
-        $annonce->setDateDebutRealisation($tableauAssoc['dateDebutRealisation']);
-        $annonce->setDateFinRealisation($tableauAssoc['dateFinRealisation']);
-        $annonce->setMotifSuppression($tableauAssoc['motifSuppression']);
-        $annonce->setDateSuppression($tableauAssoc['dateSuppression']);
+        $annonce = new Annonce(
+            $tableauAssoc['id'], 
+            $tableauAssoc['idParticulier'],
+            $tableauAssoc['titre'],
+            $tableauAssoc['description'],
+            $tableauAssoc['typeService'],
+            $tableauAssoc['lieu'],
+            $tableauAssoc['remuneration'],
+            $tableauAssoc['dateDebutRealisation'],
+            $tableauAssoc['dateFinRealisation'],
+            $tableauAssoc['etat'],
+            $tableauAssoc['datePublication'],
+            $tableauAssoc['dateSuppression'],
+            $tableauAssoc['motifSuppression']
+        );
+
         return $annonce;
     }
 
@@ -76,5 +81,24 @@ class AnnonceDao{
             $categories[] = $categorie;
         }
         return $categories;
+    }
+
+    public function addRelations(Annonce $annonce): Annonce{
+        // Creation de la liste de postulations
+        $sql = "SELECT idEtudiant, datePostulat FROM Annonce WHERE idAnnonce= :id";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array("id"=>$annonce->getId()));
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $assocPostulations = $pdoStatement->fetch();
+
+        $etudiantDao = new EtudiantDao($this->pdo);
+        $postulations = [];
+        foreach($assocPostulations as $assocPostulation){
+            $etudiant = $etudiantDao->find($assocPostulation['idEtudiant']);
+            $postulations[$etudiant] = $assocPostulation['datePostulat'];
+        }
+        $annonce->setPostulations($postulations);
+
+        return $annonce;
     }
 }
