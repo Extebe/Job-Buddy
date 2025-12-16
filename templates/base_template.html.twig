@@ -30,39 +30,6 @@
                     <button class="btn btn-outline-success" type="submit">Filtrer</button>
                 </li>
             </ul>
-                {% if role == "non_connecte" %}
-                    <div class="btn-compte">
-                        <a href="index.php?controleur=utilisateur&methode=pageConnexion"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Se connecter</button></a>
-                        <a href="index.php?controleur=utilisateur&methode=pageInscription"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">S'inscrire</button></a>
-                    </div>
-                {% elseif role == "Particulier" %}
-                    <div class="btn-compte"> 
-                        <a href="index.php?controleur=particulier&methode=pageAnnonce"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Annonce</button></a>
-                        <div class="dropdown">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="./images/photoProfil.webp">
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                {% elseif role == "Etudiant" %}
-                    <div class="btn-compte">
-                        <a href="index.php?controleur=etudiant&methode=pageAnnonce"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Annonce</button></a>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
-                    </div>
 
             {% if role == "non_connecte" %}
                 <div class="btn-compte d-flex align-items-center">
@@ -119,8 +86,6 @@
 
 {% block content %}
 {% endblock %}
-
-
 
 <footer>
     <div class="container-fluid">
