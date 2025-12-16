@@ -182,16 +182,20 @@ class ControllerUtilisateur extends Controller
         // Vérifie si l'utilisateur en BD existe
         if($donneeUtilisateurEnBD){
             // Vérification du mot de passe avec la fonction password_verify
-            if(password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
-                // Synchronisation de l'identifiant récupéré de la base de données avec l'objet courant
-                $user->setId($donneeUtilisateurEnBD['id']);
-
-                // Réinitialisation du mot de passe pour éviter de conserver des données sensibles
-                $user->setMdp('');
-                $_SESSION['role'] = $donneeUtilisateurEnBD['role'];
-                return true; // Authentification réussie
+            if(!password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
+                throw new Exception("mdp_invalide");
             }
-            throw new Exception("identifiant_invalide");
+            // Vérification du mail
+            if(!Valide::emailExiste($user->getEmail())){
+                throw new Exception("mail_invalide");
+            }
+            // Synchronisation de l'identifiant récupéré de la base de données avec l'objet courant
+            $user->setId($donneeUtilisateurEnBD['id']);
+
+            // Réinitialisation du mot de passe pour éviter de conserver des données sensibles
+            $user->setMdp('');
+            $_SESSION['role'] = $donneeUtilisateurEnBD['role'];
+            return true; // Authentification réussie
         }
         return false; // Authentification échouée
     }
@@ -223,13 +227,18 @@ class ControllerUtilisateur extends Controller
                 }
             }
             catch (Exception $e){
-                echo "salut";
-                switch($e ->getMessage()){
-                    case "identifiant_invalide":
+                switch($e ->getMessage())
+                {
+                    case "mdp_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         $_SESSION['msg_erreur']="L'email ou le mot de passe est incorrect";
                         exit();
-                        break;                     
+                        break;
+                    case "mail_invalide":
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
+                        $_SESSION['msg_erreur']="Vous ne vous êtes pas encore inscrit.";        
+                        exit();
+                        break;         
                 }
             }
         }
