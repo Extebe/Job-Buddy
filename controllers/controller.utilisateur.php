@@ -6,6 +6,13 @@ class ControllerUtilisateur extends Controller
     {
         parent::__construct($twig, $loader);
     }
+    
+    /*==============================
+     *
+     *  Pous se connecter à la page 
+     *  de connexion
+     * 
+     ===============================*/
     public function pageConnexion(){
         if(isset($_SESSION['role'])){
             //À faire, verifier qu'ils sont valides
@@ -22,6 +29,12 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
+    /*==============================
+     *
+     *  Pous se connecter à la page 
+     *  d'inscription
+     * 
+     ===============================*/
     public function pageInscription(){
         if(isset($_SESSION['role'])){
             //À faire, verifier qu'ils sont valides
@@ -38,6 +51,12 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
+    /*==============================
+     *
+     *  Pous se connecter à la page 
+     *  de connexion
+     * 
+     ===============================*/
     public function inscriptionBd(Utilisateur $user){
         // Vérifie si le mot de passe est robuste
         if (!Valide::estRobuste($user->getMdp()))
