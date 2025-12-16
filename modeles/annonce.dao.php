@@ -53,6 +53,24 @@ class AnnonceDao{
         return $annonce;
     }
 
+    public function findEtudiant($annonceId){
+        $sql = "SELECT POSTULER.idEtudiant FROM Annonce  JOIN POSTULER ON POSTULER.idAnnonce=ANNONCE.id WHERE ANNONCE.id= :$annonceId";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array("id"=>$annonceId));
+        $etudiantId = $pdoStatement->fetchColumn();
+        return $etudiantId;
+    }
+
+    public function findParticulier($annonceId){
+        $sql = "SELECT particulier FROM Annonce WHERE id= :id";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array("id"=>$annonceId));
+        $particulierId = $pdoStatement->fetchColumn();
+        return $particulierId;
+    }
+
+
+
     public function hydrate($tableauAssoc): ?Annonce
     {
         $annonce = new Annonce();
