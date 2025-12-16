@@ -302,7 +302,7 @@ class Annonce{
         $this->etuditantsSelectionnes = $etuditantsSelectionnes;
     }
 
-    public function delierParticulier(){
+   /* public function delierParticulier(){
         if($this->getCreateur() != null){
             $particulier = $this->getCreateur();
             $this->setcreateur(null);
@@ -315,7 +315,7 @@ class Annonce{
         $this->setcreateur($p);
         $p->lierAnnoncePublie($this);
     }
-
+*/
     public function __toString(): string
     {return $this->getId() . $this->getCreateur();}
 }

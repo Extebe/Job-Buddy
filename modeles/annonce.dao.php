@@ -30,8 +30,9 @@ class AnnonceDao{
         $sql = "SELECT * FROM Annonce WHERE id= :id";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$id));
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Annonce');
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
         $annonce = $pdoStatement->fetch();
+        $annonce = $this->hydrate($annonce);
         return $annonce;
     }
 
@@ -53,23 +54,30 @@ class AnnonceDao{
         return $annonce;
     }
 
+  
+
     public function hydrate($tableauAssoc): ?Annonce
     {
-        $annonce = new Annonce(
-            $tableauAssoc['id'], 
-            $tableauAssoc['idParticulier'],
-            $tableauAssoc['titre'],
-            $tableauAssoc['description'],
-            $tableauAssoc['typeService'],
-            $tableauAssoc['lieu'],
-            $tableauAssoc['remuneration'],
-            $tableauAssoc['dateDebutRealisation'],
-            $tableauAssoc['dateFinRealisation'],
-            $tableauAssoc['etat'],
-            $tableauAssoc['datePublication'],
-            $tableauAssoc['dateSuppression'],
-            $tableauAssoc['motifSuppression']
-        );
+        $annonce = new Annonce();
+        $annonce->setId($tableauAssoc['id'] ?? null);
+        //creation du particulierDAO pour recuperer le createur
+        $managerParticulier = new ParticulierDao($this->pdo);
+        $particulier = $managerParticulier->findByAnnonce($tableauAssoc['id'] ?? null);
+        $annonce->setCreateur($particulier);
+        $annonce->setTitre($tableauAssoc['titre'] ?? null);
+        $annonce->setDescription($tableauAssoc['description'] ?? null);
+        $annonce->setTypeService($tableauAssoc['typeService'] ?? null);
+        $annonce->setLieu($tableauAssoc['lieu'] ?? null);
+        $annonce->setRemuneration($tableauAssoc['remuneration'] ?? null);
+        $annonce->setDateDebutRealisation($tableauAssoc['dateDebutRealisation'] ?? null);
+        $annonce->setDateFinRealisation($tableauAssoc['dateFinRealisation'] ?? null);
+        $annonce->setEtat($tableauAssoc['etat'] ?? null);
+        $annonce->setDatePublication($tableauAssoc['datePublication'] ?? null);
+        $annonce->setDateSuppression($tableauAssoc['dateSuppression'] ?? null);
+        $annonce->setMotifSuppression($tableauAssoc['motifSuppression'] ?? null);
+
+    return $annonce;
+       
 
         return $annonce;
     }

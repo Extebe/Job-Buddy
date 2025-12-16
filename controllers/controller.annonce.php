@@ -25,7 +25,6 @@ class ControllerAnnonce extends Controller {
         echo $template->render('index.html.twig', [
             'role' => $role,
             'annonces' => $annonces
-            //'annonces' => $annonces
         ]);
 
 
