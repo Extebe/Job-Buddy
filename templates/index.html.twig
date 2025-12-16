@@ -7,16 +7,31 @@
             {% for annonce in annonces %}
 
                 <!--Les cartes-->
-                <a href="index.php?controleur=annonce&methode=listerAnnonce&id_categorie={{categorie.id}}" class="col mb-3">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body bg-primary">
-                            <h5>{{annonce.titre}}</h5>
-                            <h5>{{annonce.typeService}}</h5>
+                <a href="" class="">
+                    <div class="" style="">
+                        <img src="{{ annonce.image }}" class="" alt="picto annonce">
+                        <div class="">
+                            <h3>{{annonce.titre}}</h3>
+                            <h4>{{annonce.typeService}}</h4>
+                            <h4>{{annonce.remuneration}}</h4>
+                            <h4>{{annonce.dateRealisation}}</h4>
+                            <h4>{{annonce.description}}</h4>
+                            <h4>{{annonce.lieu}}</h4>
+                            <h4>{{annonce.createur.nom}}</h4>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
 
             {% endfor %}
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+
+                </div>
+            </div>
 
         </div>
     {% endblock %}

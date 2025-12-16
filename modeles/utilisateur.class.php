@@ -3,35 +3,35 @@
 require_once "include.php";
 
 class Utilisateur{
-    private ?int $id;
-    private ?string $nom;
-    private ?string $prenom;
-    private ?string $telephone;
-    private ?string $dateNaiss;
-    private ?string $role;
-    private ?string $codeINE;
-    private ?string $email;
-    private ?string $mdp;
-    private ?string $adresse;
-    private ?string $ville;
-    private ?string $codePostal;
-    private array $notesDonnees = [];
-    private array $notesRecues = [];
+    protected ?int $id;
+    protected ?string $nom;
+    protected ?string $prenom;
+    protected ?string $tel;
+    protected ?string $dateNaiss;
+    protected ?string $role;
+    protected ?string $email;
+    protected ?string $mdp;
+    protected ?string $adresse;
+    protected ?string $ville;
+    protected ?string $codePostal;
+    protected ?string $dateSuppression;
+    protected array $notesDonnees = [];
+    protected array $notesRecues = [];
 
-
-    public function __construct(?int $id=null, ?string $nom=null, ?string $prenom=null, ?string $telephone=null, ?string $dateNaiss=null, ?string $role=null, ?string $codeINE=null, ?string $email=null, ?string $mdp=null, ?string $adresse=null, ?string $ville=null, ?string $codePostal=null){
+    // Paramètre codeINE non utilisé pour les utilisateurs génériques
+    public function __construct(?int $id=null, ?string $nom=null, ?string $prenom=null, ?string $tel=null, ?string $dateNaiss=null, ?string $role=null, ?string $email=null, ?string $mdp=null, ?string $adresse=null, ?string $ville=null, ?string $codePostal=null, ?string $dateSuppression=null){
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
-        $this->telephone = $telephone;
+        $this->tel = $tel;
         $this->dateNaiss = $dateNaiss;
         $this->role = $role;
-        $this->codeINE = $codeINE;
         $this->email = $email;
         $this->mdp = $mdp;
         $this->adresse = $adresse;
         $this->ville = $ville;
         $this->codePostal = $codePostal;
+        $this->dateSuppression = $dateSuppression;
     }
 
     /**
@@ -85,17 +85,17 @@ class Utilisateur{
     /**
      * Get the value of telephone
      */ 
-    public function getTelephone()
+    public function getTel()
     {
-        return $this->telephone;
+        return $this->tel;
     }
 
     /**
      * Set the value of telephone
      */ 
-    public function setTelephone($telephone)
+    public function setTel($telephone)
     {
-        $this->telephone = $telephone;
+        $this->tel = $telephone;
     }
 
     /**
@@ -122,13 +122,6 @@ class Utilisateur{
         $this->role = $role;
     }
 
-    public function getCodeINE(){
-        return $this->codeINE;
-    }
-
-    public function setCodeINE($codeINE){
-        $this->codeINE = $codeINE;
-    }
     /**
      * Get the value of email
      */ 
@@ -207,6 +200,22 @@ class Utilisateur{
     public function setCodePostal($codePostal)
     {
         $this->codePostal = $codePostal;
+    }
+
+    /**
+     * Get the value of dateSuppression
+     */ 
+    public function getDateSuppression()
+    {
+        return $this->dateSuppression;
+    }
+
+    /**
+     * Set the value of dateSuppression
+     */ 
+    public function setDateSuppression($dateSuppression)
+    {
+        $this->dateSuppression = $dateSuppression;
     }
 
     public function getNotesDonnees(): array {

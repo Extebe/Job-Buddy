@@ -4,41 +4,41 @@ require_once "include.php";
 
 class ParticulierDAO extends UtilisateurDAO{
     public function findAll(){
-        $sql = "SELECT * FROM utilisateur WHERE role = 'particulier'";
+        $sql = "SELECT id, role, nom, prenom, tel, dateNaiss, email, mdp, dateSuppression, ville, adresse, codePostal FROM Utilisateur WHERE role = 'PARTICULIER'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute();
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'utilisateur');
-        $utilisateurs = $pdoStatement->fetchAll();
-        return $utilisateurs;
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Particulier');
+        $particuliers = $pdoStatement->fetchAll();
+        return $particuliers;
     }
 
     public function find(?int $id): ?Particulier
     {
-        $sql = "SELECT * FROM utilisateur WHERE code = :id AND role = 'particulier'";
+        $sql = "SELECT id, role, nom, prenom, tel, dateNaiss, email, mdp, dateSuppression, ville, adresse, codePostal FROM Utilisateur WHERE id = :id AND role = 'PARTICULIER'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$id));
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'utilisateur');
-        $utilisateur = $pdoStatement->fetch();
-        return $utilisateur;
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Particulier');
+        $particulier = $pdoStatement->fetch();
+        return $particulier;
     }
 
     public function findAllAssoc(){
-        $sql = "SELECT * FROM utilisateur WHERE role = 'particulier'";
+        $sql = "SELECT id, role, nom, prenom, tel, dateNaiss, email, mdp, dateSuppression, ville, adresse, codePostal FROM Utilisateur WHERE role = 'PARTICULIER'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute();
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
-        $utilisateurs = $pdoStatement->fetchAll();
-        return $utilisateurs;
+        $particuliers = $pdoStatement->fetchAll();
+        return $particuliers;
     }
 
     public function findAssoc(?int $id): ?array
     {
-        $sql = "SELECT * FROM utilisateur WHERE code = :id AND role = 'particulier'";
+        $sql = "SELECT id, role, nom, prenom, tel, dateNaiss, email, mdp, dateSuppression, ville, adresse, codePostal FROM Utilisateur WHERE id = :id AND role = 'PARTICULIER'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$id));
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
-        $utilisateur = $pdoStatement->fetch();
-        return $utilisateur;
+        $particulier = $pdoStatement->fetch();
+        return $particulier;
     }
 
     public function findByAnnonce($annonceId): ?Particulier{
@@ -58,7 +58,7 @@ class ParticulierDAO extends UtilisateurDAO{
         $particulier->setId($tableauAssoc["id"]);
         $particulier->setNom($tableauAssoc["nom"]);
         $particulier->setPrenom($tableauAssoc["prenom"]);
-        $particulier->setTelephone($tableauAssoc["telephone"]);
+        $particulier->setTel($tableauAssoc["tel"]);
         $particulier->setDateNaiss($tableauAssoc["dateNaiss"]);
         $particulier->setRole($tableauAssoc["role"]);
         $particulier->setEmail($tableauAssoc["email"]);

@@ -1,0 +1,10 @@
+{% extends 'base_template.html.twig' %}
+    {% block content %}
+        <h1>Inscris toi à la newsletter !</h1>
+        <form action="index.php?controleur=utilisateur&methode=newsletter">
+            <div class="mb-3">
+                <label for="" class="form-label">Email</label>
+                <input type="" class="form-control" id="" name="" required >
+            </div>
+        </form>
+    {% endblock %}

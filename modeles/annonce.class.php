@@ -4,32 +4,62 @@ require_once "include.php";
 
 class Annonce{
     private ?string $id;
+    private ?Particulier $createur;
+    private ?array $postulations;
+    private ?array $etuditantsSelectionnes;
+
     private ?string $titre;
     private ?string $description;
-    private ?string $etat;
     private ?string $typeService;
-    private ?string $datePublication;
+    private ?string $lieu;
+    private ?float $remuneration;
+
     private ?string $dateDebutRealisation;
     private ?string $dateFinRealisation;
-    private ?array $assocEtudiantDate;
-    private ?string $motifSuppression;
-    private ?string $dateSuppression;
-    private ?string $idParticulier;
 
-    public function __construct(?string $id=null, ?string $titre=null, ?string $description=null, ?string $etat=null, ?string $typeService=null, ?string $datePublication=null, ?string $dateDebutRealisation=null, ?string $dateFinRealisation=null, ?array $assocEtudiantDate=null, ?Particulier $auteur=null, ?string $motifSuppression=null, ?string $dateSuppression=null, ?string $idParticulier=null)
-    {
+    private ?string $etat;
+
+    private ?string $datePublication;
+    private ?string $dateSuppression;
+    private ?string $motifSuppression;
+
+    public function __construct(
+        ?string $id = null,
+        ?int $idCreateur = null,
+
+        ?string $titre = null,
+        ?string $description = null,
+        ?string $typeService = null,
+        ?string $lieu = null,
+        ?float $remuneration = null,
+
+        ?string $dateDebutRealisation = null,
+        ?string $dateFinRealisation = null,
+
+        ?string $etat = null,
+
+        ?string $datePublication = null,
+        ?string $dateSuppression = null,
+        ?string $motifSuppression = null
+    ) {
         $this->id = $id;
+        $particulierDAO = new ParticulierDAO(Bd::getInstance()->getConnexion());
+        $this->createur = $particulierDAO->find($idCreateur);
+
         $this->titre = $titre;
         $this->description = $description;
-        $this->etat = $etat;
         $this->typeService = $typeService;
-        $this->datePublication = $datePublication;
+        $this->lieu = $lieu;
+        $this->remuneration = $remuneration;
+
         $this->dateDebutRealisation = $dateDebutRealisation;
         $this->dateFinRealisation = $dateFinRealisation;
-        $this->assocEtudiantDate = $assocEtudiantDate;
-        $this->motifSuppression = $motifSuppression;
+
+        $this->etat = $etat;
+
+        $this->datePublication = $datePublication;
         $this->dateSuppression = $dateSuppression;
-        $this->idParticulier = $idParticulier;
+        $this->motifSuppression = $motifSuppression;
     }
 
     /**
@@ -161,24 +191,20 @@ class Annonce{
     }
 
     /**
-     * Get the value of assocEtudiantDate
+     * Get the value of postulations
      */
-    public function getAssocEtudiantDate(): ?array
+    public function getPostulations(): ?array
     {
-        return $this->assocEtudiantDate;
+        return $this->postulations;
     }
 
     /**
-     * Set the value of assocEtudiantDate
+     * Set the value of postulations
      */
-    public function setAssocEtudiantDate(?array $assocEtudiantDate): void
+    public function setPostulations(?array $postulations): void
     {
-        $this->assocEtudiantDate = $assocEtudiantDate;
+        $this->postulations = $postulations;
     }
-
-    /**
-     * Get the value of auteur
-     */
 
     /**
      * Get the value of motifSuppression
@@ -215,27 +241,83 @@ class Annonce{
     /**
      * @return string|null
      */
-    public function getIdParticulier(): ?string
+    public function getCreateur(): ?Particulier
     {
-        return $this->idParticulier;
+        return $this->createur;
+    }
+
+    /**
+     * @param string|null $createur
+     */
+    public function setCreateur(?Particulier $createur): void
+    {
+        $this->createur = $createur;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getRemuneration(): ?float
+    {
+        return $this->remuneration;
+    }
+
+    /**
+     * @param float|null $remuneration
+     */
+    public function setRemuneration(?float $remuneration): void
+    {
+        $this->remuneration = $remuneration;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLieu(): ?string
+    {
+        return $this->lieu;
+    }
+
+    /**
+     * @param string|null $lieu
+     */
+    public function setLieu(?string $lieu): void
+    {
+        $this->lieu = $lieu;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getEtuditantsSelectionnes(): ?array
+    {
+        return $this->etuditantsSelectionnes;
+    }  
+
+    /**
+     * @param array|null $etuditantsSelectionnes
+     */
+    public function setEtuditantsSelectionnes(?array $etuditantsSelectionnes): void
+    {
+        $this->etuditantsSelectionnes = $etuditantsSelectionnes;
     }
 
     public function delierParticulier(){
-        if($this->getAuteur() != null){
-            $p = $this->getAuteur();
-            $this->setAuteur(null);
-            $p->delierAnnoncePublie($this);
+        if($this->getCreateur() != null){
+            $particulier = $this->getCreateur();
+            $this->setcreateur(null);
+            $particulier->delierAnnoncePublie($this);
         }
     }
 
     public function lierParticulier($p){
         $this->delierParticulier();
-        $this->setAuteur($p);
+        $this->setcreateur($p);
         $p->lierAnnoncePublie($this);
     }
 
     public function __toString(): string
-    {return $this->getId() . $this->getAuteur();}
+    {return $this->getId() . $this->getCreateur();}
 }
 
 ?>

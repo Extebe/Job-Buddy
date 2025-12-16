@@ -6,7 +6,19 @@ class ControllerUtilisateur extends Controller
     {
         parent::__construct($twig, $loader);
     }
+    
+    /*==============================
+     *
+     *  Pous se connecter à la page 
+     *  de connexion
+     * 
+     ===============================*/
     public function pageConnexion(){
+        //En cas d'erreur 
+        if(isset($_SESSION['msg_erreur'])){
+            echo "<p style='color: red;'>".$_SESSION['msg_erreur']."</p>";
+            unset($_SESSION['msg_erreur']);
+        }
         if(isset($_SESSION['role'])){
             //À faire, verifier qu'ils sont valides
             $role = $_SESSION['role'];
@@ -22,7 +34,18 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
+    /*==============================
+     *
+     *  Pous se connecter à la page 
+     *  d'inscription
+     * 
+     ===============================*/
     public function pageInscription(){
+        //En cas d'erreur 
+        if(isset($_SESSION['msg_erreur'])){
+            echo "<p style='color: red;'>".$_SESSION['msg_erreur']."</p>";
+            unset($_SESSION['msg_erreur']);
+        }
         if(isset($_SESSION['role'])){
             //À faire, verifier qu'ils sont valides
             $role = $_SESSION['role'];
@@ -38,6 +61,13 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
+    /*=========================================
+     *
+     *  Permet d'inscrire les données de
+     *  l'utilisateur dans la base de données
+     *  tout en chiffrant le mot de passe
+     * 
+     =========================================*/
     public function inscriptionBd(Utilisateur $user){
         // Vérifie si le mot de passe est robuste
         if (!Valide::estRobuste($user->getMdp()))
@@ -63,7 +93,13 @@ class ControllerUtilisateur extends Controller
         $utilisateurDao->insererUtilisateur($user, $passwordHache);
     }
 
-
+    /*========================================
+     *
+     *  Permet de récupérer les informations
+     *  de l'utilisateur depuis le formulaire
+     *  et les inscrits dans la BD
+     * 
+     =========================================*/
     public function inscription(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
@@ -86,39 +122,47 @@ class ControllerUtilisateur extends Controller
                 // Tentative d'inscription
                 $this->inscriptionBd($user);
 
-                // Si l'utilisateur a pu être inscrit en BD, affichage du succès
-                echo "<h1>Inscription réussie !</h1>";
-                echo '<a href="index.php?controleur=utilisateur&methode=pageConnexion">Se connecter</a>';
+                // Si l'utilisateur a pu être inscrit en BD, affichage de la page de connexion
+                header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+                exit();
             }
+            //sinon affiche des messages d'erreurs selon le probleme
             catch (Exception $e)
             {
                 switch ($e->getMessage())
                 {
                     case "compte_existant":
-                        echo '<h1>Erreur : Compte existant</h1>';
-                        echo '<p>Ce compte existe déjà.</p>';
-                        echo '<a href="#">Mot de passe oublié ?</a><br>';
-                        echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
+                        $_SESSION['msg_erreur']="Ce compte existe déjà.<a href='#'>Mot de passe oublié ?";
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
+                        exit();
                         break;
 
                     case "mdp_faible":
-                        echo '<h1>Erreur : Mot de passe invalide</h1>';
-                        echo '<p>Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.</p>';
-                        echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
-                        echo $user->getMdp();
+                        $_SESSION['msg_erreur']="Erreur : Mot de passe invalide. 
+                        Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
+                        exit();
                         break;
+                        
 
                     default:
+                        $_SESSION['msg_erreur']="Une erreur inattendue est survenue : {$e->getMessage()}";
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
                         echo "<h1>Une erreur inattendue est survenue</h1>";
-                        echo "<p>{$e->getMessage()}</p>";
-                        echo '<a href="index.php?controleur=utilisateur&methode=pageInscription">Retour au formulaire d\'inscription</a>';
+                        exit();
                         break;
                 }
             }
         }
     }
 
-    //Authentifie un utilisateur
+    /*=======================================
+     *
+     *  Vérifie si les identifiants récupérés
+     *  correspondent à ceux de la base 
+     *  de données
+     *
+     =======================================*/
     public function authentification(Utilisateur $user):bool{
         // création d'une instance de la bd
         $baseDeDonnees = Bd::getInstance();
@@ -127,7 +171,7 @@ class ControllerUtilisateur extends Controller
 
         // Recherche de l'utilisateur
         $requete= $pdo->prepare(
-            'SELECT id, mdp FROM utilisateur WHERE email =:email'
+            'SELECT id, mdp, role FROM Utilisateur WHERE email =:email'
         );
 
         // Exécution de la requête avec l'email de l'utilisateur
@@ -138,25 +182,31 @@ class ControllerUtilisateur extends Controller
         // Vérifie si l'utilisateur en BD existe
         if($donneeUtilisateurEnBD){
             // Vérification du mot de passe avec la fonction password_verify
-            var_dump(password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp']));
-            if(password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
-                // Synchronisation de l'identifiant récupéré de la base de données avec l'objet courant
-                $user->setId($donneeUtilisateurEnBD['id']);
-
-                // Réinitialisation du mot de passe pour éviter de conserver des données sensibles
-                $user->setMdp('');
-                $_SESSION['role'] = $user->getRole();
-                return true; // Authentification réussie
+            if(!password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
+                throw new Exception("mdp_invalide");
             }
+            // Synchronisation de l'identifiant récupéré de la base de données avec l'objet courant
+            $user->setId($donneeUtilisateurEnBD['id']);
+
+            // Réinitialisation du mot de passe pour éviter de conserver des données sensibles
+            $user->setMdp('');
+            $_SESSION['role'] = $donneeUtilisateurEnBD['role'];
+            return true; // Authentification réussie
         }
-        return false; // Authentification échouée
+        throw new Exception("mail_invalide");
+        // return false; // Authentification échouée
     }
 
-    /*Appeler depuis pageDeConnexion.html.twig, permet de se connecter en appelant la méthode authentification
+    /*==============================
      *
+     *  Récupère les informations de connexions
+     *  de l'utilisateur, vérifie
+     *  s'ils sont valides et 
+     *  affiche la page d'accueil
+     *  selon le role de l'utilisateur
+     *  (particulier - étudiant)
      * 
-     * 
-     */
+     ===============================*/
     public function connexion(){
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             //Récupération des données du formulaire
@@ -169,20 +219,23 @@ class ControllerUtilisateur extends Controller
             try{
                 //Tentative de connexion
                 if($this->authentification($utilisateur)){
-                    echo "Connexion réussie.";
-                    echo "<br><a href='index.php'>Retourner à l'accueil</a>";
-                    echo $_SESSION['role'];
+                    header("Location: index.php");
+                    exit();
                 }
-                else{
-                    echo "Erreur : Email ou mot de passe incorrect.";
-                    echo '<br><a href="index.php?controleur=utilisateur&methode=pageConnexion">Retourner à la page de connexion</a>';
-                }
-                return true;
             }
             catch (Exception $e){
-                switch($e ->getMessage()){
-                    case "email_ou_mdp_incorrect":
-
+                switch($e ->getMessage())
+                {
+                    case "mdp_invalide":
+                        header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+                        $_SESSION['msg_erreur']="L'email ou le mot de passe est incorrect";
+                        exit();
+                        break;
+                    case "mail_invalide":
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
+                        $_SESSION['msg_erreur']="Vous ne vous êtes pas encore inscrit.";        
+                        exit();
+                        break;         
                 }
             }
         }

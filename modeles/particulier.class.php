@@ -5,6 +5,11 @@ require_once "include.php";
 class Particulier extends Utilisateur{
     private array $listAnnoncePublie = [];
 
+    // Paramètre codeINE non utilisé pour les particuliers
+    public function __construct(?int $id=null, ?string $nom=null, ?string $prenom=null, ?string $tel=null, ?string $dateNaiss=null, ?string $role=null, ?string $email=null, ?string $mdp=null, ?string $adresse=null, ?string $ville=null, ?string $codePostal=null, ?string $dateSuppression=null){
+        parent::__construct($id, $nom, $prenom, $tel, $dateNaiss, $role, $email, $mdp, $adresse, $ville, $codePostal, $dateSuppression);
+    }
+
     /**
      * Get the value of listAnnoncePublie
      */ 
