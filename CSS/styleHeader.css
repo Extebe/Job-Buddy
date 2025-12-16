@@ -3,19 +3,25 @@ body{
     flex-direction: column;
     background-color: #E6D8C3;
     color:#4B352A;
+    /* Ajout de cette ligne pour s'assurer qu'aucun élément ne force un débordement horizontal invisible */
+    overflow-x: hidden;
 }
 header{
     background-color: #fbf2dd;
     position: sticky;
     top: 0; /* Le header reste en haut de la page */
     z-index: 100; /* Assure que le header reste au-dessus des autres éléments */
-    padding: 10px;
+    /* padding: 10px; <-- SUPPRIMÉ / Laisser Bootstrap gérer le padding */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Ombre légère */
 }
 
 footer{
     text-align: center;
 }
+
+/* * CLASSES SUPPRIMÉES/COMMENTÉES :
+ * Les marges fixes suivantes sont remplacées par les classes Bootstrap (me-2, me-4) dans le HTML.
+ * Cela permet à Flexbox de gérer l'espace de manière responsive.
 
 .nav-item-searchBar{
     margin-left: 30px;
@@ -25,11 +31,16 @@ footer{
     margin-left: 10px;
 }
 
+.btn-compte{
+    padding: 10px;
+}
+*/
+
 .row{
     background-color: #E6D8C3;
 }
 
-.btn-compte{
+.img{
     padding: 10px;
 }
 form{

@@ -1,0 +1,33 @@
+{% extends 'base_template.html.twig' %}
+    {% block content %}
+        <form action="index.php?controleur=particulier&methode=ajouterAnnonce">
+            <div class="mb-3">
+                <label for="" class="form-label">Date début réalisation</label>
+                <input type="" class="form-control" id="" name="" required >
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Date fin de réalisation</label>
+                <input type="" class="form-control" id="" name="" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Type de service</label>
+                <input type="" class="form-control" id="" name="" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Titre de l'annonce</label>
+                <input type="" class="form-control" id="" name="" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Description</label>
+                <input type="" class="form-control" id="" name="" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Publier l'annonce</button>
+            </div>
+        </form>
+    {% endblock %}
