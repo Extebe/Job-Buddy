@@ -34,8 +34,8 @@ footer{
 .btn-compte{
     padding: 10px;
 }
-*/
 
+*/
 .row{
     background-color: #E6D8C3;
 }
@@ -47,4 +47,35 @@ form{
     max-width: 400px;
     border: 1.5px solid #4B352A;
     border-radius: 8px;
+    padding: 10px;
+    width: 1000px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding-top: 3%;
+}
+
+.btn-outline-success {
+    color: #712200;
+    border-color: #712200;
+}
+
+.btn-outline-success:hover {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success:focus {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success::selection {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
 }
