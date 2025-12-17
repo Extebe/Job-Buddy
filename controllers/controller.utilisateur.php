@@ -135,7 +135,7 @@ class ControllerUtilisateur extends Controller
             $password = $_POST['password'] ?? '';
 
             if ($role == 'Etudiant') {
-                $user = new Etudiant(null, $nom, $codeINE, $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal);
+                $user = new Etudiant(null,$codeINE, $nom,  $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal);
 
             } else {
                 $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal);
@@ -358,9 +358,8 @@ class ControllerUtilisateur extends Controller
                 }
             }
             catch (Exception $e){
-                switch($e ->getMessage())
-                {
-                    case "mdp_invalide":
+                switch($e ->getMessage()){
+                    case "identifiant_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         $_SESSION['msg_erreur']="L'email ou le mot de passe est incorrect";
                         exit();

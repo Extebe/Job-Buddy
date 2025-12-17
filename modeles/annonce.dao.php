@@ -30,9 +30,8 @@ class AnnonceDao{
         $sql = "SELECT * FROM Annonce WHERE id= :id";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$id));
-        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Annonce');
         $annonce = $pdoStatement->fetch();
-        $annonce = $this->hydrate($annonce);
         return $annonce;
     }
 
@@ -54,32 +53,25 @@ class AnnonceDao{
         return $annonce;
     }
 
-  
-
     public function hydrate($tableauAssoc): ?Annonce
     {
-        $annonce = new Annonce();
-        $annonce->setId($tableauAssoc['id'] ?? null);
-        //creation du particulierDAO pour recuperer le createur
-        $managerParticulier = new ParticulierDao($this->pdo);
-        $particulier = $managerParticulier->findByAnnonce($tableauAssoc['id'] ?? null);
-        $annonce->setCreateur($particulier);
-        $annonce->setTitre($tableauAssoc['titre'] ?? null);
-        $annonce->setDescription($tableauAssoc['description'] ?? null);
-        $annonce->setTypeService($tableauAssoc['typeService'] ?? null);
-        $annonce->setLieu($tableauAssoc['lieu'] ?? null);
-        $annonce->setRemuneration($tableauAssoc['remuneration'] ?? null);
-        $annonce->setDateDebutRealisation($tableauAssoc['dateDebutRealisation'] ?? null);
-        $annonce->setDateFinRealisation($tableauAssoc['dateFinRealisation'] ?? null);
-        $annonce->setEtat($tableauAssoc['etat'] ?? null);
-        $annonce->setDatePublication($tableauAssoc['datePublication'] ?? null);
-        $annonce->setDateSuppression($tableauAssoc['dateSuppression'] ?? null);
-        $annonce->setMotifSuppression($tableauAssoc['motifSuppression'] ?? null);
+        $annonce = new Annonce(
+            $tableauAssoc['id'], 
+            $tableauAssoc['idParticulier'],
+            $tableauAssoc['titre'],
+            $tableauAssoc['description'],
+            $tableauAssoc['typeService'],
+            $tableauAssoc['lieu'],
+            $tableauAssoc['remuneration'],
+            $tableauAssoc['dateDebutRealisation'],
+            $tableauAssoc['dateFinRealisation'],
+            $tableauAssoc['etat'],
+            $tableauAssoc['datePublication'],
+            $tableauAssoc['dateSuppression'],
+            $tableauAssoc['motifSuppression']
+        );
 
     return $annonce;
-       
-
-        return $annonce;
     }
 
     public function hydrateAll($tableau): ?array{
@@ -108,5 +100,13 @@ class AnnonceDao{
         $annonce->setPostulations($postulations);
 
         return $annonce;
+    }
+
+    public function insererAnnonce(){
+        // Creation d'une annonce'
+        $sql = "INSERT INTO Annonce (dateDebutRealisation, dateFinRealisation, etat, typeService, titre, description, datePublication, dataSuppression, motifSuppression, idParticulier) 
+        VALUES (:dateDebutRealisation, :dateFinRealisation, :etat, :typeService, :titre, :description, :datePublication, :dataSuppression, :idParticulier )";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute();
     }
 }

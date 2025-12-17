@@ -3,36 +3,54 @@
 require_once "include.php";
 
 class Etudiant extends Utilisateur{
-    private ?string $codeEtudiant;
-    private array $listAnnoncePostule = [];
+    private ?string $codeINE;
+    private array $annoncesPostule = [];
 
-    public function __construct(?string $id = null, ?string $nom = null, ?string $codeEtudiant = null, ?string $prenom = null, ?string $telephone = null, ?string $dateNaiss = null, ?string $email = null, ?string $mdp = null, ?string $adresse = null, ?string $ville = null, ?string $codePostal = null){
-        $this->id = $id;
-        $this->codeEtudiant = $codeEtudiant;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->tel = $telephone;
-        $this->dateNaiss = $dateNaiss;
-        $this->email = $email;
-        $this->mdp = $mdp;
-        $this->adresse = $adresse;
-        $this->ville = $ville;
-        $this->codePostal = $codePostal;
+    public function __construct(
+            ?int $id=null, 
+            ?string $codeINE=null,
+            ?string $nom=null, 
+            ?string $prenom=null, 
+            ?string $tel=null, 
+            ?string $dateNaiss=null, 
+            ?string $role=null, 
+            ?string $email=null, 
+            ?string $mdp=null, 
+            ?string $adresse=null, 
+            ?string $ville=null, 
+            ?string $codePostal=null, 
+            ?string $dateSuppression=null
+        )
+    {
+        parent::__construct(
+            $id, 
+            $nom, 
+            $prenom, 
+            $tel, 
+            $dateNaiss, 
+            $role, 
+            $email, 
+            $mdp, 
+            $adresse, 
+            $ville, 
+            $codePostal, 
+            $dateSuppression);
+        $this->setCodeINE($codeINE);
     }
 
     /**
      * Get the value of codeEtudiant
      */ 
-    public function getCodeEtudiant()
+    public function getCodeINE()
     {
-        return $this->codeEtudiant;
+        return $this->codeINE;
     }
 
     /**
      * Set the value of codeEtudiant
      */ 
-    public function setCodeEtudiant($codeEtudiant)
+    public function setCodeINE($codeINE)
     {
-        $this->codeEtudiant = $codeEtudiant;
+        $this->codeINE = $codeINE;
     }
 }
