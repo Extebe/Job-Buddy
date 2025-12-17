@@ -72,9 +72,6 @@ class AnnonceDao{
         );
 
     return $annonce;
-       
-
-        return $annonce;
     }
 
     public function hydrateAll($tableau): ?array{
@@ -103,5 +100,13 @@ class AnnonceDao{
         $annonce->setPostulations($postulations);
 
         return $annonce;
+    }
+
+    public function insererAnnonce(){
+        // Creation d'une annonce'
+        $sql = "INSERT INTO Annonce (dateDebutRealisation, dateFinRealisation, etat, typeService, titre, description, datePublication, dataSuppression, motifSuppression, idParticulier) 
+        VALUES (:dateDebutRealisation, :dateFinRealisation, :etat, :typeService, :titre, :description, :datePublication, :dataSuppression, :idParticulier )";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute();
     }
 }
