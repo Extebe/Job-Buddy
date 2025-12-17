@@ -77,10 +77,10 @@ class ControllerUtilisateur extends Controller
     public function inscriptionBd(Utilisateur $user){
 
         // Vérifie si le mot de passe est robuste
-        /*if (!Valide::estRobuste($user->getMdp()))
+        if (!Valide::estRobuste($user->getMdp()))
         {
             throw new Exception("mdp_faible");
-        }*/
+        }
 
         // Vérifie si l'email existe déjà
         if (Valide::emailExiste($user->getEmail()))
@@ -135,10 +135,10 @@ class ControllerUtilisateur extends Controller
             $password = $_POST['password'] ?? '';
 
             if ($role == 'Etudiant') {
-                $user = new Etudiant(null,$codeINE, $nom,  $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal);
+                $user = new Etudiant(null, $codeINE, $nom,  $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal, null);
 
             } else {
-                $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal);
+                $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal, null);
             }           
 
             try
@@ -161,7 +161,7 @@ class ControllerUtilisateur extends Controller
                         exit();
 
                     case "mdp_faible":
-                        $_SESSION['msg_erreur']="Erreur : Mot de passe invalide. 
+                        $_SESSION['msg_erreur']="Erreur : Mot de passe invalide." . $user->getMdp() . "
                         Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
                         exit();                        
