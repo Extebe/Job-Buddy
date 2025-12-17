@@ -39,6 +39,7 @@ require_once "controllers/controller.factory.php";
 require_once "controllers/controller.utilisateur.php";
 require_once "controllers/controller.note.php";
 require_once "controllers/controller.particulier.php";
+require_once "controllers/controller.newsLetter.php";
 
 // Constantes
 require_once "config/constantes.class.php";

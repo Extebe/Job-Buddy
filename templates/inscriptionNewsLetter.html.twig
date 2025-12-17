@@ -1,10 +1,22 @@
 {% extends 'base_template.html.twig' %}
     {% block content %}
+    <div class='container'>
         <h1>Inscris toi à la newsletter !</h1>
         <form action="index.php?controleur=utilisateur&methode=newsletter">
             <div class="mb-3">
                 <label for="" class="form-label">Email</label>
                 <input type="" class="form-control" id="" name="" required >
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                <label class="form-check-label" for="checkDefault">
+                    Vous acceptez de recevoire des emails
+                </label>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">S'inscrire</button>
+            </div>
         </form>
+    </div>
     {% endblock %}
