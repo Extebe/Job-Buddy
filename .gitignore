@@ -1,5 +1,6 @@
 # les fichiers du dossier config
 /config/constantes.yaml
+!/config/constantes.yaml.exemple
 /vendor
 composer.phar
 .idea/

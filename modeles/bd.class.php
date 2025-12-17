@@ -9,7 +9,7 @@ class Bd {
     private function __construct() {
         try {
             $constantesDB = Constantes::getConstantes()['database'];
-            $this->pdo = new PDO('mysql:host=' . $constantesDB['host'] . ';dbname=' . $constantesDB['name'], $constantesDB['user'], $constantesDB['pass']);
+            $this->pdo = new PDO('mysql:host=' . $constantesDB['host'] . ';dbname=' . $constantesDB['name'].';charset=' . $constantesDB['charset'], $constantesDB['user'], $constantesDB['pass']);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (PDOException $e) {

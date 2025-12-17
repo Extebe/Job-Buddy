@@ -1,0 +1,13 @@
+database:
+  host : localhost
+  name : jobbuddy
+  user : login
+  pass : pwd
+  charset : utf8
+
+
+website:
+  title : Jobbuddy
+  version : 1.0
+  desc : Des petits boulots de grandes opportunitées !
+  language : fr
