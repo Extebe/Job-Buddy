@@ -4,58 +4,60 @@ require_once "include.php";
 
 class EtudiantDAO extends UtilisateurDAO{
     public function findAll(){
-        $sql = "SELECT * FROM utilisateur WHERE role = 'etudiant'";
+        $sql = "SELECT * FROM Utilisateur WHERE role = 'ETUDIANT'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute();
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'utilisateur');
-        $utilisateurs = $pdoStatement->fetchAll();
-        return $utilisateurs;
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Utilisateur');
+        $etudiants = $pdoStatement->fetchAll();
+        return $etudiants;
     }
 
     public function find(?int $id): ?Etudiant
     {
-        $sql = "SELECT * FROM utilisateur WHERE code = :id AND role = 'etudiant'";
+        $sql = "SELECT * FROM Utilisateur WHERE code = :id AND role = 'ETUDIANT'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$id));
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'utilisateur');
-        $utilisateur = $pdoStatement->fetch();
-        return $utilisateur;
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Utilisateur');
+        $etudiant = $pdoStatement->fetch();
+        return $etudiant;
     }
 
     public function findAllAssoc(){
-        $sql = "SELECT * FROM utilisateur WHERE role = 'etudiant'";
+        $sql = "SELECT * FROM Utilisateur WHERE role = 'ETUDIANT'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute();
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
-        $utilisateurs = $pdoStatement->fetchAll();
-        return $utilisateurs;
+        $etudiants = $pdoStatement->fetchAll();
+        return $etudiants;
     }
 
     public function findAssoc(?int $id): ?array
     {
-        $sql = "SELECT * FROM utilisateur WHERE code = :id AND role = 'etudiant'";
+        $sql = "SELECT * FROM Utilisateur WHERE code = :id AND role = 'ETUDIANT'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$id));
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
-        $utilisateur = $pdoStatement->fetch();
-        return $utilisateur;
+        $etudiant = $pdoStatement->fetch();
+        return $etudiant;
     }
 
     public function hydrate($tableauAssoc): ?Etudiant
     {
-        $etudiant = new Etudiant();
-        $etudiant->setId($tableauAssoc["id"]);
-        $etudiant->setNom($tableauAssoc["nom"]);
-        $etudiant->setPrenom($tableauAssoc["prenom"]);
-        $etudiant->setTel($tableauAssoc["tel"]);
-        $etudiant->setDateNaiss($tableauAssoc["dateNaiss"]);
-        $etudiant->setRole($tableauAssoc["role"]);
-        $etudiant->setCodeEtudiant($tableauAssoc["codeINE"]);
-        $etudiant->setEmail($tableauAssoc["email"]);
-        $etudiant->setMdp($tableauAssoc["mdp"]);
-        $etudiant->setAdresse($tableauAssoc["adresse"]);
-        $etudiant->setVille($tableauAssoc["ville"]);
-        $etudiant->setCodePostal($tableauAssoc["codePostal"]);
+        $etudiant = new Etudiant(
+            $tableauAssoc['id'],
+            $tableauAssoc['codeINE'],
+            $tableauAssoc['nom'],
+            $tableauAssoc['prenom'],
+            $tableauAssoc['tel'],
+            $tableauAssoc['dateNaiss'],
+            $tableauAssoc['role'],
+            $tableauAssoc['email'],
+            $tableauAssoc['mdp'],
+            $tableauAssoc['adresse'],
+            $tableauAssoc['ville'],
+            $tableauAssoc['codePostal'],
+            $tableauAssoc['dateSuppression']
+        );
         return $etudiant;
     }
 
