@@ -75,11 +75,12 @@ class ControllerUtilisateur extends Controller
      * 
      =========================================*/
     public function inscriptionBd(Utilisateur $user){
+
         // Vérifie si le mot de passe est robuste
-        if (!Valide::estRobuste($user->getMdp()))
+        /*if (!Valide::estRobuste($user->getMdp()))
         {
             throw new Exception("mdp_faible");
-        }
+        }*/
 
         // Vérifie si l'email existe déjà
         if (Valide::emailExiste($user->getEmail()))
@@ -95,8 +96,19 @@ class ControllerUtilisateur extends Controller
 
         // Requête d'insertion
         $pdo = $baseDeDonnees->getConnexion();
-        $utilisateurDao = new UtilisateurDao($pdo);
-        $utilisateurDao->insererUtilisateur($user, $passwordHache);
+
+
+        //verification type d'utilisateur
+        if (get_class($user) === 'Etudiant'){
+            $managerEtudiant = new EtudiantDao($pdo);
+            $managerEtudiant->insererUtilisateur($user, $passwordHache);
+           
+        }
+        else{
+            $managerParticulier = new ParticulierDao($pdo);
+            $managerParticulier->insererUtilisateur($user, $passwordHache);
+        }
+
     }
 
     /*========================================
@@ -122,7 +134,13 @@ class ControllerUtilisateur extends Controller
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
 
-            $user = new Utilisateur(null, $nom, $prenom, $phone, $dateNaiss, $role, $codeINE, $email, $password, $adresse, $ville, $codePostal);
+            if ($role == 'Etudiant') {
+                $user = new Etudiant(null, $nom, $codeINE, $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal);
+
+            } else {
+                $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal);
+            }           
+
             try
             {
                 // Tentative d'inscription

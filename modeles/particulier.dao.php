@@ -85,4 +85,26 @@ class ParticulierDAO extends UtilisateurDAO{
         }
         return $particuliers;
     }
+
+    public function insererUtilisateur($user, $passwordHache): void {
+    $requete = "INSERT INTO Utilisateur (role, codeINE, nom, prenom, tel, dateNaiss, email, mdp, ville, adresse, codePostal,tentativesEchouees,dateDernierEchecConnexion,statutCompte) 
+    values (:role, :codeINE, :nom, :prenom, :tel, :dateNaiss, :email, :mdp, :ville, :adresse, :codePostal,:tentativesEchouees,:dateDernierEchecConnexion,:statutCompte);";
+    $pdoStatement = $this->pdo->prepare($requete);
+    $pdoStatement->execute([
+        ':role' => 'Particulier ',
+        ':codeINE' => null,
+        ':nom' => $user->getNom(),
+        ':prenom' => $user->getPrenom(),
+        ':tel' => $user->getTel(),
+        ':dateNaiss' => $user->getDateNaiss(),
+        ':email' => $user->getEmail(),
+        ':mdp' => $passwordHache,
+        ':ville' => $user->getVille(),
+        ':adresse' => $user->getAdresse(),
+        ':codePostal' => $user->getCodePostal(),
+        ':tentativesEchouees' => 0,
+        ':dateDernierEchecConnexion' => null,
+        ':statutCompte' => 'actif'
+        ]);
+    }
 }
