@@ -25,7 +25,7 @@ class Annonce{
 
     public function __construct(
         ?string $id = null,
-        ?int $idCreateur = null,
+        ?int $idParticulier = null,
 
         ?string $titre = null,
         ?string $description = null,
@@ -44,7 +44,7 @@ class Annonce{
     ) {
         $this->id = $id;
         $particulierDAO = new ParticulierDAO(Bd::getInstance()->getConnexion());
-        $this->createur = $particulierDAO->find($idCreateur);
+        $this->createur = $particulierDAO->find($idParticulier);
 
         $this->titre = $titre;
         $this->description = $description;
