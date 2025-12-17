@@ -340,9 +340,8 @@ class ControllerUtilisateur extends Controller
                 }
             }
             catch (Exception $e){
-                switch($e ->getMessage())
-                {
-                    case "mdp_invalide":
+                switch($e ->getMessage()){
+                    case "identifiant_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         $_SESSION['msg_erreur']="L'email ou le mot de passe est incorrect";
                         exit();
