@@ -294,6 +294,18 @@ class Utilisateur{
             $total += $note->getValeur();
         }
         return $total / $count;
-    }   
+    }
+
+    public static function getUser(): ?Utilisateur {
+        if(isset($_SESSION['id'])){
+            $bd = Bd::getInstance();
+            $pdo = $bd->getConnexion();
+            $userDao = new UtilisateurDao($pdo);
+            $user = $userDao->findById($_SESSION['id']);
+            $user->setMdp("");
+            return $user;
+        }
+        return null;
+    }
 }
 ?>
