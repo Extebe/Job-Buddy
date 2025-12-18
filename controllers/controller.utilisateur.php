@@ -392,8 +392,14 @@ class ControllerUtilisateur extends Controller
 
     /*==============================
      *
-     *  Affiche les informations du
-     *  du compte de l'utilisateur
+     *  Se déconnecte et affiche
+     *  la page d'accueil
      * 
      ===============================*/
+    public function deconnexion(){
+        $_SESSION=[]; // On vide le tableau, pour libérer de l'espace
+        session_destroy();
+        header('Location: index.php');
+        exit();
+    }
 }
