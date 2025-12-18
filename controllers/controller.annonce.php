@@ -13,8 +13,6 @@ class ControllerAnnonce extends Controller {
         $managerAnnonce = new AnnonceDao($this->getPdo());
         $tableau = $managerAnnonce->findAllAssoc();
         $annonces = $managerAnnonce->hydrateAll($tableau);
-        var_dump($_SESSION['id']);
-        var_dump(Utilisateur::getUser()->getRole());
         echo $template->render('index.html.twig', [
             'user' => Utilisateur::getUser(),
         ]);
