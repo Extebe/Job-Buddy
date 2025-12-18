@@ -1,27 +1,50 @@
 {% extends 'base_template.html.twig' %}
-    {% block content %}
-        <h1>
-            Bienvenue sur le super site de super Jobbuddy.
-        </h1>
-        <div id="zone_cartes" class="row row-cols-3">
-            {% for annonce in annonces %}
 
-                <!--Les cartes-->
-                <a href="" class="">
-                    <div class="" style="">
-                        <img src="{{ annonce.image }}" class="" alt="picto annonce">
-                        <div class="">
-                            <h3>{{annonce.titre}}</h3>
-                            <h4>{{annonce.typeService}}</h4>
-                            <h4>{{annonce.remuneration}}</h4>
-                            <h4>{{annonce.dateRealisation}}</h4>
-                            <h4>{{annonce.description}}</h4>
-                            <h4>{{annonce.lieu}}</h4>
-                            <h4>{{annonce.createur.nom}}</h4>
+{% block content %}
+<link rel="stylesheet" href="./CSS/annonces.css">
+<h1 class="mb-4">
+    Bienvenue sur le super site de super JobBuddy.
+</h1>
+
+<div class="container">
+    <div id="zone_cartes" class="row row-cols-1 row-cols-md-2 g-4">
+
+        {% for annonce in annonces %}
+            <div class="col">
+                <div class="card-slot h-100">
+                    <div class="card h-100 flex-row card-item">
+                        
+                        <!-- Image -->
+                        <div class="col-4 p-0">
+                            <img
+                                src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
+                                class="icon-annoncea"
+                                alt="Icon {{ annonce.typeService }}"
+                                style="object-fit: cover; max-height: 150px;"
+                            >
                         </div>
-                    </a>
-                </div>
 
-            {% endfor %}
-        </div>
-    {% endblock %}
+                        <!-- Contenu -->
+                        <div class="col-8">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title">{{ annonce.titre }}</h5>
+                                    <span class="">{{ annonce.remuneration }} €</span>
+                                </div>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    {{ annonce.lieu }} - {{ annonce.dateDebutRealisation|date("h:i d/m/y") }}
+                                </h6>
+                                <p class="card-text">
+                                    {{ annonce.description }}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
