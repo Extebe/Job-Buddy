@@ -29,7 +29,7 @@ class UtilisateurDAO{
 
     public function hydrate($tableau){
         $utilisateur = new Utilisateur();
-        $utilisateur->setId($tableau['id'] ?? null);
+        $utilisateur->setId($tableau['idUtilisateur'] ?? null);
         $utilisateur->setRole($tableau['role'] ?? null);
         $utilisateur->setNom($tableau['nom'] ?? null);
         $utilisateur->setPrenom($tableau['prenom'] ?? null);
@@ -50,7 +50,7 @@ class UtilisateurDAO{
         $pdoStatement->execute(['id' => $id]);
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
         $tableau = $pdoStatement->fetch();
-        return $this->hydrate($tableau) ?: null;
+        return $this->hydrate($tableau);
     }
 }
 ?>

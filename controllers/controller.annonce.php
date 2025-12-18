@@ -55,4 +55,23 @@ class ControllerAnnonce extends Controller {
 
     }
 
+
+    public function afficherMesAnnonces(){
+        $template = $this->getTwig();
+
+
+        $managerAnnonce = new AnnonceDao($this->getPdo());
+        if (!isset($_SESSION['id'])) {
+            header("Location: index.php");
+            exit();
+        }
+        $tableau = $managerAnnonce->findAllById($_SESSION['id']);
+
+        echo $template->render('mesAnnonces.html.twig', [
+            'user' => Utilisateur::getUser(),
+            'annonces' => $tableau
+        ]);
+
+    }
+
 }
