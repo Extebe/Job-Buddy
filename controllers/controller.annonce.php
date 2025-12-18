@@ -17,7 +17,8 @@ class ControllerAnnonce extends Controller {
 
         echo $template->render('index.html.twig', [
             'annonces' => $annonces,
-            'icons' => $icons
+            'icons' => $icons,
+            'user' => Utilisateur::getUser()
         ]);
 
 
@@ -72,7 +73,8 @@ class ControllerAnnonce extends Controller {
 
         echo $template->render('mesAnnonces.html.twig', [
             'user' => Utilisateur::getUser(),
-            'annonces' => $tableau
+            'annonces' => $tableau,
+            'icons' => Constantes::getConstantes()['icons']
         ]);
 
     }

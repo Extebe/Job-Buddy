@@ -355,7 +355,7 @@ class ControllerUtilisateur extends Controller
                     case "mail_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         $_SESSION['msg_erreur']="L'email est incorrect";
-                        exit();  
+                        exit();       
                     case "nombre_tentative_depasse":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         $_SESSION['msg_erreur']="Trop de tentatives de connexion, le compte à été bloqué pour ".$this->tempsRestantAvantDeblocage($utilisateur);
@@ -382,7 +382,7 @@ class ControllerUtilisateur extends Controller
      *  du compte de l'utilisateur
      * 
      ===============================*/
-    public function compte(){
+    public function afficheCompte(){
         $template = $this->getTwig();
 
         echo $template->render('pageCompte.html.twig', [

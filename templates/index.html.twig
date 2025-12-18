@@ -27,10 +27,29 @@
                         <!-- Contenu -->
                         <div class="col-8">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">{{ annonce.titre }}</h5>
-                                    <span class="">{{ annonce.remuneration }} €</span>
-                                </div>
+                                    <div class="d-flex justify-content-between align-items-start">
+
+                                        <!-- Titre + prix -->
+                                        <div>
+                                            <h5 class="card-title mb-1">{{ annonce.titre }}</h5>
+                                            <span class="fw-bold">{{ annonce.remuneration }} €</span>
+                                        </div>
+
+                                        <!-- Boutons -->
+                                        <div class="d-flex ms-2 gap-2">
+                                            <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
+                                            class="btn btn-outline-primary btn-sm">
+                                                Modifier
+                                            </a>
+
+                                            <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
+                                            class="btn btn-outline-danger btn-sm"
+                                            onclick="return confirm('Supprimer cette annonce ?');">
+                                                Supprimer
+                                            </a>
+                                        </div>
+
+                                    </div>
                                 <h6 class="card-subtitle mb-2 text-muted">
                                     {{ annonce.lieu }} - {{ annonce.dateDebutRealisation|date("h:i d/m/y") }}
                                 </h6>
