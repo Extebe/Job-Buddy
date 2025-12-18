@@ -9,4 +9,8 @@
         $template=$this->getTwig();
         echo $template->render('inscriptionNewsLetter.html.twig');
     }
+    public function afficherPolitiqueConfidentialite(){
+        $template=$this->getTwig();
+        echo $template->render('politiqueConfidentialite.html.twig');
+    }
     }
