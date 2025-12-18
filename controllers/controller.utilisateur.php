@@ -371,4 +371,22 @@ class ControllerUtilisateur extends Controller
             }
         }
     }
+
+
+    /*==============================
+     *
+     *  Affiche les informations du
+     *  du compte de l'utilisateur
+     * 
+     ===============================*/
+    public function afficheCompte(){
+        $template = $this->getTwig();
+
+        echo $template->render('pageCompte.html.twig', []);
+
+
+
+
+    }
+
 }

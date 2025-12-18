@@ -1,0 +1,25 @@
+{% extends 'base_template.html.twig' %}
+    {% block content %}
+    <div class="card-container">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Mon Compte</h5>
+
+                <p>Nom de famille : {{ user.nom }}</p>
+                <p>Prénom : {{ user.prenom }}</p>
+                <p>Date de naissance : {{ user.dateNaissance }}</p>
+                <p>Email : {{ user.email }}</p>
+                <p>N° de téléphone : {{ user.telephone }}</p>
+                <p>Ville : {{ user.ville }}</p>
+                <p>Adresse : {{ user.adresse }}</p>
+                <p>Code postal : {{ user.codePostal }}</p>
+
+                {% if user.role == "Etudiant" %}
+                    <p>Code INE : {{ user.INE }}</p>
+                {% endif %}
+
+                <button class="btn btn-primary mt-2">Modifier Compte</button>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
