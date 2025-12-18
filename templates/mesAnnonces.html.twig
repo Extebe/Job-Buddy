@@ -5,7 +5,7 @@
     <h1 class="mb-4">
         Bienvenue sur le super site de super JobBuddy.
     </h1>
-
+    {{ annonces|length }} annonce(s) trouvée(s).
     <div class="container">
         <div id="zone_cartes" class="row row-cols-1 g-4 justify-content-center">
 
@@ -38,18 +38,28 @@
                         </div>
 
                         <!-- Boutons -->
-                        <div class="d-flex gap-2 position-relative">
-                            <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
-                               class="btn btn-outline-success btn-sm">
-                                Modifier
-                            </a>
+                {% if user.role == "Etudiant" and annonce.etat == "DISPONIBLE" %}
+                    <div class="d-flex gap-2 mt-2 justify-content-end">
+                    <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
+                         <button class="btn btn-outline-success mt-2">Postuler</button>
+                    </a>
+                </div>
+                {% endif %}
 
-                            <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
-                               class="btn btn-outline-danger btn-sm"
-                               onclick="return confirm('Supprimer cette annonce ?');">
-                                Supprimer
-                            </a>
-                        </div>
+                {% if user.role == "Particulier " and annonce.etat == "DISPONIBLE"  and annonce.idParticulier == user.id %}
+                <div class="d-flex gap-2 mt-2 justify-content-end">
+                    <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
+                        class="btn btn-outline-success btn-sm">
+                        Modifier
+                    </a>
+
+                    <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
+                        class="btn btn-outline-danger btn-sm"
+                        onclick="return confirm('Supprimer cette annonce ?');">
+                        Supprimer
+                    </a>
+                </div>
+                {% endif %}
 
                     </div>
 
@@ -154,6 +164,12 @@
     background-color: #ff0000;
     border-color: #fbf2dd;
 }
+
+.btn, .d-flex.gap-2 {
+    position: relative;
+    z-index: 1; /* pour être au-dessus du stretched-link */
+}
+
 </style>
     {% endblock %}
 

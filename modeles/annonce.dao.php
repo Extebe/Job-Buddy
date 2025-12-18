@@ -45,7 +45,7 @@ class AnnonceDao{
     }
 
         public function findAllById($utilisateur){
-        $sql = "SELECT * FROM Annonce JOIN POSTULER ON Annonce.id=POSTULER.idAnnonce WHERE idParticulier = :idParticulier OR idEtudiant = :idParticulier";
+        $sql = "SELECT * FROM Annonce LEFT JOIN POSTULER ON Annonce.id=POSTULER.idAnnonce WHERE Annonce.idParticulier = :idParticulier OR POSTULER.idEtudiant = :idParticulier";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("idParticulier"=>$utilisateur));
         $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Annonce');

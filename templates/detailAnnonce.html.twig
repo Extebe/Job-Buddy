@@ -1,0 +1,40 @@
+{% extends 'base_template.html.twig' %}
+    {% block content %}
+    <div class="card-container">
+        <div class="card">
+            <div class="card-body mx-auto p-4">
+                <h4 class="card-title">{{ annonce.titre }}</h4>
+
+                <p>Description : {{ annonce.description }}</p>
+                <p>Remuneration : {{ annonce.remuneration }} €</p>
+                <p>Lieu : {{ annonce.lieu }}</p>
+                <p>Date de début de réalisation : {{ annonce.dateDebutRealisation|date("H:i d/m/y") }}</p>
+                <p>Type de service : {{ annonce.typeService }}</p>
+
+                {% if user.role == "Etudiant" and annonce.etat == "DISPONIBLE" %}
+                    <div class="d-flex gap-2 mt-2 justify-content-end">
+                    <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
+                         <button class="btn btn-outline-success mt-2">Postuler</button>
+                    </a>
+                </div>
+                {% endif %}
+
+                {% if user.role == "Particulier " and annonce.etat == "DISPONIBLE"  and annonce.idParticulier == user.id %}
+                <div class="d-flex gap-2 mt-2 justify-content-end">
+                    <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
+                        class="btn btn-outline-success btn-sm">
+                        Modifier
+                    </a>
+
+                    <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
+                        class="btn btn-outline-danger btn-sm"
+                        onclick="return confirm('Supprimer cette annonce ?');">
+                        Supprimer
+                    </a>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    {% endblock %}
