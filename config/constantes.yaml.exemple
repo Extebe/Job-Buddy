@@ -11,3 +11,7 @@ website:
   version : 1.0
   desc : Des petits boulots de grandes opportunitées !
   language : fr
+
+tentative:
+  MAX_CONNEXIONS_ECHOUEES : 3
+  DELAI_ATTENTE_CONNEXION : 1800

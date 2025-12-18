@@ -1,10 +1,5 @@
 <?php
 require_once "include.php";
-// Nombre maximum de tentatives échouées avant désactivation du compte
-define('MAX_CONNEXIONS_ECHOUEES', 3);
-
-// Délai d'attente après désactivation (en secondes)
-define('DELAI_ATTENTE_CONNEXION', 30 * 60); // 30 minutes
 
 class ControllerUtilisateur extends Controller
 {
@@ -150,7 +145,7 @@ class ControllerUtilisateur extends Controller
                         exit();
 
                     case "mdp_faible":
-                        $_SESSION['msg_erreur']="Erreur : Mot de passe invalide." . $user->getId() . $user->getNom() . $user->getPrenom() . $user->getTel() . $user->getDateNaiss() . $user->getEmail() . $user->getMdp() . $user->getAdresse() . $user->getVille() . $user->getCodePostal() . $user->getDateSuppression() . $email;"
+                        $_SESSION['msg_erreur']="Erreur : Mot de passe invalide." . $user->getId() . $user->getNom() . $user->getPrenom() . $user->getTel() . $user->getDateNaiss() . $user->getEmail() . $user->getMdp() . $user->getAdresse() . $user->getVille() . $user->getCodePostal() . $user->getDateSuppression() . $email."
                         Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
                         exit();                        
@@ -193,13 +188,14 @@ class ControllerUtilisateur extends Controller
      *
      =======================================*/
     public function tempsRestantAvantDeblocage(Utilisateur $user):int{
+        $constantesConnexion = Constantes::getConstantes()['tentative'];
         if(!$user->getDateDernierEchecConnexion()){
             // Si aucune tentative échouée n'a été enregistrée
             return 0;
         }
         $dernierEchecTimestamp = strtotime($user->getDateDernierEchecConnexion());
         $tempsEcoule = time() - $dernierEchecTimestamp;
-        $tempsRestant = DELAI_ATTENTE_CONNEXION -$tempsEcoule;
+        $tempsRestant = $constantesConnexion['DELAI_ATTENTE_CONNEXION'] -$tempsEcoule;
         return $tempsRestant > 0 ? $tempsRestant : 0;
     }
 
@@ -222,7 +218,7 @@ class ControllerUtilisateur extends Controller
                                    dateDernierEchecConnexion = NULL, 
                                    statutCompte = "actif" 
                                WHERE id = :id');   
-        $requete->execute(['ide'=>$user->getId()]);
+        $requete->execute(['id'=>$user->getId()]);
      }
 
      /*=======================================
@@ -234,19 +230,23 @@ class ControllerUtilisateur extends Controller
      *
      =======================================*/
      public function gererEchecConnexion(Utilisateur $user):void{
-        $user->setTentativesEchouees($user->getTentativesEchouees() + 1);
+        $constantesConnexion = Constantes::getConstantes()['tentative'];
+        $nbTentative=$user->getTentativesEchouees() + 1;
+        $user->setTentativesEchouees($nbTentative);
+
         $bd=Bd::getInstance()->getConnexion();
 
-        if($user->getTentativesEchouees() >= MAX_CONNEXIONS_ECHOUEES){
+        if($user->getTentativesEchouees() >= $constantesConnexion['MAX_CONNEXIONS_ECHOUEES']){
             // Désactivation du compte
             $requete = $bd->prepare(
                 'UPDATE Utilisateur 
                  SET tentativesEchouees = :tentatives, 
                  dateDernierEchecConnexion = NOW(), 
-                 statut_compte = "desactive" 
+                 statutCompte = "desactive" 
                  WHERE id = :id'
             );
             $user->setStatutCompte('desactive');
+            $exception="nombre_tentative_depasse";
         }
         else{
             // Mise à jour des tentatives échouées
@@ -254,13 +254,15 @@ class ControllerUtilisateur extends Controller
                 'UPDATE Utilisateur 
                  SET tentativesEchouees = :tentatives, 
                  dateDernierEchecConnexion = NOW() 
-                 WHERE identifiant = :id'
+                 WHERE id = :id'
             );
+            $exception="mdp_invalide";
         }
         $requete->execute([
-            'tentatives' => $user->getTentativesEchouees(),
+            'tentatives' => $nbTentative,
             'id' => $user->getId()
         ]);
+        throw new Exception($exception);
      }
 
     /*=======================================
@@ -346,14 +348,28 @@ class ControllerUtilisateur extends Controller
             }
             catch (Exception $e){
                 switch($e->getMessage()){
-                    case "identifiant_invalide":
+                    case "mdp_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         $_SESSION['msg_erreur']="L'email ou le mot de passe est incorrect";
                         exit();
                     case "mail_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         $_SESSION['msg_erreur']="L'email est incorrect";
-                        exit();       
+                        exit();  
+                    case "nombre_tentative_depasse":
+                        header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+                        $_SESSION['msg_erreur']="Trop de tentatives de connexion, le compte à été bloqué pour ".$this->tempsRestantAvantDeblocage($utilisateur);
+                        exit();   
+                    case "compte_desactive":
+                        header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+                        $_SESSION['msg_erreur']="Trop de tentatives de connexion, le compte a été bloqué pour ".$this->tempsRestantAvantDeblocage($utilisateur)." secondes";
+                        exit();   
+                    default:
+                        $_SESSION['msg_erreur']="Une erreur inattendue est survenue : {$e->getMessage()}";
+                        header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+                        echo "<h1>Une erreur inattendue est survenue</h1>";
+                        exit();
+
                 }
             }
         }
@@ -366,14 +382,24 @@ class ControllerUtilisateur extends Controller
      *  du compte de l'utilisateur
      * 
      ===============================*/
-    public function afficheCompte(){
+    public function compte(){
         $template = $this->getTwig();
 
-        echo $template->render('pageCompte.html.twig', []);
-
-
-
-
+        echo $template->render('pageCompte.html.twig', [
+            'user' => Utilisateur::getUser(),
+        ]);
     }
 
+    /*==============================
+     *
+     *  Se déconnecte et affiche
+     *  la page d'accueil
+     * 
+     ===============================*/
+    public function deconnexion(){
+        $_SESSION=[]; // On vide le tableau, pour libérer de l'espace
+        session_destroy();
+        header('Location: index.php');
+        exit();
+    }
 }

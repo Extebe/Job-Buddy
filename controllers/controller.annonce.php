@@ -13,8 +13,11 @@ class ControllerAnnonce extends Controller {
         $managerAnnonce = new AnnonceDao($this->getPdo());
         $tableau = $managerAnnonce->findAllAssoc();
         $annonces = $managerAnnonce->hydrateAll($tableau);
+        $icons = Constantes::getConstantes()['icons'];
+
         echo $template->render('index.html.twig', [
-            'user' => Utilisateur::getUser(),
+            'annonces' => $annonces,
+            'icons' => $icons
         ]);
 
 

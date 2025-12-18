@@ -1,0 +1,26 @@
+/* Le creux */
+.card-slot {
+    position: relative;
+    /*background-color: #C4B6A1;*/
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* La carte */
+.card-item {
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+    margin-bottom: 5px;
+}
+
+/* Sortie du creux */
+.card-slot:hover .card-item {
+    transform: translate(10px, -10px);
+
+}
+
+.icon-annonce {
+    margin: 10px;
+}
+

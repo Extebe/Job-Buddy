@@ -29,7 +29,7 @@ class UtilisateurDAO{
 
     public function hydrate($tableau){
         $utilisateur = new Utilisateur();
-        $utilisateur->setId($tableau['idUtilisateur'] ?? null);
+        $utilisateur->setId($tableau['id'] ?? null);
         $utilisateur->setRole($tableau['role'] ?? null);
         $utilisateur->setNom($tableau['nom'] ?? null);
         $utilisateur->setPrenom($tableau['prenom'] ?? null);
