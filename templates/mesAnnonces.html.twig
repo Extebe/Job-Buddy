@@ -9,6 +9,22 @@
 <div class="container">
     <div id="zone_cartes" class="row g-4">
 
+
+        {% if user.role == "Particulier " %}
+    <div class="col-12 d-flex justify-content-center mb-2">
+        <div class="card-slot h-auto w-100 w-lg-75">
+            <div class="card-item h-100 add-card-style">
+                <div class="card-body d-flex align-items-center justify-content-center" style="min-height: 120px;">
+                    <a href="index.php?controleur=annonce&methode=afficheFormAnnonce" class="stretched-link d-flex align-items-center text-decoration-none">
+                        <span class="display-4 fw-bold me-3" style="color: #712200;">+</span>
+                        <h4 class="mb-0 text-dark">Publier une nouvelle annonce</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
         {% for annonce in annonces %}
         <div class="col-12 d-flex justify-content-center">
             <div class="card-slot h-auto w-100 w-lg-75">

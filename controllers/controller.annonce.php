@@ -37,7 +37,9 @@ class ControllerAnnonce extends Controller {
         $template = $this->getTwig();
 
         echo $template->render('ajouterAnnonce.html.twig', [
-            'role' => $role
+            'role' => $role,
+            'user' => Utilisateur::getUser()
+
         ]);
     }
 
