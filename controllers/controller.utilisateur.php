@@ -25,18 +25,10 @@ class ControllerUtilisateur extends Controller
             echo "<p style='color: red;'>".$_SESSION['msg_erreur']."</p>";
             unset($_SESSION['msg_erreur']);
         }
-        if(isset($_SESSION['role'])){
-            //À faire, verifier qu'ils sont valides
-            $role = $_SESSION['role'];
-        }
-        else{
-            $role = "non_connecte";
-        }
 
         $template = $this->getTwig();
-
         echo $template->render('pageDeConnexion.html.twig', [
-            'role' => $role
+            'user' => Utilisateur::getUser()
         ]);
     }
 
@@ -52,18 +44,15 @@ class ControllerUtilisateur extends Controller
             echo "<p style='color: red;'>".$_SESSION['msg_erreur']."</p>";
             unset($_SESSION['msg_erreur']);
         }
-        if(isset($_SESSION['role'])){
+        if(isset($_SESSION['id'])){
             //À faire, verifier qu'ils sont valides
-            $role = $_SESSION['role'];
-        }
-        else{
-            $role = "non_connecte";
+            $role = $_SESSION['id'];
         }
 
         $template = $this->getTwig();
 
         echo $template->render('pageInscription.html.twig', [
-            'role' => $role
+            'user' => Utilisateur::getUser(),
         ]);
     }
 
@@ -77,10 +66,10 @@ class ControllerUtilisateur extends Controller
     public function inscriptionBd(Utilisateur $user){
 
         // Vérifie si le mot de passe est robuste
-        /*if (!Valide::estRobuste($user->getMdp()))
+        if (!Valide::estRobuste($user->getMdp()))
         {
             throw new Exception("mdp_faible");
-        }*/
+        }
 
         // Vérifie si l'email existe déjà
         if (Valide::emailExiste($user->getEmail()))
@@ -135,10 +124,10 @@ class ControllerUtilisateur extends Controller
             $password = $_POST['password'] ?? '';
 
             if ($role == 'Etudiant') {
-                $user = new Etudiant(null,$codeINE, $nom,  $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal);
+                $user = new Etudiant(null, $codeINE, $nom,  $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null);
 
             } else {
-                $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $email, $password, $adresse, $ville, $codePostal);
+                $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null);
             }           
 
             try
@@ -161,7 +150,7 @@ class ControllerUtilisateur extends Controller
                         exit();
 
                     case "mdp_faible":
-                        $_SESSION['msg_erreur']="Erreur : Mot de passe invalide. 
+                        $_SESSION['msg_erreur']="Erreur : Mot de passe invalide." . $user->getId() . $user->getNom() . $user->getPrenom() . $user->getTel() . $user->getDateNaiss() . $user->getEmail() . $user->getMdp() . $user->getAdresse() . $user->getVille() . $user->getCodePostal() . $user->getDateSuppression() . $email;"
                         Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
                         exit();                        
@@ -255,7 +244,7 @@ class ControllerUtilisateur extends Controller
                  SET tentativesEchouees = :tentatives, 
                  dateDernierEchecConnexion = NOW(), 
                  statut_compte = "desactive" 
-                 WHERE identifiant = :id'
+                 WHERE id = :id'
             );
             $user->setStatutCompte('desactive');
         }
@@ -289,17 +278,16 @@ class ControllerUtilisateur extends Controller
 
         // Recherche de l'utilisateur
         $requete= $pdo->prepare(
-            'SELECT id, mdp, tentativesEchouees, dateDernierEchecConnexion, statutCompte
-             role FROM Utilisateur WHERE email =:email'
+            'SELECT id, mdp, tentativesEchouees, dateDernierEchecConnexion, statutCompte,
+             role FROM Utilisateur WHERE email =:email;'
         );
 
         // Exécution de la requête avec l'email de l'utilisateur
         $requete->execute(['email' => $user->getEmail()]);
-
-        // Récupération des info de l'utilisateur
+        // Récupération des infos de l'utilisateur
         $donneeUtilisateurEnBD = $requete->fetch(PDO::FETCH_ASSOC);
         // Vérifie si l'utilisateur en BD existe
-        if($donneeUtilisateurEnBD){
+        if(!$donneeUtilisateurEnBD){
             throw new Exception("mail_invalide");
         }
         
@@ -323,12 +311,11 @@ class ControllerUtilisateur extends Controller
             if($user->getTentativesEchouees() > 0){
                 $this->reinitialiserTentativesConnexion($user);
             }
-            return true;
+            $_SESSION['id'] = $user->getId();
+            return true; // Authentification réussie
         }
         $this->gererEchecConnexion($user);
-        return false; // Authentification réussie
-        
-        // return false; // Authentification échouée
+        return false; // Authentification échoué
     }
 
     /*==============================
@@ -348,7 +335,7 @@ class ControllerUtilisateur extends Controller
             $mdp = $_POST['mdp'] ?? '';
 
             //Création d'une instance utilisateur avec les données récupérés
-            $utilisateur = new Utilisateur(null, null, null, null, null, null, null, $email,$mdp);
+            $utilisateur = new Utilisateur(null, null, null, null, null, null, $email, $mdp);
 
             try{
                 //Tentative de connexion
@@ -358,14 +345,14 @@ class ControllerUtilisateur extends Controller
                 }
             }
             catch (Exception $e){
-                switch($e ->getMessage()){
+                switch($e->getMessage()){
                     case "identifiant_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         $_SESSION['msg_erreur']="L'email ou le mot de passe est incorrect";
                         exit();
                     case "mail_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
-                        $_SESSION['msg_erreur']="L'email ou le mot de passe est incorrect";        
+                        $_SESSION['msg_erreur']="L'email est incorrect";
                         exit();       
                 }
             }
