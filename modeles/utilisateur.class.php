@@ -301,7 +301,7 @@ class Utilisateur{
             $bd = Bd::getInstance();
             $pdo = $bd->getConnexion();
             $userDao = new UtilisateurDao($pdo);
-            $user = $userDao->getById($_SESSION['id']);
+            $user = $userDao->findById($_SESSION['id']);
             $user->setMdp("");
             return $user;
         }

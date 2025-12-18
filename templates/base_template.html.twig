@@ -31,13 +31,7 @@
                 </li>
             </ul>
 
-            {% if role == "non_connecte" %}
-                <div class="btn-compte d-flex align-items-center">
-                    <a href="index.php?controleur=utilisateur&methode=pageConnexion"><button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">se connecter</button></a>
-                    <a href="index.php?controleur=utilisateur&methode=pageInscription"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">s'inscrire</button></a>
-                </div>
-
-            {% elseif role == "Particulier" %}
+            {% if user.role == "Particulier " %}
                 <div class="btn-compte d-flex align-items-center">
                     <a href="index.php?controleur=annonce&methode=afficheFormAnnonce">
                         <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Poster Une Annonce</button>
@@ -59,7 +53,7 @@
                     </div>
                 </div>
 
-            {% elseif role == "Etudiant" %}
+            {% elseif user.role == "Etudiant " %}
                 <div class="btn-compte d-flex align-items-center">
                     <a href="index.php?controleur=etudiant&methode=pageAnnonce">
                         <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Annonces</button>
@@ -75,6 +69,12 @@
                             <li><a class="dropdown-item" href="index.php?controleur=etudiant&methode=deconnexion">Se Déconnecter</a></li>
                         </ul>
                     </div>
+                </div>
+
+            {% else %}
+                <div class="btn-compte d-flex align-items-center">
+                    <a href="index.php?controleur=utilisateur&methode=pageConnexion"><button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">se connecter</button></a>
+                    <a href="index.php?controleur=utilisateur&methode=pageInscription"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">s'inscrire</button></a>
                 </div>
 
             {% endif %}
