@@ -25,28 +25,11 @@ class UtilisateurDAO{
         $this->pdo = $pdo;
     }
 
-    public function insererUtilisateur($user, $passwordHache): void {
-        $requete = "INSERT INTO Utilisateur (role, codeINE, nom, prenom, tel, dateNaiss, email, mdp, ville, adresse, codePostal) 
-        values (:role, :codeINE, :nom, :prenom, :tel, :dateNaiss, :email, :mdp, :ville, :adresse, :codePostal);";
-        $pdoStatement = $this->pdo->prepare($requete);
-        $pdoStatement->execute([
-            ':role' => $user->getRole(),
-            ':codeINE' => $user->getCodeINE(),
-            ':nom' => $user->getNom(),
-            ':prenom' => $user->getPrenom(),
-            ':tel' => $user->getTelephone(),
-            ':dateNaiss' => $user->getDateNaiss(),
-            ':email' => $user->getEmail(),
-            ':mdp' => $passwordHache,
-            ':ville' => $user->getVille(),
-            ':adresse' => $user->getAdresse(),
-            ':codePostal' => $user->getCodePostal()
-        ]);
-    }
+
 
     public function hydrate($tableau){
         $utilisateur = new Utilisateur();
-        $utilisateur->setId($tableau['idUtilisateur'] ?? null);
+        $utilisateur->setId($tableau['id'] ?? null);
         $utilisateur->setRole($tableau['role'] ?? null);
         $utilisateur->setNom($tableau['nom'] ?? null);
         $utilisateur->setPrenom($tableau['prenom'] ?? null);
