@@ -20,18 +20,43 @@
                 <label for="phone" class="form-label">Téléphone :</label>
                 <input type="text" name="phone" id="phone" class="form-control" required>
             </div>
+            {# -------------------------------------------------------------------------------------------------- #}
             <div class="mb-3">
                 <label for="select" class="form-label">Role :</label>
-                <select name="role" id="role" class="form-control" required>
+                <select name="role" id="role" class="form-control" required onchange='faireApparaitreCodeINE()'>
                     <option value="" selected disabled>-- Choisissez une option --</option>
                     <option>Particulier</option>
                     <option>Etudiant</option>
                 </select>
             </div>
-            <div class="mb-3">
+
+            <div class="mb-3" id="id_code" style="display:none;">
                 <label for="text" class="form-label">Code INE :</label>
                 <input type="text" name="codeINE" id="codeINE" class="form-control" required>
             </div>
+
+            {# Ce script permet de faire apparaitre le champ 
+               du code INE si l'utilisateur s'inscrit en tant
+               qu'étudiant. #}
+            <script>
+                function faireApparaitreCodeINE(){
+                    const roleSelectionne = document.getElementById('role');
+                    const partiDivINE = document.getElementById('id_code');
+                    const inputCodeINE = document.getElementById('codeINE'); //permet de activer ou non le required sur le champ codeINE
+                    
+                    if (roleSelectionne.value==='Etudiant'){
+                        partiDivINE.style.display='block';//affiche la partie INE
+                        inputCodeINE.required=true;
+                    }
+                    else{
+                        partiDivINE.style.display='none';
+                        inputCodeINE.required=false;
+                        inputCodeINE.value="";
+                    }
+                    }
+            </script>
+            {# -------------------------------------------------------------------------------------------------- #}
+
             <div class="mb-3">
                 <label for="text" class="form-label">Ville :</label>
                 <input type="text" name="ville" id="ville" class="form-control" required>
