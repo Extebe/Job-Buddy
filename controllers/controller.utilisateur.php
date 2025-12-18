@@ -366,14 +366,11 @@ class ControllerUtilisateur extends Controller
      *  du compte de l'utilisateur
      * 
      ===============================*/
-    public function afficheCompte(){
+    public function compte(){
         $template = $this->getTwig();
 
-        echo $template->render('pageCompte.html.twig', []);
-
-
-
-
+        echo $template->render('pageCompte.html.twig', [
+            'user' => Utilisateur::getUser(),
+        ]);
     }
-
 }

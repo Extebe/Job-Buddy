@@ -51,10 +51,32 @@ form{
     width: 1000px;
 }
 
+/* Tout les container */
 .container {
     display: flex;
     justify-content: center;
     padding-top: 3%;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;   /* centre horizontalement */
+    align-items: center;       /* centre verticalement */
+    padding-top: 3%;
+}
+
+.card{
+    background-color: transparent;
+    min-width: 300px;
+    max-width: 500px; 
+    border: 1.5px solid #4B352A; 
+    border-radius: 8px;
+}
+
+.card-body {
+    background-color: rgba(0, 255, 255, 0);
+    display: flex;
+    flex-direction: column;    /* retour à la ligne */
 }
 
 .btn-outline-success {
@@ -77,5 +99,28 @@ form{
 .btn-outline-success::selection {
     color: #fbf2dd;
     background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.btn-outline-success-danger:hover {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger:focus {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger::selection {
+    color: #fbf2dd;
+    background-color: #ff0000;
     border-color: #fbf2dd;
 }
