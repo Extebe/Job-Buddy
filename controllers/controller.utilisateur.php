@@ -396,7 +396,7 @@ class ControllerUtilisateur extends Controller
      *  la page d'accueil
      * 
      ===============================*/
-    public function deconnexion(){
+    public function deconnexion(): void{
         $_SESSION=[]; // On vide le tableau, pour libérer de l'espace
         session_destroy();
         header('Location: index.php');
