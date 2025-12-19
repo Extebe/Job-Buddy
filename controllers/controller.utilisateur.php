@@ -392,6 +392,21 @@ class ControllerUtilisateur extends Controller
 
     /*==============================
      *
+     *  Affiche la page de 
+     * modification du compte
+     * 
+     ===============================*/
+    public function pageModifierCompte(){
+        $template = $this->getTwig();
+
+        echo $template->render('pageModifierCompte.html.twig', [
+            'user' => Utilisateur::getUser(),
+            'err' => "",
+        ]);
+    }
+
+    /*==============================
+     *
      *  Se déconnecte et affiche
      *  la page d'accueil
      * 
@@ -401,5 +416,64 @@ class ControllerUtilisateur extends Controller
         session_destroy();
         header('Location: index.php');
         exit();
+    }
+
+    public function modiferCompte(){
+        $currentUser = Utilisateur::getUser();
+        $template = $this->getTwig();
+
+        $nom = $_POST['nom'];
+        if ($nom != $currentUser->getNom()) {
+            /* Vérifier nom */
+        }
+        $prenom = $_POST['prenom'];
+        if ($prenom != $currentUser->getPrenom()) {
+            /* Vérifier prenom */
+        }
+        $dateNaiss = $_POST['dateNaiss'];
+        if ($dateNaiss != $currentUser->getDateNaiss()) {
+            /* Vérifier dateNaiss */
+        }
+        $email = $_POST['email'];
+        if ($email != $currentUser->getEmail()) {
+            if (Valide::emailExiste($email)) {
+                echo $template->render('pageModifierCompte.html.twig', [
+                    'user' => Utilisateur::getUser(),
+                    'errEmail' => "Email invalide",
+                ]);
+                exit;
+            }
+        }
+        $tel = $_POST['tel'];
+        if ($tel != $currentUser->getTel()) {
+            /* Vérifier téléphone */
+        }
+        $ville = $_POST['ville'];
+        if ($ville != $currentUser->getVille()) {
+            /* Vérifier ville */
+        }
+        $adresse = $_POST['adresse'];
+        if ($adresse != $currentUser->getAdresse()) {
+            /* Vérifier adresse */
+        }
+        $codePostal = $_POST['codePostal'];
+        if ($codePostal != $currentUser->getCodePostal()) {
+            /* Vérifier codePostal */
+        }
+        /*$codeINE = $_POST['codeINE'];
+        if ($codeINE != $currentUser->getCodeINE()) {
+        }*/
+
+        $mdp = $_POST['mdp'];
+        if ($mdp != "") {
+            /* Vérifier mdp */
+        }
+
+    
+
+        
+        echo $template->render('pageCompte.html.twig', [
+            'user' => Utilisateur::getUser(),
+        ]);
     }
 }
