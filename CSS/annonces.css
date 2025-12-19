@@ -1,26 +1,81 @@
-/* Le creux */
-.card-slot {
-    position: relative;
-    /*background-color: #C4B6A1;*/
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.5);
+/* --- CARTES D'ANNONCES --- */
+#zone_cartes {
+    padding: 20px 0;
 }
 
-/* La carte */
 .card-item {
-    background-color: #ffffff;
-    border-radius: 10px;
-    transition: transform 0.2s ease-in-out;
-    margin-bottom: 5px;
+    border: none;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: var(--transition);
+    border: 1px solid rgba(212, 163, 115, 0.2);
 }
 
-/* Sortie du creux */
-.card-slot:hover .card-item {
-    transform: translate(10px, -10px);
-
+.card-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(93, 42, 24, 0.12);
 }
 
-.icon-annonce {
-    margin: 10px;
+/* Zone Image / Icône */
+.image-zone {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    width: 110px !important;
+    min-width: 110px !important;
+    border-radius: 20px 0 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.icon-annoncea {
+    filter: brightness(0) invert(1); /* Rend l'icône blanche pour le contraste */
+    width: 50px;
+    height: 50px;
+    transition: var(--transition);
+}
+
+.card-item:hover .icon-annoncea {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Contenu */
+.content-zone {
+    padding: 1.5rem;
+}
+
+.card-title {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.card-subtitle {
+    color: var(--secondary) !important;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    color: #666;
+    font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limite à 2 lignes de description */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.remuneration-badge {
+    background: var(--accent);
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+}
+
+/* Ajustement boutons dans la carte */
+.card-item .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+}

@@ -1,50 +1,39 @@
-body{
-    display: flex;
-    flex-direction: column;
-    background-color: #E6D8C3;
-    color:#4B352A;
-    /* Ajout de cette ligne pour s'assurer qu'aucun élément ne force un débordement horizontal invisible */
-    overflow-x: hidden;
-}
-header{
-    background-color: #fbf2dd;
-    position: sticky;
-    top: 0; /* Le header reste en haut de la page */
-    z-index: 100; /* Assure que le header reste au-dessus des autres éléments */
-    /* padding: 10px; <-- SUPPRIMÉ / Laisser Bootstrap gérer le padding */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Ombre légère */
+/* Importation d'une police moderne */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary: #5D2A18;
+    --secondary: #D4A373;
+    --accent: #CCD5AE;
+    --bg-color: #FAEDCD;
+    --card-bg: #FEFAE0;
+    --text-dark: #2D1E17;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-footer{
-    text-align: center;
+body {
+    background-color: var(--bg-color);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
 }
 
-/* * CLASSES SUPPRIMÉES/COMMENTÉES :
- * Les marges fixes suivantes sont remplacées par les classes Bootstrap (me-2, me-4) dans le HTML.
- * Cela permet à Flexbox de gérer l'espace de manière responsive.
-
-.nav-item-searchBar{
-    margin-left: 30px;
+/* --- HEADER & NAVIGATION --- */
+.navbar {
+    background: rgba(250, 237, 205, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--secondary);
+    padding: 1rem 0;
 }
 
-.nav-item-filter{
-    margin-left: 10px;
+.navbar-brand {
+    font-weight: 700;
+    color: var(--primary) !important;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.btn-compte{
-    padding: 10px;
-}
-
-*/
-header .row{
-    background-color: #E6D8C3;
-}
-
-header .img{
-    padding: 10px;
-}
-
-form{
+form {
     max-width: 400px;
     border: 1.5px solid #4B352A;
     border-radius: 8px;
@@ -59,48 +48,56 @@ form{
     padding-top: 3%;
 }
 
+.card-container {
+    display: flex;
+    justify-content: center;
+    /* centre horizontalement */
+    align-items: center;
+    /* centre verticalement */
+    padding-top: 3%;
+}
+
+.card {
+    background-color: transparent;
+    min-width: 300px;
+    max-width: 500px;
+    border: 1.5px solid #4B352A;
+    border-radius: 8px;
+}
+
+.card-body {
+    background-color: rgba(0, 255, 255, 0);
+    display: flex;
+    flex-direction: column;
+    /* retour à la ligne */
+}
+
 .btn-outline-success {
-    color: #712200;
-    border-color: #712200;
+    color: var(--primary);
+    border: 2px solid var(--primary);
 }
 
 .btn-outline-success:hover {
-    color: #fbf2dd;
-    background-color: #712200;
-    border-color: #fbf2dd;
+    background-color: var(--primary);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(93, 42, 24, 0.2);
 }
 
-.btn-outline-success:focus {
-    color: #fbf2dd;
-    background-color: #712200;
-    border-color: #fbf2dd;
+/* --- FOOTER --- */
+footer {
+    background-color: var(--primary);
+    color: var(--card-bg);
+    padding: 40px 0 20px;
+    margin-top: 50px;
 }
 
-.btn-outline-success::selection {
-    color: #fbf2dd;
-    background-color: #712200;
-    border-color: #fbf2dd;
+footer a {
+    color: var(--secondary);
+    text-decoration: none;
+    transition: var(--transition);
 }
 
-.btn-outline-success-danger {
-    color: #ff0000;
-    border-color: #ff0000;
-}
-
-.btn-outline-success-danger:hover {
-    color: #fbf2dd;
-    background-color: #ff0000;
-    border-color: #fbf2dd;
-}
-
-.btn-outline-success-danger:focus {
-    color: #fbf2dd;
-    background-color: #ff0000;
-    border-color: #fbf2dd;
-}
-
-.btn-outline-success-danger::selection {
-    color: #fbf2dd;
-    background-color: #ff0000;
-    border-color: #fbf2dd;
+footer a:hover {
+    color: #fff;
 }
