@@ -1,5 +1,5 @@
 /* Importation d'une police moderne */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap');
 
 :root {
     --primary: #5D2A18;
@@ -8,13 +8,28 @@
     --bg-color: #FAEDCD;
     --card-bg: #FEFAE0;
     --text-dark: #2D1E17;
+    --text-light: #6D5A50;
+    /* Added for lighter text */
+
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-soft: 0 4px 6px -1px rgba(93, 42, 24, 0.05), 0 2px 4px -1px rgba(93, 42, 24, 0.03);
+    --shadow-hover: 0 10px 15px -3px rgba(93, 42, 24, 0.1), 0 4px 6px -2px rgba(93, 42, 24, 0.05);
 }
 
 body {
     background-color: var(--bg-color);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: var(--text-dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand {
+    font-family: 'Outfit', sans-serif;
 }
 
 /* --- HEADER & NAVIGATION --- */
