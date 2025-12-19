@@ -3,6 +3,8 @@
 use Twig\Extra\Intl\IntlExtension;
 
 
+use Symfony\Component\Yaml\Yaml;
+
 //initialisation twig : chargement du dossier contenant les templates
 $loader = new Twig\Loader\FilesystemLoader('templates');
 
@@ -15,6 +17,16 @@ $twig = new Twig\Environment($loader, [
     // Il est possible de définir d'autre variable d'environnement
     //...
 ]);
+
+try {
+    $configFile = __DIR__ . '/colors.yaml';
+    if (file_exists($configFile)) {
+        $colors = Yaml::parseFile($configFile);
+        $twig->addGlobal('config', $colors);
+    }
+} catch (Exception $e) {
+    // Fallback or error handling
+}
 
 
 //Définition de la timezone pour que les filtres date tiennent compte du fuseau horaire français.

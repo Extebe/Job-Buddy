@@ -1,6 +1,6 @@
 {% extends 'base_template.html.twig' %}
     {% block content %}
-        <div class="container">
+        <div class="container form-narrow">
             <form action="index.php?controleur=annonce&methode=traiteFormAnnonce">
                 <div class="mb-3">
                     <label for="" class="form-label">Titre de l'annonce</label>
@@ -43,7 +43,7 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">Description</label>
-                    <input type="text" class="form-control" id="description" name="description" required>
+                    <textarea type="text" class="form-control" id="description" name="description" required></textarea>
                 </div>
 
                 <div class="d-grid">

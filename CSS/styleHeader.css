@@ -2,14 +2,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap');
 
 :root {
+    /* 
+       NOTE: Colors are now managed in config/colors.yaml
+       and injected via base_template.html.twig
+    */
+    /*
     --primary: #5D2A18;
     --secondary: #D4A373;
     --accent: #CCD5AE;
     --bg-color: #FAEDCD;
-    --card-bg: #FEFAE0;
+    --card-bg: #FFFEFA;
     --text-dark: #2D1E17;
     --text-light: #6D5A50;
-    /* Added for lighter text */
+    */
 
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --shadow-soft: 0 4px 6px -1px rgba(93, 42, 24, 0.05), 0 2px 4px -1px rgba(93, 42, 24, 0.03);
@@ -40,6 +45,21 @@ h6,
     padding: 1rem 0;
 }
 
+.navbar-toggler {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(93, 42, 24, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Global Focus Override */
+*:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 2px;
+}
+
 .navbar-brand {
     font-weight: 700;
     color: var(--primary) !important;
@@ -48,55 +68,72 @@ h6,
     letter-spacing: 1px;
 }
 
-form {
-    max-width: 400px;
-    border: 1.5px solid #4B352A;
-    border-radius: 8px;
-    padding: 10px;
-    width: 1000px;
+/* --- FORMULAIRES --- */
+.form-narrow {
+    max-width: 600px;
+    margin: 40px auto;
+    /* Centré avec de l'espace */
+    padding: 20px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(93, 42, 24, 0.08);
 }
 
-/* Tout les container */
-.container {
-    display: flex;
-    justify-content: center;
-    padding-top: 3%;
+.form-control {
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    background: #F1F5F9;
+    padding-left: 1.5rem;
+    transition: var(--transition);
 }
 
-.card-container {
-    display: flex;
-    justify-content: center;
-    /* centre horizontalement */
-    align-items: center;
-    /* centre verticalement */
-    padding-top: 3%;
+.form-control:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.2);
+    /* Glow doré */
+    background: #fff;
+    outline: none;
 }
 
-.card {
-    background-color: transparent;
-    min-width: 300px;
-    max-width: 500px;
-    border: 1.5px solid #4B352A;
-    border-radius: 8px;
+/* --- BOUTONS --- */
+.btn {
+    border-radius: 12px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    transition: var(--transition);
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.3px;
 }
 
-.card-body {
-    background-color: rgba(0, 255, 255, 0);
-    display: flex;
-    flex-direction: column;
-    /* retour à la ligne */
-}
-
+/* Override complet du vert Bootstrap */
 .btn-outline-success {
     color: var(--primary);
     border: 2px solid var(--primary);
+    background-color: transparent;
 }
 
-.btn-outline-success:hover {
-    background-color: var(--primary);
-    color: #fff;
+.btn-outline-success:hover,
+.btn-outline-success:active,
+.btn-outline-success:focus,
+.btn-outline-success.active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--bg-color) !important;
+    /* Texte clair (creme) */
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(93, 42, 24, 0.2);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-outline-success:focus {
+    box-shadow: 0 0 0 3px rgba(93, 42, 24, 0.25);
+    /* Focus ring brun */
+}
+
+/* Correction des cartes user (garder la structure clean) */
+.card {
+    border: none;
+    background: transparent;
 }
 
 /* --- FOOTER --- */
