@@ -373,4 +373,12 @@ class ControllerUtilisateur extends Controller
             'user' => Utilisateur::getUser(),
         ]);
     }
+
+    public function pageModifierCompte(){
+        $template = $this->getTwig();
+
+        echo $template->render('pageModifierCompte.html.twig', [
+            'user' => Utilisateur::getUser(),
+        ]);
+    }
 }
