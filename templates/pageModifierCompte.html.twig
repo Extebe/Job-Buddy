@@ -1,59 +1,55 @@
 {% extends 'base_template.html.twig' %}
-    {% block css %} <link rel="stylesheet" href="./CSS/compte.css"> {% endblock %}
     {% block content %}
     <div class="card-container">
         <div class="card">
             <div class="card-body mx-auto p-4">
                 <h4 class="card-title">Modifier Mon Compte {{user.role}}</h4>
 
-                <form action="index.php?controleur=utilisateur&methode=modiferCompte" method="POST" class="form-compte">
+                <form action="index.php?controleur=utilisateur&methode=modiferCompte" method="POST">
                     <div class="mb-3">
                         <label for="text" class="form-label">Nom de famille :</label>
                         <input type="text" name="nom" id="nom" value="{{user.nom}}" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="text" class="form-label">Prenom :</label>
-                        <input type="text" name="prenom" id="prenom" value="{{user.prenom}}" class="form-control">
+                        <input type="text" name="nom" id="nom" value="{{user.prenom}}" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="date" class="form-label">Date de naissance :</label>
-                        <input type="date" name="dateNaiss" id="dateNaiss" value="{{user.dateNaiss}}" class="form-control">
+                        <input type="date" name="nom" id="nom" value="{{user.dateNaiss}}" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email :</label>
-                        <input type="email" name="email" id="email" value="{{user.email}}" class="form-control">
-                        {% if errEmail != "" %}
-                            <p class="texte-rouge">{{errEmail}}</p>
-                        {% endif %}
+                        <input type="email" name="nom" id="nom" value="{{user.email}}" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="text" class="form-label">N° de téléphone :</label>
-                        <input type="text" name="tel" id="tel" value="{{user.tel}}" class="form-control">
+                        <input type="text" name="nom" id="nom" value="{{user.tel}}" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="text" class="form-label">Ville :</label>
-                        <input type="text" name="ville" id="ville" value="{{user.ville}}" class="form-control">
+                        <input type="text" name="nom" id="nom" value="{{user.ville}}" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="text" class="form-label">Adresse :</label>
-                        <input type="text" name="adresse" id="adresse" value="{{user.adresse}}" class="form-control">
+                        <input type="text" name="nom" id="nom" value="{{user.adresse}}" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="text" class="form-label">Code postal :</label>
-                        <input type="text" name="codePostal" id="codePostal" value="{{user.codePostal}}" class="form-control">
+                        <input type="text" name="nom" id="nom" value="{{user.codePostal}}" class="form-control">
                     </div>
 
                 {% if user.role == "Etudiant" %}
                     <div class="mb-3">
                         <label for="text" class="form-label">Code INE :</label>
-                        <input type="text" name="codeINE" id="codeINE" value="{{user.codeINE}}" class="form-control">
+                        <input type="text" name="nom" id="nom" value="{{user.codeINE}}" class="form-control">
                     </div>
                 {% endif %}
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Nouveau mot de passe :</label>
-                        <input type="password" name="mdp" id="mdp" class="form-control">
-                        <p class="texte-attention">* Remplir uniquement si vous souhaitez changer de mot de passe !</p>
+                        <input type="password" name="nom" id="nom" class="form-control">
+                        <p>* Remplir uniquement si vous souhaitez changer de mot de passe !</p>
                     </div>
 
                 <div class="d-grid gap-2 ">

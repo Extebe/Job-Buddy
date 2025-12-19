@@ -466,7 +466,7 @@ class ControllerUtilisateur extends Controller
 
         $mdp = $_POST['mdp'];
         if ($mdp != "") {
-            /* Vérifier mdp */
+            /* Vérifier mdp */ 
         }
 
     
