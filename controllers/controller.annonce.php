@@ -71,7 +71,7 @@ class ControllerAnnonce extends Controller {
             header("Location: index.php");
             exit();
         }
-        $tableau = $managerAnnonce->findAllById($_SESSION['id']);
+        $tableau = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
 
         echo $template->render('mesAnnonces.html.twig', [
             'user' => Utilisateur::getUser(),

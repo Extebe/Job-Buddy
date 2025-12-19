@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="./CSS/annonces.css">
 
 <h1 class="mb-4">Bienvenue sur le super site de super JobBuddy.</h1>
-<p>{{ annonces|length }} annonce(s) trouvée(s).</p>
 
 <div class="container">
     <div id="zone_cartes" class="row g-4">
@@ -53,12 +52,13 @@
     </div>
 
 <div class="d-flex gap-2 mt-2 justify-content-end" style="position: relative; z-index: 2;">
-    
-    {% if user.role == "Etudiant" and annonce.etat == "DISPONIBLE" %}
-        <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-outline-success">
-            Postuler
+
+    {% if annonce.etat == "ACCEPTE" and annonce.dateFinRealisation < "now"|date("Y-m-d") %}
+        <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}" class="btn btn-outline-success">
+            Évaluer
         </a>
     {% endif %}
+    
 
     {% if user.role == "Particulier " and annonce.etat == "DISPONIBLE" and annonce.idParticulier == user.id %}
         <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}" class="btn btn-outline-success btn-sm">

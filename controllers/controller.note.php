@@ -9,22 +9,18 @@ class ControllerNote extends Controller {
     public function afficher(){
         $template = $this->getTwig();
 
-        if(isset($_SESSION['role'])){
-            //À faire, verifier qu'ils sont valides
-            $role = $_SESSION['role'];
+          if (!isset($_SESSION['id'])) {
+            header("Location: index.php");
+            exit();
         }
-        else{
-            $role = "non_connecte";
-        }
-
         //recupération des annonces
         $managerNote = new NoteDao($this->getPdo());
-        $tableau = $managerNote->findByUser('1');
+        $tableau = $managerNote->findByUser(Utilisateur::getUser()->getId());
         $notes = $managerNote->hydrateAll($tableau);
       
         echo $template->render('pageDeNote.html.twig', [
-            'role' => $role,
-            'notes' => $notes
+            'notes' => $notes,
+            'user' => Utilisateur::getUser()
             //'annonces' => $annonces
         ]);
 
@@ -34,15 +30,29 @@ class ControllerNote extends Controller {
     public function saisieNote(){
         $template = $this->getTwig();
 
-        if(isset($_SESSION['role'])){
-            //À faire, verifier qu'ils sont valides
-            $role = $_SESSION['role'];
+          if (!isset($_SESSION['id'])) {
+            header("Location: index.php");
+            exit();
         }
-        else{
-            $role = "non_connecte";
-        }
+        $role = Utilisateur::getUser()->getRole();
+
         $managerAnnonce = new AnnonceDAO($this->getPdo());
-        $annonce = $managerAnnonce->find(1);
+        $annonce = $managerAnnonce->find($_GET['id']);
+        $annonces = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
+
+            $ids = [];
+
+            foreach ($annonces as $t) {
+                $ids[] = $t->getId();
+            }
+
+
+
+        if (!in_array($annonce->getId(), $ids)){
+            //on ne peut pas se noter soi-même
+            header("Location: index.php?controleur=note&methode=afficher");
+            exit();
+        }
         //recupération des annonces
         $managerNote = new NoteDao($this->getPdo());
         $managerParticulier = new ParticulierDAO($this->getPdo());
@@ -51,26 +61,26 @@ class ControllerNote extends Controller {
         if ($role == 'Etudiant'){
             $Auteur = $managerEtudiant->findByAnnonce($annonce->getId());
             $Receveur = $managerParticulier->findByAnnonce($annonce->getId());
-
         }
         else{
             $Auteur = $managerParticulier->findByAnnonce($annonce->getId());
             $Receveur = $managerEtudiant->findByAnnonce($annonce->getId());
 
         }
-        $tableau = $managerNote->findByUser(1);
-
-        if ($managerNote->findByUsers($Auteur->getId(),$Receveur->getId())){
+        $idAuteur = $Auteur->getId();
+        $idReceveur = $Receveur->getId();
+       if ($managerNote->findByUsers($idAuteur,$idReceveur)->getId() != null){
             //déjà noté
-            header("Location: index.php?controleur=note&methode=afficher");
+           header("Location: index.php?controleur=note&methode=afficher");
             exit();
         }
+        echo $managerNote->findByUsers($idAuteur,$idReceveur);
       
         echo $template->render('pageSaisieDeNote.html.twig', [
-            'role' => $role,
             'auteur' => $Auteur,
             'receveur' => $Receveur,
             'annonce' => $annonce
+            ,'user' => Utilisateur::getUser()
             //'annonces' => $annonces
         ]);
 
@@ -92,7 +102,6 @@ class ControllerNote extends Controller {
         $Auteur = $managerUtilisateur->findById($Auteur);
         $Receveur = $managerUtilisateur->findById($Receveur);
 
-        if($Auteur->getId()==1){echo "oui";}
         //création objet Annonce
         $managerAnnonce = new AnnonceDAO($this->getPdo());
         $Annonce = $managerAnnonce->find($Annonce);

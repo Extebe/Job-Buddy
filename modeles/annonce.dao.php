@@ -30,8 +30,9 @@ class AnnonceDao{
         $sql = "SELECT * FROM Annonce WHERE id= :id";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$id));
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Annonce');
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
         $annonce = $pdoStatement->fetch();
+        $annonce = $this->hydrate($annonce);
         return $annonce;
     }
 
@@ -45,11 +46,12 @@ class AnnonceDao{
     }
 
         public function findAllById($utilisateur){
-        $sql = "SELECT * FROM Annonce LEFT JOIN POSTULER ON Annonce.id=POSTULER.idAnnonce WHERE Annonce.idParticulier = :idParticulier OR POSTULER.idEtudiant = :idParticulier";
+        $sql = "SELECT * FROM Annonce LEFT JOIN Postuler ON Annonce.id=Postuler.idAnnonce WHERE Annonce.idParticulier = :idParticulier OR Postuler.idEtudiant = :idParticulier";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("idParticulier"=>$utilisateur));
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Annonce');
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
         $annonce = $pdoStatement->fetchAll();
+        $annonce = $this->hydrateAll($annonce);
         return $annonce;
     }
 
@@ -65,19 +67,19 @@ class AnnonceDao{
     public function hydrate($tableauAssoc): ?Annonce
     {
         $annonce = new Annonce(
-            $tableauAssoc['id'], 
-            $tableauAssoc['idParticulier'],
-            $tableauAssoc['titre'],
-            $tableauAssoc['description'],
-            $tableauAssoc['typeService'],
-            $tableauAssoc['lieu'],
-            $tableauAssoc['remuneration'],
-            $tableauAssoc['dateDebutRealisation'],
-            $tableauAssoc['dateFinRealisation'],
-            $tableauAssoc['etat'],
-            $tableauAssoc['datePublication'],
-            $tableauAssoc['dateSuppression'],
-            $tableauAssoc['motifSuppression']
+            $tableauAssoc['id'] ?? null, 
+            $tableauAssoc['idParticulier'] ?? null,
+            $tableauAssoc['titre'] ?? null,
+            $tableauAssoc['description'] ?? null,
+            $tableauAssoc['typeService'] ?? null,
+            $tableauAssoc['lieu'] ?? null,
+            $tableauAssoc['remuneration'] ?? null,
+            $tableauAssoc['dateDebutRealisation'] ?? null,
+            $tableauAssoc['dateFinRealisation'] ?? null,
+            $tableauAssoc['etat'] ?? null,
+            $tableauAssoc['datePublication'] ?? null,
+            $tableauAssoc['dateSuppression'] ?? null,
+            $tableauAssoc['motifSuppression'] ?? null
         );
 
     return $annonce;

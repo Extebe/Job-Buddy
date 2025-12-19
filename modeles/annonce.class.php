@@ -4,7 +4,7 @@ require_once "include.php";
 
 class Annonce{
     private ?string $id;
-    private ?Particulier $createur;
+    private ?Particulier $idParticulier;
     private ?array $postulations;
     private ?array $etuditantsSelectionnes;
 
@@ -23,6 +23,7 @@ class Annonce{
     private ?string $dateSuppression;
     private ?string $motifSuppression;
 
+
     public function __construct(
         ?string $id = null,
         ?int $idParticulier = null,
@@ -40,11 +41,12 @@ class Annonce{
 
         ?string $datePublication = null,
         ?string $dateSuppression = null,
-        ?string $motifSuppression = null
+        ?string $motifSuppression = null,
+
     ) {
         $this->id = $id;
         $particulierDAO = new ParticulierDAO(Bd::getInstance()->getConnexion());
-        $this->createur = $particulierDAO->find($idParticulier);
+        $this->idParticulier = $particulierDAO->find($idParticulier);
 
         $this->titre = $titre;
         $this->description = $description;
@@ -60,6 +62,7 @@ class Annonce{
         $this->datePublication = $datePublication;
         $this->dateSuppression = $dateSuppression;
         $this->motifSuppression = $motifSuppression;
+
     }
 
     /**
@@ -73,7 +76,7 @@ class Annonce{
     /**
      * Set the value of id
      */
-    public function setId(?string $id): void
+    public function setId(?string $id = null): void
     {
         $this->id = $id;
     }
@@ -243,7 +246,7 @@ class Annonce{
      */
     public function getCreateur(): ?Particulier
     {
-        return $this->createur;
+        return $this->idParticulier;
     }
 
     /**
@@ -251,7 +254,7 @@ class Annonce{
      */
     public function setCreateur(?Particulier $createur): void
     {
-        $this->createur = $createur;
+        $this->idParticulier = $createur;
     }
 
     /**

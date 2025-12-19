@@ -73,16 +73,17 @@ class EtudiantDAO extends UtilisateurDAO{
 
 
         public function findByAnnonce($annonceId): ?Etudiant{
-        $sql = "SELECT UTILISATEUR.* FROM Annonce JOIN POSTULER ON POSTULER.idAnnonce=ANNONCE.id JOIN UTILISATEUR ON POSTULER.idEtudiant=UTILISATEUR.id WHERE ANNONCE.id= :id";
+        $sql = "SELECT utilisateur.* FROM Annonce JOIN Postuler ON Postuler.idAnnonce=Annonce.id JOIN utilisateur ON Postuler.idEtudiant=utilisateur.id WHERE Annonce.id = :id AND utilisateur.role = 'ETUDIANT' AND Postuler.estAccepte='1'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$annonceId));
-        $row = $pdoStatement->fetch();
-        if ($row === false) {
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $pdoStatement->fetch();        
+          if ($row === false) {
         return null;
-        }
+    }
 
     return $this->hydrate($row);
-    }
+}
 
     public function insererUtilisateur($user, $passwordHache): void {
     $requete = "INSERT INTO Utilisateur (role, codeINE, nom, prenom, tel, dateNaiss, email, mdp, ville, adresse, codePostal,tentativesEchouees,dateDernierEchecConnexion,statutCompte) 

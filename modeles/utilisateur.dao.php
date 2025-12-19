@@ -44,7 +44,7 @@ class UtilisateurDAO{
         return $utilisateur;
     }
 
-    function findById(string $id): ?Utilisateur{
+    function findById(?string $id): ?Utilisateur{
         $sql = "SELECT * FROM Utilisateur WHERE id = :id";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(['id' => $id]);
