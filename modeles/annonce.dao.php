@@ -111,11 +111,11 @@ class AnnonceDao{
         return $annonce;
     }
 
-    public function insererAnnonce(){
+    public function insererAnnonce(Annonce $annonce) : void{
         // Creation d'une annonce'
         $sql = "INSERT INTO Annonce (dateDebutRealisation, dateFinRealisation, etat, typeService, titre, description, datePublication, dataSuppression, motifSuppression, idParticulier) 
         VALUES (:dateDebutRealisation, :dateFinRealisation, :etat, :typeService, :titre, :description, :datePublication, :dataSuppression, :idParticulier )";
         $pdoStatement = $this->pdo->prepare($sql);
-        $pdoStatement->execute();
+        $pdoStatement->execute([]);
     }
 }
