@@ -37,7 +37,7 @@
                         <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Poster Une Annonce</button>
                     </a>
 
-                    <a href="index.php?controleur=particulier&methode=pageAnnonce">
+                    <a href="index.php?controleur=annonce&methode=afficherMesAnnonces">
                         <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>
                     </a>
 
@@ -46,17 +46,17 @@
                             <img src="./images/icons/account.png" width="30" height="30">
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=compte">Mon Compte</a></li>
+                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=afficheCompte">Mon Compte</a></li>
                             <li><a class="dropdown-item" href="index.php?controleur=particulier&methode=parametre">Paramètres</a></li>
-                            <li><a class="dropdown-item" href="index.php?controleur=particulier&methode=deconnexion">Se Déconnecter</a></li>
+                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=deconnexion">Se Déconnecter</a></li>
                         </ul>
                     </div>
                 </div>
 
             {% elseif user.role == "Etudiant" %}
                 <div class="btn-compte d-flex align-items-center">
-                    <a href="index.php?controleur=etudiant&methode=pageAnnonce">
-                        <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Annonces</button>
+                    <a href="index.php?controleur=annonce&methode=afficherMesAnnonces">
+                        <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>
                     </a>
 
                     <div class="dropdown">
@@ -64,9 +64,9 @@
                             <img src="./images/icons/account.png" width="30" height="30">
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=compte">Mon Compte</a></li>
+                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=afficheCompte">Mon Compte</a></li>
                             <li><a class="dropdown-item" href="index.php?controleur=etudiant&methode=parametre">Paramètres</a></li>
-                            <li><a class="dropdown-item" href="index.php?controleur=etudiant&methode=deconnexion">Se Déconnecter</a></li>
+                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=deconnexion">Se Déconnecter</a></li>
                         </ul>
                     </div>
                 </div>

@@ -33,6 +33,17 @@ class NoteDao{
 
     }
 
+        public function findByUsers(string $idAuteur,string $idReceveur): array{
+        //requete
+        $sql = "SELECT * FROM Note where idUtilisateurNoteur = :idAuteur AND idUtilisateurNote = :idReceveur";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(['idAuteur' => $idAuteur, 'idReceveur' => $idReceveur]);
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $notes = $pdoStatement->fetchAll();  
+        return $notes;
+
+    }
+
     public function hydrate ($tableau): ?Note{
         $note = new Note();
         $note->setId($tableau['id'] ?? null);
@@ -60,6 +71,17 @@ class NoteDao{
             $notes[] = $note;
         }
         return $notes;
+    }
+    public function insert(Note $note): void{
+        $sql = "INSERT INTO Note (idAnnonce, idUtilisateurNoteur, idUtilisateurNote, note, commentaire) VALUES (:idAnnonce, :idUtilisateurNoteur, :idUtilisateurNote, :note, :commentaire)";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute([
+            'note' => $note->getValeur(),
+            'commentaire' => $note->getCommentaire(),
+            'idUtilisateurNoteur' => $note->getAuteur() ? $note->getAuteur()->getId() : null,
+            'idUtilisateurNote' => $note->getReceveur() ? $note->getReceveur()->getId() : null,
+            'idAnnonce' => $note->getAnnonce() ? $note->getAnnonce()->getId() : null
+        ]);
     }
     
 }

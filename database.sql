@@ -111,6 +111,20 @@ INSERT INTO Utilisateur VALUES(3, 'ADMINISTRATEUR', '123456789014', 'Leblanc', '
 
 INSERT INTO Annonce VALUES (1, 1, "Garde d'enfant", "Garde d'enfant pour une journée complète.", 'baby-sitting', 'Paris', 100.00, '2025-11-01 10:00:00', '2025-11-10 18:00:00', 'DISPONIBLE', '2025-11-01 10:00:00', NULL, NULL);
 INSERT INTO Annonce VALUES (2, 1, 'Réparation de plomberie', "Réparation d'une fuite d'eau.", 'bricolage', 'Lyon', 80.00, '2025-11-02 09:00:00', '2025-11-05 17:00:00', 'ACCEPTE', '2025-11-02 09:00:00', NULL, NULL);
+INSERT INTO Annonce VALUES (3, 1, 'Aide aux devoirs collège', 'Recherche étudiant pour aide aux devoirs niveau collège, maths et français.', 'aide aux devoirs', 'Paris', 15.00, '2025-11-15 17:00:00', '2025-11-15 19:00:00', 'DISPONIBLE', '2025-11-05 09:30:00', NULL, NULL);
+INSERT INTO Annonce VALUES (4, 1, 'Nettoyage appartement', 'Besoin d’aide pour le ménage d’un appartement de 50m².', 'ménage', 'Paris', 60.00, '2025-11-20 09:00:00', '2025-11-20 12:00:00', 'DISPONIBLE', '2025-11-06 14:00:00', NULL, NULL);
+INSERT INTO Annonce VALUES (5, 1, 'Jardinage week-end', 'Tonte de pelouse et taille de haies dans un petit jardin.', 'jardinage', 'Versailles', 90.00, '2025-11-22 08:30:00', '2025-11-22 13:00:00', 'ACCEPTE', '2025-11-07 10:15:00', NULL, NULL);
+INSERT INTO Annonce VALUES (6, 1, 'Déménagement léger', 'Aide pour transporter quelques meubles et cartons.', 'transport', 'Paris', 120.00, '2025-11-25 14:00:00', '2025-11-25 18:00:00', 'DISPONIBLE', '2025-11-08 16:45:00', NULL, NULL);
+INSERT INTO Annonce VALUES (7, 1, 'Assistance informatique', 'Installation d’un nouvel ordinateur et configuration basique.', 'aide informatique', 'Paris', 50.00, '2025-11-28 10:00:00', '2025-11-28 12:00:00', 'TERMINE', '2025-11-09 11:20:00', NULL, NULL);
+INSERT INTO Annonce VALUES (8, 1, 'Garde d’enfant soirée', 'Garde d’un enfant de 6 ans en soirée.', 'baby-sitting', 'Paris', 70.00, '2025-12-01 18:00:00', '2025-12-01 22:00:00', 'DISPONIBLE', '2025-11-10 09:00:00', NULL, NULL);
+INSERT INTO Annonce VALUES (9, 1, 'Montage meuble IKEA', 'Montage d’une armoire et d’un lit.', 'bricolage', 'Paris', 85.00, '2025-12-03 09:00:00', '2025-12-03 13:00:00', 'DISPONIBLE', '2025-11-11 14:30:00', NULL, NULL);
+INSERT INTO Annonce VALUES (10, 1, 'Ménage après déménagement', 'Nettoyage complet après départ des locataires.', 'ménage', 'Paris', 100.00, '2025-12-05 08:00:00', '2025-12-05 12:00:00', 'ACCEPTE', '2025-11-12 10:15:00', NULL, NULL);
+INSERT INTO Annonce VALUES (11, 1, 'Aide informatique senior', 'Assistance pour utilisation basique d’un smartphone.', 'aide informatique', 'Paris', 40.00, '2025-12-06 15:00:00', '2025-12-06 17:00:00', 'DISPONIBLE', '2025-11-13 11:45:00', NULL, NULL);
+INSERT INTO Annonce VALUES (12, 1, 'Transport courses', 'Aide pour transporter des courses volumineuses.', 'transport', 'Paris', 30.00, '2025-12-08 16:00:00', '2025-12-08 17:30:00', 'TERMINE', '2025-11-14 09:20:00', NULL, NULL);
+INSERT INTO Annonce VALUES (13, 1, 'Garde d’animaux', 'Visites quotidiennes pour nourrir un chat.', 'autre', 'Paris', 45.00, '2025-12-10 09:00:00', '2025-12-15 09:30:00', 'DISPONIBLE', '2025-11-15 08:50:00', NULL, NULL);
+INSERT INTO Annonce VALUES (14, 1, 'Cours initiation informatique', 'Initiation à l’ordinateur et à Internet.', 'aide informatique', 'Paris', 60.00, '2025-12-18 14:00:00', '2025-12-18 16:00:00', 'ACCEPTE', '2025-11-16 13:10:00', NULL, NULL);
+INSERT INTO Annonce VALUES (15, 1, 'Petit bricolage maison', 'Réparation de poignées et remplacement d’ampoules.', 'bricolage', 'Paris', 55.00, '2025-12-20 10:00:00', '2025-12-20 12:00:00', 'DISPONIBLE', '2025-11-17 15:00:00', NULL, NULL);
+
 
 INSERT INTO Signalement VALUES(1, '2025-11-03 14:30:00', 'Contenu inapproprié', "Annonce de garde d'enfant avec des détails douteux.", 2);
 INSERT INTO Signalement VALUES(2, '2025-11-04 11:00:00', 'Faux service', 'Annonce de bricolage pour un travail qui semble être une fraude.', 3);

@@ -13,8 +13,12 @@ class ControllerAnnonce extends Controller {
         $managerAnnonce = new AnnonceDao($this->getPdo());
         $tableau = $managerAnnonce->findAllAssoc();
         $annonces = $managerAnnonce->hydrateAll($tableau);
+        $icons = Constantes::getConstantes()['icons'];
+
         echo $template->render('index.html.twig', [
-            'user' => Utilisateur::getUser(),
+            'annonces' => $annonces,
+            'icons' => $icons,
+            'user' => Utilisateur::getUser()
         ]);
 
 
@@ -33,7 +37,9 @@ class ControllerAnnonce extends Controller {
         $template = $this->getTwig();
 
         echo $template->render('ajouterAnnonce.html.twig', [
-            'role' => $role
+            'role' => $role,
+            'user' => Utilisateur::getUser()
+
         ]);
     }
 
@@ -53,6 +59,53 @@ class ControllerAnnonce extends Controller {
 
     public function listerAnnonces(){
 
+    }
+
+
+    public function afficherMesAnnonces(){
+        $template = $this->getTwig();
+
+
+        $managerAnnonce = new AnnonceDao($this->getPdo());
+        if (!isset($_SESSION['id'])) {
+            header("Location: index.php");
+            exit();
+        }
+        $tableau = $managerAnnonce->findAllById($_SESSION['id']);
+
+        echo $template->render('mesAnnonces.html.twig', [
+            'user' => Utilisateur::getUser(),
+            'annonces' => $tableau,
+            'icons' => Constantes::getConstantes()['icons']
+        ]);
+
+    }
+
+
+    public function afficherDetail(){
+        $template = $this->getTwig();
+
+        if (!isset($_SESSION['id'])) {
+            header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+            exit();
+        }
+
+
+        if (!isset($_GET['id'])) {
+            header("Location: index.php");
+            exit();
+        }
+
+        $idAnnonce = $_GET['id'];
+
+        $managerAnnonce = new AnnonceDao($this->getPdo());
+        $annonce = $managerAnnonce->find($idAnnonce);
+
+        echo $template->render('detailAnnonce.html.twig', [
+            'user' => Utilisateur::getUser(),
+            'annonce' => $annonce,
+            'icons' => Constantes::getConstantes()['icons']
+        ]);
     }
 
 }

@@ -44,6 +44,15 @@ class AnnonceDao{
         return $annonce;
     }
 
+        public function findAllById($utilisateur){
+        $sql = "SELECT * FROM Annonce LEFT JOIN POSTULER ON Annonce.id=POSTULER.idAnnonce WHERE Annonce.idParticulier = :idParticulier OR POSTULER.idEtudiant = :idParticulier";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array("idParticulier"=>$utilisateur));
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Annonce');
+        $annonce = $pdoStatement->fetchAll();
+        return $annonce;
+    }
+
     public function findAllAssoc(){
         $sql="SELECT * FROM Annonce";
         $pdoStatement = $this->pdo->prepare($sql);

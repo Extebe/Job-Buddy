@@ -11,3 +11,19 @@ website:
   version : 1.0
   desc : Des petits boulots de grandes opportunitées !
   language : fr
+
+tentative:
+  MAX_CONNEXIONS_ECHOUEES : 3
+  DELAI_ATTENTE_CONNEXION : 1800
+
+icons:
+  base_path : images/icons
+  types:
+    baby-sitting : baby-bottle
+    jardinage : gardening-shears
+    bricolage : hammer-nails
+    ménage : broom
+    transport : bus
+    aide informatique : pc
+    aide aux devoirs : book-cover
+    autre : 

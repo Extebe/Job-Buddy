@@ -1,27 +1,178 @@
-{% extends 'base_template.html.twig' %}
-    {% block content %}
-        <h1>
-            Bienvenue sur le super site de super Jobbuddy.
-        </h1>
-        <div id="zone_cartes" class="row row-cols-3">
-            {% for annonce in annonces %}
+    {% extends 'base_template.html.twig' %}
 
-                <!--Les cartes-->
-                <a href="" class="">
-                    <div class="" style="">
-                        <img src="{{ annonce.image }}" class="" alt="picto annonce">
-                        <div class="">
-                            <h3>{{annonce.titre}}</h3>
-                            <h4>{{annonce.typeService}}</h4>
-                            <h4>{{annonce.remuneration}}</h4>
-                            <h4>{{annonce.dateRealisation}}</h4>
-                            <h4>{{annonce.description}}</h4>
-                            <h4>{{annonce.lieu}}</h4>
-                            <h4>{{annonce.createur.nom}}</h4>
+    {% block content %}
+    <link rel="stylesheet" href="./CSS/annonces.css">
+    <h1 class="mb-4">
+        Bienvenue sur le super site de super JobBuddy.
+    </h1>
+    {{ annonces|length }} annonce(s) trouvée(s).
+    <div class="container">
+        <div id="zone_cartes" class="row row-cols-1 g-4 justify-content-center">
+
+            {% for annonce in annonces %}
+<div class="col-12 col-md-6 col-lg-6 d-flex justify-content-center">
+    <div class="card-slot w-75">
+        <div class="card h-100 card-item d-flex flex-row position-relative">
+
+            <!-- Image -->
+            <div class="image-zone">
+                <img
+                    src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
+                    class="icon-annoncea"
+                    alt="Icon {{ annonce.typeService }}"
+                >
+            </div>
+
+            <!-- Contenu -->
+            <div class="content-zone">
+                <div class="card-body">
+
+                    <!-- lien carte -->
+                    <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}" class="stretched-link"></a>
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+                            <h5 class="card-title mb-1">{{ annonce.titre }}</h5>
+                            <span class="fw-bold">{{ annonce.remuneration }} €</span>
                         </div>
+
+                        <!-- Boutons -->
+                {% if user.role == "Etudiant" and annonce.etat == "DISPONIBLE" %}
+                    <div class="d-flex gap-2 mt-2 justify-content-end">
+                    <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
+                         <button class="btn btn-outline-success mt-2">Postuler</button>
                     </a>
                 </div>
+                {% endif %}
+
+                {% if user.role == "Particulier " and annonce.etat == "DISPONIBLE"  and annonce.idParticulier == user.id %}
+                <div class="d-flex gap-2 mt-2 justify-content-end">
+                    <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
+                        class="btn btn-outline-success btn-sm">
+                        Modifier
+                    </a>
+
+                    <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
+                        class="btn btn-outline-danger btn-sm"
+                        onclick="return confirm('Supprimer cette annonce ?');">
+                        Supprimer
+                    </a>
+                </div>
+                {% endif %}
+
+                    </div>
+
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        {{ annonce.lieu }} - {{ annonce.dateDebutRealisation|date("H:i d/m/y") }}
+                    </h6>
+
+                    <p class="card-text">
+                        {{ annonce.description }}
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
             {% endfor %}
+
         </div>
+    </div>
+
+
+<style>
+/* Zone image : largeur fixe et petite */
+.image-zone {
+    width: 120px;        /* ↓ réduit fortement */
+    min-width: 120px;
+    max-width: 120px;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;   /* empêche tout débordement */
+}
+
+/* Image elle-même */
+.icon-annoncea {
+    max-width: 70px;    /* ↓ image réellement petite */
+    max-height: 70px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Contenu : ne sort jamais de la carte */
+.content-zone {
+    flex: 1;
+    min-width: 0;       /* IMPORTANT : empêche le texte de déborder */
+}
+
+.card-item {
+    overflow: hidden;
+}
+
+
+
+
+.btn-outline-success {
+    color: #712200;
+    border-color: #712200;
+}
+
+.btn-outline-success:hover {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success:focus {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success::selection {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.btn-outline-success-danger:hover {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger:focus {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger::selection {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.btn, .d-flex.gap-2 {
+    position: relative;
+    z-index: 1; /* pour être au-dessus du stretched-link */
+}
+
+</style>
     {% endblock %}
+
+
+
+

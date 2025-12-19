@@ -1,0 +1,237 @@
+{% extends 'base_template.html.twig' %}
+
+{% block content %}
+<link rel="stylesheet" href="./CSS/annonces.css">
+
+<h1 class="mb-4">Bienvenue sur le super site de super JobBuddy.</h1>
+<p>{{ annonces|length }} annonce(s) trouvée(s).</p>
+
+<div class="container">
+    <div id="zone_cartes" class="row g-4">
+
+
+        {% if user.role == "Particulier " %}
+    <div class="col-12 d-flex justify-content-center mb-2">
+        <div class="card-slot h-auto w-100 w-lg-75">
+            <div class="card-item h-100 add-card-style">
+                <div class="card-body d-flex align-items-center justify-content-center" style="min-height: 120px;">
+                    <a href="index.php?controleur=annonce&methode=afficheFormAnnonce" class="stretched-link d-flex align-items-center text-decoration-none">
+                        <span class="display-4 fw-bold me-3" style="color: #712200;">+</span>
+                        <h4 class="mb-0 text-dark">Publier une nouvelle annonce</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+        {% for annonce in annonces %}
+        <div class="col-12 d-flex justify-content-center">
+            <div class="card-slot h-auto w-100 w-lg-75">
+                <div class="card-item h-100">
+
+                    <!-- Image -->
+                    <div class="image-zone">
+                        <img
+                            src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
+                            class="icon-annoncea"
+                            alt="Icon {{ annonce.typeService }}"
+                        >
+                    </div>
+
+                    <!-- Contenu -->
+                    <div class="content-zone">
+                        <div class="card-body">
+
+                            <!-- Lien carte -->
+                            <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}" class="stretched-link"></a>
+
+<div class="d-flex justify-content-between align-items-start">
+    <div>
+        <h5 class="card-title mb-1">{{ annonce.titre }}</h5>
+        <span class="fw-bold">{{ annonce.remuneration }} €</span>
+    </div>
+
+<div class="d-flex gap-2 mt-2 justify-content-end" style="position: relative; z-index: 2;">
+    
+    {% if user.role == "Etudiant" and annonce.etat == "DISPONIBLE" %}
+        <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-outline-success">
+            Postuler
+        </a>
+    {% endif %}
+
+    {% if user.role == "Particulier " and annonce.etat == "DISPONIBLE" and annonce.idParticulier == user.id %}
+        <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}" class="btn btn-outline-success btn-sm">
+            Modifier
+        </a>
+        <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}" 
+           class="btn btn-outline-danger btn-sm" 
+           onclick="return confirm('Supprimer cette annonce ?');">
+            Supprimer
+        </a>
+    {% endif %}
+    
+</div>
+</div>
+
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                {{ annonce.lieu }} - {{ annonce.dateDebutRealisation|date("H:i d/m/Y") }}
+                            </h6>
+
+                            <p class="card-text">{{ annonce.description }}</p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+<style>
+/* Carte et effet creux */
+.card-slot {
+    position: relative;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.card-item {
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    width: 100%;
+}
+
+.card-slot:hover .card-item {
+    transform: translate(10px, -10px);
+}
+
+/* Image */
+.image-zone {
+    width: 120px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.icon-annoncea {
+    max-width: 70px;
+    max-height: 70px;
+    object-fit: contain;
+}
+
+/* Contenu */
+.content-zone {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+}
+
+/* Titres et sous-titres */
+.card-title {
+    margin-bottom: 5px;
+}
+.card-subtitle {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/* Boutons */
+.btn-outline-success {
+    color: #712200;
+    border-color: #712200;
+}
+.btn-outline-success:hover,
+.btn-outline-success:focus,
+.btn-outline-success::selection {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-danger {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+.btn-outline-danger:hover,
+.btn-outline-danger:focus,
+.btn-outline-danger::selection {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+/* Assurer que les boutons sont au-dessus du stretched-link */
+
+
+/* Responsive : mobile */
+@media (max-width: 576px) {
+    .card-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .image-zone {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .icon-annoncea {
+        max-width: 100px;
+        max-height: 100px;
+    }
+}
+
+/* On s'assure que la carte est la référence pour les positions */
+.card-item {
+    position: relative;
+    z-index: 1;
+}
+
+/* La zone de boutons doit être au-dessus du stretched-link */
+.button-overlay {
+    position: relative;
+    z-index: 10; /* Plus haut que le lien */
+    pointer-events: auto; /* Force la réception du clic */
+}
+
+/* Optionnel : si vous voulez que les boutons soient à droite sur PC */
+@media (min-width: 577px) {
+    .button-overlay {
+        margin-left: auto;
+    }
+}
+
+/* 1. On s'assure que la carte est la base */
+.card-item {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* 2. On booste uniquement les boutons pour qu'ils passent devant le lien global */
+.btn {
+    position: relative !important;
+    z-index: 100 !important; /* On met 20 pour être bien au-dessus de tout */
+    pointer-events: auto !important;
+}
+
+/* 3. On enlève les marges qui pourraient faire déborder l'ombre en bas */
+.card-slot {
+    margin-bottom: 2rem;
+    height: auto;
+}
+</style>
+{% endblock %}
