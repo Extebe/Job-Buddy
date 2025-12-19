@@ -383,6 +383,10 @@ class ControllerUtilisateur extends Controller
      * 
      ===============================*/
     public function afficheCompte(){
+        if (!Utilisateur::getUser()) {
+            header('Location: index.php');
+            exit;
+        }
         $template = $this->getTwig();
 
         echo $template->render('pageCompte.html.twig', [
@@ -397,6 +401,10 @@ class ControllerUtilisateur extends Controller
      * 
      ===============================*/
     public function pageModifierCompte(){
+        if (!Utilisateur::getUser()) {
+            header('Location: index.php');
+            exit;
+        }
         $template = $this->getTwig();
 
         echo $template->render('pageModifierCompte.html.twig', [
