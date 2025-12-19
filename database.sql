@@ -103,6 +103,11 @@ CREATE TABLE Note(
    FOREIGN KEY(idUtilisateurNote) REFERENCES Utilisateur(id)
 );
 
+CREATE TABLE InscritNewsLetter(
+   id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+   email varchar(50)
+);
+
 
 
 INSERT INTO Utilisateur VALUES(1, 'PARTICULIER', '123456789012', 'Dupont', 'Jean', '0123456789', '1990-05-15', 'jean.dupont@example.com', 'mdp123', NULL, 'Paris', '10 rue de Paris', '75001', 0, NULL, 'actif');

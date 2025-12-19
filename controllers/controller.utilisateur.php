@@ -72,14 +72,11 @@ class ControllerUtilisateur extends Controller
             throw new Exception("compte_existant");
         }
 
-        // Obtention de l'instance PDO
-        $baseDeDonnees = Bd::getInstance();
-
         // Hachage du mot de passe
         $passwordHache = password_hash($user->getMdp(), PASSWORD_BCRYPT);
 
-        // Requête d'insertion
-        $pdo = $baseDeDonnees->getConnexion();
+        // Obtention de l'instance PDO
+        $pdo = $this->getPdo();
 
 
         //verification type d'utilisateur
@@ -172,7 +169,7 @@ class ControllerUtilisateur extends Controller
         $user->setDateDernierEchecConnexion(null);
 
         // Mise à jour dans la base de données
-        $bd=Bd::getInstance()->getConnexion();
+        $bd=$this->getPdo();
         $requete=$bd->prepare('UPDATE Utilisateur 
                            SET tentativesEchouees = 0, 
                                dateDernierEchecConnexion = NULL 
@@ -212,7 +209,7 @@ class ControllerUtilisateur extends Controller
         $user->setStatutCompte('actif');
 
         // Mise à jour dans la base de données
-        $bd=Bd::getInstance()->getConnexion();
+        $bd=$this->getPdo();
         $requete=$bd->prepare('UPDATE Utilisateur 
                                SET tentativesEchouees = 0, 
                                    dateDernierEchecConnexion = NULL, 
@@ -234,7 +231,7 @@ class ControllerUtilisateur extends Controller
         $nbTentative=$user->getTentativesEchouees() + 1;
         $user->setTentativesEchouees($nbTentative);
 
-        $bd=Bd::getInstance()->getConnexion();
+        $bd=$this->getPdo();
 
         if($user->getTentativesEchouees() >= $constantesConnexion['MAX_CONNEXIONS_ECHOUEES']){
             // Désactivation du compte
@@ -274,9 +271,7 @@ class ControllerUtilisateur extends Controller
      =======================================*/
     public function authentification(Utilisateur $user):bool{
         // création d'une instance de la bd
-        $baseDeDonnees = Bd::getInstance();
-
-        $pdo = $baseDeDonnees->getConnexion();
+        $pdo = $this->getPdo();
 
         // Recherche de l'utilisateur
         $requete= $pdo->prepare(
@@ -483,5 +478,26 @@ class ControllerUtilisateur extends Controller
         echo $template->render('pageCompte.html.twig', [
             'user' => Utilisateur::getUser(),
         ]);
+    }
+
+    /*==============================
+     *
+     *  Inscrit l'utilisateur 
+     *  à la newsletter
+     * 
+     ===============================*/
+    public function newsletter(): void{
+        if($_SERVER['REQUEST_METHOD'] ==='POST'){
+            $email=$_POST['email'];
+            $pdoNewsLetter = new NewLetterDao($this->getPdo());
+            
+            if(!$pdoNewsLetter->emailExisteNewsletter($email)){
+                $newsLetter=new NewLetter(null, $email);
+                $pdoNewsLetter->insererEmail($newsLetter);
+                echo "l'email a bien été enregistrer dans la base de données";
+            }
+            echo "Vous vous êtes déjà inscrit.";
+            echo "<a href='index.php'> Retour à la page d'accueil</a>";
+        }
     }
 }

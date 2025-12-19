@@ -5,10 +5,10 @@
 
         <h1>Inscris toi à la newsletter !</h1>
 
-        <form action="index.php?controleur=utilisateur&methode=newsletter">
+        <form method='POST' action="index.php?controleur=utilisateur&methode=newsletter">
             <div class="mb-3">
                 <label for="" class="form-label">Je laisse mon email *</label>
-                <input type="" class="form-control" id="" name="" required >
+                <input type="email" class="form-control" id="email" name="email" required >
             </div>
 
             <div class="form-check">
