@@ -73,6 +73,7 @@ class ControllerAnnonce extends Controller {
         }
         $tableau = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
 
+
         echo $template->render('mesAnnonces.html.twig', [
             'user' => Utilisateur::getUser(),
             'annonces' => $tableau,
@@ -127,6 +128,26 @@ class ControllerAnnonce extends Controller {
         $managerAnnonce->postuler($idAnnonce, Utilisateur::getUser()->getId());
 
         header("Location: index.php?controleur=annonce&methode=afficherDetail&id=".$idAnnonce);
+        exit();
+    }
+
+    public function supprimerAnnonce(){
+        if (!isset($_SESSION['id'])) {
+            header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+            exit();
+        }
+
+        if (!isset($_GET['id'])) {
+            header("Location: index.php");
+            exit();
+        }
+
+        $idAnnonce = $_GET['id'];
+
+        $managerAnnonce = new AnnonceDAO($this->getPdo());
+        $managerAnnonce->supprimer($idAnnonce, Utilisateur::getUser()->getId());
+
+        header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
         exit();
     }
 }

@@ -131,4 +131,37 @@ class AnnonceDao{
             "datePostulat"=>date("Y-m-d H:i:s")
         ));
     }
+
+    public function supprimer($idAnnonce,$idParticulier){
+        // Supprimer une annonce
+        $sql1 ="SELECT idParticulier FROM Annonce WHERE id= :idAnnonce";
+        $pdoStatement1 = $this->pdo->prepare($sql1);
+        $pdoStatement1->execute(array("idAnnonce"=>$idAnnonce));
+        $pdoStatement1->setFetchMode(PDO::FETCH_ASSOC);
+        $annonce = $pdoStatement1->fetch();
+        if($annonce['idParticulier'] != $idParticulier){
+            throw new Exception("Vous n'êtes pas autorisé à supprimer cette annonce.");
+            exit();
+        }
+        $sql2 ="DELETE FROM Postuler WHERE idAnnonce = :idAnnonce";
+        $pdoStatement2 = $this->pdo->prepare($sql2);
+        $pdoStatement2->execute(array(
+            "idAnnonce"=>$idAnnonce
+        ));
+        $sql3 ="DELETE FROM Note WHERE idAnnonce = :idAnnonce";
+        $pdoStatement3 = $this->pdo->prepare($sql3);
+        $pdoStatement3->execute(array(
+            "idAnnonce"=>$idAnnonce
+        ));
+        $sql4 ="DELETE FROM SignalementAnonce WHERE idAnnonceSignale = :idAnnonce";
+        $pdoStatement4 = $this->pdo->prepare($sql4);
+        $pdoStatement4->execute(array(
+            "idAnnonce"=>$idAnnonce
+        ));
+        $sql = "DELETE FROM Annonce WHERE id = :idAnnonce";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array(
+            "idAnnonce"=>$idAnnonce
+        ));
+    }
 }
