@@ -98,9 +98,14 @@ class ControllerAnnonce extends Controller {
             header("Location: index.php");
             exit();
         }
-        $tableau = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
+        $filtre = $_GET['filtre'];
 
-
+        if ($filtre === 'ALL' || $filtre === ''){
+            $tableau = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
+        }
+        else{
+            $tableau = $managerAnnonce->findAllByIdAndEtat(Utilisateur::getUser()->getId(), $filtre);
+        }
         echo $template->render('mesAnnonces.html.twig', [
             'user' => Utilisateur::getUser(),
             'annonces' => $tableau,

@@ -237,5 +237,15 @@ $pdoStatement->execute([
         ));
     }
 
+    public function findAllByIdAndEtat($utilisateur, $etat){
+        $sql = "SELECT DISTINCT Annonce.* FROM Annonce LEFT JOIN Postuler ON Annonce.id=Postuler.idAnnonce WHERE (Annonce.idParticulier = :idParticulier OR Postuler.idEtudiant = :idParticulier) AND Annonce.etat = :etat";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array("idParticulier"=>$utilisateur, "etat"=>$etat));
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $annonce = $pdoStatement->fetchAll();
+        $annonce = $this->hydrateAll($annonce);
+        return $annonce;
+    }
+
 
 }
