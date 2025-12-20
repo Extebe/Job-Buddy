@@ -50,8 +50,35 @@ class ControllerAnnonce extends Controller {
             $dateDebut = $_POST['dateDebut'];
             $dateFin = $_POST['dateFin'];
             $description = $_POST['description'];
-
+            $lieu = $_POST['lieu'];
+            $remuneration = $_POST['remuneration'];
+            $idParticulier = $_GET['idParticulier'];
+            if ($_GET['idParticulier'] != Utilisateur::getUser()->getId()){
+                //Tentative de soumission d'annonce pour un autre utilisateur
+                header("Location: index.php");
+                exit();
+            }
+            $particulier = Utilisateur::getUser();
+            $annonce1 = new Annonce(
+                null,
+                $particulier->getId(),
+                $titre,
+                $description,
+                $typeService,
+                $lieu,
+                $remuneration,
+                $dateDebut,
+                $dateFin,
+                "DISPONIBLE",
+                date("Y-m-d H:i:s"),
+                null,
+                null
+            );
+            $managerAnnonce = new AnnonceDAO($this->getPdo());
+            $managerAnnonce->insererAnnonce($annonce1);
             //Appel de la requête qui créé l'annonce
+            header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
+            exit();
 
         }
     }

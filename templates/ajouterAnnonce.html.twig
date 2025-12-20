@@ -1,24 +1,34 @@
 {% extends 'base_template.html.twig' %}
     {% block content %}
         <div class="container">
-            <form action="index.php?controleur=annonce&methode=traiteFormAnnonce">
+            <form action="index.php?controleur=annonce&methode=traiteFormAnnonce&idParticulier={{ user.id }}" method="post" class="mt-4 w-75 mx-auto">
                 <div class="mb-3">
                     <label for="" class="form-label">Titre de l'annonce</label>
-                    <input type="text" class="form-control" id="titreAnnonce" name="titreAnnonce" required>
+                    <input type="text" class="form-control" id="titre" name="titre" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="select" class="form-label">Type de service</label>
                     <select name="typeService" id="typeService" class="form-control" required>
                         <option value="" selected disabled>-- Choisissez une option --</option>
-                        <option>Baby-sitting</option>
-                        <option>Jardinage</option>
-                        <option>Bricolage</option>
-                        <option>Ménage</option>
-                        <option>Transport</option>
-                        <option>Aide Informatique</option>
-                        <option>Aide Aux Devoirs</option>
+                        <option>baby-sitting</option>
+                        <option>jardinage</option>
+                        <option>bricolage</option>
+                        <option>ménage</option>
+                        <option>transport</option>
+                        <option>aide informatique</option>
+                        <option>aide aux devoirs</option>
                     </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Rémunération (€)</label>
+                    <input type="number" class="form-control" id="remuneration" name="remuneration" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Lieu</label>
+                    <input type="text" class="form-control" id="lieu" name="lieu" required>
                 </div>
 
                 <div class="mb-3">

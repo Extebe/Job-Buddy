@@ -112,12 +112,35 @@ class AnnonceDao{
         return $annonce;
     }
 
-    public function insererAnnonce(){
-        // Creation d'une annonce'
-        $sql = "INSERT INTO Annonce (dateDebutRealisation, dateFinRealisation, etat, typeService, titre, description, datePublication, dataSuppression, motifSuppression, idParticulier) 
-        VALUES (:dateDebutRealisation, :dateFinRealisation, :etat, :typeService, :titre, :description, :datePublication, :dataSuppression, :idParticulier )";
-        $pdoStatement = $this->pdo->prepare($sql);
-        $pdoStatement->execute();
+    public function insererAnnonce(Annonce $annonce){
+ $sql = "INSERT INTO Annonce (
+    idParticulier, titre, description, typeService, lieu, remuneration,
+    dateDebutRealisation, dateFinRealisation, etat, datePublication,
+    dateSuppression, motifSuppression
+) VALUES (
+    :idParticulier, :titre, :description, :typeService, :lieu, :remuneration,
+    :dateDebutRealisation, :dateFinRealisation, :etat, :datePublication,
+    :dateSuppression, :motifSuppression
+)";
+
+$pdoStatement = $this->pdo->prepare($sql);
+
+// Assure-toi d’avoir défini toutes ces variables avant execute
+$pdoStatement->execute([
+    'idParticulier' => $annonce->getCreateur()->getId(),
+    'titre' => $annonce->getTitre(),
+    'description' => $annonce->getDescription(),
+    'typeService' => $annonce->getTypeService(),
+    'lieu' => $annonce->getLieu(),
+    'remuneration' => $annonce->getRemuneration(),
+    'dateDebutRealisation' => $annonce->getDateDebutRealisation(),
+    'dateFinRealisation' => $annonce->getDateFinRealisation(),
+    'etat' => $annonce->getEtat(),
+    'datePublication' => $annonce->getDatePublication(),
+    'dateSuppression' => $annonce->getDateSuppression(),
+    'motifSuppression' => $annonce->getMotifSuppression()
+]);
+
     }
 
     public function postuler($idAnnonce, $idEtudiant){
