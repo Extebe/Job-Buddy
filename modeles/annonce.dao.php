@@ -96,17 +96,16 @@ class AnnonceDao{
 
     public function addRelations(Annonce $annonce): Annonce{
         // Creation de la liste de postulations
-        $sql = "SELECT idEtudiant, datePostulat FROM Annonce WHERE idAnnonce= :id";
+        $sql = "SELECT Postuler.idEtudiant, Postuler.datePostulat FROM Annonce JOIN Postuler ON Annonce.id=Postuler.idAnnonce WHERE Postuler.idAnnonce= :id";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$annonce->getId()));
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
-        $assocPostulations = $pdoStatement->fetch();
-
+        $assocPostulations = $pdoStatement->fetchAll();
         $etudiantDao = new EtudiantDao($this->pdo);
         $postulations = [];
         foreach($assocPostulations as $assocPostulation){
             $etudiant = $etudiantDao->find($assocPostulation['idEtudiant']);
-            $postulations[$etudiant] = $assocPostulation['datePostulat'];
+           $postulations[] = $etudiant;
         }
         $annonce->setPostulations($postulations);
 
@@ -119,5 +118,17 @@ class AnnonceDao{
         VALUES (:dateDebutRealisation, :dateFinRealisation, :etat, :typeService, :titre, :description, :datePublication, :dataSuppression, :idParticulier )";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute();
+    }
+
+    public function postuler($idAnnonce, $idEtudiant){
+        // Postuler a une annonce
+        $sql = "INSERT INTO Postuler (idAnnonce, idEtudiant, datePostulat, estAccepte) 
+        VALUES (:idAnnonce, :idEtudiant, :datePostulat, '0')";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array(
+            "idAnnonce"=>$idAnnonce,
+            "idEtudiant"=>$idEtudiant,
+            "datePostulat"=>date("Y-m-d H:i:s")
+        ));
     }
 }

@@ -14,10 +14,29 @@ class EtudiantDAO extends UtilisateurDAO{
 
     public function find(?int $id): ?Etudiant
     {
-        $sql = "SELECT * FROM Utilisateur WHERE code = :id AND role = 'ETUDIANT'";
+        $sql = "SELECT 
+    id,
+    codeINE,
+    nom,
+    prenom,
+    tel,
+    dateNaiss,
+    role,
+    email,
+    mdp,
+    adresse,
+    ville,
+    codePostal,
+    dateSuppression,
+    tentativesEchouees,
+    dateDernierEchecConnexion,
+    statutCompte
+FROM Utilisateur
+WHERE id = :id
+  AND role = 'ETUDIANT'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$id));
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Utilisateur');
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Etudiant');
         $etudiant = $pdoStatement->fetch();
         return $etudiant;
     }

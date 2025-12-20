@@ -100,7 +100,9 @@ class ControllerAnnonce extends Controller {
 
         $managerAnnonce = new AnnonceDao($this->getPdo());
         $annonce = $managerAnnonce->find($idAnnonce);
+        $annonce = $managerAnnonce->addRelations($annonce);
 
+ 
         echo $template->render('detailAnnonce.html.twig', [
             'user' => Utilisateur::getUser(),
             'annonce' => $annonce,
@@ -108,4 +110,23 @@ class ControllerAnnonce extends Controller {
         ]);
     }
 
+    public function postulerAnnonce(){
+        if (!isset($_SESSION['id'])) {
+            header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+            exit();
+        }
+
+        if (!isset($_GET['id'])) {
+            header("Location: index.php");
+            exit();
+        }
+
+        $idAnnonce = $_GET['id'];
+
+        $managerAnnonce = new AnnonceDAO($this->getPdo());
+        $managerAnnonce->postuler($idAnnonce, Utilisateur::getUser()->getId());
+
+        header("Location: index.php?controleur=annonce&methode=afficherDetail&id=".$idAnnonce);
+        exit();
+    }
 }

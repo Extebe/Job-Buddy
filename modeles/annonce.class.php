@@ -5,8 +5,8 @@ require_once "include.php";
 class Annonce{
     private ?string $id;
     private ?Particulier $idParticulier;
-    private ?array $postulations;
-    private ?array $etuditantsSelectionnes;
+    private array $postulations = [];
+    private array $etuditantsSelectionnes = [];
 
     private ?string $titre;
     private ?string $description;
@@ -196,7 +196,7 @@ class Annonce{
     /**
      * Get the value of postulations
      */
-    public function getPostulations(): ?array
+    public function getPostulations(): array
     {
         return $this->postulations;
     }
