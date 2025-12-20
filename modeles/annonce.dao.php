@@ -112,6 +112,24 @@ class AnnonceDao{
         return $annonce;
     }
 
+    public function addSelectedStudents(Annonce $annonce): Annonce{
+        // Creation de la liste des etudiants selectionnes
+        $sql = "SELECT Postuler.idEtudiant, Postuler.datePostulat FROM Annonce JOIN Postuler ON Annonce.id=Postuler.idAnnonce WHERE Postuler.idAnnonce= :id AND Postuler.estAccepte='1'";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array("id"=>$annonce->getId()));
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $assocEtudiants = $pdoStatement->fetchAll();
+        $etudiantDao = new EtudiantDao($this->pdo);
+        $etudiantsSelectionnes = [];
+        foreach($assocEtudiants as $assocEtudiant){
+            $etudiant = $etudiantDao->find($assocEtudiant['idEtudiant']);
+           $etudiantsSelectionnes[] = $etudiant;
+        }
+        $annonce->setEtuditantsSelectionnes($etudiantsSelectionnes);
+
+        return $annonce;
+    }
+
     public function insererAnnonce(Annonce $annonce){
  $sql = "INSERT INTO Annonce (
     idParticulier, titre, description, typeService, lieu, remuneration,
@@ -189,6 +207,11 @@ $pdoStatement->execute([
         ));
     }
     
+
+
+
+
+
     public function refuserEtudiant($idAnnonce, $idEtudiant){
         // Refuser un étudiant
         $sql = "DELETE FROM Postuler WHERE idAnnonce = :idAnnonce AND idEtudiant = :idEtudiant";
@@ -198,5 +221,21 @@ $pdoStatement->execute([
             "idEtudiant"=>$idEtudiant
         ));
     }
+
+    public function accepterEtudiant($idAnnonce, $idEtudiant){
+        // Accepter un étudiant
+        $sql1 = "UPDATE Annonce SET etat = 'ACCEPTE' WHERE id = :idAnnonce";
+        $pdoStatement1 = $this->pdo->prepare($sql1);
+        $pdoStatement1->execute(array(
+            "idAnnonce"=>$idAnnonce
+        ));
+        $sql = "UPDATE Postuler SET estAccepte = '1' WHERE idAnnonce = :idAnnonce AND idEtudiant = :idEtudiant";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array(
+            "idAnnonce"=>$idAnnonce,
+            "idEtudiant"=>$idEtudiant
+        ));
+    }
+
 
 }

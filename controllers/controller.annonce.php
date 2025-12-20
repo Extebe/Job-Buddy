@@ -128,7 +128,12 @@ class ControllerAnnonce extends Controller {
 
         $managerAnnonce = new AnnonceDao($this->getPdo());
         $annonce = $managerAnnonce->find($idAnnonce);
+        if ($annonce->getEtuditantsSelectionnes() == null){
         $annonce = $managerAnnonce->addRelations($annonce);
+        }
+        else{
+        $annonce = $managerAnnonce->addSelectedStudents($annonce);
+        }
 
  
         echo $template->render('detailAnnonce.html.twig', [
@@ -197,7 +202,9 @@ class ControllerAnnonce extends Controller {
         }
         if ($_GET['action'] === 'accepter') {
             // Accepter un étudiant
-           // $this->accepter($idAnnonce, $idEtudiant);
+            $managerAnnonce->accepterEtudiant($idAnnonce, $idEtudiant);
+            header("Location: index.php?controleur=annonce&methode=afficherDetail&id=".$idAnnonce);
+            exit();
         }
         if ($_GET['action'] === 'refuser') {
         $managerAnnonce->refuserEtudiant($idAnnonce, $idEtudiant);
