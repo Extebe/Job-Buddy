@@ -47,7 +47,13 @@
     {# --- Card des étudiants ayant postulé --- #}
     <div class="card w-50 text-center">
         <div class="card-header bg-primary text-white">
+        {% if annonce.getEtat() == "DISPONIBLE" %}
             Étudiants ayant postulé
+        
+        {% else %}
+            Étudiants acceptés
+        
+        {% endif %}
         </div>
         <div class="card-body">
             {% if annonce.postulations | length > 0 %}
