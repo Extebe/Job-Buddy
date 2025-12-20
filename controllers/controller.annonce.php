@@ -77,7 +77,7 @@ class ControllerAnnonce extends Controller {
             $managerAnnonce = new AnnonceDAO($this->getPdo());
             $managerAnnonce->insererAnnonce($annonce1);
             //Appel de la requête qui créé l'annonce
-            header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
+            header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ALL");
             exit();
 
         }
@@ -98,7 +98,8 @@ class ControllerAnnonce extends Controller {
             header("Location: index.php");
             exit();
         }
-        $filtre = $_GET['filtre'];
+        if (!isset($_GET['filtre'])){$filtre = "ALL";}
+        else{$filtre = $_GET['filtre'];}
 
         if ($filtre === 'ALL' || $filtre === ''){
             $tableau = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
@@ -128,7 +129,6 @@ class ControllerAnnonce extends Controller {
             header("Location: index.php");
             exit();
         }
-
         $idAnnonce = $_GET['id'];
 
         $managerAnnonce = new AnnonceDao($this->getPdo());
@@ -178,13 +178,13 @@ class ControllerAnnonce extends Controller {
             header("Location: index.php");
             exit();
         }
-
+        
         $idAnnonce = $_GET['id'];
 
         $managerAnnonce = new AnnonceDAO($this->getPdo());
         $managerAnnonce->supprimer($idAnnonce, Utilisateur::getUser()->getId());
 
-        header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
+        header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ALL");
         exit();
     }
 
