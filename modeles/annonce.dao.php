@@ -124,6 +124,7 @@ class AnnonceDao{
 )";
 
 $pdoStatement = $this->pdo->prepare($sql);
+    
 
 // Assure-toi d’avoir défini toutes ces variables avant execute
 $pdoStatement->execute([
@@ -187,4 +188,15 @@ $pdoStatement->execute([
             "idAnnonce"=>$idAnnonce
         ));
     }
+    
+    public function refuserEtudiant($idAnnonce, $idEtudiant){
+        // Refuser un étudiant
+        $sql = "DELETE FROM Postuler WHERE idAnnonce = :idAnnonce AND idEtudiant = :idEtudiant";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array(
+            "idAnnonce"=>$idAnnonce,
+            "idEtudiant"=>$idEtudiant
+        ));
+    }
+
 }

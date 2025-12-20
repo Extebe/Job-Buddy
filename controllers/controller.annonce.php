@@ -177,4 +177,32 @@ class ControllerAnnonce extends Controller {
         header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
         exit();
     }
+
+        public function refuser($idAnnonce, $idEtudiant){
+
+
+
+
+    }
+
+        public function selectionnerEtudiant(){
+        $idAnnonce = $_GET['idAnnonce'];
+        $idEtudiant = $_GET['idEtudiant'];
+        $managerAnnonce = new AnnonceDao($this->getPdo());
+        $annonce = $managerAnnonce->find($idAnnonce);
+
+        if ($annonce->getCreateur()->getId() != Utilisateur::getUser()->getId()){
+            throw new Exception("Vous n'êtes pas autorisé à refuser cette candidature.");
+            exit();
+        }
+        if ($_GET['action'] === 'accepter') {
+            // Accepter un étudiant
+           // $this->accepter($idAnnonce, $idEtudiant);
+        }
+        if ($_GET['action'] === 'refuser') {
+        $managerAnnonce->refuserEtudiant($idAnnonce, $idEtudiant);
+        header("Location: index.php?controleur=annonce&methode=afficherDetail&id=".$idAnnonce);
+        exit();
+        }
+    }
 }
