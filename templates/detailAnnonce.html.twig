@@ -21,20 +21,26 @@
                     </a>
                 </div>
             {% endif %}
-
-            {% if user.role == "Particulier" and annonce.etat == "DISPONIBLE" and annonce.idParticulier == user.id %}
-                <div class="d-flex gap-2 mt-3 justify-content-end">
+<div class="d-flex gap-2 mt-3 justify-content-end">
+            {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
+                
                     <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
                        class="btn btn-outline-success btn-sm">
                         Modifier
                     </a>
+                {% endif %}
+
+            {% if user.getRole() == "Particulier " and annonce.getCreateur().getId() == user.getId() %}
                     <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
                        class="btn btn-outline-danger btn-sm"
                        onclick="return confirm('Supprimer cette annonce ?');">
                         Supprimer
                     </a>
-                </div>
+
             {% endif %}
+
+
+             </div>
         </div>
     </div>
 
@@ -47,13 +53,26 @@
             {% if annonce.postulations | length > 0 %}
                 <ul class="list-group d-inline-block text-start" style="min-width: 250px;">
                     {% for etudiant in annonce.postulations %}
-                        <li class="list-group-item text-center">
-                            {{ etudiant.prenom }} {{ etudiant.nom }}
-                            {# Optionnel : ajouter un badge pour la date de postulation #}
-                            {# <span class="badge bg-secondary">{{ etudiant.datePostulation }}</span> #}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{ etudiant.prenom }} {{ etudiant.nom }}</span>
+
+                            {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
+                                <div class="btn-group" role="group" aria-label="Sélection">
+                                    <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=accepter"
+                                    class="btn btn-success btn-lg">
+                                        <i class="bi bi-check fs-4"></i>
+                                    </a>
+                                    <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=refuser"
+                                    class="btn btn-danger btn-lg">
+                                        <i class="bi bi-x fs-4"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
+
+
             {% else %}
                 <p class="text-muted fst-italic">Aucun étudiant n’a postulé pour cette annonce pour le moment.</p>
             {% endif %}

@@ -60,16 +60,22 @@
     {% endif %}
     
 
-    {% if user.role == "Particulier " and annonce.etat == "DISPONIBLE" and annonce.idParticulier == user.id %}
+    {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
         <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}" class="btn btn-outline-success btn-sm">
             Modifier
         </a>
-        <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}" 
+
+    {% endif %}
+
+    {% if user.getRole() == "Particulier "  and annonce.getCreateur().getId() == user.getId() %}
+
+            <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}" 
            class="btn btn-outline-danger btn-sm" 
            onclick="return confirm('Supprimer cette annonce ?');">
             Supprimer
         </a>
     {% endif %}
+
     
 </div>
 </div>
