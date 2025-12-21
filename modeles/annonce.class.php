@@ -321,6 +321,19 @@ class Annonce{
 */
     public function __toString(): string
     {return $this->getId() . $this->getCreateur();}
+
+    public static function getAnnonce(): ?Annonce{
+        if(isset($_SESSION['id'])){
+            $bd = Bd::getInstance();
+            $pdo = $bd->getConnexion();
+            $annonceDao=new AnnonceDao($pdo);
+            $annonce = $annonceDao->findAllAssoc();
+            $annonceHydrate=$annonceDao->hydrate($annonce[1]);
+            return $annonceHydrate;
+        }
+        return null;
+    }
+    
 }
 
 ?>

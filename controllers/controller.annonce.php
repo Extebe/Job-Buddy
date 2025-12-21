@@ -217,4 +217,47 @@ class ControllerAnnonce extends Controller {
         exit();
         }
     }
+
+    /* ===================================
+     *
+     * Appelle la fonction modifier 
+     * de la classe annonceDao pour changer
+     * la base de donné en récupérant les 
+     * information du formulaire de la 
+     * page modifierAnnonce
+     * 
+      ===================================*/
+    public function editerAnnonce():void{
+        $annonce = Annonce::getAnnonce();
+        $annonceDao = new AnnonceDao($this->getPdo());
+        $template = $this->getTwig();
+
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+
+            $idAnnonce=$_POST['idAnnonce'];
+            $idParticulier= $annonce->getCreateur()->getId();
+            
+            $annonce = new Annonce($idAnnonce,
+                        $idParticulier,
+                        $_POST['titre'],
+                        $_POST['description'],
+                        $_POST['typeService'],
+                        $_POST['lieu'],
+                        $_POST['remuneration'],
+                        $_POST['dateDebut'],
+                        $_POST['dateFin'],
+                        null,
+                        null,
+                        null,
+                        null);
+            $annonceDao->modifier($annonce);
+            header('Location:index.php?controleur=annonce&methode=afficherMesAnnonces');
+            exit();
+        }
+        // var_dump($annonce);
+        // echo $annonce->getCreateur()->getId();
+        echo $template->render('modifierAnnonce.html.twig',[
+            'annonce'=> $annonce,
+        ]);
+    }
 }

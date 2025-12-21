@@ -161,6 +161,27 @@ $pdoStatement->execute([
 ]);
 
     }
+    public function modifier(Annonce $annonce){
+        $pdoStatement= $this->pdo;
+        $sql = 'UPDATE Annonce SET titre=:titre,
+                                   description=:description,
+                                   typeService=:typeService,
+                                   lieu=:lieu,
+                                   remuneration=:remuneration,
+                                   dateDebutRealisation=:dateDebutRealisation,
+                                   dateFinRealisation=:dateFinRealisation
+                WHERE id=:id ';
+        $requete=$pdoStatement->prepare($sql);
+        $requete->execute([
+            'titre'=>$annonce->getTitre(),
+            'description'=> $annonce->getDescription(),
+            'typeService'=>$annonce->getTypeService(),
+            'lieu'=> $annonce->getLieu(),
+            'remuneration'=> $annonce->getRemuneration(),
+            'dateDebutRealisation'=> $annonce->getDateDebutRealisation(),
+            'dateFinRealisation'=> $annonce->getDateFinRealisation(),
+            'id'=> $annonce->getId()]);
+    }
 
     public function postuler($idAnnonce, $idEtudiant){
         // Postuler a une annonce
