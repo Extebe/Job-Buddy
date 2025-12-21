@@ -1,0 +1,57 @@
+{% extends 'base_template.html.twig' %}
+
+    {% block content %}
+        <div class="container">
+            <h1>Modifier l'annonce : {{ annonce.titre }}</h1>
+            <form action="index.php?controleur=annonce&methode=editerAnnonce&idParticulier={{ annonce.idParticulier.id }}" method="post" class="mt-4 w-75 mx-auto">
+                <input type="hidden" name="idAnnonce" value="{{ annonce.id }}">
+                <div class="mb-3">
+                    <label for="" class="form-label">Titre de l'annonce</label>
+                    <input type="text" class="form-control" id="titre" name="titre" value="{{ annonce.titre }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="select" class="form-label">Type de service</label>
+                    <select name="typeService" id="typeService" class="form-control" required>
+                        <option value="" selected disabled>--Selectionner le type--</option>
+                        <option {% if annonce.typeService == "baby-sitting" %}selected{% endif %}>baby-sitting</option>
+                        <option {% if annonce.typeService == "jardinage" %}selected{% endif %}>jardinage</option>
+                        <option {% if annonce.typeService == "bricolage" %}selected{% endif %}>bricolage</option>
+                        <option {% if annonce.typeService == "ménage" %}selected{% endif %}>ménage</option>
+                        <option {% if annonce.typeService == "transport" %}selected{% endif %}>transport</option>
+                        <option {% if annonce.typeService == "aide informatique" %}selected{% endif %}>aide informatique</option>
+                        <option {% if annonce.typeService == "aide aux devoirs" %}selected{% endif %}>aide aux devoirs</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Rémunération (€)</label>
+                    <input type="number" class="form-control" id="remuneration" name="remuneration" value="{{ annonce.remuneration}}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Lieu</label>
+                    <input type="text" class="form-control" id="lieu" name="lieu" value="{{ annonce.lieu}}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="date-time" class="form-label">Date début réalisation</label>
+                    <input type="datetime-local" class="form-control" id="dateDebut" name="dateDebut" value="{{ annonce.dateDebutRealisation }}" required >
+                </div>
+
+                <div class="date-time">
+                    <label for="" class="form-label">Date fin de réalisation</label>
+                    <input type="datetime-local" class="form-control" id="dateFin" name="dateFin" value="{{ annonce.dateFinRealisation }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="description" name="description"  value="{{ annonce.description }}" xrequired>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Modifier l'annonce</button>
+                </div>
+            </form>
+        </div>
+    {% endblock %}
