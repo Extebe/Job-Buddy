@@ -204,7 +204,6 @@ $pdoStatement->execute([
         $annonce = $pdoStatement1->fetch();
         if($annonce['idParticulier'] != $idParticulier){
             throw new Exception("Vous n'êtes pas autorisé à supprimer cette annonce.");
-            exit();
         }
         $sql2 ="DELETE FROM Postuler WHERE idAnnonce = :idAnnonce";
         $pdoStatement2 = $this->pdo->prepare($sql2);

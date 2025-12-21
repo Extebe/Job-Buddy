@@ -203,7 +203,6 @@ class ControllerAnnonce extends Controller {
 
         if ($annonce->getCreateur()->getId() != Utilisateur::getUser()->getId()){
             throw new Exception("Vous n'êtes pas autorisé à refuser cette candidature.");
-            exit();
         }
         if ($_GET['action'] === 'accepter') {
             // Accepter un étudiant
