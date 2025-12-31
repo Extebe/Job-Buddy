@@ -6,8 +6,8 @@ DROP TABLE IF EXISTS Postuler;
 DROP TABLE IF EXISTS Signalement;
 DROP TABLE IF EXISTS Annonce;
 DROP TABLE IF EXISTS Utilisateur;
+DROP TABLE IF EXISTS inscritnewsletter;
 */
-
 
 
 CREATE TABLE Utilisateur(
@@ -27,6 +27,7 @@ CREATE TABLE Utilisateur(
    tentativesEchouees INT DEFAULT 0 NOT NULL,
    dateDernierEchecConnexion DATETIME DEFAULT NULL, -- Date et heure du dernier échec de connexion
    statutCompte ENUM('actif', 'desactive') DEFAULT 'actif',
+   cvec VARCHAR(12),
    PRIMARY KEY(id)
 );
 
@@ -110,9 +111,10 @@ CREATE TABLE InscritNewsLetter(
 
 
 
-INSERT INTO Utilisateur VALUES(1, 'PARTICULIER', '123456789012', 'Dupont', 'Jean', '0123456789', '1990-05-15', 'jean.dupont@example.com', 'mdp123', NULL, 'Paris', '10 rue de Paris', '75001', 0, NULL, 'actif');
-INSERT INTO Utilisateur VALUES(2, 'ETUDIANT', '123456789013', 'Martin', 'Sophie', '0123456790', '2000-10-25', 'sophie.martin@example.com', 'mdp456', NULL, 'Lyon', '20 rue de Lyon', '69001', 0, NULL, 'actif');
-INSERT INTO Utilisateur VALUES(3, 'ADMINISTRATEUR', '123456789014', 'Leblanc', 'Pierre', '0123456791', '1985-03-10', 'pierre.leblanc@example.com', 'admin123', NULL, 'Marseille', '30 rue de Marseille', '13001', 0, NULL, 'actif');
+
+INSERT INTO Utilisateur VALUES(1, 'PARTICULIER', '123456789012', 'Dupont', 'Jean', '0123456789', '1990-05-15', 'jean.dupont@example.com', 'mdp123', NULL, 'Paris', '10 rue de Paris', '75001', 0, NULL, 'actif',NULL);
+INSERT INTO Utilisateur VALUES(2, 'ETUDIANT', '123456789013', 'Martin', 'Sophie', '0123456790', '2000-10-25', 'sophie.martin@example.com', 'mdp456', NULL, 'Lyon', '20 rue de Lyon', '69001', 0, NULL, 'actif',NULL);
+INSERT INTO Utilisateur VALUES(3, 'ADMINISTRATEUR', '123456789014', 'Leblanc', 'Pierre', '0123456791', '1985-03-10', 'pierre.leblanc@example.com', 'admin123', NULL, 'Marseille', '30 rue de Marseille', '13001', 0, NULL, 'actif',NULL);
 
 INSERT INTO Annonce VALUES (1, 1, "Garde d'enfant", "Garde d'enfant pour une journée complète.", 'baby-sitting', 'Paris', 100.00, '2025-11-01 10:00:00', '2025-11-10 18:00:00', 'DISPONIBLE', '2025-11-01 10:00:00', NULL, NULL);
 INSERT INTO Annonce VALUES (2, 1, 'Réparation de plomberie', "Réparation d'une fuite d'eau.", 'bricolage', 'Lyon', 80.00, '2025-11-02 09:00:00', '2025-11-05 17:00:00', 'ACCEPTE', '2025-11-02 09:00:00', NULL, NULL);

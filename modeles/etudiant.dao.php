@@ -105,8 +105,13 @@ WHERE id = :id
 }
 
     public function insererUtilisateur($user, $passwordHache): void {
-    $requete = "INSERT INTO Utilisateur (role, codeINE, nom, prenom, tel, dateNaiss, email, mdp, ville, adresse, codePostal,tentativesEchouees,dateDernierEchecConnexion,statutCompte) 
-    values (:role, :codeINE, :nom, :prenom, :tel, :dateNaiss, :email, :mdp, :ville, :adresse, :codePostal,:tentativesEchouees,:dateDernierEchecConnexion,:statutCompte);";
+        if (!$user->verifierCvecAvecINE($user->getCvec(),$user->getNom(),$user->getCodeINE())){
+            throw new Exception("CVEC invalide");
+           // header('Location: index.php?controller=utilisateur&method=pageInscription');
+            exit();
+        }
+    $requete = "INSERT INTO Utilisateur (role, codeINE, nom, prenom, tel, dateNaiss, email, mdp, ville, adresse, codePostal,tentativesEchouees,dateDernierEchecConnexion,statutCompte,cvec) 
+    values (:role, :codeINE, :nom, :prenom, :tel, :dateNaiss, :email, :mdp, :ville, :adresse, :codePostal,:tentativesEchouees,:dateDernierEchecConnexion,:statutCompte,:cvec);";
     $pdoStatement = $this->pdo->prepare($requete);
     $pdoStatement->execute([
         ':role' => 'Etudiant',
@@ -122,7 +127,8 @@ WHERE id = :id
         ':codePostal' => $user->getCodePostal(),
         ':tentativesEchouees' => 0,
         ':dateDernierEchecConnexion' => null,
-        ':statutCompte' => 'actif'
+        ':statutCompte' => 'actif',
+        ':cvec' => $user->getCvec()
         ]);
     }
 }

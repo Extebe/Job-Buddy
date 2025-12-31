@@ -22,39 +22,61 @@
             </div>
             {# -------------------------------------------------------------------------------------------------- #}
             <div class="mb-3">
-                <label for="select" class="form-label">Role :</label>
-                <select name="role" id="role" class="form-control" required onchange='faireApparaitreCodeINE()'>
+                <label for="role" class="form-label">Rôle :</label>
+                <select name="role" id="role" class="form-control" required onchange="toggleEtudiantFields()">
                     <option value="" selected disabled>-- Choisissez une option --</option>
-                    <option>Particulier</option>
-                    <option>Etudiant</option>
+                    <option value="Particulier">Particulier</option>
+                    <option value="Etudiant">Etudiant</option>
                 </select>
             </div>
 
-            <div class="mb-3" id="id_code" style="display:none;">
-                <label for="text" class="form-label">Code INE :</label>
-                <input type="text" name="codeINE" id="codeINE" class="form-control" required>
+            <div class="mb-3" id="blocINE" style="display:none;">
+                <label for="codeINE" class="form-label">Code INE :</label>
+                <input type="text" name="codeINE" id="codeINE" class="form-control">
             </div>
 
-            {# Ce script permet de faire apparaitre le champ 
-               du code INE si l'utilisateur s'inscrit en tant
-               qu'étudiant. #}
+            <div class="mb-3" id="blocCVEC" style="display:none;">
+                <label for="cvec" class="form-label">Numéro CVEC :</label>
+                <input 
+                    type="text" 
+                    name="cvec" 
+                    id="cvec" 
+                    class="form-control" 
+                    minlength="12" 
+                    maxlength="12" 
+                    pattern="^[A-Za-z0-9]{12}$" 
+                    title="Le CVEC doit comporter exactement 12 caractères sans espace"
+                    required
+                >
+            </div>
+
+
             <script>
-                function faireApparaitreCodeINE(){
-                    const roleSelectionne = document.getElementById('role');
-                    const partiDivINE = document.getElementById('id_code');
-                    const inputCodeINE = document.getElementById('codeINE'); //permet de activer ou non le required sur le champ codeINE
-                    
-                    if (roleSelectionne.value==='Etudiant'){
-                        partiDivINE.style.display='block';//affiche la partie INE
-                        inputCodeINE.required=true;
+                function toggleEtudiantFields() {
+                    const role = document.getElementById('role').value;
+
+                    const blocINE = document.getElementById('blocINE');
+                    const blocCVEC = document.getElementById('blocCVEC');
+                    const inputINE = document.getElementById('codeINE');
+                    const inputCVEC = document.getElementById('cvec');
+
+                    if (role === 'Etudiant') {
+                        blocINE.style.display = 'block';
+                        blocCVEC.style.display = 'block';
+                        inputINE.required = true;
+                        inputCVEC.required = true;
+                    } else {
+                        blocINE.style.display = 'none';
+                        blocCVEC.style.display = 'none';
+                        inputINE.required = false;
+                        inputCVEC.required = false;
+                        inputINE.value = '';
+                        inputCVEC.value = '';
                     }
-                    else{
-                        partiDivINE.style.display='none';
-                        inputCodeINE.required=false;
-                        inputCodeINE.value="";
-                    }
-                    }
+                }
             </script>
+
+
             {# -------------------------------------------------------------------------------------------------- #}
 
             <div class="mb-3">

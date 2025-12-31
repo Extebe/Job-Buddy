@@ -114,9 +114,10 @@ class ControllerUtilisateur extends Controller
             $codePostal = $_POST['codePostal'] ?? '';
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
+            $cvec = $_POST['cvec'] ?? '';
 
             if ($role == 'Etudiant') {
-                $user = new Etudiant(null, $codeINE, $nom,  $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null);
+                $user = new Etudiant($id=null, $codeINE, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null, $cvec);
 
             } else {
                 $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null);
@@ -145,7 +146,12 @@ class ControllerUtilisateur extends Controller
                         $_SESSION['msg_erreur']="Erreur : Mot de passe invalide." . $user->getId() . $user->getNom() . $user->getPrenom() . $user->getTel() . $user->getDateNaiss() . $user->getEmail() . $user->getMdp() . $user->getAdresse() . $user->getVille() . $user->getCodePostal() . $user->getDateSuppression() . $email."
                         Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
-                        exit();                        
+                        exit();     
+                        
+                    case "CVEC invalide":
+                        $_SESSION['msg_erreur']="Erreur : CVEC invalide.";
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
+                        exit();
 
                     default:
                         $_SESSION['msg_erreur']="Une erreur inattendue est survenue : {$e->getMessage()}";
