@@ -14,10 +14,29 @@ class EtudiantDAO extends UtilisateurDAO{
 
     public function find(?int $id): ?Etudiant
     {
-        $sql = "SELECT * FROM Utilisateur WHERE code = :id AND role = 'ETUDIANT'";
+        $sql = "SELECT 
+    id,
+    codeINE,
+    nom,
+    prenom,
+    tel,
+    dateNaiss,
+    role,
+    email,
+    mdp,
+    adresse,
+    ville,
+    codePostal,
+    dateSuppression,
+    tentativesEchouees,
+    dateDernierEchecConnexion,
+    statutCompte
+FROM Utilisateur
+WHERE id = :id
+  AND role = 'ETUDIANT'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$id));
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Utilisateur');
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Etudiant');
         $etudiant = $pdoStatement->fetch();
         return $etudiant;
     }
@@ -73,20 +92,26 @@ class EtudiantDAO extends UtilisateurDAO{
 
 
         public function findByAnnonce($annonceId): ?Etudiant{
-        $sql = "SELECT UTILISATEUR.* FROM Annonce JOIN POSTULER ON POSTULER.idAnnonce=ANNONCE.id JOIN UTILISATEUR ON POSTULER.idEtudiant=UTILISATEUR.id WHERE ANNONCE.id= :id";
+        $sql = "SELECT utilisateur.* FROM Annonce JOIN Postuler ON Postuler.idAnnonce=Annonce.id JOIN utilisateur ON Postuler.idEtudiant=utilisateur.id WHERE Annonce.id = :id AND utilisateur.role = 'ETUDIANT' AND Postuler.estAccepte='1'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id"=>$annonceId));
-        $row = $pdoStatement->fetch();
-        if ($row === false) {
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $pdoStatement->fetch();        
+          if ($row === false) {
         return null;
-        }
-
-    return $this->hydrate($row);
     }
 
+    return $this->hydrate($row);
+}
+
     public function insererUtilisateur($user, $passwordHache): void {
-    $requete = "INSERT INTO Utilisateur (role, codeINE, nom, prenom, tel, dateNaiss, email, mdp, ville, adresse, codePostal,tentativesEchouees,dateDernierEchecConnexion,statutCompte) 
-    values (:role, :codeINE, :nom, :prenom, :tel, :dateNaiss, :email, :mdp, :ville, :adresse, :codePostal,:tentativesEchouees,:dateDernierEchecConnexion,:statutCompte);";
+        if (!$user->verifierCvecAvecINE($user->getCvec(),$user->getNom(),$user->getCodeINE())){
+            throw new Exception("CVEC invalide");
+           // header('Location: index.php?controller=utilisateur&method=pageInscription');
+            exit();
+        }
+    $requete = "INSERT INTO Utilisateur (role, codeINE, nom, prenom, tel, dateNaiss, email, mdp, ville, adresse, codePostal,tentativesEchouees,dateDernierEchecConnexion,statutCompte,cvec) 
+    values (:role, :codeINE, :nom, :prenom, :tel, :dateNaiss, :email, :mdp, :ville, :adresse, :codePostal,:tentativesEchouees,:dateDernierEchecConnexion,:statutCompte,:cvec);";
     $pdoStatement = $this->pdo->prepare($requete);
     $pdoStatement->execute([
         ':role' => 'Etudiant',
@@ -102,7 +127,8 @@ class EtudiantDAO extends UtilisateurDAO{
         ':codePostal' => $user->getCodePostal(),
         ':tentativesEchouees' => 0,
         ':dateDernierEchecConnexion' => null,
-        ':statutCompte' => 'actif'
+        ':statutCompte' => 'actif',
+        ':cvec' => $user->getCvec()
         ]);
     }
 }

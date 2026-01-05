@@ -7,10 +7,10 @@
     
     public function afficher(){
         $template=$this->getTwig();
-        echo $template->render('inscriptionNewsLetter.html.twig');
+        echo $template->render('inscriptionNewsLetter.html.twig',['user'=>Utilisateur::getUser()]);
     }
     public function afficherPolitiqueConfidentialite(){
         $template=$this->getTwig();
-        echo $template->render('politiqueConfidentialite.html.twig');
+        echo $template->render('politiqueConfidentialite.html.twig',['user'=>Utilisateur::getUser()]);
     }
     }

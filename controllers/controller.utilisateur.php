@@ -72,14 +72,11 @@ class ControllerUtilisateur extends Controller
             throw new Exception("compte_existant");
         }
 
-        // Obtention de l'instance PDO
-        $baseDeDonnees = Bd::getInstance();
-
         // Hachage du mot de passe
         $passwordHache = password_hash($user->getMdp(), PASSWORD_BCRYPT);
 
-        // Requête d'insertion
-        $pdo = $baseDeDonnees->getConnexion();
+        // Obtention de l'instance PDO
+        $pdo = $this->getPdo();
 
 
         //verification type d'utilisateur
@@ -117,9 +114,10 @@ class ControllerUtilisateur extends Controller
             $codePostal = $_POST['codePostal'] ?? '';
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
+            $cvec = $_POST['cvec'] ?? '';
 
             if ($role == 'Etudiant') {
-                $user = new Etudiant(null, $codeINE, $nom,  $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null);
+                $user = new Etudiant($id=null, $codeINE, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null, $cvec);
 
             } else {
                 $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null);
@@ -148,7 +146,12 @@ class ControllerUtilisateur extends Controller
                         $_SESSION['msg_erreur']="Erreur : Mot de passe invalide." . $user->getId() . $user->getNom() . $user->getPrenom() . $user->getTel() . $user->getDateNaiss() . $user->getEmail() . $user->getMdp() . $user->getAdresse() . $user->getVille() . $user->getCodePostal() . $user->getDateSuppression() . $email."
                         Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
-                        exit();                        
+                        exit();     
+                        
+                    case "CVEC invalide":
+                        $_SESSION['msg_erreur']="Erreur : CVEC invalide.";
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
+                        exit();
 
                     default:
                         $_SESSION['msg_erreur']="Une erreur inattendue est survenue : {$e->getMessage()}";
@@ -172,7 +175,7 @@ class ControllerUtilisateur extends Controller
         $user->setDateDernierEchecConnexion(null);
 
         // Mise à jour dans la base de données
-        $bd=Bd::getInstance()->getConnexion();
+        $bd=$this->getPdo();
         $requete=$bd->prepare('UPDATE Utilisateur 
                            SET tentativesEchouees = 0, 
                                dateDernierEchecConnexion = NULL 
@@ -212,7 +215,7 @@ class ControllerUtilisateur extends Controller
         $user->setStatutCompte('actif');
 
         // Mise à jour dans la base de données
-        $bd=Bd::getInstance()->getConnexion();
+        $bd=$this->getPdo();
         $requete=$bd->prepare('UPDATE Utilisateur 
                                SET tentativesEchouees = 0, 
                                    dateDernierEchecConnexion = NULL, 
@@ -234,7 +237,7 @@ class ControllerUtilisateur extends Controller
         $nbTentative=$user->getTentativesEchouees() + 1;
         $user->setTentativesEchouees($nbTentative);
 
-        $bd=Bd::getInstance()->getConnexion();
+        $bd=$this->getPdo();
 
         if($user->getTentativesEchouees() >= $constantesConnexion['MAX_CONNEXIONS_ECHOUEES']){
             // Désactivation du compte
@@ -274,9 +277,7 @@ class ControllerUtilisateur extends Controller
      =======================================*/
     public function authentification(Utilisateur $user):bool{
         // création d'une instance de la bd
-        $baseDeDonnees = Bd::getInstance();
-
-        $pdo = $baseDeDonnees->getConnexion();
+        $pdo = $this->getPdo();
 
         // Recherche de l'utilisateur
         $requete= $pdo->prepare(
@@ -383,6 +384,10 @@ class ControllerUtilisateur extends Controller
      * 
      ===============================*/
     public function afficheCompte(){
+        if (!Utilisateur::getUser()) {
+            header('Location: index.php');
+            exit;
+        }
         $template = $this->getTwig();
 
         echo $template->render('pageCompte.html.twig', [
@@ -397,6 +402,10 @@ class ControllerUtilisateur extends Controller
      * 
      ===============================*/
     public function pageModifierCompte(){
+        if (!Utilisateur::getUser()) {
+            header('Location: index.php');
+            exit;
+        }
         $template = $this->getTwig();
 
         echo $template->render('pageModifierCompte.html.twig', [
@@ -473,6 +482,39 @@ class ControllerUtilisateur extends Controller
 
         
         echo $template->render('pageCompte.html.twig', [
+            'user' => Utilisateur::getUser(),
+        ]);
+    }
+
+    /*==============================
+     *
+     *  Inscrit l'utilisateur 
+     *  à la newsletter
+     * 
+     ===============================*/
+    public function newsletter(): void{
+        if($_SERVER['REQUEST_METHOD'] ==='POST'){
+            $email=$_POST['email'];
+            $pdoNewsLetter = new NewLetterDao($this->getPdo());
+            
+            if(!$pdoNewsLetter->emailExisteNewsletter($email)){
+                $newsLetter=new NewLetter(null, $email);
+                $pdoNewsLetter->insererEmail($newsLetter);
+                echo "l'email a bien été enregistrer dans la base de données";
+            }
+            echo "Vous vous êtes déjà inscrit.";
+            echo "<a href='index.php'> Retour à la page d'accueil</a>";
+        }
+    }
+
+    public function admin(){
+        $template = $this->getTwig();
+        if (!Utilisateur::getUser() || Utilisateur::getUser()->getRole() !== 'Etudiant') {
+            header('Location: index.php');
+            exit;
+        }
+
+        echo $template->render('pageAdmin.html.twig', [
             'user' => Utilisateur::getUser(),
         ]);
     }

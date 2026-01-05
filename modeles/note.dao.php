@@ -24,7 +24,7 @@ class NoteDao{
 
     public function findByUser(string $idAuteur): array{
         //requete
-        $sql = "SELECT * FROM Note where idUtilisateurNote = :idAuteur";
+        $sql = "SELECT * FROM Note where idUtilisateurNote = :idAuteur OR idUtilisateurNoteur = :idAuteur";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(['idAuteur' => $idAuteur]);
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
@@ -33,14 +33,15 @@ class NoteDao{
 
     }
 
-        public function findByUsers(string $idAuteur,string $idReceveur): array{
+        public function findByUsers(string $idAuteur,string $idReceveur): ?Note{
         //requete
         $sql = "SELECT * FROM Note where idUtilisateurNoteur = :idAuteur AND idUtilisateurNote = :idReceveur";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(['idAuteur' => $idAuteur, 'idReceveur' => $idReceveur]);
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
-        $notes = $pdoStatement->fetchAll();  
-        return $notes;
+        $notes = $pdoStatement->fetch();  
+
+        return $this->hydrate($notes);
 
     }
 

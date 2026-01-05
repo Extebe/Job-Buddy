@@ -31,6 +31,9 @@ require_once "modeles/signalementAnnonce.dao.php";
 require_once "modeles/signalementUtilisateur.class.php";
 require_once "modeles/signalementUtilisateur.dao.php";
 
+require_once "modeles/newsLetter.class.php";
+require_once "modeles/newsLetter.dao.php";
+
 require_once "modeles/valide.class.php";
 
 // Controleurs
