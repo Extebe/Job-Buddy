@@ -246,7 +246,7 @@ class Annonce {
      */
     public function getCreateur(): ?Particulier
     {
-        return $this->idParticulier;
+        return $this->particulier;
     }
 
     /**
@@ -254,7 +254,7 @@ class Annonce {
      */
     public function setCreateur(?Particulier $createur): void
     {
-        $this->idParticulier = $createur;
+        $this->particulier = $createur;
     }
 
     /**
