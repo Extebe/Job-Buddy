@@ -2,11 +2,13 @@
 
 require_once "include.php"; 
 
-class Annonce{
-    private ?string $id;
-    private ?Particulier $idParticulier;
+class Annonce {
+
+    private ?int $id;
+    private ?Particulier $particulier;
+
     private array $postulations = [];
-    private array $etuditantsSelectionnes = [];
+    private array $etudiantsSelectionnes = [];
 
     private ?string $titre;
     private ?string $description;
@@ -23,10 +25,9 @@ class Annonce{
     private ?string $dateSuppression;
     private ?string $motifSuppression;
 
-
     public function __construct(
-        ?string $id = null,
-        ?int $idParticulier = null,
+        ?int $id = null,
+        ?Particulier $particulier = null,
 
         ?string $titre = null,
         ?string $description = null,
@@ -42,11 +43,9 @@ class Annonce{
         ?string $datePublication = null,
         ?string $dateSuppression = null,
         ?string $motifSuppression = null,
-
     ) {
         $this->id = $id;
-        $particulierDAO = new ParticulierDAO(Bd::getInstance()->getConnexion());
-        $this->idParticulier = $particulierDAO->find($idParticulier);
+        $this->particulier = $particulier;
 
         $this->titre = $titre;
         $this->description = $description;
@@ -62,8 +61,9 @@ class Annonce{
         $this->datePublication = $datePublication;
         $this->dateSuppression = $dateSuppression;
         $this->motifSuppression = $motifSuppression;
-
     }
+
+
 
     /**
      * Get the value of id
@@ -294,7 +294,7 @@ class Annonce{
      */
     public function getEtuditantsSelectionnes(): ?array
     {
-        return $this->etuditantsSelectionnes;
+        return $this->etudiantsSelectionnes;
     }  
 
     /**
@@ -302,7 +302,7 @@ class Annonce{
      */
     public function setEtuditantsSelectionnes(?array $etuditantsSelectionnes): void
     {
-        $this->etuditantsSelectionnes = $etuditantsSelectionnes;
+        $this->etudiantsSelectionnes = $etuditantsSelectionnes;
     }
 
    /* public function delierParticulier(){

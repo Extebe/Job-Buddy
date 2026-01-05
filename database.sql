@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS Postuler;
 DROP TABLE IF EXISTS Signalement;
 DROP TABLE IF EXISTS Annonce;
 DROP TABLE IF EXISTS Utilisateur;
-DROP TABLE IF EXISTS inscritnewsletter;
+DROP TABLE IF EXISTS InscritNewsLetter;
 */
 
 

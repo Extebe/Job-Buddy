@@ -518,4 +518,40 @@ class ControllerUtilisateur extends Controller
             'user' => Utilisateur::getUser(),
         ]);
     }
+
+    public function gererUtilisateurs(){
+        $template = $this->getTwig();
+        if (!Utilisateur::getUser() || Utilisateur::getUser()->getRole() !== 'Etudiant') {
+            header('Location: index.php');
+            exit;
+        }
+
+        echo $template->render('pageGererUtilisateurs.html.twig', [
+            'user' => Utilisateur::getUser(),
+        ]);
+    }
+
+    public function gererAnnonces(){
+        $template = $this->getTwig();
+        if (!Utilisateur::getUser() || Utilisateur::getUser()->getRole() !== 'Etudiant') {
+            header('Location: index.php');
+            exit;
+        }
+
+        echo $template->render('pageGererAnnonces.html.twig', [
+            'user' => Utilisateur::getUser(),
+        ]);
+    }
+
+    public function gererNote(){
+        $template = $this->getTwig();
+        if (!Utilisateur::getUser() || Utilisateur::getUser()->getRole() !== 'Etudiant') {
+            header('Location: index.php');
+            exit;
+        }
+
+        echo $template->render('pageGererNotes.html.twig', [
+            'user' => Utilisateur::getUser(),
+        ]);
+    }
 }
