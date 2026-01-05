@@ -506,4 +506,16 @@ class ControllerUtilisateur extends Controller
             echo "<a href='index.php'> Retour à la page d'accueil</a>";
         }
     }
+
+    public function admin(){
+        $template = $this->getTwig();
+        if (!Utilisateur::getUser() || Utilisateur::getUser()->getRole() !== 'Etudiant') {
+            header('Location: index.php');
+            exit;
+        }
+
+        echo $template->render('pageAdmin.html.twig', [
+            'user' => Utilisateur::getUser(),
+        ]);
+    }
 }
