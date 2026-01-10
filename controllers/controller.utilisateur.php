@@ -1,19 +1,24 @@
 <?php
 require_once "include.php";
 
+/**
+ * @file    controller.utilisateur.php
+ * 
+ * @brief
+ */ 
+
 class ControllerUtilisateur extends Controller
 {
     public function __construct(\Twig\Environment $twig, \Twig\Loader\FilesystemLoader $loader)
     {
         parent::__construct($twig, $loader);
     }
-    
-    /*==============================
-     *
+
+    /**
      *  Pous se connecter à la page 
      *  de connexion
-     * 
-     ===============================*/
+     * @return void
+     */
     public function pageConnexion(){
         //En cas d'erreur 
         if(isset($_SESSION['msg_erreur'])){
@@ -24,15 +29,14 @@ class ControllerUtilisateur extends Controller
         $template = $this->getTwig();
         echo $template->render('pageDeConnexion.html.twig', [
             'user' => Utilisateur::getUser()
-        ]);
+        ]);     
     }
 
-    /*==============================
-     *
-     *  Pous se connecter à la page 
-     *  d'inscription
-     * 
-     ===============================*/
+    /**
+     * Pous se connecter à la page 
+     * d'inscription
+     * @return void
+     */
     public function pageInscription(){
         //En cas d'erreur 
         if(isset($_SESSION['msg_erreur'])){
