@@ -1,0 +1,73 @@
+\doxysection{Référence de la classe Bd}
+\hypertarget{class_bd}{}\label{class_bd}\index{Bd@{Bd}}
+
+
+Classe de gestion de la connexion à la base de données (Singleton).  
+
+
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_bd_ab77517a7005e51318adb48c4986189aa}{get\+Connexion}} ()
+\begin{DoxyCompactList}\small\item\em Récupère la connexion PDO. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_bd_a19dd44fe063cfd1cbafe97452e57666c}{\+\_\+\+\_\+wakeup}} ()
+\begin{DoxyCompactList}\small\item\em Empêche la désérialisation de l\textquotesingle{}objet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_bd_ac93fbec81f07e5d15f80db907e63dc10}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Récupère l\textquotesingle{}instance unique de la classe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe de gestion de la connexion à la base de données (Singleton). 
+
+\label{doc-func-members}
+\Hypertarget{class_bd_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_bd_a19dd44fe063cfd1cbafe97452e57666c}\index{Bd@{Bd}!\_\_wakeup@{\_\_wakeup}}
+\index{\_\_wakeup@{\_\_wakeup}!Bd@{Bd}}
+\doxysubsubsection{\texorpdfstring{\_\_wakeup()}{\_\_wakeup()}}
+{\footnotesize\ttfamily \label{class_bd_a19dd44fe063cfd1cbafe97452e57666c} 
+\+\_\+\+\_\+wakeup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Empêche la désérialisation de l\textquotesingle{}objet. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Toujours. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_bd_ab77517a7005e51318adb48c4986189aa}\index{Bd@{Bd}!getConnexion@{getConnexion}}
+\index{getConnexion@{getConnexion}!Bd@{Bd}}
+\doxysubsubsection{\texorpdfstring{getConnexion()}{getConnexion()}}
+{\footnotesize\ttfamily \label{class_bd_ab77517a7005e51318adb48c4986189aa} 
+get\+Connexion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère la connexion PDO. 
+
+\begin{DoxyReturn}{Renvoie}
+PDO L\textquotesingle{}objet connexion. 
+\end{DoxyReturn}
+\Hypertarget{class_bd_ac93fbec81f07e5d15f80db907e63dc10}\index{Bd@{Bd}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!Bd@{Bd}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_bd_ac93fbec81f07e5d15f80db907e63dc10} 
+get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Récupère l\textquotesingle{}instance unique de la classe. 
+
+\begin{DoxyReturn}{Renvoie}
+\doxylink{class_bd}{Bd} L\textquotesingle{}instance. 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+modeles/\+\doxymbox{\hyperlink{bd_8class_8php}{bd.\+class.\+php}}\end{DoxyCompactItemize}

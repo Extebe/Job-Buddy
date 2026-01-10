@@ -3,14 +3,29 @@
 require_once "include.php";
 
 
-class NoteDao{
+/**
+ * @brief DAO pour la gestion des notes.
+ */
+class NoteDao
+{
+    /** @var PDO|null $pdo Objet de connexion à la base de données. */
     private ?PDO $pdo;
 
-    public function __construct(?PDO $pdo=null){
+    /**
+     * @brief Constructeur du DAO Note.
+     * @param PDO|null $pdo Instance de PDO.
+     */
+    public function __construct(?PDO $pdo = null)
+    {
         $this->pdo = $pdo;
     }
-    
-    public function findAllAssoc(): array{
+
+    /**
+     * @brief Récupère toutes les notes sous forme d'objets.
+     * @return array Tableau d'objets Note.
+     */
+    public function findAllAssoc(): array
+    {
         //requete
         $sql = "SELECT * FROM Note";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -22,58 +37,89 @@ class NoteDao{
     }
 
 
-    public function findByUser(string $idAuteur): array{
+    /**
+     * @brief Trouve les notes associées à un utilisateur (auteur ou destinataire).
+     * @param string $idAuteur ID de l'utilisateur.
+     * @return array Tableau de notes (associatif).
+     */
+    public function findByUser(string $idAuteur): array
+    {
         //requete
         $sql = "SELECT * FROM Note where idUtilisateurNote = :idAuteur OR idUtilisateurNoteur = :idAuteur";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(['idAuteur' => $idAuteur]);
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
-        $notes = $pdoStatement->fetchAll();  
+        $notes = $pdoStatement->fetchAll();
         return $notes;
 
     }
 
-        public function findByUsers(string $idAuteur,string $idReceveur): ?Note{
+    /**
+     * @brief Trouve une note entre deux utilisateurs spécifiques.
+     * @param string $idAuteur ID de l'auteur.
+     * @param string $idReceveur ID du destinataire.
+     * @return Note|null La note trouvée ou null.
+     */
+    public function findByUsers(string $idAuteur, string $idReceveur): ?Note
+    {
         //requete
         $sql = "SELECT * FROM Note where idUtilisateurNoteur = :idAuteur AND idUtilisateurNote = :idReceveur";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(['idAuteur' => $idAuteur, 'idReceveur' => $idReceveur]);
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
-        $notes = $pdoStatement->fetch();  
+        $notes = $pdoStatement->fetch();
 
         return $this->hydrate($notes);
 
     }
 
-    public function hydrate ($tableau): ?Note{
+    /**
+     * @brief Hydrate un objet Note.
+     * @param array $tableau Données de la note.
+     * @return Note|null L'objet Note hydraté.
+     */
+    public function hydrate($tableau): ?Note
+    {
         $note = new Note();
         $note->setId($tableau['id'] ?? null);
         $note->setValeur($tableau['note'] ?? null);
         $note->setCommentaire($tableau['commentaire'] ?? null);
         //hydratation de annonce
-        $annonceDAO=new AnnonceDAO($this->pdo);
-        $annonce=$annonceDAO->find($tableau['idAnnonce'] ?? null);
+        $annonceDAO = new AnnonceDAO($this->pdo);
+        $annonce = $annonceDAO->find($tableau['idAnnonce'] ?? null);
         $note->setAnnonce($annonce ?? null);
         //hydratation des utilisateurs
-        $utilisateurDAO=new UtilisateurDAO($this->pdo);
-        $auteur=$utilisateurDAO->findById($tableau['idUtilisateurNoteur'] ?? null);
+        $utilisateurDAO = new UtilisateurDAO($this->pdo);
+        $auteur = $utilisateurDAO->findById($tableau['idUtilisateurNoteur'] ?? null);
         $note->setAuteur($auteur ?? null);
-        $receveur=$utilisateurDAO->findById($tableau['idUtilisateurNote'] ?? null);
+        $receveur = $utilisateurDAO->findById($tableau['idUtilisateurNote'] ?? null);
         $note->setReceveur($receveur ?? null);
-        
+
         return $note;
 
     }
 
-        public function hydrateAll($tableau): ?array{
+    /**
+     * @brief Hydrate une liste de notes.
+     * @param array $tableau Tableau de données.
+     * @return array Tableau d'objets Note.
+     */
+    public function hydrateAll($tableau): ?array
+    {
         $notes = [];
-        foreach($tableau as $tableauAssoc){//tableauAssoc = chaque ligne
+        foreach ($tableau as $tableauAssoc) {//tableauAssoc = chaque ligne
             $note = $this->hydrate($tableauAssoc);
             $notes[] = $note;
         }
         return $notes;
     }
-    public function insert(Note $note): void{
+
+    /**
+     * @brief Insère une nouvelle note dans la base de données.
+     * @param Note $note La note à insérer.
+     */
+    public function insert(Note $note): void
+    {
         $sql = "INSERT INTO Note (idAnnonce, idUtilisateurNoteur, idUtilisateurNote, note, commentaire) VALUES (:idAnnonce, :idUtilisateurNoteur, :idUtilisateurNote, :note, :commentaire)";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute([
@@ -84,5 +130,5 @@ class NoteDao{
             'idAnnonce' => $note->getAnnonce() ? $note->getAnnonce()->getId() : null
         ]);
     }
-    
+
 }

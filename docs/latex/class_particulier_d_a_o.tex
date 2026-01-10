@@ -1,0 +1,199 @@
+\doxysection{Référence de la classe Particulier\+DAO}
+\hypertarget{class_particulier_d_a_o}{}\label{class_particulier_d_a_o}\index{ParticulierDAO@{ParticulierDAO}}
+
+
+DAO pour la gestion des particuliers.  
+
+
+Graphe d\textquotesingle{}héritage de Particulier\+DAO:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_particulier_d_a_o}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_particulier_d_a_o_a73a1b0348919b6755e4f69dcc70eba64}{find\+All}} ()
+\begin{DoxyCompactList}\small\item\em Récupère tous les particuliers. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_particulier_d_a_o_a48d48013b7a2536dff0ae9cdda03dd7e}{find}} (?int \$id)
+\begin{DoxyCompactList}\small\item\em Trouve un particulier par son ID. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_particulier_d_a_o_a584ce41683cc8dfa9f035be21416074d}{find\+All\+Assoc}} ()
+\begin{DoxyCompactList}\small\item\em Récupère tous les particuliers sous forme de tableau associatif. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_particulier_d_a_o_a5094aa92cda0504aa7484dd4c5d89230}{find\+Assoc}} (?int \$id)
+\begin{DoxyCompactList}\small\item\em Trouve un particulier par son ID (retourne tableau associatif). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_particulier_d_a_o_a032e41fc8637f72f820e7aefd1fd853f}{find\+By\+Annonce}} (\$annonce\+Id)
+\begin{DoxyCompactList}\small\item\em Trouve le propriétaire particulier d\textquotesingle{}une annonce. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_particulier_d_a_o_af25ea6725e23d399c8ad498f5a6aa930}{hydrate}} (\$tableau\+Assoc)
+\begin{DoxyCompactList}\small\item\em Hydrate un objet \doxylink{class_particulier}{Particulier}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_particulier_d_a_o_aae459ccc748352d1ea084aeebf039ba5}{hydrate\+All}} (\$tableau)
+\begin{DoxyCompactList}\small\item\em Hydrate une liste de particuliers. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_particulier_d_a_o_a0ab36660fe80df95dc4c95829a16ebbf}{inserer\+Utilisateur}} (\$user, \$password\+Hache)
+\begin{DoxyCompactList}\small\item\em Insère un nouveau particulier dans la base de données. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \doxymbox{\hyperlink{class_utilisateur_d_a_o}{Utilisateur\+DAO}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_a547eaaa1e35bdd4cab1800ac47b3a3b0}{\+\_\+\+\_\+construct}} (?PDO \$pdo=null)
+\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_a6e7560ad95a7986be67f7528c80e7f1a}{get\+Pdo}} ()
+\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_aafe9ccc8334eff61c1211a7aba46d93b}{set\+Pdo}} (\$pdo)
+\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_a5a59ccff97f9fdc206c3a9dd69584c44}{find\+By\+Id}} (?string \$id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Membres hérités additionnels}
+\doxysubsection*{Attributs protégés hérités de \doxymbox{\hyperlink{class_utilisateur_d_a_o}{Utilisateur\+DAO}}}
+\begin{DoxyCompactItemize}
+\item 
+PDO \doxymbox{\hyperlink{class_utilisateur_d_a_o_a9db61e1721b616500bce6ed60491752a}{\$pdo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+DAO pour la gestion des particuliers. 
+
+\label{doc-func-members}
+\Hypertarget{class_particulier_d_a_o_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_particulier_d_a_o_a48d48013b7a2536dff0ae9cdda03dd7e}\index{ParticulierDAO@{ParticulierDAO}!find@{find}}
+\index{find@{find}!ParticulierDAO@{ParticulierDAO}}
+\doxysubsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily \label{class_particulier_d_a_o_a48d48013b7a2536dff0ae9cdda03dd7e} 
+find (\begin{DoxyParamCaption}\item[{?int}]{\$id}{}\end{DoxyParamCaption})}
+
+
+
+Trouve un particulier par son ID. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | null & {\em \$id} & ID du particulier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Particulier\texorpdfstring{$\vert$}{|}null Le particulier trouvé. 
+\end{DoxyReturn}
+\Hypertarget{class_particulier_d_a_o_a73a1b0348919b6755e4f69dcc70eba64}\index{ParticulierDAO@{ParticulierDAO}!findAll@{findAll}}
+\index{findAll@{findAll}!ParticulierDAO@{ParticulierDAO}}
+\doxysubsubsection{\texorpdfstring{findAll()}{findAll()}}
+{\footnotesize\ttfamily \label{class_particulier_d_a_o_a73a1b0348919b6755e4f69dcc70eba64} 
+find\+All (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère tous les particuliers. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau d\textquotesingle{}objets \doxylink{class_particulier}{Particulier}. 
+\end{DoxyReturn}
+\Hypertarget{class_particulier_d_a_o_a584ce41683cc8dfa9f035be21416074d}\index{ParticulierDAO@{ParticulierDAO}!findAllAssoc@{findAllAssoc}}
+\index{findAllAssoc@{findAllAssoc}!ParticulierDAO@{ParticulierDAO}}
+\doxysubsubsection{\texorpdfstring{findAllAssoc()}{findAllAssoc()}}
+{\footnotesize\ttfamily \label{class_particulier_d_a_o_a584ce41683cc8dfa9f035be21416074d} 
+find\+All\+Assoc (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère tous les particuliers sous forme de tableau associatif. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau associatif. 
+\end{DoxyReturn}
+\Hypertarget{class_particulier_d_a_o_a5094aa92cda0504aa7484dd4c5d89230}\index{ParticulierDAO@{ParticulierDAO}!findAssoc@{findAssoc}}
+\index{findAssoc@{findAssoc}!ParticulierDAO@{ParticulierDAO}}
+\doxysubsubsection{\texorpdfstring{findAssoc()}{findAssoc()}}
+{\footnotesize\ttfamily \label{class_particulier_d_a_o_a5094aa92cda0504aa7484dd4c5d89230} 
+find\+Assoc (\begin{DoxyParamCaption}\item[{?int}]{\$id}{}\end{DoxyParamCaption})}
+
+
+
+Trouve un particulier par son ID (retourne tableau associatif). 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | null & {\em \$id} & ID du particulier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array\texorpdfstring{$\vert$}{|}null Tableau de données. 
+\end{DoxyReturn}
+\Hypertarget{class_particulier_d_a_o_a032e41fc8637f72f820e7aefd1fd853f}\index{ParticulierDAO@{ParticulierDAO}!findByAnnonce@{findByAnnonce}}
+\index{findByAnnonce@{findByAnnonce}!ParticulierDAO@{ParticulierDAO}}
+\doxysubsubsection{\texorpdfstring{findByAnnonce()}{findByAnnonce()}}
+{\footnotesize\ttfamily \label{class_particulier_d_a_o_a032e41fc8637f72f820e7aefd1fd853f} 
+find\+By\+Annonce (\begin{DoxyParamCaption}\item[{}]{\$annonce\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Trouve le propriétaire particulier d\textquotesingle{}une annonce. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$annonce\+Id} & ID de l\textquotesingle{}annonce. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Particulier\texorpdfstring{$\vert$}{|}null Le propriétaire. 
+\end{DoxyReturn}
+\Hypertarget{class_particulier_d_a_o_af25ea6725e23d399c8ad498f5a6aa930}\index{ParticulierDAO@{ParticulierDAO}!hydrate@{hydrate}}
+\index{hydrate@{hydrate}!ParticulierDAO@{ParticulierDAO}}
+\doxysubsubsection{\texorpdfstring{hydrate()}{hydrate()}}
+{\footnotesize\ttfamily \label{class_particulier_d_a_o_af25ea6725e23d399c8ad498f5a6aa930} 
+hydrate (\begin{DoxyParamCaption}\item[{}]{\$tableau\+Assoc}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate un objet \doxylink{class_particulier}{Particulier}. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tableau\+Assoc} & Données du particulier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Particulier\texorpdfstring{$\vert$}{|}null L\textquotesingle{}objet \doxylink{class_particulier}{Particulier}. 
+\end{DoxyReturn}
+
+
+Réimplémentée à partir de \doxymbox{\hyperlink{class_utilisateur_d_a_o_a5ad2d39fc610ab7786c3f75b9f252cd3}{Utilisateur\+DAO}}.
+
+\Hypertarget{class_particulier_d_a_o_aae459ccc748352d1ea084aeebf039ba5}\index{ParticulierDAO@{ParticulierDAO}!hydrateAll@{hydrateAll}}
+\index{hydrateAll@{hydrateAll}!ParticulierDAO@{ParticulierDAO}}
+\doxysubsubsection{\texorpdfstring{hydrateAll()}{hydrateAll()}}
+{\footnotesize\ttfamily \label{class_particulier_d_a_o_aae459ccc748352d1ea084aeebf039ba5} 
+hydrate\+All (\begin{DoxyParamCaption}\item[{}]{\$tableau}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate une liste de particuliers. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tableau} & Tableau de données. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Tableau d\textquotesingle{}objets \doxylink{class_particulier}{Particulier}. 
+\end{DoxyReturn}
+\Hypertarget{class_particulier_d_a_o_a0ab36660fe80df95dc4c95829a16ebbf}\index{ParticulierDAO@{ParticulierDAO}!insererUtilisateur@{insererUtilisateur}}
+\index{insererUtilisateur@{insererUtilisateur}!ParticulierDAO@{ParticulierDAO}}
+\doxysubsubsection{\texorpdfstring{insererUtilisateur()}{insererUtilisateur()}}
+{\footnotesize\ttfamily \label{class_particulier_d_a_o_a0ab36660fe80df95dc4c95829a16ebbf} 
+inserer\+Utilisateur (\begin{DoxyParamCaption}\item[{}]{\$user}{, }\item[{}]{\$password\+Hache}{}\end{DoxyParamCaption})}
+
+
+
+Insère un nouveau particulier dans la base de données. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{class_particulier}{Particulier} & {\em \$user} & Le particulier à insérer. \\
+\hline
+string & {\em \$password\+Hache} & Mot de passe haché. \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+modeles/\+\doxymbox{\hyperlink{particulier_8dao_8php}{particulier.\+dao.\+php}}\end{DoxyCompactItemize}

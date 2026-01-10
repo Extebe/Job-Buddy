@@ -1,0 +1,63 @@
+\doxysection{Référence de la classe Valide}
+\hypertarget{class_valide}{}\label{class_valide}\index{Valide@{Valide}}
+
+
+Classe utilitaire pour les validations.  
+
+
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_valide_a742db5cf6ae30ade3e7c4af7ad40f78f}{email\+Existe}} (\$email)
+\begin{DoxyCompactList}\small\item\em Vérifie si une adresse email existe déjà dans la base. \end{DoxyCompactList}\item 
+static \doxymbox{\hyperlink{class_valide_af84c2a0b7cc20047b86498b032176d1b}{est\+Robuste}} (\$password)
+\begin{DoxyCompactList}\small\item\em Vérifie la robustesse d\textquotesingle{}un mot de passe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe utilitaire pour les validations. 
+
+\label{doc-func-members}
+\Hypertarget{class_valide_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_valide_a742db5cf6ae30ade3e7c4af7ad40f78f}\index{Valide@{Valide}!emailExiste@{emailExiste}}
+\index{emailExiste@{emailExiste}!Valide@{Valide}}
+\doxysubsubsection{\texorpdfstring{emailExiste()}{emailExiste()}}
+{\footnotesize\ttfamily \label{class_valide_a742db5cf6ae30ade3e7c4af7ad40f78f} 
+email\+Existe (\begin{DoxyParamCaption}\item[{}]{\$email}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Vérifie si une adresse email existe déjà dans la base. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$email} & L\textquotesingle{}email à vérifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool True si existe, False sinon. 
+\end{DoxyReturn}
+\Hypertarget{class_valide_af84c2a0b7cc20047b86498b032176d1b}\index{Valide@{Valide}!estRobuste@{estRobuste}}
+\index{estRobuste@{estRobuste}!Valide@{Valide}}
+\doxysubsubsection{\texorpdfstring{estRobuste()}{estRobuste()}}
+{\footnotesize\ttfamily \label{class_valide_af84c2a0b7cc20047b86498b032176d1b} 
+est\+Robuste (\begin{DoxyParamCaption}\item[{}]{\$password}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Vérifie la robustesse d\textquotesingle{}un mot de passe. 
+
+Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial. 
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$password} & Le mot de passe. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool True si robuste, False sinon. 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+modeles/\+\doxymbox{\hyperlink{valide_8class_8php}{valide.\+class.\+php}}\end{DoxyCompactItemize}

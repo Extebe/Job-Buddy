@@ -2,24 +2,36 @@
 
 require_once "include.php";
 
-class UtilisateurDAO{
+/**
+ * @brief DAO de base pour la gestion des utilisateurs.
+ */
+class UtilisateurDAO
+{
+    /** @var PDO|null $pdo Objet de connexion à la base de données. */
     protected ?PDO $pdo;
 
-    public function __construct(?PDO $pdo = null){
+    /**
+     * @brief Constructeur du DAO Utilisateur.
+     * @param PDO|null $pdo Instance de PDO.
+     */
+    public function __construct(?PDO $pdo = null)
+    {
         $this->pdo = $pdo;
     }
 
     /**
-     * Get the value of pdo
-     */ 
+     * @brief Récupère l'objet PDO.
+     * @return PDO|null L'objet PDO.
+     */
     public function getPdo(): ?PDO
     {
         return $this->pdo;
     }
 
     /**
-     * Set the value of pdo
-     */ 
+     * @brief Définit l'objet PDO.
+     * @param PDO|null $pdo L'objet PDO.
+     */
     public function setPdo($pdo): void
     {
         $this->pdo = $pdo;
@@ -27,7 +39,13 @@ class UtilisateurDAO{
 
 
 
-    public function hydrate($tableau){
+    /**
+     * @brief Hydrate un objet Utilisateur.
+     * @param array $tableau Données de l'utilisateur.
+     * @return Utilisateur L'objet utilisateur hydraté.
+     */
+    public function hydrate($tableau)
+    {
         $utilisateur = new Utilisateur();
         $utilisateur->setId($tableau['id'] ?? null);
         $utilisateur->setRole($tableau['role'] ?? null);
@@ -44,7 +62,13 @@ class UtilisateurDAO{
         return $utilisateur;
     }
 
-    function findById(?string $id): ?Utilisateur{
+    /**
+     * @brief Trouve un utilisateur par son ID.
+     * @param string|null $id ID de l'utilisateur.
+     * @return Utilisateur|null L'utilisateur trouvé.
+     */
+    function findById(?string $id): ?Utilisateur
+    {
         $sql = "SELECT * FROM Utilisateur WHERE id = :id";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(['id' => $id]);
