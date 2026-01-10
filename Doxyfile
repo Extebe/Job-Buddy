@@ -1,0 +1,8 @@
+PROJECT_NAME           = "Job-Buddy"
+OUTPUT_DIRECTORY       = doc
+INPUT                  = .
+RECURSIVE              = YES
+FILE_PATTERNS          = *.php *.dox
+OPTIMIZE_OUTPUT_JAVA   = YES
+QUIET                  = YES
+Hello

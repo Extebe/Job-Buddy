@@ -1,32 +1,49 @@
 <?php
 
-    require_once "include.php";
-    class Signalement{
-        private ?Utilisateur $signaleur;
-        private ?string $dateSignalement;
-        private ?string $motif;
-        private ?string $description;
+require_once "include.php";
 
-        public function __construct(?Utilisateur $signaleur=null, ?string $dateSignalement=null, ?string $motif=null, ?string $description=null){
-                $this->signaleur=$signaleur;
-                $this->dateSignalement=$dateSignalement;
-                $this->motif=$motif;
-                $this->description=$description;
+/**
+ * @brief Classe abstraite représentant un signalement générique.
+ */
+class Signalement
+{
+        /** @var Utilisateur|null $signaleur L'utilisateur ayant effectué le signalement. */
+        protected ?Utilisateur $signaleur;
+        /** @var string|null $dateSignalement Date du signalement. */
+        protected ?string $dateSignalement;
+        /** @var string|null $motif Motif du signalement. */
+        protected ?string $motif;
+        /** @var string|null $description Description détaillée. */
+        protected ?string $description;
+
+        /**
+         * @brief Constructeur de la classe Signalement.
+         * @param Utilisateur|null $signaleur Signaleur.
+         * @param string|null $dateSignalement Date.
+         * @param string|null $motif Motif.
+         * @param string|null $description Description.
+         */
+        public function __construct(?Utilisateur $signaleur = null, ?string $dateSignalement = null, ?string $motif = null, ?string $description = null)
+        {
+                $this->signaleur = $signaleur;
+                $this->dateSignalement = $dateSignalement;
+                $this->motif = $motif;
+                $this->description = $description;
         }
 
 
         // GETTER ET SETTER DE SIGNALEUR
         /**
-         * Get the value of signaleur
-         *
+         * @brief Récupère le signaleur.
+         * @return Utilisateur|null Le signaleur.
          */
         public function getSignaleur(): ?Utilisateur
         {
                 return $this->signaleur;
         }
         /**
-         * Set the value of signaleur
-         *
+         * @brief Définit le signaleur.
+         * @param Utilisateur|null $signaleur Le signaleur.
          */
         public function setSignaleur(?Utilisateur $signaleur): void
         {
@@ -37,16 +54,16 @@
 
         // GETTER ET SETTER DE DATESIGNALEMENT
         /**
-         * Get the value of dateSignalement
-         *
+         * @brief Récupère la date du signalement.
+         * @return string|null La date.
          */
         public function getDateSignalement(): ?string
         {
                 return $this->dateSignalement;
         }
         /**
-         * Set the value of dateSignalement
-         *
+         * @brief Définit la date du signalement.
+         * @param string|null $dateSignalement La date.
          */
         public function setDateSignalement(?string $dateSignalement): void
         {
@@ -56,28 +73,28 @@
 
         //GETTEUR ET SETTEUR DE MOTIF
         /**
-         * Get the value of motif
-         *
+         * @brief Récupère le motif.
+         * @return string|null Le motif.
          */
         public function getMotif(): ?string
         {
                 return $this->motif;
         }
         /**
-         * Set the value of motif
-         *
+         * @brief Définit le motif.
+         * @param string|null $motif Le motif.
          */
         public function setMotif(?string $motif): void
         {
-                $this->motif = $motif;  
+                $this->motif = $motif;
         }
 
 
-        
+
         // GETTER ET SETTER DE DESCRIPTION
         /**
-         * Get the value of description
-         *
+         * @brief Récupère la description.
+         * @return string|null La description.
          */
         public function getDescription(): ?string
         {
@@ -85,12 +102,12 @@
         }
 
         /**
-         * Set the value of description
-         *
+         * @brief Définit la description.
+         * @param string|null $description La description.
          */
         public function setDescription(?string $description): void
         {
                 $this->description = $description;
         }
-    }
+}
 ?>

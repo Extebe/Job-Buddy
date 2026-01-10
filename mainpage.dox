@@ -1,0 +1,16 @@
+/**
+ * @mainpage Job-Buddy Documentation
+ *
+ * @section intro_sec Introduction
+ *
+ * Bienvenue sur la documentation de Job-Buddy.
+ * Ce projet est une plateforme de mise en relation entre étudiants et particuliers pour des petits boulots.
+ *
+ * @section install_sec Architecture
+ *
+ * Le projet suit une architecture MVC (Modèle-Vue-Contrôleur).
+ *
+ * - **Modèles** : Gestion des données (DAO, entités).
+ * - **Vues** : Templates Twig.
+ * - **Contrôleurs** : Logique métier.
+ */

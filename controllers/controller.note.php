@@ -1,15 +1,28 @@
 <?php
 
-class ControllerNote extends Controller {
+/**
+ * @brief Contrôleur gérant les notes et avis.
+ */
+class ControllerNote extends Controller
+{
+    /**
+     * @brief Constructeur du contrôleur Note.
+     * @param \Twig\Environment $twig
+     * @param \Twig\Loader\FilesystemLoader $loader
+     */
     public function __construct(\Twig\Environment $twig, \Twig\Loader\FilesystemLoader $loader)
     {
         parent::__construct($twig, $loader);
     }
 
-    public function afficher(){
+    /**
+     * @brief Affiche les notes de l'utilisateur connecté.
+     */
+    public function afficher()
+    {
         $template = $this->getTwig();
 
-          if (!isset($_SESSION['id'])) {
+        if (!isset($_SESSION['id'])) {
             header("Location: index.php");
             exit();
         }
@@ -17,7 +30,7 @@ class ControllerNote extends Controller {
         $managerNote = new NoteDao($this->getPdo());
         $tableau = $managerNote->findByUser(Utilisateur::getUser()->getId());
         $notes = $managerNote->hydrateAll($tableau);
-      
+
         echo $template->render('pageDeNote.html.twig', [
             'notes' => $notes,
             'user' => Utilisateur::getUser()
@@ -27,10 +40,14 @@ class ControllerNote extends Controller {
 
     }
 
-    public function saisieNote(){
+    /**
+     * @brief Affiche le formulaire de saisie d'une note.
+     */
+    public function saisieNote()
+    {
         $template = $this->getTwig();
 
-          if (!isset($_SESSION['id'])) {
+        if (!isset($_SESSION['id'])) {
             header("Location: index.php");
             exit();
         }
@@ -40,15 +57,15 @@ class ControllerNote extends Controller {
         $annonce = $managerAnnonce->find($_GET['id']);
         $annonces = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
 
-            $ids = [];
+        $ids = [];
 
-            foreach ($annonces as $t) {
-                $ids[] = $t->getId();
-            }
+        foreach ($annonces as $t) {
+            $ids[] = $t->getId();
+        }
 
 
 
-        if (!in_array($annonce->getId(), $ids)){
+        if (!in_array($annonce->getId(), $ids)) {
             //on ne peut pas se noter soi-même
             header("Location: index.php?controleur=note&methode=afficher");
             exit();
@@ -58,29 +75,29 @@ class ControllerNote extends Controller {
         $managerParticulier = new ParticulierDAO($this->getPdo());
         $managerEtudiant = new EtudiantDAO($this->getPdo());
 
-        if ($role == 'Etudiant'){
+        if ($role == 'Etudiant') {
             $Auteur = $managerEtudiant->findByAnnonce($annonce->getId());
             $Receveur = $managerParticulier->findByAnnonce($annonce->getId());
-        }
-        else{
+        } else {
             $Auteur = $managerParticulier->findByAnnonce($annonce->getId());
             $Receveur = $managerEtudiant->findByAnnonce($annonce->getId());
 
         }
         $idAuteur = $Auteur->getId();
         $idReceveur = $Receveur->getId();
-       if ($managerNote->findByUsers($idAuteur,$idReceveur)->getId() != null){
+        if ($managerNote->findByUsers($idAuteur, $idReceveur)->getId() != null) {
             //déjà noté
-           header("Location: index.php?controleur=note&methode=afficher");
+            header("Location: index.php?controleur=note&methode=afficher");
             exit();
         }
-        echo $managerNote->findByUsers($idAuteur,$idReceveur);
-      
+        echo $managerNote->findByUsers($idAuteur, $idReceveur);
+
         echo $template->render('pageSaisieDeNote.html.twig', [
             'auteur' => $Auteur,
             'receveur' => $Receveur,
             'annonce' => $annonce
-            ,'user' => Utilisateur::getUser()
+            ,
+            'user' => Utilisateur::getUser()
             //'annonces' => $annonces
         ]);
 
@@ -88,7 +105,11 @@ class ControllerNote extends Controller {
     }
 
 
-    public function insererNote(){
+    /**
+     * @brief Insère une note dans la base de données.
+     */
+    public function insererNote()
+    {
         $template = $this->getTwig();
         $valeurNote = $_POST['noteVal'];
         $Auteur = $_POST['Auteur'];
@@ -96,7 +117,7 @@ class ControllerNote extends Controller {
         $commentaire = $_POST['commentaire'] ?? '';
         $Annonce = $_POST['Annonce']; // À adapter selon le contexte
 
-        
+
         //création objet Utilisateur pour auteur et receveur
         $managerUtilisateur = new UtilisateurDAO($this->getPdo());
         $Auteur = $managerUtilisateur->findById($Auteur);

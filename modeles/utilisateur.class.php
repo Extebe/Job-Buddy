@@ -2,27 +2,68 @@
 
 require_once "include.php";
 
-class Utilisateur{
+/**
+ * @brief Classe représentant un utilisateur générique.
+ * @details Cette classe sert de parent pour les étudiants et les particuliers.
+ */
+class Utilisateur
+{
+    /** @var int|null $id Identifiant de l'utilisateur. */
     protected ?int $id;
+    /** @var string|null $nom Nom de l'utilisateur. */
     protected ?string $nom;
+    /** @var string|null $prenom Prénom de l'utilisateur. */
     protected ?string $prenom;
+    /** @var string|null $tel Numéro de téléphone. */
     protected ?string $tel;
+    /** @var string|null $dateNaiss Date de naissance (format YYYY-MM-DD). */
     protected ?string $dateNaiss;
+    /** @var string|null $role Rôle de l'utilisateur (ex: ETUDIANT, PARTICULIER). */
     protected ?string $role;
+    /** @var string|null $email Adresse email. */
     protected ?string $email;
+    /** @var string|null $mdp Mot de passe (haché). */
     protected ?string $mdp;
+    /** @var string|null $adresse Adresse postale. */
     protected ?string $adresse;
+    /** @var string|null $ville Ville de résidence. */
     protected ?string $ville;
+    /** @var string|null $codePostal Code postal. */
     protected ?string $codePostal;
+    /** @var string|null $dateSuppression Date de suppression du compte. */
     protected ?string $dateSuppression;
+    /** @var int $tentativesEchouees Nombre de tentatives de connexion échouées. */
     protected int $tentativesEchouees;
+    /** @var string|null $dateDernierEchecConnexion Date du dernier échec de connexion. */
     protected ?string $dateDernierEchecConnexion;
-    protected ?string $statutCompte; // Statut du comppte (actif ou désactivé)
+    /** @var string|null $statutCompte Statut du compte (ex: actif, desactive). */
+    protected ?string $statutCompte;
+    /** @var array $notesDonnees Liste des notes données par l'utilisateur. */
     protected array $notesDonnees = [];
+    /** @var array $notesRecues Liste des notes reçues par l'utilisateur. */
     protected array $notesRecues = [];
 
-    // Paramètre codeINE non utilisé pour les utilisateurs génériques
-    public function __construct(?int $id=null, ?string $nom=null, ?string $prenom=null, ?string $tel=null, ?string $dateNaiss=null, ?string $role=null, ?string $email=null, ?string $mdp=null, ?string $adresse=null, ?string $ville=null, ?string $codePostal=null, ?string $dateSuppression=null, ?int $tentativesEchouees=0, ?string $dateDernierEchecConnexion=null, ?string $statutCompte='actif'){
+    /**
+     * @brief Constructeur de la classe Utilisateur.
+     * 
+     * @param int|null $id Identifiant unique.
+     * @param string|null $nom Nom de famille.
+     * @param string|null $prenom Prénom.
+     * @param string|null $tel Numéro de téléphone.
+     * @param string|null $dateNaiss Date de naissance.
+     * @param string|null $role Rôle de l'utilisateur.
+     * @param string|null $email Adresse email.
+     * @param string|null $mdp Mot de passe.
+     * @param string|null $adresse Adresse postale.
+     * @param string|null $ville Ville.
+     * @param string|null $codePostal Code postal.
+     * @param string|null $dateSuppression Date de suppression.
+     * @param int $tentativesEchouees Nombre de tentatives échouées (défaut: 0).
+     * @param string|null $dateDernierEchecConnexion Date dernier échec.
+     * @param string $statutCompte Statut du compte (défaut: 'actif').
+     */
+    public function __construct(?int $id = null, ?string $nom = null, ?string $prenom = null, ?string $tel = null, ?string $dateNaiss = null, ?string $role = null, ?string $email = null, ?string $mdp = null, ?string $adresse = null, ?string $ville = null, ?string $codePostal = null, ?string $dateSuppression = null, ?int $tentativesEchouees = 0, ?string $dateDernierEchecConnexion = null, ?string $statutCompte = 'actif')
+    {
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -41,225 +82,319 @@ class Utilisateur{
     }
 
     /**
-     * Get the value of id
-     */ 
+     * @brief Récupère l'identifiant.
+     * @return int|null L'identifiant.
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Set the value of id
-     */ 
+     * @brief Définit l'identifiant.
+     * @param int|null $id L'identifiant.
+     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
     /**
-     * Get the value of nom
-     */ 
+     * @brief Récupère le nom.
+     * @return string|null Le nom.
+     */
     public function getNom()
     {
         return $this->nom;
     }
 
     /**
-     * Set the value of nom
-     */ 
+     * @brief Définit le nom.
+     * @param string|null $nom Le nom.
+     */
     public function setNom($nom)
     {
         $this->nom = $nom;
     }
 
     /**
-     * Get the value of prenom
-     */ 
+     * @brief Récupère le prénom.
+     * @return string|null Le prénom.
+     */
     public function getPrenom()
     {
         return $this->prenom;
     }
 
     /**
-     * Set the value of prenom
-     */ 
+     * @brief Définit le prénom.
+     * @param string|null $prenom Le prénom.
+     */
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
     }
 
     /**
-     * Get the value of telephone
-     */ 
+     * @brief Récupère le téléphone.
+     * @return string|null Le téléphone.
+     */
     public function getTel()
     {
         return $this->tel;
     }
 
     /**
-     * Set the value of telephone
-     */ 
+     * @brief Définit le téléphone.
+     * @param string|null $telephone Le téléphone.
+     */
     public function setTel($telephone)
     {
         $this->tel = $telephone;
     }
 
     /**
-     * Get the value of dateNaiss
-     */ 
+     * @brief Récupère la date de naissance.
+     * @return string|null La date de naissance.
+     */
     public function getDateNaiss()
     {
         return $this->dateNaiss;
     }
 
     /**
-     * Set the value of dateNaiss
-     */ 
+     * @brief Définit la date de naissance.
+     * @param string|null $dateNaiss La date de naissance.
+     */
     public function setDateNaiss($dateNaiss)
     {
         $this->dateNaiss = $dateNaiss;
     }
 
-    public function getRole(){
+    /**
+     * @brief Récupère le rôle.
+     * @return string|null Le rôle.
+     */
+    public function getRole()
+    {
         return $this->role;
     }
 
-    public function setRole($role){
+    /**
+     * @brief Définit le rôle.
+     * @param string|null $role Le rôle.
+     */
+    public function setRole($role)
+    {
         $this->role = $role;
     }
 
     /**
-     * Get the value of email
-     */ 
+     * @brief Récupère l'email.
+     * @return string|null L'email.
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
     /**
-     * Set the value of email
-     */ 
+     * @brief Définit l'email.
+     * @param string|null $email L'email.
+     */
     public function setEmail($email)
     {
         $this->email = $email;
     }
 
     /**
-     * Get the value of mdp
-     */ 
+     * @brief Récupère le mot de passe.
+     * @return string|null Le mot de passe.
+     */
     public function getMdp()
     {
         return $this->mdp;
     }
 
     /**
-     * Set the value of mdp
-     */ 
+     * @brief Définit le mot de passe.
+     * @param string|null $mdp Le mot de passe.
+     */
     public function setMdp($mdp)
     {
         $this->mdp = $mdp;
     }
 
     /**
-     * Get the value of adresse
-     */ 
+     * @brief Récupère l'adresse.
+     * @return string|null L'adresse.
+     */
     public function getAdresse()
     {
         return $this->adresse;
     }
 
     /**
-     * Set the value of adresse
-     */ 
+     * @brief Définit l'adresse.
+     * @param string|null $adresse L'adresse.
+     */
     public function setAdresse($adresse)
     {
         $this->adresse = $adresse;
     }
 
     /**
-     * Get the value of ville
-     */ 
+     * @brief Récupère la ville.
+     * @return string|null La ville.
+     */
     public function getVille()
     {
         return $this->ville;
     }
 
     /**
-     * Set the value of ville
-     */ 
+     * @brief Définit la ville.
+     * @param string|null $ville La ville.
+     */
     public function setVille($ville)
     {
         $this->ville = $ville;
     }
 
     /**
-     * Get the value of codePostal
-     */ 
+     * @brief Récupère le code postal.
+     * @return string|null Le code postal.
+     */
     public function getCodePostal()
     {
         return $this->codePostal;
     }
 
     /**
-     * Set the value of codePostal
-     */ 
+     * @brief Définit le code postal.
+     * @param string|null $codePostal Le code postal.
+     */
     public function setCodePostal($codePostal)
     {
         $this->codePostal = $codePostal;
     }
 
     /**
-     * Get the value of dateSuppression
-     */ 
+     * @brief Récupère la date de suppression.
+     * @return string|null La date de suppression.
+     */
     public function getDateSuppression()
     {
         return $this->dateSuppression;
     }
 
     /**
-     * Set the value of dateSuppression
-     */ 
+     * @brief Définit la date de suppression.
+     * @param string|null $dateSuppression La date de suppression.
+     */
     public function setDateSuppression($dateSuppression)
     {
         $this->dateSuppression = $dateSuppression;
     }
 
-    public function getNotesDonnees(): array {
+    /**
+     * @brief Récupère les notes données par l'utilisateur.
+     * @return array La liste des notes données.
+     */
+    public function getNotesDonnees(): array
+    {
         return $this->notesDonnees;
     }
 
-    public function getNotesRecues(): array {
+    /**
+     * @brief Récupère les notes reçues par l'utilisateur.
+     * @return array La liste des notes reçues.
+     */
+    public function getNotesRecues(): array
+    {
         return $this->notesRecues;
     }
 
-    public function setNotesDonnees(array $notes): void {
+    /**
+     * @brief Définit les notes données.
+     * @param array $notes Tableau des notes.
+     */
+    public function setNotesDonnees(array $notes): void
+    {
         $this->notesDonnees = $notes;
     }
 
-    public function setNotesRecues(array $notes): void {
+    /**
+     * @brief Définit les notes reçues.
+     * @param array $notes Tableau des notes.
+     */
+    public function setNotesRecues(array $notes): void
+    {
         $this->notesRecues = $notes;
     }
 
-    public function getTentativesEchouees(): int {
+    /**
+     * @brief Récupère le nombre de tentatives de connexion échouées.
+     * @return int Le nombre de tentatives.
+     */
+    public function getTentativesEchouees(): int
+    {
         return $this->tentativesEchouees;
     }
-    public function setTentativesEchouees(int $tentatives): void {
+
+    /**
+     * @brief Définit le nombre de tentatives de connexion échouées.
+     * @param int $tentatives Le nombre de tentatives.
+     */
+    public function setTentativesEchouees(int $tentatives): void
+    {
         $this->tentativesEchouees = $tentatives;
     }
-    public function getDateDernierEchecConnexion(): ?string {
+
+    /**
+     * @brief Récupère la date du dernier échec de connexion.
+     * @return string|null La date.
+     */
+    public function getDateDernierEchecConnexion(): ?string
+    {
         return $this->dateDernierEchecConnexion;
     }
-    public function setDateDernierEchecConnexion(?string $date): void {
+
+    /**
+     * @brief Définit la date du dernier échec de connexion.
+     * @param string|null $date La date.
+     */
+    public function setDateDernierEchecConnexion(?string $date): void
+    {
         $this->dateDernierEchecConnexion = $date;
     }
-    public function getStatutCompte(): ?string {
+
+    /**
+     * @brief Récupère le statut du compte.
+     * @return string|null Le statut.
+     */
+    public function getStatutCompte(): ?string
+    {
         return $this->statutCompte;
     }
-    public function setStatutCompte(?string $statut): void {
+
+    /**
+     * @brief Définit le statut du compte.
+     * @param string|null $statut Le statut.
+     */
+    public function setStatutCompte(?string $statut): void
+    {
         $this->statutCompte = $statut;
     }
 
-    public function lierNoteEcrite(Note $note, ?Utilisateur $receveur, ?Annonce $annonce){
+    /**
+     * @brief Lie une note écrite par l'utilisateur.
+     * @param Note $note La note à lier.
+     * @param Utilisateur|null $receveur L'utilisateur recevant la note.
+     * @param Annonce|null $annonce L'annonce concernée.
+     */
+    public function lierNoteEcrite(Note $note, ?Utilisateur $receveur, ?Annonce $annonce)
+    {
         $this->notesDonnees[] = $note;
         $receveur->notesRecues[] = $note;
         $note->setAuteur($this);
@@ -267,24 +402,30 @@ class Utilisateur{
         $note->setAnnonce($annonce);
     }
 
-    public function delierNote(Note $note){
-        if (in_array($note,$this->getNotesDonnees())){//si la note est dans les notes données
-            $this->setNotesDonnees(array_filter($this->getNotesDonnees(), fn($f) => $f !== $note));//supression liason entre note et receveur(qui n'est pas this)
-            $note->getReceveur()->setNotesRecues(array_filter($note->getReceveur()->getNotesRecues(), fn($f) => $f !== $note));//supression liason entre note et this
-        }
-        elseif (in_array($note,$this->getNotesRecues())){//si la note est dans les notes reçues
-            $note->getAuteur()->setNotesDonnees(array_filter($note->getAuteur()->getNotesDonnees(), fn($f) => $f !== $note));//supression liason entre note et auteur(qui n'est pas this)
-            $this->setNotesRecues(array_filter($this->getNotesRecues(), fn($f) => $f !== $note));//supression liason entre note et this
+    /**
+     * @brief Délie une note.
+     * @param Note $note La note à délier.
+     */
+    public function delierNote(Note $note)
+    {
+        if (in_array($note, $this->getNotesDonnees())) { //si la note est dans les notes données
+            $this->setNotesDonnees(array_filter($this->getNotesDonnees(), fn($f) => $f !== $note)); //supression liason entre note et receveur(qui n'est pas this)
+            $note->getReceveur()->setNotesRecues(array_filter($note->getReceveur()->getNotesRecues(), fn($f) => $f !== $note)); //supression liason entre note et this
+        } elseif (in_array($note, $this->getNotesRecues())) { //si la note est dans les notes reçues
+            $note->getAuteur()->setNotesDonnees(array_filter($note->getAuteur()->getNotesDonnees(), fn($f) => $f !== $note)); //supression liason entre note et auteur(qui n'est pas this)
+            $this->setNotesRecues(array_filter($this->getNotesRecues(), fn($f) => $f !== $note)); //supression liason entre note et this
         }
         $note->setAuteur(null);
         $note->setReceveur(null);
         $note->setAnnonce(null);
     }
 
-
-
-
-    public function calculerMoyenneNotes(): float {
+    /**
+     * @brief Calcule la moyenne des notes reçues.
+     * @return float La moyenne des notes.
+     */
+    public function calculerMoyenneNotes(): float
+    {
         $total = 0;
         $count = count($this->notesRecues);
         if ($count === 0) {
@@ -296,13 +437,20 @@ class Utilisateur{
         return $total / $count;
     }
 
-    public static function getUser(): ?Utilisateur {
-        if(isset($_SESSION['id'])){
+    /**
+     * @brief Récupère l'utilisateur actuellement connecté depuis la session.
+     * @return Utilisateur|null L'utilisateur connecté ou null.
+     */
+    public static function getUser(): ?Utilisateur
+    {
+        if (isset($_SESSION['id'])) {
             $bd = Bd::getInstance();
             $pdo = $bd->getConnexion();
             $userDao = new UtilisateurDao($pdo);
             $user = $userDao->findById($_SESSION['id']);
-            $user->setMdp("");
+            if ($user) {
+                $user->setMdp("");
+            }
             return $user;
         }
         return null;

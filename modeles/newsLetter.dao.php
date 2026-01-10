@@ -1,38 +1,60 @@
 <?php
 require_once "include.php";
 
-class NewLetterDao{
+/**
+ * @brief DAO pour la gestion des inscriptions à la newsletter.
+ */
+class NewLetterDao
+{
+    /** @var PDO|null $pdo Objet de connexion à la base de données. */
     private ?PDO $pdo;
 
-    public function __construct(?PDO $pdo=null){
+    /**
+     * @brief Constructeur du DAO NewLetter.
+     * @param PDO|null $pdo Instance de PDO.
+     */
+    public function __construct(?PDO $pdo = null)
+    {
         $this->pdo = $pdo;
     }
 
     /**
-     * Get the value of pdo
-     * @return  self
-     */ 
-    public function getPdo():?PDO
+     * @brief Récupère l'objet PDO.
+     * @return PDO|null L'objet PDO.
+     */
+    public function getPdo(): ?PDO
     {
         return $this->pdo;
     }
 
     /**
-     * Set the value of pdo
-     *
-     */ 
-    public function setPdo($pdo):void
+     * @brief Définit l'objet PDO.
+     * @param PDO|null $pdo L'objet PDO.
+     */
+    public function setPdo($pdo): void
     {
         $this->pdo = $pdo;
     }
 
-    public function insererEmail(?NewLetter $newsLetter):void{
+    /**
+     * @brief Insère un email dans la table de la newsletter.
+     * @param NewLetter|null $newsLetter L'objet NewLetter contenant l'email.
+     */
+    public function insererEmail(?NewLetter $newsLetter): void
+    {
         $sql = "INSERT INTO InscritNewsLetter (email)
                 VALUE (:email)";
-        $pdoStatement=$this->pdo->prepare($sql);
-        $pdoStatement->execute([':email'=>$newsLetter->getEmail()]);
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute([':email' => $newsLetter->getEmail()]);
     }
-    public function emailExisteNewsletter($email) {
+
+    /**
+     * @brief Vérifie si un email est déjà inscrit à la newsletter.
+     * @param string $email L'email à vérifier.
+     * @return bool Vrai si l'email existe, faux sinon.
+     */
+    public function emailExisteNewsletter($email)
+    {
         // Connexion à la base de données
         $baseDeDonnees = Bd::getInstance();
 

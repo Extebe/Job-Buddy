@@ -1,8 +1,18 @@
 <?php
 require_once "include.php";
+
+/**
+ * @brief Classe utilitaire pour les validations.
+ */
 class Valide
 {
-    public static function emailExiste($email) {
+    /**
+     * @brief Vérifie si une adresse email existe déjà dans la base.
+     * @param string $email L'email à vérifier.
+     * @return bool True si existe, False sinon.
+     */
+    public static function emailExiste($email)
+    {
         // Connexion à la base de données
         $baseDeDonnees = Bd::getInstance();
 
@@ -19,7 +29,14 @@ class Valide
     }
 
 
-    public static function estRobuste($password) {
+    /**
+     * @brief Vérifie la robustesse d'un mot de passe.
+     * @details Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.
+     * @param string $password Le mot de passe.
+     * @return bool True si robuste, False sinon.
+     */
+    public static function estRobuste($password)
+    {
         $regex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
 
         // La fonction preg_match retourne 1 si une correspondance est trouvée.

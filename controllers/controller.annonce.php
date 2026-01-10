@@ -1,12 +1,25 @@
 <?php
 
-class ControllerAnnonce extends Controller {
+/**
+ * @brief Contrôleur gérant les annonces.
+ */
+class ControllerAnnonce extends Controller
+{
+    /**
+     * @brief Constructeur du contrôleur Annonce.
+     * @param \Twig\Environment $twig Environnement Twig.
+     * @param \Twig\Loader\FilesystemLoader $loader Chargeur Twig.
+     */
     public function __construct(\Twig\Environment $twig, \Twig\Loader\FilesystemLoader $loader)
     {
         parent::__construct($twig, $loader);
     }
 
-    public function afficher(){
+    /**
+     * @brief Affiche la liste des annonces (page d'accueil).
+     */
+    public function afficher()
+    {
         $template = $this->getTwig();
 
         //recupération des annonces
@@ -20,17 +33,18 @@ class ControllerAnnonce extends Controller {
             'icons' => $icons,
             'user' => Utilisateur::getUser()
         ]);
-
-
     }
 
-    public function afficheFormAnnonce() {
+    /**
+     * @brief Affiche le formulaire d'ajout d'annonce.
+     */
+    public function afficheFormAnnonce()
+    {
 
-        if(isset($_SESSION['role'])){
+        if (isset($_SESSION['role'])) {
             //À faire, verifier qu'ils sont valides
             $role = $_SESSION['role'];
-        }
-        else{
+        } else {
             $role = "non_connecte";
         }
 
@@ -43,8 +57,12 @@ class ControllerAnnonce extends Controller {
         ]);
     }
 
-    public function traiteFormAnnonce() {
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    /**
+     * @brief Traite le formulaire d'ajout d'annonce.
+     */
+    public function traiteFormAnnonce()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titre = $_POST['titre'];
             $typeService = $_POST['typeService'];
             $dateDebut = $_POST['dateDebut'];
@@ -53,7 +71,7 @@ class ControllerAnnonce extends Controller {
             $lieu = $_POST['lieu'];
             $remuneration = $_POST['remuneration'];
             $idParticulier = $_GET['idParticulier'];
-            if ($_GET['idParticulier'] != Utilisateur::getUser()->getId()){
+            if ($_GET['idParticulier'] != Utilisateur::getUser()->getId()) {
                 //Tentative de soumission d'annonce pour un autre utilisateur
                 header("Location: index.php");
                 exit();
@@ -84,12 +102,20 @@ class ControllerAnnonce extends Controller {
     }
 
 
-    public function listerAnnonces(){
+    /**
+     * @brief Liste les annonces (non implémenté).
+     */
+    public function listerAnnonces()
+    {
 
     }
 
 
-    public function afficherMesAnnonces(){
+    /**
+     * @brief Affiche les annonces de l'utilisateur connecté.
+     */
+    public function afficherMesAnnonces()
+    {
         $template = $this->getTwig();
 
 
@@ -98,13 +124,15 @@ class ControllerAnnonce extends Controller {
             header("Location: index.php");
             exit();
         }
-        if (!isset($_GET['filtre'])){$filtre = "ALL";}
-        else{$filtre = $_GET['filtre'];}
-
-        if ($filtre === 'ALL' || $filtre === ''){
-            $tableau = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
+        if (!isset($_GET['filtre'])) {
+            $filtre = "ALL";
+        } else {
+            $filtre = $_GET['filtre'];
         }
-        else{
+
+        if ($filtre === 'ALL' || $filtre === '') {
+            $tableau = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
+        } else {
             $tableau = $managerAnnonce->findAllByIdAndEtat(Utilisateur::getUser()->getId(), $filtre);
         }
         echo $template->render('mesAnnonces.html.twig', [
@@ -116,7 +144,11 @@ class ControllerAnnonce extends Controller {
     }
 
 
-    public function afficherDetail(){
+    /**
+     * @brief Affiche les détails d'une annonce.
+     */
+    public function afficherDetail()
+    {
         $template = $this->getTwig();
 
         if (!isset($_SESSION['id'])) {
@@ -133,14 +165,13 @@ class ControllerAnnonce extends Controller {
 
         $managerAnnonce = new AnnonceDao($this->getPdo());
         $annonce = $managerAnnonce->find($idAnnonce);
-        if ($annonce->getEtuditantsSelectionnes() == null){
-        $annonce = $managerAnnonce->addRelations($annonce);
-        }
-        else{
-        $annonce = $managerAnnonce->addSelectedStudents($annonce);
+        if ($annonce->getEtuditantsSelectionnes() == null) {
+            $annonce = $managerAnnonce->addRelations($annonce);
+        } else {
+            $annonce = $managerAnnonce->addSelectedStudents($annonce);
         }
 
- 
+
         echo $template->render('detailAnnonce.html.twig', [
             'user' => Utilisateur::getUser(),
             'annonce' => $annonce,
@@ -148,7 +179,11 @@ class ControllerAnnonce extends Controller {
         ]);
     }
 
-    public function postulerAnnonce(){
+    /**
+     * @brief Permet à un étudiant de postuler à une annonce.
+     */
+    public function postulerAnnonce()
+    {
         if (!isset($_SESSION['id'])) {
             header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
             exit();
@@ -164,11 +199,15 @@ class ControllerAnnonce extends Controller {
         $managerAnnonce = new AnnonceDAO($this->getPdo());
         $managerAnnonce->postuler($idAnnonce, Utilisateur::getUser()->getId());
 
-        header("Location: index.php?controleur=annonce&methode=afficherDetail&id=".$idAnnonce);
+        header("Location: index.php?controleur=annonce&methode=afficherDetail&id=" . $idAnnonce);
         exit();
     }
 
-    public function supprimerAnnonce(){
+    /**
+     * @brief Permet à un particulier de supprimer son annonce.
+     */
+    public function supprimerAnnonce()
+    {
         if (!isset($_SESSION['id'])) {
             header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
             exit();
@@ -178,7 +217,7 @@ class ControllerAnnonce extends Controller {
             header("Location: index.php");
             exit();
         }
-        
+
         $idAnnonce = $_GET['id'];
 
         $managerAnnonce = new AnnonceDAO($this->getPdo());
@@ -188,75 +227,83 @@ class ControllerAnnonce extends Controller {
         exit();
     }
 
-        public function refuser($idAnnonce, $idEtudiant){
+    /**
+     * @brief Refuse la candidature d'un étudiant (non implémenté ici, voir selectionnerEtudiant).
+     * @param int $idAnnonce ID de l'annonce.
+     * @param int $idEtudiant ID de l'étudiant.
+     */
+    public function refuser($idAnnonce, $idEtudiant)
+    {
 
 
 
 
     }
 
-        public function selectionnerEtudiant(){
+    /**
+     * @brief Sélectionne ou refuse un étudiant pour une annonce.
+     * @throws Exception Si l'utilisateur n'est pas autorisé.
+     */
+    public function selectionnerEtudiant()
+    {
         $idAnnonce = $_GET['idAnnonce'];
         $idEtudiant = $_GET['idEtudiant'];
         $managerAnnonce = new AnnonceDao($this->getPdo());
         $annonce = $managerAnnonce->find($idAnnonce);
 
-        if ($annonce->getCreateur()->getId() != Utilisateur::getUser()->getId()){
+        if ($annonce->getCreateur()->getId() != Utilisateur::getUser()->getId()) {
             throw new Exception("Vous n'êtes pas autorisé à refuser cette candidature.");
         }
         if ($_GET['action'] === 'accepter') {
             // Accepter un étudiant
             $managerAnnonce->accepterEtudiant($idAnnonce, $idEtudiant);
-            header("Location: index.php?controleur=annonce&methode=afficherDetail&id=".$idAnnonce);
+            header("Location: index.php?controleur=annonce&methode=afficherDetail&id=" . $idAnnonce);
             exit();
         }
         if ($_GET['action'] === 'refuser') {
-        $managerAnnonce->refuserEtudiant($idAnnonce, $idEtudiant);
-        header("Location: index.php?controleur=annonce&methode=afficherDetail&id=".$idAnnonce);
-        exit();
+            $managerAnnonce->refuserEtudiant($idAnnonce, $idEtudiant);
+            header("Location: index.php?controleur=annonce&methode=afficherDetail&id=" . $idAnnonce);
+            exit();
         }
     }
 
-    /* ===================================
-     *
-     * Appelle la fonction modifier 
-     * de la classe annonceDao pour changer
-     * la base de donné en récupérant les 
-     * information du formulaire de la 
-     * page modifierAnnonce
-     * 
-      ===================================*/
-    public function editerAnnonce():void{
+    /**
+     * @brief Edite une annonce existante.
+     */
+    public function editerAnnonce(): void
+    {
         $annonce = Annonce::getAnnonce();
         $annonceDao = new AnnonceDao($this->getPdo());
         $template = $this->getTwig();
 
-        if($_SERVER['REQUEST_METHOD']==='POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $idAnnonce=$_POST['idAnnonce'];
-            $idParticulier= $annonce->getCreateur()->getId();
-            
-            $annonce = new Annonce($idAnnonce,
-                        $idParticulier,
-                        $_POST['titre'],
-                        $_POST['description'],
-                        $_POST['typeService'],
-                        $_POST['lieu'],
-                        $_POST['remuneration'],
-                        $_POST['dateDebut'],
-                        $_POST['dateFin'],
-                        null,
-                        null,
-                        null,
-                        null);
+            $idAnnonce = $_POST['idAnnonce'];
+            $idParticulier = $annonce->getCreateur()->getId();
+
+            $annonce = new Annonce(
+                $idAnnonce,
+                $idParticulier,
+                $_POST['titre'],
+                $_POST['description'],
+                $_POST['typeService'],
+                $_POST['lieu'],
+                $_POST['remuneration'],
+                $_POST['dateDebut'],
+                $_POST['dateFin'],
+                null,
+                null,
+                null,
+                null
+            );
             $annonceDao->modifier($annonce);
             header('Location:index.php?controleur=annonce&methode=afficherMesAnnonces');
             exit();
         }
         // var_dump($annonce);
         // echo $annonce->getCreateur()->getId();
-        echo $template->render('modifierAnnonce.html.twig',[
-            'annonce'=> $annonce,
+        echo $template->render('modifierAnnonce.html.twig', [
+            'annonce' => $annonce,
         ]);
     }
 }
