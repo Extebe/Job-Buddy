@@ -1,0 +1,115 @@
+/* --- CARTES D'ANNONCES --- */
+#zone_cartes {
+    padding: 40px 0;
+}
+
+.card-item {
+    border: none;
+    background: var(--card-bg);
+    border-radius: 16px;
+    /* Premium Soft Radius */
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+    border: 1px solid rgba(93, 42, 24, 0.08);
+    /* Bordure subtile brune */
+    overflow: hidden;
+}
+
+.card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(212, 163, 115, 0.4);
+    /* Lueur beige/dorée au survol */
+}
+
+/* Zone Image / Icône */
+.image-zone {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    /* Dégradé Original */
+    width: 120px !important;
+    min-width: 120px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.image-zone::after {
+    /* Texture légère pour le premium */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(93, 42, 24, 0.1) 100%);
+}
+
+.icon-annoncea {
+    filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    width: 48px;
+    height: 48px;
+    transition: var(--transition);
+    z-index: 1;
+}
+
+.card-item:hover .icon-annoncea {
+    transform: scale(1.1) rotate(5deg);
+    filter: brightness(0) invert(1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Contenu */
+.content-zone {
+    padding: 1.5rem;
+}
+
+.card-title {
+    color: var(--primary);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.card-subtitle {
+    color: var(--secondary) !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    color: var(--text-light);
+    /* Utilise la nouvelle variable gris-brun */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.remuneration-badge {
+    background: rgba(204, 213, 174, 0.3);
+    /* Accent translucide */
+    color: #4A5D23;
+    /* Darker green for contrast on accent */
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    display: inline-block;
+}
+
+/* Ajustement boutons dans la carte */
+.card-item .btn-sm {
+    font-size: 0.85rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+}

@@ -1,0 +1,64 @@
+{% extends 'base_template.html.twig' %}
+    {% block content %}
+        <div class="container form-narrow">
+            <form action="index.php?controleur=annonce&methode=traiteFormAnnonce">
+                <div class="mb-3">
+                    <label for="" class="form-label">Titre de l'annonce</label>
+                    <input type="text" class="form-control" id="titreAnnonce" name="titreAnnonce" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="select" class="form-label">Type de service</label>
+                    <select name="typeService" id="typeService" class="form-control" required>
+                        <option value="" selected disabled>-- Choisissez une option --</option>
+                        <option>Baby-sitting</option>
+                        <option>Jardinage</option>
+                        <option>Bricolage</option>
+                        <option>Ménage</option>
+                        <option>Transport</option>
+                        <option>Aide Informatique</option>
+                        <option>Aide Aux Devoirs</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="text" class="form-label">Lieu</label>
+                    <input type="text" class="form-control" id="lieu" name="lieu" required >
+                </div>
+
+                <div class="mb-3">
+                    <label for="text" class="form-label">Prix</label>
+                    <input type="number" class="form-control" id="prix" name="prix" required >
+                </div>
+
+                <div class="mb-3">
+                    <label for="text" class="form-label">Lieu</label>
+                    <input type="text" class="form-control" id="lieu" name="lieu" required >
+                </div>
+
+                <div class="mb-3">
+                    <label for="text" class="form-label">Prix</label>
+                    <input type="number" class="form-control" id="prix" name="prix" required >
+                </div>
+
+                <div class="mb-3">
+                    <label for="date-time" class="form-label">Date début réalisation</label>
+                    <input type="datetime-local" class="form-control" id="dateDebut" name="dateDebut" required >
+                </div>
+
+                <div class="date-time">
+                    <label for="" class="form-label">Date fin de réalisation</label>
+                    <input type="datetime-local" class="form-control" id="dateFin" name="dateFin" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Description</label>
+                    <textarea type="text" class="form-control" id="description" name="description" required></textarea>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Publier l'annonce</button>
+                </div>
+            </form>
+        </div>
+    {% endblock %}

@@ -1,0 +1,273 @@
+{% extends 'base_template.html.twig' %}
+
+{% block content %}
+<link rel="stylesheet" href="./CSS/annonces.css">
+
+<h1 class="mb-4">Bienvenue sur le super site de super JobBuddy.</h1>
+
+{# ================= MENU ONGLET ================= #}
+{% set filtreActif = filtre ?? '' %}
+
+<ul class="nav nav-tabs mb-4 justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link {{ filtreActif == 'ALL' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ALL">
+            Toutes
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link {{ filtreActif == 'DISPONIBLE' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=DISPONIBLE">
+            Disponibles
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link {{ filtreActif == 'ACCEPTE' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ACCEPTE">
+            Acceptées
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link {{ filtreActif == 'TERMINE' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=TERMINE">
+            Terminées
+        </a>
+    </li>
+</ul>
+
+<div class="container">
+    <div id="zone_cartes" class="row g-4">
+
+        {# ============ AJOUT ANNONCE ============ #}
+        {% if user.role == "Particulier " %}
+        <div class="col-12 d-flex justify-content-center mb-2">
+            <div class="card-slot fixed-card-width">
+                <div class="card-item h-100 add-card-style">
+                    <div class="card-body d-flex align-items-center justify-content-center" style="min-height: 120px;">
+                        <a href="index.php?controleur=annonce&methode=afficheFormAnnonce"
+                           class="stretched-link d-flex align-items-center text-decoration-none">
+                            <span class="display-4 fw-bold me-3" style="color: #712200;">+</span>
+                            <h4 class="mb-0 text-dark">Publier une nouvelle annonce</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {# ============ CARTES ANNONCES ============ #}
+        {% for annonce in annonces %}
+        <div class="col-12 d-flex justify-content-center">
+            <div class="card-slot fixed-card-width">
+                <div class="card-item h-100">
+
+                    <!-- Image -->
+                    <div class="image-zone">
+                        <img
+                            src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
+                            class="icon-annoncea"
+                            alt="Icon {{ annonce.typeService }}"
+                        >
+                    </div>
+
+                    <!-- Contenu -->
+                    <div class="content-zone">
+                        <div class="card-body">
+
+                            <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}"
+                               class="stretched-link"></a>
+
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h5 class="card-title mb-1">{{ annonce.titre }}</h5>
+                                    <span class="fw-bold">{{ annonce.remuneration }} €</span>
+                                </div>
+
+                                <div class="d-flex gap-2 mt-2 justify-content-end" style="position: relative; z-index: 2;">
+
+                                    {% if annonce.etat == "ACCEPTE" and annonce.dateFinRealisation < "now"|date("Y-m-d") %}
+                                        <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}"
+                                           class="btn btn-outline-success btn-sm">
+                                            Évaluer
+                                        </a>
+                                    {% endif %}
+
+                                    {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE"
+                                          and annonce.getCreateur().getId() == user.getId() %}
+                                        <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
+                                           class="btn btn-outline-success btn-sm">
+                                            Modifier
+                                        </a>
+                                    {% endif %}
+
+                                    {% if user.getRole() == "Particulier "
+                                          and annonce.getCreateur().getId() == user.getId() %}
+                                        <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
+                                           class="btn btn-outline-danger btn-sm"
+                                           onclick="return confirm('Supprimer cette annonce ?');">
+                                            Supprimer
+                                        </a>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                {{ annonce.lieu }} - {{ annonce.dateDebutRealisation|date("H:i d/m/Y") }}
+                            </h6>
+
+                            <p class="card-text">{{ annonce.description }}</p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12 d-flex justify-content-center">
+        <p class="text-muted fst-italic mb-0">
+            Aucune annonce à afficher pour cet onglet.
+        </p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+<style>
+.fixed-card-width {
+    width: 100%;
+    max-width: 750px;
+}
+
+/* Carte et effet creux */
+.card-slot {
+    position: relative;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    height: auto;
+}
+
+.card-item {
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    width: 800px;
+    position: relative;
+    z-index: 1;
+    height: 150px;
+}
+
+.card-slot:hover .card-item {
+    transform: translate(10px, -10px);
+}
+
+/* Image */
+.image-zone {
+    width: 120px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.icon-annoncea {
+    max-width: 70px;
+    max-height: 70px;
+    object-fit: contain;
+}
+
+/* Contenu */
+.content-zone {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+}
+
+/* Titres et sous-titres */
+.card-title {
+    margin-bottom: 5px;
+}
+.card-subtitle {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/* Boutons */
+.btn {
+    position: relative !important;
+    z-index: 100 !important;
+    pointer-events: auto !important;
+}
+
+.btn-outline-success {
+    color: #712200;
+    border-color: #712200;
+}
+.btn-outline-success:hover,
+.btn-outline-success:focus,
+.btn-outline-success::selection {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-danger {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+.btn-outline-danger:hover,
+.btn-outline-danger:focus,
+.btn-outline-danger::selection {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.nav-tabs .nav-link {
+    color: #712200;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #8B2C00;
+}
+
+.nav-tabs .nav-link.active {
+    color: #712200;
+    font-weight: bold;
+    border-bottom-color: #712200;
+}
+
+/* Responsive : mobile */
+@media (max-width: 576px) {
+    .card-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .image-zone {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .icon-annoncea {
+        max-width: 100px;
+        max-height: 100px;
+    }
+}
+</style>
+{% endblock %}

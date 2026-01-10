@@ -1,0 +1,159 @@
+\doxysection{Référence de la classe Note\+Dao}
+\hypertarget{class_note_dao}{}\label{class_note_dao}\index{NoteDao@{NoteDao}}
+
+
+DAO pour la gestion des notes en base de données.  
+
+
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_note_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0}{\+\_\+\+\_\+construct}} (?PDO \$pdo=null)
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \doxylink{class_note_dao}{Note\+Dao}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_note_dao_a584ce41683cc8dfa9f035be21416074d}{find\+All\+Assoc}} ()
+\begin{DoxyCompactList}\small\item\em Récupère toutes les notes sous forme d\textquotesingle{}objets \doxylink{class_note}{Note}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_note_dao_aa196701b8cc616d5b0a83dea9bf18ed6}{find\+By\+User}} (string \$id\+Auteur)
+\begin{DoxyCompactList}\small\item\em Trouve les notes associées à un utilisateur (auteur ou receveur). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_note_dao_a99aaf2c7c8e237b80e6e0315f8325e64}{find\+By\+Users}} (string \$id\+Auteur, string \$id\+Receveur)
+\begin{DoxyCompactList}\small\item\em Trouve une note entre deux utilisateurs spécifiques. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_note_dao_a5ad2d39fc610ab7786c3f75b9f252cd3}{hydrate}} (\$tableau)
+\begin{DoxyCompactList}\small\item\em Hydrate un objet \doxylink{class_note}{Note} à partir d\textquotesingle{}un tableau. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_note_dao_aae459ccc748352d1ea084aeebf039ba5}{hydrate\+All}} (\$tableau)
+\begin{DoxyCompactList}\small\item\em Hydrate plusieurs notes. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_note_dao_a42dc3ee0cfd289065f573ec4d003c037}{insert}} (\doxymbox{\hyperlink{class_note}{Note}} \$note)
+\begin{DoxyCompactList}\small\item\em Insère une nouvelle note en base de données. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+DAO pour la gestion des notes en base de données. 
+
+\label{doc-constructors}
+\Hypertarget{class_note_dao_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_note_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0}\index{NoteDao@{NoteDao}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!NoteDao@{NoteDao}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_note_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{?PDO}]{\$pdo}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Constructeur de la classe \doxylink{class_note_dao}{Note\+Dao}. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+PDO | null & {\em \$pdo} & Instance de connexion PDO. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_note_dao_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_note_dao_a584ce41683cc8dfa9f035be21416074d}\index{NoteDao@{NoteDao}!findAllAssoc@{findAllAssoc}}
+\index{findAllAssoc@{findAllAssoc}!NoteDao@{NoteDao}}
+\doxysubsubsection{\texorpdfstring{findAllAssoc()}{findAllAssoc()}}
+{\footnotesize\ttfamily \label{class_note_dao_a584ce41683cc8dfa9f035be21416074d} 
+find\+All\+Assoc (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère toutes les notes sous forme d\textquotesingle{}objets \doxylink{class_note}{Note}. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau d\textquotesingle{}objets \doxylink{class_note}{Note}. 
+\end{DoxyReturn}
+\Hypertarget{class_note_dao_aa196701b8cc616d5b0a83dea9bf18ed6}\index{NoteDao@{NoteDao}!findByUser@{findByUser}}
+\index{findByUser@{findByUser}!NoteDao@{NoteDao}}
+\doxysubsubsection{\texorpdfstring{findByUser()}{findByUser()}}
+{\footnotesize\ttfamily \label{class_note_dao_aa196701b8cc616d5b0a83dea9bf18ed6} 
+find\+By\+User (\begin{DoxyParamCaption}\item[{string}]{\$id\+Auteur}{}\end{DoxyParamCaption})}
+
+
+
+Trouve les notes associées à un utilisateur (auteur ou receveur). 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$id\+Auteur} & ID de l\textquotesingle{}utilisateur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Tableau de notes (associatif). 
+\end{DoxyReturn}
+\Hypertarget{class_note_dao_a99aaf2c7c8e237b80e6e0315f8325e64}\index{NoteDao@{NoteDao}!findByUsers@{findByUsers}}
+\index{findByUsers@{findByUsers}!NoteDao@{NoteDao}}
+\doxysubsubsection{\texorpdfstring{findByUsers()}{findByUsers()}}
+{\footnotesize\ttfamily \label{class_note_dao_a99aaf2c7c8e237b80e6e0315f8325e64} 
+find\+By\+Users (\begin{DoxyParamCaption}\item[{string}]{\$id\+Auteur}{, }\item[{string}]{\$id\+Receveur}{}\end{DoxyParamCaption})}
+
+
+
+Trouve une note entre deux utilisateurs spécifiques. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$id\+Auteur} & ID de l\textquotesingle{}auteur. \\
+\hline
+string & {\em \$id\+Receveur} & ID du receveur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Note\texorpdfstring{$\vert$}{|}null La note trouvée ou null. 
+\end{DoxyReturn}
+\Hypertarget{class_note_dao_a5ad2d39fc610ab7786c3f75b9f252cd3}\index{NoteDao@{NoteDao}!hydrate@{hydrate}}
+\index{hydrate@{hydrate}!NoteDao@{NoteDao}}
+\doxysubsubsection{\texorpdfstring{hydrate()}{hydrate()}}
+{\footnotesize\ttfamily \label{class_note_dao_a5ad2d39fc610ab7786c3f75b9f252cd3} 
+hydrate (\begin{DoxyParamCaption}\item[{}]{\$tableau}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate un objet \doxylink{class_note}{Note} à partir d\textquotesingle{}un tableau. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$tableau} & Tableau de données. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Note\texorpdfstring{$\vert$}{|}null L\textquotesingle{}objet \doxylink{class_note}{Note} hydraté. 
+\end{DoxyReturn}
+\Hypertarget{class_note_dao_aae459ccc748352d1ea084aeebf039ba5}\index{NoteDao@{NoteDao}!hydrateAll@{hydrateAll}}
+\index{hydrateAll@{hydrateAll}!NoteDao@{NoteDao}}
+\doxysubsubsection{\texorpdfstring{hydrateAll()}{hydrateAll()}}
+{\footnotesize\ttfamily \label{class_note_dao_aae459ccc748352d1ea084aeebf039ba5} 
+hydrate\+All (\begin{DoxyParamCaption}\item[{}]{\$tableau}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate plusieurs notes. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tableau} & Tableau de données. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array\texorpdfstring{$\vert$}{|}null Tableau d\textquotesingle{}objets \doxylink{class_note}{Note}. 
+\end{DoxyReturn}
+\Hypertarget{class_note_dao_a42dc3ee0cfd289065f573ec4d003c037}\index{NoteDao@{NoteDao}!insert@{insert}}
+\index{insert@{insert}!NoteDao@{NoteDao}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily \label{class_note_dao_a42dc3ee0cfd289065f573ec4d003c037} 
+insert (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_note}{Note}}}]{\$note}{}\end{DoxyParamCaption})}
+
+
+
+Insère une nouvelle note en base de données. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{class_note}{Note} & {\em \$note} & La note à insérer. \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+modeles/\+\doxymbox{\hyperlink{note_8dao_8php}{note.\+dao.\+php}}\end{DoxyCompactItemize}

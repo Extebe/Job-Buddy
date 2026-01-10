@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page du projet JobBuddy">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./CSS/styleHeader.css">
+    
+    <style>
+        :root {
+            {% if config.parameters.colors is defined %}
+                --primary: {{ config.parameters.colors.primary }};
+                --secondary: {{ config.parameters.colors.secondary }};
+                --accent: {{ config.parameters.colors.accent }};
+                --bg-color: {{ config.parameters.colors.bg_color }};
+                --card-bg: {{ config.parameters.colors.card_bg }};
+                --text-dark: {{ config.parameters.colors.text_dark }};
+                --text-light: {{ config.parameters.colors.text_light }};
+            {% endif %}
+        }
+    </style>
+
+    {% block css %} {% endblock %}
+    <title> {% block title %} Page d'accueil de JobBuddy {% endblock %} </title>
+</head>
+
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">
+                <img src="./images/logo/logoHibouTransparent.png" alt="Logo" width="75" height="75" class="d-inline-block align-text-center ms-2">
+                Jobbuddy
+            </a>
+
+            <ul class="navbar-nav mx-auto d-flex align-items-center">
+                <li class="nav-item d-flex align-items-center me-4">
+                    <form class="d-flex">
+                        <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
+                    </form>
+                </li>
+                <li class="nav-item d-flex align-items-center me-2">
+                    <button class="btn btn-outline-success" type="submit">Filtrer</button>
+                </li>
+            </ul>
+
+            {% if user.role == "Particulier " %}
+                <div class="btn-compte d-flex align-items-center">
+                    <a href="index.php?controleur=annonce&methode=afficheFormAnnonce">
+                        <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Poster Une Annonce</button>
+                    </a>
+
+                    <a href="index.php?controleur=annonce&methode=afficherMesAnnonces">
+                        <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="./images/icons/account.png" width="30" height="30">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=afficheCompte">Mon Compte</a></li>
+                            <li><a class="dropdown-item" href="index.php?controleur=particulier&methode=parametre">Paramètres</a></li>
+                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=deconnexion">Se Déconnecter</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            {% elseif user.role == "Etudiant" %}
+                <div class="btn-compte d-flex align-items-center">
+                    <a href="index.php?controleur=annonce&methode=afficherMesAnnonces">
+                        <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="./images/icons/account.png" width="30" height="30">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=afficheCompte">Mon Compte</a></li>
+                            <li><a class="dropdown-item" href="index.php?controleur=etudiant&methode=parametre">Paramètres</a></li>
+                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=deconnexion">Se Déconnecter</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            {% else %}
+                <div class="btn-compte d-flex align-items-center">
+                    <a href="index.php?controleur=utilisateur&methode=pageConnexion"><button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">se connecter</button></a>
+                    <a href="index.php?controleur=utilisateur&methode=pageInscription"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">s'inscrire</button></a>
+                </div>
+
+            {% endif %}
+            {% block headerListe %}
+            {% endblock %}
+        </div>
+    </nav>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<footer>
+    <div class="container-fluid">
+        <div class="row" style="min-height: 100px;">
+            <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                <p class="mb-0">Jobbuddy</p>
+            </div>
+
+            <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                <a class="mb-0" href='index.php?controleur=newsLetter&methode=afficher'>S'inscrire à la news letter</a>
+            </div>
+
+            <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                <p class="mb-0">Nous contacter</p>
+            </div>
+        </div>
+        <div class="row" style="min-height: 50px;">
+            <div class="col-sm-12 d-flex justify-content-center align-items-center">
+                <p class="mb-0">Copyrights</p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+{% endblock %}
+</body>
+</html>

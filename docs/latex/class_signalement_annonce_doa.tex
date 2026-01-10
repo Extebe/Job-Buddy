@@ -1,0 +1,148 @@
+\doxysection{Référence de la classe Signalement\+Annonce\+Doa}
+\hypertarget{class_signalement_annonce_doa}{}\label{class_signalement_annonce_doa}\index{SignalementAnnonceDoa@{SignalementAnnonceDoa}}
+
+
+DAO pour les signalements d\textquotesingle{}annonces.  
+
+
+Graphe d\textquotesingle{}héritage de Signalement\+Annonce\+Doa:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_signalement_annonce_doa}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_signalement_annonce_doa_a73a1b0348919b6755e4f69dcc70eba64}{find\+All}} ()
+\begin{DoxyCompactList}\small\item\em Récupère tous les signalements d\textquotesingle{}annonces. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_signalement_annonce_doa_a48d48013b7a2536dff0ae9cdda03dd7e}{find}} (?int \$id)
+\begin{DoxyCompactList}\small\item\em Trouve un signalement par l\textquotesingle{}ID de l\textquotesingle{}annonce signalée. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_signalement_annonce_doa_a584ce41683cc8dfa9f035be21416074d}{find\+All\+Assoc}} ()
+\begin{DoxyCompactList}\small\item\em Récupère tous les signalements d\textquotesingle{}annonces sous forme de tableau associatif. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_signalement_annonce_doa_a5094aa92cda0504aa7484dd4c5d89230}{find\+Assoc}} (?int \$id)
+\begin{DoxyCompactList}\small\item\em Trouve un signalement par l\textquotesingle{}ID de l\textquotesingle{}annonce signalée (associatif). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_signalement_annonce_doa_a9397690c9f3d6140ba5f106bda17e95a}{hydrate}} (\$tab\+Assoc)
+\begin{DoxyCompactList}\small\item\em Hydrate un objet \doxylink{class_signalement_annonce}{Signalement\+Annonce}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_signalement_annonce_doa_a61551f73ae009dd7f2203929e566887d}{hydrate\+All}} (\$tab)
+\begin{DoxyCompactList}\small\item\em Hydrate plusieurs signalements d\textquotesingle{}annonces. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \doxymbox{\hyperlink{class_signalement_dao}{Signalement\+Dao}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_signalement_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0}{\+\_\+\+\_\+construct}} (?PDO \$pdo=null)
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \doxylink{class_signalement_dao}{Signalement\+Dao}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_signalement_dao_a6e7560ad95a7986be67f7528c80e7f1a}{get\+Pdo}} ()
+\begin{DoxyCompactList}\small\item\em Récupère l\textquotesingle{}instance PDO. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_signalement_dao_aafe9ccc8334eff61c1211a7aba46d93b}{set\+Pdo}} (\$pdo)
+\begin{DoxyCompactList}\small\item\em Définit l\textquotesingle{}instance PDO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+DAO pour les signalements d\textquotesingle{}annonces. 
+
+\label{doc-func-members}
+\Hypertarget{class_signalement_annonce_doa_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_signalement_annonce_doa_a48d48013b7a2536dff0ae9cdda03dd7e}\index{SignalementAnnonceDoa@{SignalementAnnonceDoa}!find@{find}}
+\index{find@{find}!SignalementAnnonceDoa@{SignalementAnnonceDoa}}
+\doxysubsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily \label{class_signalement_annonce_doa_a48d48013b7a2536dff0ae9cdda03dd7e} 
+find (\begin{DoxyParamCaption}\item[{?int}]{\$id}{}\end{DoxyParamCaption})}
+
+
+
+Trouve un signalement par l\textquotesingle{}ID de l\textquotesingle{}annonce signalée. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | null & {\em \$id} & ID de l\textquotesingle{}annonce. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Signalement\+Annonce\texorpdfstring{$\vert$}{|}boolean Le signalement ou false. 
+\end{DoxyReturn}
+\Hypertarget{class_signalement_annonce_doa_a73a1b0348919b6755e4f69dcc70eba64}\index{SignalementAnnonceDoa@{SignalementAnnonceDoa}!findAll@{findAll}}
+\index{findAll@{findAll}!SignalementAnnonceDoa@{SignalementAnnonceDoa}}
+\doxysubsubsection{\texorpdfstring{findAll()}{findAll()}}
+{\footnotesize\ttfamily \label{class_signalement_annonce_doa_a73a1b0348919b6755e4f69dcc70eba64} 
+find\+All (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère tous les signalements d\textquotesingle{}annonces. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau d\textquotesingle{}objets \doxylink{class_signalement_annonce}{Signalement\+Annonce}. 
+\end{DoxyReturn}
+\Hypertarget{class_signalement_annonce_doa_a584ce41683cc8dfa9f035be21416074d}\index{SignalementAnnonceDoa@{SignalementAnnonceDoa}!findAllAssoc@{findAllAssoc}}
+\index{findAllAssoc@{findAllAssoc}!SignalementAnnonceDoa@{SignalementAnnonceDoa}}
+\doxysubsubsection{\texorpdfstring{findAllAssoc()}{findAllAssoc()}}
+{\footnotesize\ttfamily \label{class_signalement_annonce_doa_a584ce41683cc8dfa9f035be21416074d} 
+find\+All\+Assoc (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère tous les signalements d\textquotesingle{}annonces sous forme de tableau associatif. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau associatif. 
+\end{DoxyReturn}
+\Hypertarget{class_signalement_annonce_doa_a5094aa92cda0504aa7484dd4c5d89230}\index{SignalementAnnonceDoa@{SignalementAnnonceDoa}!findAssoc@{findAssoc}}
+\index{findAssoc@{findAssoc}!SignalementAnnonceDoa@{SignalementAnnonceDoa}}
+\doxysubsubsection{\texorpdfstring{findAssoc()}{findAssoc()}}
+{\footnotesize\ttfamily \label{class_signalement_annonce_doa_a5094aa92cda0504aa7484dd4c5d89230} 
+find\+Assoc (\begin{DoxyParamCaption}\item[{?int}]{\$id}{}\end{DoxyParamCaption})}
+
+
+
+Trouve un signalement par l\textquotesingle{}ID de l\textquotesingle{}annonce signalée (associatif). 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | null & {\em \$id} & ID de l\textquotesingle{}annonce. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Signalement\+Annonce\texorpdfstring{$\vert$}{|}boolean Le signalement ou false. 
+\end{DoxyReturn}
+\Hypertarget{class_signalement_annonce_doa_a9397690c9f3d6140ba5f106bda17e95a}\index{SignalementAnnonceDoa@{SignalementAnnonceDoa}!hydrate@{hydrate}}
+\index{hydrate@{hydrate}!SignalementAnnonceDoa@{SignalementAnnonceDoa}}
+\doxysubsubsection{\texorpdfstring{hydrate()}{hydrate()}}
+{\footnotesize\ttfamily \label{class_signalement_annonce_doa_a9397690c9f3d6140ba5f106bda17e95a} 
+hydrate (\begin{DoxyParamCaption}\item[{}]{\$tab\+Assoc}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate un objet \doxylink{class_signalement_annonce}{Signalement\+Annonce}. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$tab\+Assoc} & Données du signalement. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Signalement\+Annonce\texorpdfstring{$\vert$}{|}null L\textquotesingle{}objet hydraté. 
+\end{DoxyReturn}
+\Hypertarget{class_signalement_annonce_doa_a61551f73ae009dd7f2203929e566887d}\index{SignalementAnnonceDoa@{SignalementAnnonceDoa}!hydrateAll@{hydrateAll}}
+\index{hydrateAll@{hydrateAll}!SignalementAnnonceDoa@{SignalementAnnonceDoa}}
+\doxysubsubsection{\texorpdfstring{hydrateAll()}{hydrateAll()}}
+{\footnotesize\ttfamily \label{class_signalement_annonce_doa_a61551f73ae009dd7f2203929e566887d} 
+hydrate\+All (\begin{DoxyParamCaption}\item[{}]{\$tab}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate plusieurs signalements d\textquotesingle{}annonces. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$tab} & Tableau de données. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array\texorpdfstring{$\vert$}{|}null Tableau d\textquotesingle{}objets \doxylink{class_signalement_annonce}{Signalement\+Annonce}. 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+modeles/\+\doxymbox{\hyperlink{signalement_annonce_8dao_8php}{signalement\+Annonce.\+dao.\+php}}\end{DoxyCompactItemize}

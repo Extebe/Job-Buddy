@@ -1,0 +1,191 @@
+\doxysection{Référence de la classe Annonce\+Dao}
+\hypertarget{class_annonce_dao}{}\label{class_annonce_dao}\index{AnnonceDao@{AnnonceDao}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_annonce_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0}{\+\_\+\+\_\+construct}} (?PDO \$pdo=null)
+\item 
+\doxymbox{\hyperlink{class_annonce_dao_a6e7560ad95a7986be67f7528c80e7f1a}{get\+Pdo}} ()
+\item 
+\doxymbox{\hyperlink{class_annonce_dao_aba4c54698c520d0e4a7cabcd4905b7a2}{set\+Pdo}} (?PDO \$pdo)
+\item 
+\doxymbox{\hyperlink{class_annonce_dao_af694914fa174988370ef4cdb16b8089e}{find}} (?string \$id)
+\begin{DoxyCompactList}\small\item\em Trouve une annonce par son identifiant. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_annonce_dao_a73a1b0348919b6755e4f69dcc70eba64}{find\+All}} ()
+\begin{DoxyCompactList}\small\item\em Récupère toutes les annonces. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_annonce_dao_abd96ba6b5d7b9a446f64940b3f677f3c}{find\+All\+By\+Id}} (\$utilisateur)
+\begin{DoxyCompactList}\small\item\em Récupère toutes les annonces associées à un utilisateur (créateur ou postulant). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_annonce_dao_a584ce41683cc8dfa9f035be21416074d}{find\+All\+Assoc}} ()
+\begin{DoxyCompactList}\small\item\em Récupère toutes les annonces sous forme de tableau associatif. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_annonce_dao_af25ea6725e23d399c8ad498f5a6aa930}{hydrate}} (\$tableau\+Assoc)
+\begin{DoxyCompactList}\small\item\em Hydrate un objet \doxylink{class_annonce}{Annonce} à partir d\textquotesingle{}un tableau associatif. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_annonce_dao_aae459ccc748352d1ea084aeebf039ba5}{hydrate\+All}} (\$tableau)
+\begin{DoxyCompactList}\small\item\em Hydrate un tableau d\textquotesingle{}annonces. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_annonce_dao_abe9dbffae30bed99583d3c075065aaef}{add\+Relations}} (\doxymbox{\hyperlink{class_annonce}{Annonce}} \$annonce)
+\begin{DoxyCompactList}\small\item\em Ajoute les relations (postulations) à une annonce. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_annonce_dao_a01ad1f0a4ffb4976910cad6b1115c0b8}{inserer\+Annonce}} (\doxymbox{\hyperlink{class_annonce}{Annonce}} \$annonce)
+\begin{DoxyCompactList}\small\item\em Insère une nouvelle annonce en base de données. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_annonce_dao_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_annonce_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0}\index{AnnonceDao@{AnnonceDao}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{?PDO}]{\$pdo}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_annonce_dao_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_annonce_dao_abe9dbffae30bed99583d3c075065aaef}\index{AnnonceDao@{AnnonceDao}!addRelations@{addRelations}}
+\index{addRelations@{addRelations}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{addRelations()}{addRelations()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_abe9dbffae30bed99583d3c075065aaef} 
+add\+Relations (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_annonce}{Annonce}}}]{\$annonce}{}\end{DoxyParamCaption})}
+
+
+
+Ajoute les relations (postulations) à une annonce. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{class_annonce}{Annonce} & {\em \$annonce} & L\textquotesingle{}annonce à compléter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{class_annonce}{Annonce} L\textquotesingle{}annonce avec ses relations. 
+\end{DoxyReturn}
+\Hypertarget{class_annonce_dao_af694914fa174988370ef4cdb16b8089e}\index{AnnonceDao@{AnnonceDao}!find@{find}}
+\index{find@{find}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_af694914fa174988370ef4cdb16b8089e} 
+find (\begin{DoxyParamCaption}\item[{?string}]{\$id}{}\end{DoxyParamCaption})}
+
+
+
+Trouve une annonce par son identifiant. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | null & {\em \$id} & Identifiant de l\textquotesingle{}annonce. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Annonce\texorpdfstring{$\vert$}{|}boolean L\textquotesingle{}annonce correspondante ou false si non trouvée. 
+\end{DoxyReturn}
+\Hypertarget{class_annonce_dao_a73a1b0348919b6755e4f69dcc70eba64}\index{AnnonceDao@{AnnonceDao}!findAll@{findAll}}
+\index{findAll@{findAll}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{findAll()}{findAll()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_a73a1b0348919b6755e4f69dcc70eba64} 
+find\+All (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère toutes les annonces. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau d\textquotesingle{}annonces. 
+\end{DoxyReturn}
+\Hypertarget{class_annonce_dao_a584ce41683cc8dfa9f035be21416074d}\index{AnnonceDao@{AnnonceDao}!findAllAssoc@{findAllAssoc}}
+\index{findAllAssoc@{findAllAssoc}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{findAllAssoc()}{findAllAssoc()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_a584ce41683cc8dfa9f035be21416074d} 
+find\+All\+Assoc (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère toutes les annonces sous forme de tableau associatif. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau associatif des annonces. 
+\end{DoxyReturn}
+\Hypertarget{class_annonce_dao_abd96ba6b5d7b9a446f64940b3f677f3c}\index{AnnonceDao@{AnnonceDao}!findAllById@{findAllById}}
+\index{findAllById@{findAllById}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{findAllById()}{findAllById()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_abd96ba6b5d7b9a446f64940b3f677f3c} 
+find\+All\+By\+Id (\begin{DoxyParamCaption}\item[{}]{\$utilisateur}{}\end{DoxyParamCaption})}
+
+
+
+Récupère toutes les annonces associées à un utilisateur (créateur ou postulant). 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$utilisateur} & Identifiant de l\textquotesingle{}utilisateur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Tableau d\textquotesingle{}annonces. 
+\end{DoxyReturn}
+\Hypertarget{class_annonce_dao_a6e7560ad95a7986be67f7528c80e7f1a}\index{AnnonceDao@{AnnonceDao}!getPdo@{getPdo}}
+\index{getPdo@{getPdo}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{getPdo()}{getPdo()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_a6e7560ad95a7986be67f7528c80e7f1a} 
+get\+Pdo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Get the value of pdo \Hypertarget{class_annonce_dao_af25ea6725e23d399c8ad498f5a6aa930}\index{AnnonceDao@{AnnonceDao}!hydrate@{hydrate}}
+\index{hydrate@{hydrate}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{hydrate()}{hydrate()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_af25ea6725e23d399c8ad498f5a6aa930} 
+hydrate (\begin{DoxyParamCaption}\item[{}]{\$tableau\+Assoc}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate un objet \doxylink{class_annonce}{Annonce} à partir d\textquotesingle{}un tableau associatif. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tableau\+Assoc} & Tableau de données. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Annonce\texorpdfstring{$\vert$}{|}null L\textquotesingle{}objet \doxylink{class_annonce}{Annonce} hydraté. 
+\end{DoxyReturn}
+\Hypertarget{class_annonce_dao_aae459ccc748352d1ea084aeebf039ba5}\index{AnnonceDao@{AnnonceDao}!hydrateAll@{hydrateAll}}
+\index{hydrateAll@{hydrateAll}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{hydrateAll()}{hydrateAll()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_aae459ccc748352d1ea084aeebf039ba5} 
+hydrate\+All (\begin{DoxyParamCaption}\item[{}]{\$tableau}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate un tableau d\textquotesingle{}annonces. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tableau} & Tableau de tableaux associatifs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array\texorpdfstring{$\vert$}{|}null Tableau d\textquotesingle{}objets \doxylink{class_annonce}{Annonce}. 
+\end{DoxyReturn}
+\Hypertarget{class_annonce_dao_a01ad1f0a4ffb4976910cad6b1115c0b8}\index{AnnonceDao@{AnnonceDao}!insererAnnonce@{insererAnnonce}}
+\index{insererAnnonce@{insererAnnonce}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{insererAnnonce()}{insererAnnonce()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_a01ad1f0a4ffb4976910cad6b1115c0b8} 
+inserer\+Annonce (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_annonce}{Annonce}}}]{\$annonce}{}\end{DoxyParamCaption})}
+
+
+
+Insère une nouvelle annonce en base de données. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{class_annonce}{Annonce} & {\em \$annonce} & L\textquotesingle{}annonce à insérer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_annonce_dao_aba4c54698c520d0e4a7cabcd4905b7a2}\index{AnnonceDao@{AnnonceDao}!setPdo@{setPdo}}
+\index{setPdo@{setPdo}!AnnonceDao@{AnnonceDao}}
+\doxysubsubsection{\texorpdfstring{setPdo()}{setPdo()}}
+{\footnotesize\ttfamily \label{class_annonce_dao_aba4c54698c520d0e4a7cabcd4905b7a2} 
+set\+Pdo (\begin{DoxyParamCaption}\item[{?PDO}]{\$pdo}{}\end{DoxyParamCaption})}
+
+Set the value of pdo 
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+modeles/\+\doxymbox{\hyperlink{annonce_8dao_8php}{annonce.\+dao.\+php}}\end{DoxyCompactItemize}

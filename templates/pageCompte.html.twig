@@ -1,0 +1,41 @@
+{% extends 'base_template.html.twig' %}
+
+{% block css %} <link rel="stylesheet" href="./CSS/compte.css"> {% endblock %}
+    {% block content %}
+    {% if user.nom != "" %}
+    <div class="card-container">
+        <div class="card">
+            <div class="card-body mx-auto p-4">
+                <h4 class="card-title">Mon Compte {{user.role}}</h4>
+
+                <p>Nom de famille : {{ user.nom }}</p>
+                <p>Prénom : {{ user.prenom }}</p>
+                <p>Date de naissance : {{ user.dateNaiss }}</p>
+                <p>Email : {{ user.email }}</p>
+                <p>N° de téléphone : {{ user.tel }}</p>
+                <p>Ville : {{ user.ville }}</p>
+                <p>Adresse : {{ user.adresse }}</p>
+                <p>Code postal : {{ user.codePostal }}</p>
+
+                {% if user.role == "Etudiant" %}
+                    <p>Code INE : {{ user.codeINE }}</p>
+                {% endif %}
+
+                <div class="d-grid gap-2 d-md-block">
+                    <a href="index.php?controleur=utilisateur&methode=pageModifierCompte">
+                        <button class="btn btn-outline-success mt-2" type="submit">Modifier Compte</button>
+                    </a>
+                    <a href="index.php?controleur=utilisateur&methode=pageModifierCompte">
+                        <button class="btn btn-outline-success-danger mt-2">Supprimer Compte</button>
+                    </a>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% else %}
+        header('Location: index.php');
+    {% endif %}
+    {% endblock %}
+

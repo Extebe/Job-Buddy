@@ -1,0 +1,143 @@
+\doxysection{Référence de la classe Utilisateur\+DAO}
+\hypertarget{class_utilisateur_d_a_o}{}\label{class_utilisateur_d_a_o}\index{UtilisateurDAO@{UtilisateurDAO}}
+
+
+DAO pour la gestion des utilisateurs en base de données.  
+
+
+Graphe d\textquotesingle{}héritage de Utilisateur\+DAO:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_utilisateur_d_a_o}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_a547eaaa1e35bdd4cab1800ac47b3a3b0}{\+\_\+\+\_\+construct}} (?PDO \$pdo=null)
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \doxylink{class_utilisateur_d_a_o}{Utilisateur\+DAO}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_a6e7560ad95a7986be67f7528c80e7f1a}{get\+Pdo}} ()
+\begin{DoxyCompactList}\small\item\em Récupère l\textquotesingle{}instance PDO associée. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_aafe9ccc8334eff61c1211a7aba46d93b}{set\+Pdo}} (\$pdo)
+\begin{DoxyCompactList}\small\item\em Définit l\textquotesingle{}instance PDO. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_a5ad2d39fc610ab7786c3f75b9f252cd3}{hydrate}} (\$tableau)
+\begin{DoxyCompactList}\small\item\em Hydrate un objet \doxylink{class_utilisateur}{Utilisateur} à partir d\textquotesingle{}un tableau associatif. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_a5a59ccff97f9fdc206c3a9dd69584c44}{find\+By\+Id}} (?string \$id)
+\begin{DoxyCompactList}\small\item\em Trouve un utilisateur par son identifiant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+PDO \doxymbox{\hyperlink{class_utilisateur_d_a_o_a9db61e1721b616500bce6ed60491752a}{\$pdo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+DAO pour la gestion des utilisateurs en base de données. 
+
+\label{doc-constructors}
+\Hypertarget{class_utilisateur_d_a_o_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_utilisateur_d_a_o_a547eaaa1e35bdd4cab1800ac47b3a3b0}\index{UtilisateurDAO@{UtilisateurDAO}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!UtilisateurDAO@{UtilisateurDAO}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_utilisateur_d_a_o_a547eaaa1e35bdd4cab1800ac47b3a3b0} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{?PDO}]{\$pdo}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Constructeur de la classe \doxylink{class_utilisateur_d_a_o}{Utilisateur\+DAO}. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+PDO | null & {\em \$pdo} & Instance de connexion PDO (optionnel). \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_utilisateur_d_a_o_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_utilisateur_d_a_o_a5a59ccff97f9fdc206c3a9dd69584c44}\index{UtilisateurDAO@{UtilisateurDAO}!findById@{findById}}
+\index{findById@{findById}!UtilisateurDAO@{UtilisateurDAO}}
+\doxysubsubsection{\texorpdfstring{findById()}{findById()}}
+{\footnotesize\ttfamily \label{class_utilisateur_d_a_o_a5a59ccff97f9fdc206c3a9dd69584c44} 
+find\+By\+Id (\begin{DoxyParamCaption}\item[{?string}]{\$id}{}\end{DoxyParamCaption})}
+
+
+
+Trouve un utilisateur par son identifiant. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | null & {\em \$id} & Identifiant de l\textquotesingle{}utilisateur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Utilisateur\texorpdfstring{$\vert$}{|}null L\textquotesingle{}utilisateur correspondant ou null si non trouvé. 
+\end{DoxyReturn}
+\Hypertarget{class_utilisateur_d_a_o_a6e7560ad95a7986be67f7528c80e7f1a}\index{UtilisateurDAO@{UtilisateurDAO}!getPdo@{getPdo}}
+\index{getPdo@{getPdo}!UtilisateurDAO@{UtilisateurDAO}}
+\doxysubsubsection{\texorpdfstring{getPdo()}{getPdo()}}
+{\footnotesize\ttfamily \label{class_utilisateur_d_a_o_a6e7560ad95a7986be67f7528c80e7f1a} 
+get\+Pdo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère l\textquotesingle{}instance PDO associée. 
+
+\begin{DoxyReturn}{Renvoie}
+PDO\texorpdfstring{$\vert$}{|}null L\textquotesingle{}instance PDO ou null. 
+\end{DoxyReturn}
+\Hypertarget{class_utilisateur_d_a_o_a5ad2d39fc610ab7786c3f75b9f252cd3}\index{UtilisateurDAO@{UtilisateurDAO}!hydrate@{hydrate}}
+\index{hydrate@{hydrate}!UtilisateurDAO@{UtilisateurDAO}}
+\doxysubsubsection{\texorpdfstring{hydrate()}{hydrate()}}
+{\footnotesize\ttfamily \label{class_utilisateur_d_a_o_a5ad2d39fc610ab7786c3f75b9f252cd3} 
+hydrate (\begin{DoxyParamCaption}\item[{}]{\$tableau}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate un objet \doxylink{class_utilisateur}{Utilisateur} à partir d\textquotesingle{}un tableau associatif. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tableau} & Tableau de données de l\textquotesingle{}utilisateur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{class_utilisateur}{Utilisateur} L\textquotesingle{}objet utilisateur hydraté. 
+\end{DoxyReturn}
+
+
+Réimplémentée dans \doxymbox{\hyperlink{class_etudiant_d_a_o_af25ea6725e23d399c8ad498f5a6aa930}{Etudiant\+DAO}}, et \doxymbox{\hyperlink{class_particulier_d_a_o_af25ea6725e23d399c8ad498f5a6aa930}{Particulier\+DAO}}.
+
+\Hypertarget{class_utilisateur_d_a_o_aafe9ccc8334eff61c1211a7aba46d93b}\index{UtilisateurDAO@{UtilisateurDAO}!setPdo@{setPdo}}
+\index{setPdo@{setPdo}!UtilisateurDAO@{UtilisateurDAO}}
+\doxysubsubsection{\texorpdfstring{setPdo()}{setPdo()}}
+{\footnotesize\ttfamily \label{class_utilisateur_d_a_o_aafe9ccc8334eff61c1211a7aba46d93b} 
+set\+Pdo (\begin{DoxyParamCaption}\item[{}]{\$pdo}{}\end{DoxyParamCaption})}
+
+
+
+Définit l\textquotesingle{}instance PDO. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$pdo} & Nouvelle instance PDO. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_utilisateur_d_a_o_doc-variable-members}
+\doxysubsection{Documentation des champs}
+\Hypertarget{class_utilisateur_d_a_o_a9db61e1721b616500bce6ed60491752a}\index{UtilisateurDAO@{UtilisateurDAO}!\$pdo@{\$pdo}}
+\index{\$pdo@{\$pdo}!UtilisateurDAO@{UtilisateurDAO}}
+\doxysubsubsection{\texorpdfstring{\$pdo}{\$pdo}}
+{\footnotesize\ttfamily \label{class_utilisateur_d_a_o_a9db61e1721b616500bce6ed60491752a} 
+PDO \$pdo\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+modeles/\+\doxymbox{\hyperlink{utilisateur_8dao_8php}{utilisateur.\+dao.\+php}}\end{DoxyCompactItemize}

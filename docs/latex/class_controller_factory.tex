@@ -1,0 +1,52 @@
+\doxysection{Référence de la classe Controller\+Factory}
+\hypertarget{class_controller_factory}{}\label{class_controller_factory}\index{ControllerFactory@{ControllerFactory}}
+
+
+Factory pour l\textquotesingle{}instanciation des contrôleurs.  
+
+
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_controller_factory_a88387884b507466663ef1da89a294304}{get\+Controller}} (\$controller, \textbackslash{}Twig\textbackslash{}\+Loader\textbackslash{}\+Filesystem\+Loader \$loader, \textbackslash{}Twig\textbackslash{}\+Environment \$twig)
+\begin{DoxyCompactList}\small\item\em Crée et retourne une instance de contrôleur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Factory pour l\textquotesingle{}instanciation des contrôleurs. 
+
+\label{doc-func-members}
+\Hypertarget{class_controller_factory_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_controller_factory_a88387884b507466663ef1da89a294304}\index{ControllerFactory@{ControllerFactory}!getController@{getController}}
+\index{getController@{getController}!ControllerFactory@{ControllerFactory}}
+\doxysubsubsection{\texorpdfstring{getController()}{getController()}}
+{\footnotesize\ttfamily \label{class_controller_factory_a88387884b507466663ef1da89a294304} 
+get\+Controller (\begin{DoxyParamCaption}\item[{}]{\$controller}{, }\item[{\textbackslash{}Twig\textbackslash{}\+Loader\textbackslash{}\+Filesystem\+Loader}]{\$loader}{, }\item[{\textbackslash{}Twig\textbackslash{}\+Environment}]{\$twig}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Crée et retourne une instance de contrôleur. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$controller} & Le nom du contrôleur (sans le préfixe "{}\+Controller"{}). \\
+\hline
+\textbackslash{}\+Twig\textbackslash{}\+Loader\textbackslash{}\+Filesystem\+Loader & {\em \$loader} & Le chargeur de fichiers Twig. \\
+\hline
+\textbackslash{}\+Twig\textbackslash{}\+Environment & {\em \$twig} & L\textquotesingle{}environnement Twig. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+object L\textquotesingle{}instance du contrôleur. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Si le contrôleur n\textquotesingle{}existe pas. \\
+\hline
+\end{DoxyExceptions}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+controllers/\+\doxymbox{\hyperlink{controller_8factory_8php}{controller.\+factory.\+php}}\end{DoxyCompactItemize}

@@ -1,0 +1,204 @@
+\doxysection{Référence de la classe Etudiant\+DAO}
+\hypertarget{class_etudiant_d_a_o}{}\label{class_etudiant_d_a_o}\index{EtudiantDAO@{EtudiantDAO}}
+
+
+DAO spécifique pour les étudiants, héritant de \doxylink{class_utilisateur_d_a_o}{Utilisateur\+DAO}.  
+
+
+Graphe d\textquotesingle{}héritage de Etudiant\+DAO:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_etudiant_d_a_o}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_etudiant_d_a_o_a73a1b0348919b6755e4f69dcc70eba64}{find\+All}} ()
+\begin{DoxyCompactList}\small\item\em Récupère tous les étudiants. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_etudiant_d_a_o_a48d48013b7a2536dff0ae9cdda03dd7e}{find}} (?int \$id)
+\begin{DoxyCompactList}\small\item\em Trouve un étudiant par son ID. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_etudiant_d_a_o_a584ce41683cc8dfa9f035be21416074d}{find\+All\+Assoc}} ()
+\begin{DoxyCompactList}\small\item\em Récupère tous les étudiants sous forme de tableau associatif. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_etudiant_d_a_o_a5094aa92cda0504aa7484dd4c5d89230}{find\+Assoc}} (?int \$id)
+\begin{DoxyCompactList}\small\item\em Trouve un étudiant par son code (INE ?) et rôle. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_etudiant_d_a_o_af25ea6725e23d399c8ad498f5a6aa930}{hydrate}} (\$tableau\+Assoc)
+\begin{DoxyCompactList}\small\item\em Hydrate un objet \doxylink{class_etudiant}{Etudiant}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_etudiant_d_a_o_aae459ccc748352d1ea084aeebf039ba5}{hydrate\+All}} (\$tableau)
+\begin{DoxyCompactList}\small\item\em Hydrate plusieurs étudiants. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_etudiant_d_a_o_a032e41fc8637f72f820e7aefd1fd853f}{find\+By\+Annonce}} (\$annonce\+Id)
+\begin{DoxyCompactList}\small\item\em Trouve l\textquotesingle{}étudiant retenu pour une annonce. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_etudiant_d_a_o_a0ab36660fe80df95dc4c95829a16ebbf}{inserer\+Utilisateur}} (\$user, \$password\+Hache)
+\begin{DoxyCompactList}\small\item\em Insère un nouvel étudiant en base de données après vérification CVEC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \doxymbox{\hyperlink{class_utilisateur_d_a_o}{Utilisateur\+DAO}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_a547eaaa1e35bdd4cab1800ac47b3a3b0}{\+\_\+\+\_\+construct}} (?PDO \$pdo=null)
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \doxylink{class_utilisateur_d_a_o}{Utilisateur\+DAO}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_a6e7560ad95a7986be67f7528c80e7f1a}{get\+Pdo}} ()
+\begin{DoxyCompactList}\small\item\em Récupère l\textquotesingle{}instance PDO associée. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_aafe9ccc8334eff61c1211a7aba46d93b}{set\+Pdo}} (\$pdo)
+\begin{DoxyCompactList}\small\item\em Définit l\textquotesingle{}instance PDO. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_utilisateur_d_a_o_a5a59ccff97f9fdc206c3a9dd69584c44}{find\+By\+Id}} (?string \$id)
+\begin{DoxyCompactList}\small\item\em Trouve un utilisateur par son identifiant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Membres hérités additionnels}
+\doxysubsection*{Attributs protégés hérités de \doxymbox{\hyperlink{class_utilisateur_d_a_o}{Utilisateur\+DAO}}}
+\begin{DoxyCompactItemize}
+\item 
+PDO \doxymbox{\hyperlink{class_utilisateur_d_a_o_a9db61e1721b616500bce6ed60491752a}{\$pdo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+DAO spécifique pour les étudiants, héritant de \doxylink{class_utilisateur_d_a_o}{Utilisateur\+DAO}. 
+
+\label{doc-func-members}
+\Hypertarget{class_etudiant_d_a_o_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_etudiant_d_a_o_a48d48013b7a2536dff0ae9cdda03dd7e}\index{EtudiantDAO@{EtudiantDAO}!find@{find}}
+\index{find@{find}!EtudiantDAO@{EtudiantDAO}}
+\doxysubsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily \label{class_etudiant_d_a_o_a48d48013b7a2536dff0ae9cdda03dd7e} 
+find (\begin{DoxyParamCaption}\item[{?int}]{\$id}{}\end{DoxyParamCaption})}
+
+
+
+Trouve un étudiant par son ID. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | null & {\em \$id} & Identifiant de l\textquotesingle{}étudiant. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Etudiant\texorpdfstring{$\vert$}{|}boolean L\textquotesingle{}étudiant correspondant ou false. 
+\end{DoxyReturn}
+\Hypertarget{class_etudiant_d_a_o_a73a1b0348919b6755e4f69dcc70eba64}\index{EtudiantDAO@{EtudiantDAO}!findAll@{findAll}}
+\index{findAll@{findAll}!EtudiantDAO@{EtudiantDAO}}
+\doxysubsubsection{\texorpdfstring{findAll()}{findAll()}}
+{\footnotesize\ttfamily \label{class_etudiant_d_a_o_a73a1b0348919b6755e4f69dcc70eba64} 
+find\+All (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère tous les étudiants. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau d\textquotesingle{}objets \doxylink{class_etudiant}{Etudiant}. 
+\end{DoxyReturn}
+\Hypertarget{class_etudiant_d_a_o_a584ce41683cc8dfa9f035be21416074d}\index{EtudiantDAO@{EtudiantDAO}!findAllAssoc@{findAllAssoc}}
+\index{findAllAssoc@{findAllAssoc}!EtudiantDAO@{EtudiantDAO}}
+\doxysubsubsection{\texorpdfstring{findAllAssoc()}{findAllAssoc()}}
+{\footnotesize\ttfamily \label{class_etudiant_d_a_o_a584ce41683cc8dfa9f035be21416074d} 
+find\+All\+Assoc (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère tous les étudiants sous forme de tableau associatif. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau d\textquotesingle{}étudiants (associatif). 
+\end{DoxyReturn}
+\Hypertarget{class_etudiant_d_a_o_a5094aa92cda0504aa7484dd4c5d89230}\index{EtudiantDAO@{EtudiantDAO}!findAssoc@{findAssoc}}
+\index{findAssoc@{findAssoc}!EtudiantDAO@{EtudiantDAO}}
+\doxysubsubsection{\texorpdfstring{findAssoc()}{findAssoc()}}
+{\footnotesize\ttfamily \label{class_etudiant_d_a_o_a5094aa92cda0504aa7484dd4c5d89230} 
+find\+Assoc (\begin{DoxyParamCaption}\item[{?int}]{\$id}{}\end{DoxyParamCaption})}
+
+
+
+Trouve un étudiant par son code (INE ?) et rôle. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | null & {\em \$id} & Code/\+\+ID. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array\texorpdfstring{$\vert$}{|}boolean Tableau associatif de l\textquotesingle{}étudiant ou false. 
+\end{DoxyReturn}
+\Hypertarget{class_etudiant_d_a_o_a032e41fc8637f72f820e7aefd1fd853f}\index{EtudiantDAO@{EtudiantDAO}!findByAnnonce@{findByAnnonce}}
+\index{findByAnnonce@{findByAnnonce}!EtudiantDAO@{EtudiantDAO}}
+\doxysubsubsection{\texorpdfstring{findByAnnonce()}{findByAnnonce()}}
+{\footnotesize\ttfamily \label{class_etudiant_d_a_o_a032e41fc8637f72f820e7aefd1fd853f} 
+find\+By\+Annonce (\begin{DoxyParamCaption}\item[{}]{\$annonce\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Trouve l\textquotesingle{}étudiant retenu pour une annonce. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$annonce\+Id} & Identifiant de l\textquotesingle{}annonce. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Etudiant\texorpdfstring{$\vert$}{|}null L\textquotesingle{}étudiant retenu ou null. 
+\end{DoxyReturn}
+\Hypertarget{class_etudiant_d_a_o_af25ea6725e23d399c8ad498f5a6aa930}\index{EtudiantDAO@{EtudiantDAO}!hydrate@{hydrate}}
+\index{hydrate@{hydrate}!EtudiantDAO@{EtudiantDAO}}
+\doxysubsubsection{\texorpdfstring{hydrate()}{hydrate()}}
+{\footnotesize\ttfamily \label{class_etudiant_d_a_o_af25ea6725e23d399c8ad498f5a6aa930} 
+hydrate (\begin{DoxyParamCaption}\item[{}]{\$tableau\+Assoc}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate un objet \doxylink{class_etudiant}{Etudiant}. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tableau\+Assoc} & Données de l\textquotesingle{}étudiant. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Etudiant\texorpdfstring{$\vert$}{|}null L\textquotesingle{}objet \doxylink{class_etudiant}{Etudiant} hydraté. 
+\end{DoxyReturn}
+
+
+Réimplémentée à partir de \doxymbox{\hyperlink{class_utilisateur_d_a_o_a5ad2d39fc610ab7786c3f75b9f252cd3}{Utilisateur\+DAO}}.
+
+\Hypertarget{class_etudiant_d_a_o_aae459ccc748352d1ea084aeebf039ba5}\index{EtudiantDAO@{EtudiantDAO}!hydrateAll@{hydrateAll}}
+\index{hydrateAll@{hydrateAll}!EtudiantDAO@{EtudiantDAO}}
+\doxysubsubsection{\texorpdfstring{hydrateAll()}{hydrateAll()}}
+{\footnotesize\ttfamily \label{class_etudiant_d_a_o_aae459ccc748352d1ea084aeebf039ba5} 
+hydrate\+All (\begin{DoxyParamCaption}\item[{}]{\$tableau}{}\end{DoxyParamCaption})}
+
+
+
+Hydrate plusieurs étudiants. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tableau} & Tableau de données. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array\texorpdfstring{$\vert$}{|}null Tableau d\textquotesingle{}objets \doxylink{class_etudiant}{Etudiant}. 
+\end{DoxyReturn}
+\Hypertarget{class_etudiant_d_a_o_a0ab36660fe80df95dc4c95829a16ebbf}\index{EtudiantDAO@{EtudiantDAO}!insererUtilisateur@{insererUtilisateur}}
+\index{insererUtilisateur@{insererUtilisateur}!EtudiantDAO@{EtudiantDAO}}
+\doxysubsubsection{\texorpdfstring{insererUtilisateur()}{insererUtilisateur()}}
+{\footnotesize\ttfamily \label{class_etudiant_d_a_o_a0ab36660fe80df95dc4c95829a16ebbf} 
+inserer\+Utilisateur (\begin{DoxyParamCaption}\item[{}]{\$user}{, }\item[{}]{\$password\+Hache}{}\end{DoxyParamCaption})}
+
+
+
+Insère un nouvel étudiant en base de données après vérification CVEC. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{class_etudiant}{Etudiant} & {\em \$user} & L\textquotesingle{}objet étudiant à insérer. \\
+\hline
+string & {\em \$password\+Hache} & Mot de passe haché. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Si le CVEC est invalide. \\
+\hline
+\end{DoxyExceptions}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+modeles/\+\doxymbox{\hyperlink{etudiant_8dao_8php}{etudiant.\+dao.\+php}}\end{DoxyCompactItemize}

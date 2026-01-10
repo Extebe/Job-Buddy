@@ -1,0 +1,114 @@
+\doxysection{Référence de la classe New\+Letter\+Dao}
+\hypertarget{class_new_letter_dao}{}\label{class_new_letter_dao}\index{NewLetterDao@{NewLetterDao}}
+
+
+DAO pour la gestion des inscriptions à la newsletter.  
+
+
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_new_letter_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0}{\+\_\+\+\_\+construct}} (?PDO \$pdo=null)
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \doxylink{class_new_letter_dao}{New\+Letter\+Dao}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_new_letter_dao_a6e7560ad95a7986be67f7528c80e7f1a}{get\+Pdo}} ()
+\begin{DoxyCompactList}\small\item\em Récupère l\textquotesingle{}instance PDO. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_new_letter_dao_aafe9ccc8334eff61c1211a7aba46d93b}{set\+Pdo}} (\$pdo)
+\begin{DoxyCompactList}\small\item\em Définit l\textquotesingle{}instance PDO. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_new_letter_dao_aa59975ac68a6b59cc70f3d4026b7e47e}{inserer\+Email}} (?\doxymbox{\hyperlink{class_new_letter}{New\+Letter}} \$news\+Letter)
+\begin{DoxyCompactList}\small\item\em Insère un email dans la table des inscrits. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_new_letter_dao_aee654dd72e66ed0deec076f21a6e67a1}{email\+Existe\+Newsletter}} (\$email)
+\begin{DoxyCompactList}\small\item\em Vérifie si un email est déjà inscrit à la newsletter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+DAO pour la gestion des inscriptions à la newsletter. 
+
+\label{doc-constructors}
+\Hypertarget{class_new_letter_dao_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_new_letter_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0}\index{NewLetterDao@{NewLetterDao}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!NewLetterDao@{NewLetterDao}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_new_letter_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{?PDO}]{\$pdo}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Constructeur de la classe \doxylink{class_new_letter_dao}{New\+Letter\+Dao}. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+PDO | null & {\em \$pdo} & Instance de connexion PDO. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_new_letter_dao_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_new_letter_dao_aee654dd72e66ed0deec076f21a6e67a1}\index{NewLetterDao@{NewLetterDao}!emailExisteNewsletter@{emailExisteNewsletter}}
+\index{emailExisteNewsletter@{emailExisteNewsletter}!NewLetterDao@{NewLetterDao}}
+\doxysubsubsection{\texorpdfstring{emailExisteNewsletter()}{emailExisteNewsletter()}}
+{\footnotesize\ttfamily \label{class_new_letter_dao_aee654dd72e66ed0deec076f21a6e67a1} 
+email\+Existe\+Newsletter (\begin{DoxyParamCaption}\item[{}]{\$email}{}\end{DoxyParamCaption})}
+
+
+
+Vérifie si un email est déjà inscrit à la newsletter. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$email} & L\textquotesingle{}email à vérifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool True si l\textquotesingle{}email existe, sinon False. 
+\end{DoxyReturn}
+\Hypertarget{class_new_letter_dao_a6e7560ad95a7986be67f7528c80e7f1a}\index{NewLetterDao@{NewLetterDao}!getPdo@{getPdo}}
+\index{getPdo@{getPdo}!NewLetterDao@{NewLetterDao}}
+\doxysubsubsection{\texorpdfstring{getPdo()}{getPdo()}}
+{\footnotesize\ttfamily \label{class_new_letter_dao_a6e7560ad95a7986be67f7528c80e7f1a} 
+get\+Pdo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Récupère l\textquotesingle{}instance PDO. 
+
+\begin{DoxyReturn}{Renvoie}
+PDO\texorpdfstring{$\vert$}{|}null L\textquotesingle{}instance PDO. 
+\end{DoxyReturn}
+\Hypertarget{class_new_letter_dao_aa59975ac68a6b59cc70f3d4026b7e47e}\index{NewLetterDao@{NewLetterDao}!insererEmail@{insererEmail}}
+\index{insererEmail@{insererEmail}!NewLetterDao@{NewLetterDao}}
+\doxysubsubsection{\texorpdfstring{insererEmail()}{insererEmail()}}
+{\footnotesize\ttfamily \label{class_new_letter_dao_aa59975ac68a6b59cc70f3d4026b7e47e} 
+inserer\+Email (\begin{DoxyParamCaption}\item[{?\doxymbox{\hyperlink{class_new_letter}{New\+Letter}}}]{\$news\+Letter}{}\end{DoxyParamCaption})}
+
+
+
+Insère un email dans la table des inscrits. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{class_new_letter}{New\+Letter} | null & {\em \$news\+Letter} & L\textquotesingle{}objet \doxylink{class_new_letter}{New\+Letter} contenant l\textquotesingle{}email. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_new_letter_dao_aafe9ccc8334eff61c1211a7aba46d93b}\index{NewLetterDao@{NewLetterDao}!setPdo@{setPdo}}
+\index{setPdo@{setPdo}!NewLetterDao@{NewLetterDao}}
+\doxysubsubsection{\texorpdfstring{setPdo()}{setPdo()}}
+{\footnotesize\ttfamily \label{class_new_letter_dao_aafe9ccc8334eff61c1211a7aba46d93b} 
+set\+Pdo (\begin{DoxyParamCaption}\item[{}]{\$pdo}{}\end{DoxyParamCaption})}
+
+
+
+Définit l\textquotesingle{}instance PDO. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$pdo} & L\textquotesingle{}instance PDO. \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+modeles/\+\doxymbox{\hyperlink{news_letter_8dao_8php}{news\+Letter.\+dao.\+php}}\end{DoxyCompactItemize}

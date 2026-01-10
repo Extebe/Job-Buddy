@@ -1,0 +1,29 @@
+{% extends 'base_template.html.twig' %}
+    {% block content %}
+    <div class='container'>
+        <div class='row'>
+
+        <h1>Inscris toi à la newsletter !</h1>
+
+        <form method='POST' action="index.php?controleur=utilisateur&methode=newsletter">
+            <div class="mb-3">
+                <label for="" class="form-label">Je laisse mon email *</label>
+                <input type="email" class="form-control" id="email" name="email" required >
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="checkDefault" required>
+                <label class="form-check-label" for="checkDefault">
+                    En cochant cette case, j’accepte que mes informations soient traitées par <i>JobBuddy</i>, conformément à la 
+                    <a href='index.php?controleur=newsLetter&methode=afficherPolitiqueConfidentialite'>Politique de Confidentialité </a>
+                    afin de recevoir la newsletter. Je prends note que je peux me désabonner à tout moment.
+                </label>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">S'inscrire</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    {% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base_template.html.twig' %}
+
+{% block content %}
+<div class="container my-4 d-flex flex-column align-items-center">
+
+    {# --- Card principale de l'annonce --- #}
+    <div class="card w-75 mb-4">
+        <div class="card-body">
+            <h4 class="card-title">{{ annonce.titre }}</h4>
+
+            <p><strong>Description :</strong> {{ annonce.description }}</p>
+            <p><strong>Rémunération :</strong> {{ annonce.remuneration }} €</p>
+            <p><strong>Lieu :</strong> {{ annonce.lieu }}</p>
+            <p><strong>Date de début de réalisation :</strong> {{ annonce.dateDebutRealisation|date("H:i d/m/Y") }}</p>
+            <p><strong>Type de service :</strong> {{ annonce.typeService }}</p>
+
+            {% if user.role == "Etudiant" and annonce.etat == "DISPONIBLE" %}
+                <div class="d-flex gap-2 mt-3 justify-content-end">
+                    <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
+                        <button class="btn btn-outline-success">Postuler</button>
+                    </a>
+                </div>
+            {% endif %}
+<div class="d-flex gap-2 mt-3 justify-content-end">
+            {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
+                
+                    <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
+                       class="btn btn-outline-success btn-sm">
+                        Modifier
+                    </a>
+                {% endif %}
+
+            {% if user.getRole() == "Particulier " and annonce.getCreateur().getId() == user.getId() %}
+                    <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
+                       class="btn btn-outline-danger btn-sm"
+                       onclick="return confirm('Supprimer cette annonce ?');">
+                        Supprimer
+                    </a>
+
+            {% endif %}
+
+
+             </div>
+        </div>
+    </div>
+
+    {# --- Card des étudiants ayant postulé --- #}
+    <div class="card w-50 text-center">
+        <div class="card-header bg-primary text-white">
+        {% if annonce.getEtat() == "DISPONIBLE" %}
+            Étudiants ayant postulé
+        
+        {% else %}
+            Étudiants acceptés
+        
+        {% endif %}
+        </div>
+        <div class="card-body">
+            {% if annonce.postulations | length > 0 %}
+                <ul class="list-group d-inline-block text-start" style="min-width: 250px;">
+                    {% for etudiant in annonce.postulations %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{ etudiant.prenom }} {{ etudiant.nom }}</span>
+
+                            {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
+                                <div class="btn-group" role="group" aria-label="Sélection">
+                                    <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=accepter"
+                                    class="btn btn-success btn-lg">
+                                        <i class="bi bi-check fs-4"></i>
+                                    </a>
+                                    <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=refuser"
+                                    class="btn btn-danger btn-lg">
+                                        <i class="bi bi-x fs-4"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+
+            {% else %}
+                <p class="text-muted fst-italic">Aucun étudiant n’a postulé pour cette annonce pour le moment.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}
