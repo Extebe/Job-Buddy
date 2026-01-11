@@ -146,7 +146,7 @@ class ControllerUtilisateur extends Controller
             catch (Exception $e) {
                 switch ($e->getMessage()) {
                     case "compte_existant":
-                        $_SESSION['msg_erreur'] = "Ce compte existe déjà.<a href='#'>Mot de passe oublié ?";
+                        $_SESSION['msg_erreur'] = "Ce compte existe déjà.";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
                         exit();
 
