@@ -70,21 +70,18 @@ class ControllerAnnonce extends Controller
             $description = $_POST['description'];
             $lieu = $_POST['lieu'];
             $remuneration = $_POST['remuneration'];
-            $idParticulier = $_GET['idParticulier'];
-            if ($_GET['idParticulier'] != Utilisateur::getUser()->getId()) {
-                //Tentative de soumission d'annonce pour un autre utilisateur
-                header("Location: index.php");
-                exit();
-            }
-            $particulier = Utilisateur::getUser();
+
+            $particulierDao = new ParticulierDao($this->getPdo());
+            $particulier = $particulierDao->find(Utilisateur::getUser()->getId());
+
             $annonce1 = new Annonce(
                 null,
-                $particulier->getId(),
+                $particulier,
                 $titre,
                 $description,
                 $typeService,
                 $lieu,
-                $remuneration,
+                (float)$remuneration,
                 $dateDebut,
                 $dateFin,
                 "DISPONIBLE",
@@ -92,8 +89,16 @@ class ControllerAnnonce extends Controller
                 null,
                 null
             );
-            $managerAnnonce = new AnnonceDAO($this->getPdo());
+            $managerAnnonce = new AnnonceDao($this->getPdo());
             $managerAnnonce->insererAnnonce($annonce1);
+
+            $managerAnnonce = new AnnonceDAO($this->getPdo());
+            try {
+                $managerAnnonce->insererAnnonce($annonce1);
+            }
+            catch (\Exception $e) {
+                echo $e->getMessage();
+            }
             //Appel de la requête qui créé l'annonce
             header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ALL");
             exit();

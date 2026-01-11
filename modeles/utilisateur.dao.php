@@ -76,5 +76,62 @@ class UtilisateurDAO
         $tableau = $pdoStatement->fetch();
         return $this->hydrate($tableau);
     }
+
+    /**
+     * @brief Met à jour les informations d'un utilisateur.
+     * @param Utilisateur $user L'utilisateur à mettre à jour.
+     */
+    public function update(Utilisateur $user): void
+    {
+        $sql = "UPDATE Utilisateur SET 
+            nom = :nom,
+            prenom = :prenom,
+            tel = :tel,
+            dateNaiss = :dateNaiss,
+            email = :email,
+            mdp = :mdp,
+            ville = :ville,
+            adresse = :adresse,
+            codePostal = :codePostal";
+
+        // Ajout du champ codeINE si l'utilisateur est un étudiant
+        if ($user instanceof Etudiant) {
+            $sql .= ", codeINE = :codeINE";
+        }
+
+        $sql .= " WHERE id = :id";
+
+        $pdoStatement = $this->pdo->prepare($sql);
+
+        $params = [
+            'nom' => $user->getNom(),
+            'prenom' => $user->getPrenom(),
+            'tel' => $user->getTel(),
+            'dateNaiss' => $user->getDateNaiss(),
+            'email' => $user->getEmail(),
+            'mdp' => $user->getMdp(),
+            'ville' => $user->getVille(),
+            'adresse' => $user->getAdresse(),
+            'codePostal' => $user->getCodePostal(),
+            'id' => $user->getId()
+        ];
+
+        if ($user instanceof Etudiant) {
+            $params['codeINE'] = $user->getCodeINE();
+        }
+
+        $pdoStatement->execute($params);
+    }
+
+    /**
+     * @brief Supprime (soft delete) un utilisateur.
+     * @param string|null $id ID de l'utilisateur.
+     */
+    public function delete(?string $id): void
+    {
+        $sql = "UPDATE Utilisateur SET dateSuppression = NOW() WHERE id = :id";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(['id' => $id]);
+    }
 }
 ?>
