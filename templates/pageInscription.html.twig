@@ -3,6 +3,9 @@
 {% block content %}
     <div class="container">
         <h1 class="text-center mb-4">S'inscrire</h1>
+        {% if msg_erreur %}
+            <p style="color:red;">{{ msg_erreur }}</p>
+        {% endif %}
         <form action="index.php?controleur=utilisateur&methode=inscription" method="POST" class="mx-auto p-4" style="max-width: 500px; border: 1.5px solid #4B352A; border-radius: 8px;">
             <div class="mb-3">
                 <label for="text" class="form-label">Nom :</label>
@@ -112,4 +115,6 @@
             </div>
         </form>
     </div>
+    
 {% endblock %}
+

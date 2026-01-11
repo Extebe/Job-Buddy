@@ -2,50 +2,52 @@
 require_once "include.php";
 
 /**
- * @brief Contrôleur gérant les utilisateurs.
- */
+ * @file    controller.utilisateur.php
+ * 
+ * @brief
+ */ 
+
 class ControllerUtilisateur extends Controller
 {
-    /**
-     * @brief Constructeur du contrôleur Utilisateur.
-     * @param \Twig\Environment $twig Environnement Twig.
-     * @param \Twig\Loader\FilesystemLoader $loader Chargeur Twig.
-     */
     public function __construct(\Twig\Environment $twig, \Twig\Loader\FilesystemLoader $loader)
     {
         parent::__construct($twig, $loader);
     }
 
     /**
-     * @brief Affiche la page de connexion.
+     *  Pous se connecter à la page 
+     *  de connexion
      * @return void
      */
-    public function pageConnexion()
-    {
+    public function pageConnexion(){
+        $msg_erreur=null; // s'il n'y a pas d'erreur, on met la variable à null
         //En cas d'erreur 
-        if (isset($_SESSION['msg_erreur'])) {
-            echo "<p style='color: red;'>" . $_SESSION['msg_erreur'] . "</p>";
+        if(isset($_SESSION['msg_erreur'])){
+            $msg_erreur=$_SESSION['msg_erreur'];
             unset($_SESSION['msg_erreur']);
         }
 
         $template = $this->getTwig();
         echo $template->render('pageDeConnexion.html.twig', [
-            'user' => Utilisateur::getUser()
-        ]);
+            'user' => Utilisateur::getUser(),
+            'msg_erreur'=> $msg_erreur
+        ]);     
     }
 
     /**
-     * @brief Affiche la page d'inscription.
+     * Pous se connecter à la page 
+     * d'inscription
      * @return void
      */
-    public function pageInscription()
-    {
+    public function pageInscription(){
+        $msg_erreur=null; // s'il n'y a pas d'erreur, on met la variable à null
         //En cas d'erreur 
-        if (isset($_SESSION['msg_erreur'])) {
-            echo "<p style='color: red;'>" . $_SESSION['msg_erreur'] . "</p>";
+        if(isset($_SESSION['msg_erreur'])){
+            $msg_erreur = $_SESSION['msg_erreur'];
             unset($_SESSION['msg_erreur']);
         }
-        if (isset($_SESSION['id'])) {
+        
+        if(isset($_SESSION['id'])){
             //À faire, verifier qu'ils sont valides
             $role = $_SESSION['id'];
         }
@@ -54,24 +56,30 @@ class ControllerUtilisateur extends Controller
 
         echo $template->render('pageInscription.html.twig', [
             'user' => Utilisateur::getUser(),
+            'msg_erreur'=> $msg_erreur
         ]);
     }
 
     /**
-     * @brief Inscrit un utilisateur dans la base de données.
-     * @param Utilisateur $user L'utilisateur à inscrire.
-     * @throws Exception Si le mdp est faible ou si le compte existe déjà.
+     * Permet d'inscrire les données de
+     *  l'utilisateur dans la base de données
+     *  tout en chiffrant le mot de passe
+     * 
+     * @param Utilisateur $user
+     * @throws Exception
+     * @return void
      */
-    public function inscriptionBd(Utilisateur $user)
-    {
+    public function inscriptionBd(Utilisateur $user){
 
         // Vérifie si le mot de passe est robuste
-        if (!Valide::estRobuste($user->getMdp())) {
+        if (!Valide::estRobuste($user->getMdp()))
+        {
             throw new Exception("mdp_faible");
         }
 
         // Vérifie si l'email existe déjà
-        if (Valide::emailExiste($user->getEmail())) {
+        if (Valide::emailExiste($user->getEmail()))
+        {
             throw new Exception("compte_existant");
         }
 
@@ -83,11 +91,12 @@ class ControllerUtilisateur extends Controller
 
 
         //verification type d'utilisateur
-        if (get_class($user) === 'Etudiant') {
+        if (get_class($user) === 'Etudiant'){
             $managerEtudiant = new EtudiantDao($pdo);
             $managerEtudiant->insererUtilisateur($user, $passwordHache);
-
-        } else {
+           
+        }
+        else{
             $managerParticulier = new ParticulierDao($pdo);
             $managerParticulier->insererUtilisateur($user, $passwordHache);
         }
@@ -95,11 +104,15 @@ class ControllerUtilisateur extends Controller
     }
 
     /**
-     * @brief Traite le formulaire d'inscription.
+     * Permet de récupérer les informations
+     *  de l'utilisateur depuis le formulaire
+     *  et les inscrits dans la BD
+     * 
+     * @return void
      */
-    public function inscription()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    public function inscription(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
             // Récupération des données envoyées par le formulaire
             $nom = $_POST['nom'] ?? '';
             $prenom = $_POST['prenom'] ?? '';
@@ -115,13 +128,14 @@ class ControllerUtilisateur extends Controller
             $cvec = $_POST['cvec'] ?? '';
 
             if ($role == 'Etudiant') {
-                $user = new Etudiant($id = null, $codeINE, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null, $cvec);
+                $user = new Etudiant($id=null, $codeINE, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null, $cvec);
 
             } else {
                 $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null);
-            }
+            }           
 
-            try {
+            try
+            {
                 // Tentative d'inscription
                 $this->inscriptionBd($user);
 
@@ -130,26 +144,28 @@ class ControllerUtilisateur extends Controller
                 exit();
             }
             //sinon affiche des messages d'erreurs selon le probleme
-            catch (Exception $e) {
-                switch ($e->getMessage()) {
+            catch (Exception $e)
+            {
+                switch ($e->getMessage())
+                {
                     case "compte_existant":
-                        $_SESSION['msg_erreur'] = "Ce compte existe déjà.<a href='#'>Mot de passe oublié ?";
+                        $_SESSION['msg_erreur']="Ce compte existe déjà.<a href='#'>Mot de passe oublié ?";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
                         exit();
 
                     case "mdp_faible":
-                        $_SESSION['msg_erreur'] = "Erreur : Mot de passe invalide." . $user->getId() . $user->getNom() . $user->getPrenom() . $user->getTel() . $user->getDateNaiss() . $user->getEmail() . $user->getMdp() . $user->getAdresse() . $user->getVille() . $user->getCodePostal() . $user->getDateSuppression() . $email . "
+                        $_SESSION['msg_erreur']="Erreur : Mot de passe invalide.
                         Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
-                        exit();
-
+                        exit();     
+                        
                     case "CVEC invalide":
-                        $_SESSION['msg_erreur'] = "Erreur : CVEC invalide.";
+                        $_SESSION['msg_erreur']="Erreur : CVEC invalide.";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
                         exit();
 
                     default:
-                        $_SESSION['msg_erreur'] = "Une erreur inattendue est survenue : {$e->getMessage()}";
+                        $_SESSION['msg_erreur']="Une erreur inattendue est survenue : {$e->getMessage()}";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
                         echo "<h1>Une erreur inattendue est survenue</h1>";
                         exit();
@@ -157,83 +173,87 @@ class ControllerUtilisateur extends Controller
             }
         }
     }
-
+    
     /**
-     * @brief Réinitialise les tentatives de connexion échouées.
-     * @param Utilisateur $user L'utilisateur.
+     * Réinitialise les tentatives échouées 
+     * après une authentification réussie
+     * 
+     * @param Utilisateur $user
      * @return void
      */
-    public function reinitialiserTentativesConnexion(Utilisateur $user): void
-    {
+    public function reinitialiserTentativesConnexion(Utilisateur $user):void{
         // Remet à zéro les tentatives échouées
         $user->setTentativesEchouees(0);
         $user->setDateDernierEchecConnexion(null);
 
         // Mise à jour dans la base de données
-        $bd = $this->getPdo();
-        $requete = $bd->prepare('UPDATE Utilisateur 
+        $bd=$this->getPdo();
+        $requete=$bd->prepare('UPDATE Utilisateur 
                            SET tentativesEchouees = 0, 
                                dateDernierEchecConnexion = NULL 
                            WHERE id = :id');
-        $requete->execute(['id' => $user->getId()]);
+        $requete->execute(['id'=>$user->getId()]);
 
     }
 
     /**
-     * @brief Calcule le temps restant avant le déblocage du compte.
-     * @param Utilisateur $user L'utilisateur.
-     * @return int Temps restant en secondes.
+     * Calcul le temps restant avant que le 
+     *  compte soit débloqué
+     * @param Utilisateur $user
+     * @return float|int
      */
-    public function tempsRestantAvantDeblocage(Utilisateur $user): int
-    {
+    public function tempsRestantAvantDeblocage(Utilisateur $user):int{
         $constantesConnexion = Constantes::getConstantes()['tentative'];
-        if (!$user->getDateDernierEchecConnexion()) {
+        if(!$user->getDateDernierEchecConnexion()){
             // Si aucune tentative échouée n'a été enregistrée
             return 0;
         }
         $dernierEchecTimestamp = strtotime($user->getDateDernierEchecConnexion());
         $tempsEcoule = time() - $dernierEchecTimestamp;
-        $tempsRestant = $constantesConnexion['DELAI_ATTENTE_CONNEXION'] - $tempsEcoule;
+        $tempsRestant = $constantesConnexion['DELAI_ATTENTE_CONNEXION'] -$tempsEcoule;
         return $tempsRestant > 0 ? $tempsRestant : 0;
     }
 
-    /**
-     * @brief Réactive un compte désactivé.
-     * @param Utilisateur $user L'utilisateur.
-     * @return void
-     */
-    public function reactiverCompte(Utilisateur $user): void
-    {
+     /**
+      * Réactive le compte une fois que le 
+      *  délai soit écoulé
+      * @param Utilisateur $user
+      * @return void
+      */
+     public function reactiverCompte(Utilisateur $user):void{
         //Mise à jour des attributs de l'utilisateur
         $user->setTentativesEchouees(0);
         $user->setDateDernierEchecConnexion(null);
         $user->setStatutCompte('actif');
 
         // Mise à jour dans la base de données
-        $bd = $this->getPdo();
-        $requete = $bd->prepare('UPDATE Utilisateur 
+        $bd=$this->getPdo();
+        $requete=$bd->prepare('UPDATE Utilisateur 
                                SET tentativesEchouees = 0, 
                                    dateDernierEchecConnexion = NULL, 
                                    statutCompte = "actif" 
-                               WHERE id = :id');
-        $requete->execute(['id' => $user->getId()]);
-    }
+                               WHERE id = :id');   
+        $requete->execute(['id'=>$user->getId()]);
+     }
 
-    /**
-     * @brief Gère les échecs de connexion.
-     * @param Utilisateur $user L'utilisateur.
-     * @return void
-     * @throws Exception Si trop de tentatives ou mdp invalide.
-     */
-    public function gererEchecConnexion(Utilisateur $user): void
-    {
+
+     /**
+      * Gère les échecs de connexion,
+      *  incrémente le nombre de tentative échouée
+      *  et désactive le compte si le nombre de tentatives 
+      *  est supérieur au maximum autorisé (3)
+      * @param Utilisateur $user
+      * @throws Exception
+      * @return never
+      */
+     public function gererEchecConnexion(Utilisateur $user):void{
         $constantesConnexion = Constantes::getConstantes()['tentative'];
-        $nbTentative = $user->getTentativesEchouees() + 1;
+        $nbTentative=$user->getTentativesEchouees() + 1;
         $user->setTentativesEchouees($nbTentative);
 
-        $bd = $this->getPdo();
+        $bd=$this->getPdo();
 
-        if ($user->getTentativesEchouees() >= $constantesConnexion['MAX_CONNEXIONS_ECHOUEES']) {
+        if($user->getTentativesEchouees() >= $constantesConnexion['MAX_CONNEXIONS_ECHOUEES']){
             // Désactivation du compte
             $requete = $bd->prepare(
                 'UPDATE Utilisateur 
@@ -243,8 +263,9 @@ class ControllerUtilisateur extends Controller
                  WHERE id = :id'
             );
             $user->setStatutCompte('desactive');
-            $exception = "nombre_tentative_depasse";
-        } else {
+            $exception="nombre_tentative_depasse";
+        }
+        else{
             // Mise à jour des tentatives échouées
             $requete = $bd->prepare(
                 'UPDATE Utilisateur 
@@ -252,28 +273,29 @@ class ControllerUtilisateur extends Controller
                  dateDernierEchecConnexion = NOW() 
                  WHERE id = :id'
             );
-            $exception = "mdp_invalide";
+            $exception="mdp_invalide";
         }
         $requete->execute([
             'tentatives' => $nbTentative,
             'id' => $user->getId()
         ]);
         throw new Exception($exception);
-    }
+     }
 
     /**
-     * @brief Authentifie un utilisateur.
-     * @param Utilisateur $user L'utilisateur (avec email et mdp).
-     * @return bool True si authentifié, False sinon.
-     * @throws Exception Si compte bloqué, email invalide, etc.
+     * Vérifie si les identifiants récupérés
+     *  correspondent à ceux de la base 
+     *  de données
+     * @param Utilisateur $user
+     * @throws Exception
+     * @return bool
      */
-    public function authentification(Utilisateur $user): bool
-    {
+    public function authentification(Utilisateur $user):bool{
         // création d'une instance de la bd
         $pdo = $this->getPdo();
 
         // Recherche de l'utilisateur
-        $requete = $pdo->prepare(
+        $requete= $pdo->prepare(
             'SELECT id, mdp, tentativesEchouees, dateDernierEchecConnexion, statutCompte,
              role FROM Utilisateur WHERE email =:email;'
         );
@@ -283,10 +305,10 @@ class ControllerUtilisateur extends Controller
         // Récupération des infos de l'utilisateur
         $donneeUtilisateurEnBD = $requete->fetch(PDO::FETCH_ASSOC);
         // Vérifie si l'utilisateur en BD existe
-        if (!$donneeUtilisateurEnBD) {
+        if(!$donneeUtilisateurEnBD){
             throw new Exception("mail_invalide");
         }
-
+        
         // Hydrate l'objet utilisateur avec les données récupérées
         $user->setId($donneeUtilisateurEnBD['id']);
         $user->setTentativesEchouees($donneeUtilisateurEnBD['tentativesEchouees']);
@@ -294,17 +316,17 @@ class ControllerUtilisateur extends Controller
         $user->setStatutCompte($donneeUtilisateurEnBD['statutCompte']);
 
         // Vérification du statut du compte
-        if ($user->getStatutCompte() === 'desactive') {
-            if ($this->tempsRestantAvantDeblocage($user) !== 0) {
+        if($user->getStatutCompte() === 'desactive'){
+            if($this->tempsRestantAvantDeblocage($user)!==0){
                 throw new Exception("compte_desactive");
             }
             $this->reactiverCompte($user);
         }
 
         // Vérification du mot de passe avec la fonction password_verify
-        if (password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])) {
+        if(password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])){
             // throw new Exception("mdp_invalide");
-            if ($user->getTentativesEchouees() > 0) {
+            if($user->getTentativesEchouees() > 0){
                 $this->reinitialiserTentativesConnexion($user);
             }
             $_SESSION['id'] = $user->getId();
@@ -314,12 +336,18 @@ class ControllerUtilisateur extends Controller
         return false; // Authentification échoué
     }
 
+    
     /**
-     * @brief Traite la demande de connexion.
+     * Récupère les informations de connexions
+     *  de l'utilisateur, vérifie
+     *  s'ils sont valides et 
+     *  affiche la page d'accueil
+     *  selon le role de l'utilisateur
+     *  (particulier - étudiant)
+     * @return void
      */
-    public function connexion()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    public function connexion(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
             //Récupération des données du formulaire
             $email = $_POST['email'] ?? '';
             $mdp = $_POST['mdp'] ?? '';
@@ -327,32 +355,33 @@ class ControllerUtilisateur extends Controller
             //Création d'une instance utilisateur avec les données récupérés
             $utilisateur = new Utilisateur(null, null, null, null, null, null, $email, $mdp);
 
-            try {
+            try{
                 //Tentative de connexion
-                if ($this->authentification($utilisateur)) {
+                if($this->authentification($utilisateur)){
                     header("Location: index.php");
                     exit();
                 }
-            } catch (Exception $e) {
-                switch ($e->getMessage()) {
+            }
+            catch (Exception $e){
+                switch($e->getMessage()){
                     case "mdp_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
-                        $_SESSION['msg_erreur'] = "L'email ou le mot de passe est incorrect";
+                        $_SESSION['msg_erreur']="L'email ou le mot de passe est incorrect";
                         exit();
                     case "mail_invalide":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
-                        $_SESSION['msg_erreur'] = "L'email est incorrect";
-                        exit();
+                        $_SESSION['msg_erreur']="L'email est incorrect";
+                        exit();       
                     case "nombre_tentative_depasse":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
-                        $_SESSION['msg_erreur'] = "Trop de tentatives de connexion, le compte à été bloqué pour " . $this->tempsRestantAvantDeblocage($utilisateur);
-                        exit();
+                        $_SESSION['msg_erreur']="Trop de tentatives de connexion, le compte à été bloqué pour ".$this->tempsRestantAvantDeblocage($utilisateur);
+                        exit();   
                     case "compte_desactive":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
-                        $_SESSION['msg_erreur'] = "Trop de tentatives de connexion, le compte a été bloqué pour " . $this->tempsRestantAvantDeblocage($utilisateur) . " secondes";
-                        exit();
+                        $_SESSION['msg_erreur']="Trop de tentatives de connexion, le compte a été bloqué pour ".$this->tempsRestantAvantDeblocage($utilisateur)." secondes";
+                        exit();   
                     default:
-                        $_SESSION['msg_erreur'] = "Une erreur inattendue est survenue : {$e->getMessage()}";
+                        $_SESSION['msg_erreur']="Une erreur inattendue est survenue : {$e->getMessage()}";
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         echo "<h1>Une erreur inattendue est survenue</h1>";
                         exit();
@@ -362,12 +391,12 @@ class ControllerUtilisateur extends Controller
         }
     }
 
-
     /**
-     * @brief Affiche la page du compte utilisateur.
+     *  Affiche les informations du
+     *  du compte de l'utilisateur
+     * @return void
      */
-    public function afficheCompte()
-    {
+    public function afficheCompte(){
         if (!Utilisateur::getUser()) {
             header('Location: index.php');
             exit;
@@ -380,10 +409,11 @@ class ControllerUtilisateur extends Controller
     }
 
     /**
-     * @brief Affiche la page de modification du compte.
+     * Affiche la page de 
+     * modification du compte
+     * @return void
      */
-    public function pageModifierCompte()
-    {
+    public function pageModifierCompte(){
         if (!Utilisateur::getUser()) {
             header('Location: index.php');
             exit;
@@ -397,22 +427,21 @@ class ControllerUtilisateur extends Controller
     }
 
     /**
-     * @brief Déconnecte l'utilisateur.
-     * @return void
+     * Se déconnecte et affiche
+     *  la page d'accueil
+     * @return never
      */
-    public function deconnexion(): void
-    {
-        $_SESSION = []; // On vide le tableau, pour libérer de l'espace
+    public function deconnexion(): void{
+        $_SESSION=[]; // On vide le tableau, pour libérer de l'espace
         session_destroy();
         header('Location: index.php');
         exit();
     }
-
     /**
-     * @brief Traite la modification du compte (non implémenté totalement).
+     * Permet de modifier le compte
+     * @return void
      */
-    public function modiferCompte()
-    {
+    public function modiferCompte(){
         $currentUser = Utilisateur::getUser();
         $template = $this->getTwig();
 
@@ -460,29 +489,26 @@ class ControllerUtilisateur extends Controller
 
         $mdp = $_POST['mdp'];
         if ($mdp != "") {
-            /* Vérifier mdp */
+            /* Vérifier mdp */ 
         }
-
-
-
-
+        
         echo $template->render('pageCompte.html.twig', [
             'user' => Utilisateur::getUser(),
         ]);
     }
-
+    
     /**
-     * @brief Inscrit l'utilisateur à la newsletter.
+     * Inscrit l'utilisateur 
+     *  à la newsletter
      * @return void
      */
-    public function newsletter(): void
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'];
+    public function newsletter(): void{
+        if($_SERVER['REQUEST_METHOD'] ==='POST'){
+            $email=$_POST['email'];
             $pdoNewsLetter = new NewLetterDao($this->getPdo());
-
-            if (!$pdoNewsLetter->emailExisteNewsletter($email)) {
-                $newsLetter = new NewLetter(null, $email);
+            
+            if(!$pdoNewsLetter->emailExisteNewsletter($email)){
+                $newsLetter=new NewLetter(null, $email);
                 $pdoNewsLetter->insererEmail($newsLetter);
                 echo "l'email a bien été enregistrer dans la base de données";
             }
@@ -491,11 +517,7 @@ class ControllerUtilisateur extends Controller
         }
     }
 
-    /**
-     * @brief Affiche la page admin (étudiants seulement).
-     */
-    public function admin()
-    {
+    public function admin(){
         $template = $this->getTwig();
         if (!Utilisateur::getUser() || Utilisateur::getUser()->getRole() !== 'Etudiant') {
             header('Location: index.php');
@@ -507,11 +529,7 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
-    /**
-     * @brief Affiche la page de gestion des utilisateurs.
-     */
-    public function gererUtilisateurs()
-    {
+    public function gererUtilisateurs(){
         $template = $this->getTwig();
         if (!Utilisateur::getUser() || Utilisateur::getUser()->getRole() !== 'Etudiant') {
             header('Location: index.php');
@@ -523,11 +541,7 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
-    /**
-     * @brief Affiche la page de gestion des annonces.
-     */
-    public function gererAnnonces()
-    {
+    public function gererAnnonces(){
         $template = $this->getTwig();
         if (!Utilisateur::getUser() || Utilisateur::getUser()->getRole() !== 'Etudiant') {
             header('Location: index.php');
@@ -539,11 +553,7 @@ class ControllerUtilisateur extends Controller
         ]);
     }
 
-    /**
-     * @brief Affiche la page de gestion des notes.
-     */
-    public function gererNote()
-    {
+    public function gererNote(){
         $template = $this->getTwig();
         if (!Utilisateur::getUser() || Utilisateur::getUser()->getRole() !== 'Etudiant') {
             header('Location: index.php');
