@@ -42,4 +42,37 @@ class Valide
         // La fonction preg_match retourne 1 si une correspondance est trouvée.
         return preg_match($regex, $password) === 1;
     }
+
+        public static function cvecExiste($cvec)
+    {
+        // Connexion à la base de données
+        $baseDeDonnees = Bd::getInstance();
+
+        // Préparation de la requête pour vérifier si l'email existe
+        $requete = $baseDeDonnees->getConnexion()->prepare(
+            'SELECT COUNT(*) FROM Utilisateur WHERE cvec = :cvec'
+        );
+
+        // Exécution de la requête avec l'email récupéré au niveau du formulaire
+        $requete->execute(['cvec' => $cvec]);
+        // Retourne vrai si un utilisateur avec cet email existe, faux sinon
+        return $requete->fetchColumn() > 0;
+    }
+
+        public static function ineExiste($ine)
+    {
+        // Connexion à la base de données
+        $baseDeDonnees = Bd::getInstance();
+
+        // Préparation de la requête pour vérifier si l'email existe
+        $requete = $baseDeDonnees->getConnexion()->prepare(
+            'SELECT COUNT(*) FROM Utilisateur WHERE codeINE = :ine'
+        );
+
+        // Exécution de la requête avec l'email récupéré au niveau du formulaire
+        $requete->execute(['ine' => $ine]);
+        // Retourne vrai si un utilisateur avec cet email existe, faux sinon
+        return $requete->fetchColumn() > 0;
+    }
 }
+

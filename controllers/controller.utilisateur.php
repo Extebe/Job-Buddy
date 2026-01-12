@@ -83,6 +83,14 @@ class ControllerUtilisateur extends Controller
         if (Valide::emailExiste($user->getEmail())) {
             throw new Exception("compte_existant");
         }
+        if ($user instanceof Etudiant && Valide::ineExiste($user->getCodeINE())) {
+            throw new Exception("INE _utilise");
+        }
+
+        if ($user instanceof Etudiant && Valide::cvecExiste($user->getCvec())) {
+            throw new Exception("CVEC_utilise");
+        }
+
 
         // Hachage du mot de passe
         $passwordHache = password_hash($user->getMdp(), PASSWORD_BCRYPT);
@@ -158,6 +166,16 @@ class ControllerUtilisateur extends Controller
 
                     case "CVEC invalide":
                         $_SESSION['msg_erreur'] = "Erreur : CVEC invalide.";
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
+                        exit();
+
+                    case "INE _utilise":
+                        $_SESSION['msg_erreur'] = "Erreur : Ce code INE est déjà utilisé.";
+                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
+                        exit();
+
+                    case "CVEC_utilise":
+                        $_SESSION['msg_erreur'] = "Erreur : Ce CVEC est déjà utilisé.";
                         header("Location: index.php?controleur=utilisateur&methode=pageInscription");
                         exit();
 
