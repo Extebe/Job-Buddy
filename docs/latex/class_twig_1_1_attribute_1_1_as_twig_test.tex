@@ -1,0 +1,51 @@
+\doxysection{Référence de la classe As\+Twig\+Test}
+\hypertarget{class_twig_1_1_attribute_1_1_as_twig_test}{}\label{class_twig_1_1_attribute_1_1_as_twig_test}\index{AsTwigTest@{AsTwigTest}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_attribute_1_1_as_twig_test_a8ff24d0bb92bc68861feb2f068484232}{\+\_\+\+\_\+construct}} (public string \$name, public ?bool \$needs\+Charset=null, public ?bool \$needs\+Environment=null, public ?bool \$needs\+Context=null, public ?\doxymbox{\hyperlink{class_twig_1_1_deprecated_callable_info}{Deprecated\+Callable\+Info}} \$deprecation\+Info=null,)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Registers a method as template test.
+
+The first argument is the value to test and the other arguments are the arguments passed to the test in the template. \begin{DoxyVerb}#[AsTwigTest(name: 'foo')]
+public function fooTest($value, $arg1 = null) { ... }
+
+{% if value is foo(arg1) %}
+\end{DoxyVerb}
+
+
+\begin{DoxySeeAlso}{Voir également}
+Twig\+Test 
+\end{DoxySeeAlso}
+
+
+\label{doc-constructors}
+\Hypertarget{class_twig_1_1_attribute_1_1_as_twig_test_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_twig_1_1_attribute_1_1_as_twig_test_a8ff24d0bb92bc68861feb2f068484232}\index{AsTwigTest@{AsTwigTest}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!AsTwigTest@{AsTwigTest}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_attribute_1_1_as_twig_test_a8ff24d0bb92bc68861feb2f068484232} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{public string}]{\$name}{, }\item[{public ?bool}]{\$needs\+Charset}{ = {\ttfamily null}, }\item[{public ?bool}]{\$needs\+Environment}{ = {\ttfamily null}, }\item[{public ?bool}]{\$needs\+Context}{ = {\ttfamily null}, }\item[{public ?\doxymbox{\hyperlink{class_twig_1_1_deprecated_callable_info}{Deprecated\+Callable\+Info}}}]{\$deprecation\+Info}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+non-\/empty-\/string & {\em \$name} & The name of the test in Twig \\
+\hline
+bool | null & {\em \$needs\+Charset} & Whether the test needs the charset passed as the first argument \\
+\hline
+bool | null & {\em \$needs\+Environment} & Whether the test needs the environment passed as the first argument, or after the charset \\
+\hline
+bool | null & {\em \$needs\+Context} & Whether the test needs the context array passed as the first argument, or after the charset and the environment \\
+\hline
+Deprecated\+Callable\+Info | null & {\em \$deprecation\+Info} & Information about the deprecation \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Attribute/\+As\+Twig\+Test.\+php\end{DoxyCompactItemize}

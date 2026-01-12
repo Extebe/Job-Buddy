@@ -1,0 +1,111 @@
+\doxysection{Référence de la classe Inline}
+\hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline}{}\label{class_symfony_1_1_component_1_1_yaml_1_1_inline}\index{Inline@{Inline}}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline_a9183560dff21282be56223ece8c9e090}\label{class_symfony_1_1_component_1_1_yaml_1_1_inline_a9183560dff21282be56223ece8c9e090} 
+static {\bfseries initialize} (int \$flags, ?int \$parsed\+Line\+Number=null, ?string \$parsed\+Filename=null)
+\item 
+static \doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_inline_a7f049635b6bfd13526c99914d5d90812}{parse}} (string \$value, int \$flags=0, array \&\$references=\+[$\,$]\+)
+\item 
+static \doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_inline_a81dbea6b29fa3a0104090a22c2fb7a9e}{dump}} (mixed \$value, int \$flags=0)
+\item 
+static \doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_inline_ab6b52aed3e1a615ae62e987bc2262c7f}{is\+Hash}} (array\texorpdfstring{$\vert$}{|}\textbackslash{}Array\+Object\texorpdfstring{$\vert$}{|}\textbackslash{}std\+Class \$value)
+\item 
+static \doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_inline_a2cfdee5a6e8739832b91fd3014bbfbc4}{parse\+Scalar}} (string \$scalar, int \$flags=0, ?array \$delimiters=null, int \&\$i=0, bool \$evaluate=true, array \&\$references=\+[$\,$]\+, ?bool \&\$is\+Quoted=null)
+\item 
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline_a76ac0c5d0d7f16d20a8dc3ce80ae5da7}\label{class_symfony_1_1_component_1_1_yaml_1_1_inline_a76ac0c5d0d7f16d20a8dc3ce80ae5da7} 
+static {\bfseries evaluate\+Binary\+Scalar} (string \$scalar)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline_a87b5c4996630ab02b80f5abece2c2fe0}\label{class_symfony_1_1_component_1_1_yaml_1_1_inline_a87b5c4996630ab02b80f5abece2c2fe0} 
+const {\bfseries REGEX\+\_\+\+QUOTED\+\_\+\+STRING} = \textquotesingle{}(?:\+"{}(\+[\texorpdfstring{$^\wedge$}{\string^}"{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}]\+\texorpdfstring{$\ast$}{*}+(?:\+\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}.\+[\texorpdfstring{$^\wedge$}{\string^}"{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}]\+\texorpdfstring{$\ast$}{*}+)\texorpdfstring{$\ast$}{*}+)"{}\texorpdfstring{$\vert$}{|}\textbackslash{}\textquotesingle{}(\+[\texorpdfstring{$^\wedge$}{\string^}\textbackslash{}\textquotesingle{}]\+\texorpdfstring{$\ast$}{*}+(?:\+\textbackslash{}\textquotesingle{}\textbackslash{}\textquotesingle{}\+[\texorpdfstring{$^\wedge$}{\string^}\textbackslash{}\textquotesingle{}]\+\texorpdfstring{$\ast$}{*}+)\texorpdfstring{$\ast$}{*}+)\textbackslash{}\textquotesingle{})\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics statiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline_aa2b245f5d24aa16e8a7c96ed6c3ae7ce}\label{class_symfony_1_1_component_1_1_yaml_1_1_inline_aa2b245f5d24aa16e8a7c96ed6c3ae7ce} 
+static int {\bfseries \$parsed\+Line\+Number} = -\/1
+\item 
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline_aa27ff86264d342dc3e41e89ba302e7a7}\label{class_symfony_1_1_component_1_1_yaml_1_1_inline_aa27ff86264d342dc3e41e89ba302e7a7} 
+static string {\bfseries \$parsed\+Filename} = null
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Inline implements a YAML parser/\+dumper for the YAML inline syntax.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline_a81dbea6b29fa3a0104090a22c2fb7a9e}\index{Inline@{Inline}!dump@{dump}}
+\index{dump@{dump}!Inline@{Inline}}
+\doxysubsubsection{\texorpdfstring{dump()}{dump()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_inline_a81dbea6b29fa3a0104090a22c2fb7a9e} 
+dump (\begin{DoxyParamCaption}\item[{mixed}]{\$value}{, }\item[{int}]{\$flags}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Dumps a given PHP variable to a YAML string.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$value} & The PHP variable to convert \\
+\hline
+int & {\em \$flags} & A bit field of Yaml::\+\+DUMP\+\_\+\texorpdfstring{$\ast$}{*} constants to customize the dumped YAML string\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Dump\+Exception} & When trying to dump PHP resource \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline_ab6b52aed3e1a615ae62e987bc2262c7f}\index{Inline@{Inline}!isHash@{isHash}}
+\index{isHash@{isHash}!Inline@{Inline}}
+\doxysubsubsection{\texorpdfstring{isHash()}{isHash()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_inline_ab6b52aed3e1a615ae62e987bc2262c7f} 
+is\+Hash (\begin{DoxyParamCaption}\item[{array\texorpdfstring{$\vert$}{|}\textbackslash{}Array\+Object\texorpdfstring{$\vert$}{|}\textbackslash{}std\+Class}]{\$value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Check if given array is hash or just normal indexed array. \Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline_a7f049635b6bfd13526c99914d5d90812}\index{Inline@{Inline}!parse@{parse}}
+\index{parse@{parse}!Inline@{Inline}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_inline_a7f049635b6bfd13526c99914d5d90812} 
+parse (\begin{DoxyParamCaption}\item[{string}]{\$value}{, }\item[{int}]{\$flags}{ = {\ttfamily 0}, }\item[{array \&}]{\$references}{ = {\ttfamily \+[]\+}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Converts a YAML string to a PHP value.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$flags} & A bit field of Yaml::\+\+PARSE\+\_\+\texorpdfstring{$\ast$}{*} constants to customize the YAML parser behavior \\
+\hline
+array & {\em \$references} & Mapping of variable names to values\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Parse\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_inline_a2cfdee5a6e8739832b91fd3014bbfbc4}\index{Inline@{Inline}!parseScalar@{parseScalar}}
+\index{parseScalar@{parseScalar}!Inline@{Inline}}
+\doxysubsubsection{\texorpdfstring{parseScalar()}{parseScalar()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_inline_a2cfdee5a6e8739832b91fd3014bbfbc4} 
+parse\+Scalar (\begin{DoxyParamCaption}\item[{string}]{\$scalar}{, }\item[{int}]{\$flags}{ = {\ttfamily 0}, }\item[{?array}]{\$delimiters}{ = {\ttfamily null}, }\item[{int \&}]{\$i}{ = {\ttfamily 0}, }\item[{bool}]{\$evaluate}{ = {\ttfamily true}, }\item[{array \&}]{\$references}{ = {\ttfamily \+[]\+}, }\item[{?bool \&}]{\$is\+Quoted}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Parses a YAML scalar.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Parse\+Exception} & When malformed inline YAML string is parsed \\
+\hline
+\end{DoxyExceptions}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+symfony/\+yaml/\+Inline.\+php\end{DoxyCompactItemize}

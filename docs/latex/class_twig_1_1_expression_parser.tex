@@ -1,0 +1,229 @@
+\doxysection{Référence de la classe Expression\+Parser}
+\hypertarget{class_twig_1_1_expression_parser}{}\label{class_twig_1_1_expression_parser}\index{ExpressionParser@{ExpressionParser}}
+\doxysubsubsection*{Types publics}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_expression_parser_a29913aca09773279d6227c45fce5c699}\label{class_twig_1_1_expression_parser_a29913aca09773279d6227c45fce5c699} 
+enum {\bfseries Expression\+Parser\+Type} :\+ string \{ {\bfseries get\+Type}
+ \}
+\item 
+\Hypertarget{class_twig_1_1_expression_parser_a14da693adc46ac899830d67901d17e54}\label{class_twig_1_1_expression_parser_a14da693adc46ac899830d67901d17e54} 
+enum {\bfseries Infix\+Associativity} \{ {\bfseries Right}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_expression_parser_a5801a247309da4b032e24676914306f9}\label{class_twig_1_1_expression_parser_a5801a247309da4b032e24676914306f9} 
+{\bfseries \+\_\+\+\_\+construct} (private \doxymbox{\hyperlink{class_twig_1_1_parser}{Parser}} \$parser, private \doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}} \$env,)
+\item 
+\Hypertarget{class_twig_1_1_expression_parser_a7071b8b73762e33627251e6515b0fe20}\label{class_twig_1_1_expression_parser_a7071b8b73762e33627251e6515b0fe20} 
+{\bfseries parse\+Expression} (\$precedence=0)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_af4649c23ab84785567030a0673a9ee76}{parse\+Primary\+Expression}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_a99a1301121a1b6e34fb7ce044baef1cf}{parse\+String\+Expression}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_ac8125f8f7746662e24757a1207fe9986}{parse\+Array\+Expression}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_ab0aadda3022fcd4afff8d7ce4d01bbfc}{parse\+Sequence\+Expression}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_aa1ab124f21f6eb72bdda3f835a747237}{parse\+Hash\+Expression}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_ab615af4799d39b3141fe019395bd42a9}{parse\+Mapping\+Expression}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_ad6aaf1c175652606d37f74ef5e008664}{parse\+Postfix\+Expression}} (\$node)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_a39de613eaf1404c8b0e3e676feaf5131}{parse\+Subscript\+Expression}} (\$node)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_aa34dd7e6733af986a5d59be68e0cc24e}{parse\+Filter\+Expression}} (\$node)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_a5cc9906017cdf081b15a6d02b6f2581c}{parse\+Filter\+Expression\+Raw}} (\$node)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_a7d9e9372bc6498d076030a4caf7bc188}{parse\+Arguments}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_a9d63b236eb972c8932a82eb72b6b74d2}{parse\+Assignment\+Expression}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_a723d955922d5703cae23f36dcdbfdc06}{parse\+Multitarget\+Expression}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_a7a959294127ffd957c00f8ba1263cf55}{parse\+Only\+Arguments}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+const \doxymbox{\hyperlink{class_twig_1_1_expression_parser_abe5a3390382bf3aba3867940eec28a61}{OPERATOR\+\_\+\+LEFT}} = 1
+\item 
+const \doxymbox{\hyperlink{class_twig_1_1_expression_parser_a90a1202797b2ac98156a907ac86d0052}{OPERATOR\+\_\+\+RIGHT}} = 2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Parses expressions.
+
+This parser implements a "{}\+Precedence climbing"{} algorithm.
+
+\begin{DoxySeeAlso}{Voir également}
+\href{https://www.engr.mun.ca/~theo/Misc/exp_parsing.htm}{\texttt{https:\+/\+/\+www.\+engr.\+mun.\+ca/\+\texorpdfstring{$\sim$}{\string~}theo/\+\+Misc/\+exp\+\_\+parsing.\+htm}} 
+
+\href{https://en.wikipedia.org/wiki/Operator-precedence_parser}{\texttt{https:\+/\+/\+en.\+wikipedia.\+org/\+wiki/\+\+Operator-\/precedence\+\_\+parser}}
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}}
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000007}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_expression_parser_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_expression_parser_a7d9e9372bc6498d076030a4caf7bc188}\index{ExpressionParser@{ExpressionParser}!parseArguments@{parseArguments}}
+\index{parseArguments@{parseArguments}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseArguments()}{parseArguments()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_a7d9e9372bc6498d076030a4caf7bc188} 
+parse\+Arguments (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Parses arguments.
+
+\begin{DoxyReturn}{Renvoie}
+Node
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Syntax\+Error} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000020}{Obsolète}}]since Twig 3.\+19 Use Twig\textbackslash{}\+Expression\+Parser\textbackslash{}\+Infix\textbackslash{}\+Arguments\+Trait::\+parse\+Named\+Arguments() instead \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_ac8125f8f7746662e24757a1207fe9986}\index{ExpressionParser@{ExpressionParser}!parseArrayExpression@{parseArrayExpression}}
+\index{parseArrayExpression@{parseArrayExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseArrayExpression()}{parseArrayExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_ac8125f8f7746662e24757a1207fe9986} 
+parse\+Array\+Expression (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000012}{Obsolète}}]since Twig 3.\+11, use parse\+Expression() instead \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_a9d63b236eb972c8932a82eb72b6b74d2}\index{ExpressionParser@{ExpressionParser}!parseAssignmentExpression@{parseAssignmentExpression}}
+\index{parseAssignmentExpression@{parseAssignmentExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseAssignmentExpression()}{parseAssignmentExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_a9d63b236eb972c8932a82eb72b6b74d2} 
+parse\+Assignment\+Expression (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000021}{Obsolète}}]since Twig 3.\+21, use "{}\+Abstract\+Token\+Parser::\+parse\+Assignment\+Expression()"{} instead \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_aa34dd7e6733af986a5d59be68e0cc24e}\index{ExpressionParser@{ExpressionParser}!parseFilterExpression@{parseFilterExpression}}
+\index{parseFilterExpression@{parseFilterExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseFilterExpression()}{parseFilterExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_aa34dd7e6733af986a5d59be68e0cc24e} 
+parse\+Filter\+Expression (\begin{DoxyParamCaption}\item[{}]{\$node}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000018}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_a5cc9906017cdf081b15a6d02b6f2581c}\index{ExpressionParser@{ExpressionParser}!parseFilterExpressionRaw@{parseFilterExpressionRaw}}
+\index{parseFilterExpressionRaw@{parseFilterExpressionRaw}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseFilterExpressionRaw()}{parseFilterExpressionRaw()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_a5cc9906017cdf081b15a6d02b6f2581c} 
+parse\+Filter\+Expression\+Raw (\begin{DoxyParamCaption}\item[{}]{\$node}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000019}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_aa1ab124f21f6eb72bdda3f835a747237}\index{ExpressionParser@{ExpressionParser}!parseHashExpression@{parseHashExpression}}
+\index{parseHashExpression@{parseHashExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseHashExpression()}{parseHashExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_aa1ab124f21f6eb72bdda3f835a747237} 
+parse\+Hash\+Expression (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000014}{Obsolète}}]since Twig 3.\+11, use parse\+Expression() instead \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_ab615af4799d39b3141fe019395bd42a9}\index{ExpressionParser@{ExpressionParser}!parseMappingExpression@{parseMappingExpression}}
+\index{parseMappingExpression@{parseMappingExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseMappingExpression()}{parseMappingExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_ab615af4799d39b3141fe019395bd42a9} 
+parse\+Mapping\+Expression (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000015}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_a723d955922d5703cae23f36dcdbfdc06}\index{ExpressionParser@{ExpressionParser}!parseMultitargetExpression@{parseMultitargetExpression}}
+\index{parseMultitargetExpression@{parseMultitargetExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseMultitargetExpression()}{parseMultitargetExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_a723d955922d5703cae23f36dcdbfdc06} 
+parse\+Multitarget\+Expression (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000022}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_a7a959294127ffd957c00f8ba1263cf55}\index{ExpressionParser@{ExpressionParser}!parseOnlyArguments@{parseOnlyArguments}}
+\index{parseOnlyArguments@{parseOnlyArguments}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseOnlyArguments()}{parseOnlyArguments()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_a7a959294127ffd957c00f8ba1263cf55} 
+parse\+Only\+Arguments (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000023}{Obsolète}}]since Twig 3.\+19 Use Twig\textbackslash{}\+Expression\+Parser\textbackslash{}\+Infix\textbackslash{}\+Arguments\+Trait::\+parse\+Named\+Arguments() instead \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_ad6aaf1c175652606d37f74ef5e008664}\index{ExpressionParser@{ExpressionParser}!parsePostfixExpression@{parsePostfixExpression}}
+\index{parsePostfixExpression@{parsePostfixExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parsePostfixExpression()}{parsePostfixExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_ad6aaf1c175652606d37f74ef5e008664} 
+parse\+Postfix\+Expression (\begin{DoxyParamCaption}\item[{}]{\$node}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000016}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_af4649c23ab84785567030a0673a9ee76}\index{ExpressionParser@{ExpressionParser}!parsePrimaryExpression@{parsePrimaryExpression}}
+\index{parsePrimaryExpression@{parsePrimaryExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parsePrimaryExpression()}{parsePrimaryExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_af4649c23ab84785567030a0673a9ee76} 
+parse\+Primary\+Expression (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000010}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_ab0aadda3022fcd4afff8d7ce4d01bbfc}\index{ExpressionParser@{ExpressionParser}!parseSequenceExpression@{parseSequenceExpression}}
+\index{parseSequenceExpression@{parseSequenceExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseSequenceExpression()}{parseSequenceExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_ab0aadda3022fcd4afff8d7ce4d01bbfc} 
+parse\+Sequence\+Expression (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000013}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_a99a1301121a1b6e34fb7ce044baef1cf}\index{ExpressionParser@{ExpressionParser}!parseStringExpression@{parseStringExpression}}
+\index{parseStringExpression@{parseStringExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseStringExpression()}{parseStringExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_a99a1301121a1b6e34fb7ce044baef1cf} 
+parse\+String\+Expression (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000011}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_a39de613eaf1404c8b0e3e676feaf5131}\index{ExpressionParser@{ExpressionParser}!parseSubscriptExpression@{parseSubscriptExpression}}
+\index{parseSubscriptExpression@{parseSubscriptExpression}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{parseSubscriptExpression()}{parseSubscriptExpression()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_a39de613eaf1404c8b0e3e676feaf5131} 
+parse\+Subscript\+Expression (\begin{DoxyParamCaption}\item[{}]{\$node}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000017}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_twig_1_1_expression_parser_doc-variable-members}
+\doxysubsection{Documentation des champs}
+\Hypertarget{class_twig_1_1_expression_parser_abe5a3390382bf3aba3867940eec28a61}\index{ExpressionParser@{ExpressionParser}!OPERATOR\_LEFT@{OPERATOR\_LEFT}}
+\index{OPERATOR\_LEFT@{OPERATOR\_LEFT}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{OPERATOR\_LEFT}{OPERATOR\_LEFT}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_abe5a3390382bf3aba3867940eec28a61} 
+const OPERATOR\+\_\+\+LEFT = 1}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000008}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_expression_parser_a90a1202797b2ac98156a907ac86d0052}\index{ExpressionParser@{ExpressionParser}!OPERATOR\_RIGHT@{OPERATOR\_RIGHT}}
+\index{OPERATOR\_RIGHT@{OPERATOR\_RIGHT}!ExpressionParser@{ExpressionParser}}
+\doxysubsubsection{\texorpdfstring{OPERATOR\_RIGHT}{OPERATOR\_RIGHT}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_a90a1202797b2ac98156a907ac86d0052} 
+const OPERATOR\+\_\+\+RIGHT = 2}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000009}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+Expression\+Parser.\+php\item 
+vendor/\+twig/\+twig/\+src/\+\+Expression\+Parser/\+Expression\+Parser\+Type.\+php\item 
+vendor/\+twig/\+twig/\+src/\+\+Expression\+Parser/\+Infix\+Associativity.\+php\end{DoxyCompactItemize}

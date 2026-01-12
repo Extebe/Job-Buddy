@@ -1,0 +1,122 @@
+\doxysection{Référence de la classe Optimizer\+Node\+Visitor}
+\hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor}{}\label{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor}\index{OptimizerNodeVisitor@{OptimizerNodeVisitor}}
+Graphe d\textquotesingle{}héritage de Optimizer\+Node\+Visitor:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a7a20b1e04a7b0cfd9d17edb56ec541d2}{\+\_\+\+\_\+construct}} (private int \$optimizers=-\/1,)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_ace41ffc86b3ec3a45ff1766a95d69e79}{enter\+Node}} (\doxymbox{\hyperlink{class_twig_1_1_node_1_1_node}{Node}} \$node, \doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}} \$env)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a4cc01934748f1d74931c884f27a8b921}{leave\+Node}} (\doxymbox{\hyperlink{class_twig_1_1_node_1_1_node}{Node}} \$node, \doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}} \$env)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a1e7a3c168dcd0901a0d2669c67575b55}{get\+Priority}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_abac07d4ecc58983b285b75f0d14fe9f6}\label{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_abac07d4ecc58983b285b75f0d14fe9f6} 
+const {\bfseries OPTIMIZE\+\_\+\+ALL} = -\/1
+\item 
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a0c44df9a47bc6ebc7491ec333d6f7bbe}\label{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a0c44df9a47bc6ebc7491ec333d6f7bbe} 
+const {\bfseries OPTIMIZE\+\_\+\+NONE} = 0
+\item 
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_ad22fa7110142f96c3d7cf52991a9dfef}\label{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_ad22fa7110142f96c3d7cf52991a9dfef} 
+const {\bfseries OPTIMIZE\+\_\+\+FOR} = 2
+\item 
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a9e7f1b9c684d00b61f6457259194149c}\label{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a9e7f1b9c684d00b61f6457259194149c} 
+const {\bfseries OPTIMIZE\+\_\+\+RAW\+\_\+\+FILTER} = 4
+\item 
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a98a8c9723513fbe38f78cfdfe9d10929}\label{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a98a8c9723513fbe38f78cfdfe9d10929} 
+const {\bfseries OPTIMIZE\+\_\+\+TEXT\+\_\+\+NODES} = 8
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Tries to optimize the AST.
+
+This visitor is always the last registered one.
+
+You can configure which optimizations you want to activate via the optimizer mode.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-constructors}
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a7a20b1e04a7b0cfd9d17edb56ec541d2}\index{OptimizerNodeVisitor@{OptimizerNodeVisitor}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!OptimizerNodeVisitor@{OptimizerNodeVisitor}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a7a20b1e04a7b0cfd9d17edb56ec541d2} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{private int}]{\$optimizers}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$optimizers} & The optimizer mode \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_ace41ffc86b3ec3a45ff1766a95d69e79}\index{OptimizerNodeVisitor@{OptimizerNodeVisitor}!enterNode@{enterNode}}
+\index{enterNode@{enterNode}!OptimizerNodeVisitor@{OptimizerNodeVisitor}}
+\doxysubsubsection{\texorpdfstring{enterNode()}{enterNode()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_ace41ffc86b3ec3a45ff1766a95d69e79} 
+enter\+Node (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_node_1_1_node}{Node}}}]{\$node}{, }\item[{\doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}}}]{\$env}{}\end{DoxyParamCaption})}
+
+Called before child nodes are visited.
+
+\begin{DoxyReturn}{Renvoie}
+Node The modified node 
+\end{DoxyReturn}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_node_visitor_1_1_node_visitor_interface_ace41ffc86b3ec3a45ff1766a95d69e79}{Node\+Visitor\+Interface}}.
+
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a1e7a3c168dcd0901a0d2669c67575b55}\index{OptimizerNodeVisitor@{OptimizerNodeVisitor}!getPriority@{getPriority}}
+\index{getPriority@{getPriority}!OptimizerNodeVisitor@{OptimizerNodeVisitor}}
+\doxysubsubsection{\texorpdfstring{getPriority()}{getPriority()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a1e7a3c168dcd0901a0d2669c67575b55} 
+get\+Priority (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the priority for this visitor.
+
+Priority should be between -\/10 and 10 (0 is the default).
+
+\begin{DoxyReturn}{Renvoie}
+int The priority level 
+\end{DoxyReturn}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_node_visitor_1_1_node_visitor_interface_a1e7a3c168dcd0901a0d2669c67575b55}{Node\+Visitor\+Interface}}.
+
+\Hypertarget{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a4cc01934748f1d74931c884f27a8b921}\index{OptimizerNodeVisitor@{OptimizerNodeVisitor}!leaveNode@{leaveNode}}
+\index{leaveNode@{leaveNode}!OptimizerNodeVisitor@{OptimizerNodeVisitor}}
+\doxysubsubsection{\texorpdfstring{leaveNode()}{leaveNode()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_node_visitor_1_1_optimizer_node_visitor_a4cc01934748f1d74931c884f27a8b921} 
+leave\+Node (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_node_1_1_node}{Node}}}]{\$node}{, }\item[{\doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}}}]{\$env}{}\end{DoxyParamCaption})}
+
+Called after child nodes are visited.
+
+\begin{DoxyReturn}{Renvoie}
+Node\texorpdfstring{$\vert$}{|}null The modified node or null if the node must be removed 
+\end{DoxyReturn}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_node_visitor_1_1_node_visitor_interface_a4cc01934748f1d74931c884f27a8b921}{Node\+Visitor\+Interface}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Node\+Visitor/\+Optimizer\+Node\+Visitor.\+php\end{DoxyCompactItemize}

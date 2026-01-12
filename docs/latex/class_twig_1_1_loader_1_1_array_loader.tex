@@ -1,0 +1,129 @@
+\doxysection{Référence de la classe Array\+Loader}
+\hypertarget{class_twig_1_1_loader_1_1_array_loader}{}\label{class_twig_1_1_loader_1_1_array_loader}\index{ArrayLoader@{ArrayLoader}}
+Graphe d\textquotesingle{}héritage de Array\+Loader:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_twig_1_1_loader_1_1_array_loader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_loader_1_1_array_loader_ab9d586f1a66c070bc5dfaeb2a116ae84}{\+\_\+\+\_\+construct}} (private array \$templates=\+[$\,$]\+,)
+\item 
+\Hypertarget{class_twig_1_1_loader_1_1_array_loader_a9027b9a570ff02277fe98e1b4710894b}\label{class_twig_1_1_loader_1_1_array_loader_a9027b9a570ff02277fe98e1b4710894b} 
+{\bfseries set\+Template} (string \$name, string \$template)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_loader_1_1_array_loader_abfc637f5f1aae6c5380d152c8fd3d90b}{get\+Source\+Context}} (string \$name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_loader_1_1_array_loader_acaf4047bd8411d1720781784a49c3818}{exists}} (string \$name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_loader_1_1_array_loader_abae7186a3c0b7a02bc3d953496e4ac87}{get\+Cache\+Key}} (string \$name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_loader_1_1_array_loader_a8523ad7036f1545e34abece31daa914e}{is\+Fresh}} (string \$name, int \$time)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Loads a template from an array.
+
+When using this loader with a cache mechanism, you should know that a new cache key is generated each time a template content "{}changes"{} (the cache key being the source code of the template). If you don\textquotesingle{}t want to see your cache grows out of control, you need to take care of clearing the old cache file by yourself.
+
+This loader should only be used for unit testing.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-constructors}
+\Hypertarget{class_twig_1_1_loader_1_1_array_loader_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_twig_1_1_loader_1_1_array_loader_ab9d586f1a66c070bc5dfaeb2a116ae84}\index{ArrayLoader@{ArrayLoader}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ArrayLoader@{ArrayLoader}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_loader_1_1_array_loader_ab9d586f1a66c070bc5dfaeb2a116ae84} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{private array}]{\$templates}{ = {\ttfamily \+[]\+}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$templates} & An array of templates (keys are the names, and values are the source code) \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_loader_1_1_array_loader_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_loader_1_1_array_loader_acaf4047bd8411d1720781784a49c3818}\index{ArrayLoader@{ArrayLoader}!exists@{exists}}
+\index{exists@{exists}!ArrayLoader@{ArrayLoader}}
+\doxysubsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_loader_1_1_array_loader_acaf4047bd8411d1720781784a49c3818} 
+exists (\begin{DoxyParamCaption}\item[{string}]{\$name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface_acaf4047bd8411d1720781784a49c3818}{Loader\+Interface}}.
+
+\Hypertarget{class_twig_1_1_loader_1_1_array_loader_abae7186a3c0b7a02bc3d953496e4ac87}\index{ArrayLoader@{ArrayLoader}!getCacheKey@{getCacheKey}}
+\index{getCacheKey@{getCacheKey}!ArrayLoader@{ArrayLoader}}
+\doxysubsubsection{\texorpdfstring{getCacheKey()}{getCacheKey()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_loader_1_1_array_loader_abae7186a3c0b7a02bc3d953496e4ac87} 
+get\+Cache\+Key (\begin{DoxyParamCaption}\item[{string}]{\$name}{}\end{DoxyParamCaption})}
+
+Gets the cache key to use for the cache for a given template name.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When \$name is not found \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface_abae7186a3c0b7a02bc3d953496e4ac87}{Loader\+Interface}}.
+
+\Hypertarget{class_twig_1_1_loader_1_1_array_loader_abfc637f5f1aae6c5380d152c8fd3d90b}\index{ArrayLoader@{ArrayLoader}!getSourceContext@{getSourceContext}}
+\index{getSourceContext@{getSourceContext}!ArrayLoader@{ArrayLoader}}
+\doxysubsubsection{\texorpdfstring{getSourceContext()}{getSourceContext()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_loader_1_1_array_loader_abfc637f5f1aae6c5380d152c8fd3d90b} 
+get\+Source\+Context (\begin{DoxyParamCaption}\item[{string}]{\$name}{}\end{DoxyParamCaption})}
+
+Returns the source context for a given template logical name.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When \$name is not found \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface_abfc637f5f1aae6c5380d152c8fd3d90b}{Loader\+Interface}}.
+
+\Hypertarget{class_twig_1_1_loader_1_1_array_loader_a8523ad7036f1545e34abece31daa914e}\index{ArrayLoader@{ArrayLoader}!isFresh@{isFresh}}
+\index{isFresh@{isFresh}!ArrayLoader@{ArrayLoader}}
+\doxysubsubsection{\texorpdfstring{isFresh()}{isFresh()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_loader_1_1_array_loader_a8523ad7036f1545e34abece31daa914e} 
+is\+Fresh (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{int}]{\$time}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$time} & Timestamp of the last modification time of the cached template\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When \$name is not found \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface_a8523ad7036f1545e34abece31daa914e}{Loader\+Interface}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Loader/\+Array\+Loader.\+php\end{DoxyCompactItemize}

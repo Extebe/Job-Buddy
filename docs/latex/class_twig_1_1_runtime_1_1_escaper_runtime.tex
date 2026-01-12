@@ -1,0 +1,136 @@
+\doxysection{Référence de la classe Escaper\+Runtime}
+\hypertarget{class_twig_1_1_runtime_1_1_escaper_runtime}{}\label{class_twig_1_1_runtime_1_1_escaper_runtime}\index{EscaperRuntime@{EscaperRuntime}}
+Graphe d\textquotesingle{}héritage de Escaper\+Runtime:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_twig_1_1_runtime_1_1_escaper_runtime}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_runtime_1_1_escaper_runtime_a2753900105ba83ed1773dc549c00ff8f}\label{class_twig_1_1_runtime_1_1_escaper_runtime_a2753900105ba83ed1773dc549c00ff8f} 
+{\bfseries \+\_\+\+\_\+construct} (private \$charset=\textquotesingle{}UTF-\/8\textquotesingle{},)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_runtime_1_1_escaper_runtime_ab7b464eba8eb6b2adc78fa6e7cdf67b2}{set\+Escaper}} (\$strategy, callable \$callable)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_runtime_1_1_escaper_runtime_a98b08ee8d76d2e8b51f88aadf54c57f3}{get\+Escapers}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_runtime_1_1_escaper_runtime_a1a2d17c791de8454518d75b6dc5ed8ee}{set\+Safe\+Classes}} (array \$safe\+Classes=\+[$\,$]\+)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_runtime_1_1_escaper_runtime_a09ec5b8046ea52adaf5c62f04aa6f6c0}{add\+Safe\+Class}} (string \$class, array \$strategies)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_runtime_1_1_escaper_runtime_aa8ba10f51518129f29f0ec441563dfcb}{escape}} (\$string, string \$strategy=\textquotesingle{}html\textquotesingle{}, ?string \$charset=null, bool \$autoescape=false)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_runtime_1_1_escaper_runtime_a73148bfb13a1cebdc5fa84ab6024bbff}\label{class_twig_1_1_runtime_1_1_escaper_runtime_a73148bfb13a1cebdc5fa84ab6024bbff} 
+{\bfseries \$safe\+Classes} = \+[$\,$]\+
+\item 
+\Hypertarget{class_twig_1_1_runtime_1_1_escaper_runtime_a3e5f550f70cad6ad514f524b87dbac75}\label{class_twig_1_1_runtime_1_1_escaper_runtime_a3e5f550f70cad6ad514f524b87dbac75} 
+{\bfseries \$safe\+Lookup} = \+[$\,$]\+
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_runtime_1_1_escaper_runtime_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_runtime_1_1_escaper_runtime_a09ec5b8046ea52adaf5c62f04aa6f6c0}\index{EscaperRuntime@{EscaperRuntime}!addSafeClass@{addSafeClass}}
+\index{addSafeClass@{addSafeClass}!EscaperRuntime@{EscaperRuntime}}
+\doxysubsubsection{\texorpdfstring{addSafeClass()}{addSafeClass()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_runtime_1_1_escaper_runtime_a09ec5b8046ea52adaf5c62f04aa6f6c0} 
+add\+Safe\+Class (\begin{DoxyParamCaption}\item[{string}]{\$class}{, }\item[{array}]{\$strategies}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em class-\/string$<$} & \\
+\hline
+\end{DoxyParams}
+Stringable\texorpdfstring{$>$}{>} \$class 
+\begin{DoxyParams}[1]{Paramètres}
+string\+[$\,$]\+ & {\em \$strategies} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_runtime_1_1_escaper_runtime_aa8ba10f51518129f29f0ec441563dfcb}\index{EscaperRuntime@{EscaperRuntime}!escape@{escape}}
+\index{escape@{escape}!EscaperRuntime@{EscaperRuntime}}
+\doxysubsubsection{\texorpdfstring{escape()}{escape()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_runtime_1_1_escaper_runtime_aa8ba10f51518129f29f0ec441563dfcb} 
+escape (\begin{DoxyParamCaption}\item[{}]{\$string}{, }\item[{string}]{\$strategy}{ = {\ttfamily \textquotesingle{}html\textquotesingle{}}, }\item[{?string}]{\$charset}{ = {\ttfamily null}, }\item[{bool}]{\$autoescape}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Escapes a string.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$string} & The value to be escaped \\
+\hline
+string & {\em \$strategy} & The escaping strategy \\
+\hline
+string | null & {\em \$charset} & The charset \\
+\hline
+bool & {\em \$autoescape} & Whether the function is called by the auto-\/escaping feature (true) or by the developer (false)\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Runtime\+Error} & \\
+\hline
+\end{DoxyExceptions}
+This function is adapted from code coming from Zend Framework.
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2005-\/2012 Zend Technologies USA Inc. (\href{https://www.zend.com}{\texttt{https:\+/\+/\+www.\+zend.\+com}}) @license \href{https://framework.zend.com/license/new-bsd}{\texttt{https:\+/\+/\+framework.\+zend.\+com/\+license/\+new-\/bsd}} New BSD License
+\end{DoxyCopyright}
+\Hypertarget{class_twig_1_1_runtime_1_1_escaper_runtime_a98b08ee8d76d2e8b51f88aadf54c57f3}\index{EscaperRuntime@{EscaperRuntime}!getEscapers@{getEscapers}}
+\index{getEscapers@{getEscapers}!EscaperRuntime@{EscaperRuntime}}
+\doxysubsubsection{\texorpdfstring{getEscapers()}{getEscapers()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_runtime_1_1_escaper_runtime_a98b08ee8d76d2e8b51f88aadf54c57f3} 
+get\+Escapers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets all defined escapers.
+
+\begin{DoxyReturn}{Renvoie}
+array\texorpdfstring{$<$}{<}string, callable(string \$string, string \$charset):\+ string\texorpdfstring{$>$}{>} An array of escapers 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_runtime_1_1_escaper_runtime_ab7b464eba8eb6b2adc78fa6e7cdf67b2}\index{EscaperRuntime@{EscaperRuntime}!setEscaper@{setEscaper}}
+\index{setEscaper@{setEscaper}!EscaperRuntime@{EscaperRuntime}}
+\doxysubsubsection{\texorpdfstring{setEscaper()}{setEscaper()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_runtime_1_1_escaper_runtime_ab7b464eba8eb6b2adc78fa6e7cdf67b2} 
+set\+Escaper (\begin{DoxyParamCaption}\item[{}]{\$strategy}{, }\item[{callable}]{\$callable}{}\end{DoxyParamCaption})}
+
+Defines a new escaper to be used via the escape filter.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$strategy} & The strategy name that should be used as a strategy in the escape call \\
+\hline
+ & {\em callable(string} & \$string, string \$charset):\+ string \$callable A valid PHP callable\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_runtime_1_1_escaper_runtime_a1a2d17c791de8454518d75b6dc5ed8ee}\index{EscaperRuntime@{EscaperRuntime}!setSafeClasses@{setSafeClasses}}
+\index{setSafeClasses@{setSafeClasses}!EscaperRuntime@{EscaperRuntime}}
+\doxysubsubsection{\texorpdfstring{setSafeClasses()}{setSafeClasses()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_runtime_1_1_escaper_runtime_a1a2d17c791de8454518d75b6dc5ed8ee} 
+set\+Safe\+Classes (\begin{DoxyParamCaption}\item[{array}]{\$safe\+Classes}{ = {\ttfamily \+[]\+}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em array$<$class-\/string$<$} & \\
+\hline
+\end{DoxyParams}
+Stringable\texorpdfstring{$>$}{>}, string\+[]\+\texorpdfstring{$>$}{>} \$safe\+Classes
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Runtime/\+Escaper\+Runtime.\+php\end{DoxyCompactItemize}

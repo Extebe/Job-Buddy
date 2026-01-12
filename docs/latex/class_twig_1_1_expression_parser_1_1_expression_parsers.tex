@@ -1,0 +1,100 @@
+\doxysection{Référence de la classe Expression\+Parsers}
+\hypertarget{class_twig_1_1_expression_parser_1_1_expression_parsers}{}\label{class_twig_1_1_expression_parser_1_1_expression_parsers}\index{ExpressionParsers@{ExpressionParsers}}
+Graphe d\textquotesingle{}héritage de Expression\+Parsers:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_twig_1_1_expression_parser_1_1_expression_parsers}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_1_1_expression_parsers_a2973c2689e3813508550b23f027f5b54}{\+\_\+\+\_\+construct}} (array \$parsers=\+[$\,$]\+)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_1_1_expression_parsers_a331cdf9402daedc226c8303ecbe4a6d5}{add}} (array \$parsers)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_1_1_expression_parsers_ab2149b1451cca2f0b56e0f5701e9440d}{get\+By\+Class}} (string \$class)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_expression_parser_1_1_expression_parsers_a2788f651f0409942591f94ca14cd4bed}{get\+By\+Name}} (string \$interface, string \$name)
+\item 
+\Hypertarget{class_twig_1_1_expression_parser_1_1_expression_parsers_a7a9f937c2958e6f4dd7b030f86fb70b7}\label{class_twig_1_1_expression_parser_1_1_expression_parsers_a7a9f937c2958e6f4dd7b030f86fb70b7} 
+{\bfseries get\+Iterator} ()
+\item 
+\Hypertarget{class_twig_1_1_expression_parser_1_1_expression_parsers_a525c86ca3f71f48c005686d86a309046}\label{class_twig_1_1_expression_parser_1_1_expression_parsers_a525c86ca3f71f48c005686d86a309046} 
+{\bfseries get\+Precedence\+Changes} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+@template-\/implements \textbackslash{}\+Iterator\+Aggregate$<$\+Expression\+Parser\+Interface$>$ 
+
+\label{doc-constructors}
+\Hypertarget{class_twig_1_1_expression_parser_1_1_expression_parsers_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_twig_1_1_expression_parser_1_1_expression_parsers_a2973c2689e3813508550b23f027f5b54}\index{ExpressionParsers@{ExpressionParsers}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ExpressionParsers@{ExpressionParsers}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_1_1_expression_parsers_a2973c2689e3813508550b23f027f5b54} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{array}]{\$parsers}{ = {\ttfamily \+[]\+}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em array$<$\+Expression\+Parser\+Interface$>$} & \$parsers \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_expression_parser_1_1_expression_parsers_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_expression_parser_1_1_expression_parsers_a331cdf9402daedc226c8303ecbe4a6d5}\index{ExpressionParsers@{ExpressionParsers}!add@{add}}
+\index{add@{add}!ExpressionParsers@{ExpressionParsers}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_1_1_expression_parsers_a331cdf9402daedc226c8303ecbe4a6d5} 
+add (\begin{DoxyParamCaption}\item[{array}]{\$parsers}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em array$<$\+Expression\+Parser\+Interface$>$} & \$parsers\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\$this 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_expression_parser_1_1_expression_parsers_ab2149b1451cca2f0b56e0f5701e9440d}\index{ExpressionParsers@{ExpressionParsers}!getByClass@{getByClass}}
+\index{getByClass@{getByClass}!ExpressionParsers@{ExpressionParsers}}
+\doxysubsubsection{\texorpdfstring{getByClass()}{getByClass()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_1_1_expression_parsers_ab2149b1451cca2f0b56e0f5701e9440d} 
+get\+By\+Class (\begin{DoxyParamCaption}\item[{string}]{\$class}{}\end{DoxyParamCaption})}
+
+@template T of Expression\+Parser\+Interface
+
+
+\begin{DoxyParams}{Paramètres}
+{\em class-\/string$<$\+T$>$} & \$class\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+T\texorpdfstring{$\vert$}{|}null 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_expression_parser_1_1_expression_parsers_a2788f651f0409942591f94ca14cd4bed}\index{ExpressionParsers@{ExpressionParsers}!getByName@{getByName}}
+\index{getByName@{getByName}!ExpressionParsers@{ExpressionParsers}}
+\doxysubsubsection{\texorpdfstring{getByName()}{getByName()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_expression_parser_1_1_expression_parsers_a2788f651f0409942591f94ca14cd4bed} 
+get\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{\$interface}{, }\item[{string}]{\$name}{}\end{DoxyParamCaption})}
+
+@template T of Expression\+Parser\+Interface
+
+
+\begin{DoxyParams}{Paramètres}
+{\em class-\/string$<$\+T$>$} & \$interface\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+T\texorpdfstring{$\vert$}{|}null 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Expression\+Parser/\+Expression\+Parsers.\+php\end{DoxyCompactItemize}

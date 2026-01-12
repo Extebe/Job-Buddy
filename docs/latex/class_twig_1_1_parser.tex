@@ -1,0 +1,169 @@
+\doxysection{Référence de la classe Parser}
+\hypertarget{class_twig_1_1_parser}{}\label{class_twig_1_1_parser}\index{Parser@{Parser}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_parser_a09e08433ceb4803eb62efe759d65665a}\label{class_twig_1_1_parser_a09e08433ceb4803eb62efe759d65665a} 
+{\bfseries \+\_\+\+\_\+construct} (private \doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}} \$env,)
+\item 
+\Hypertarget{class_twig_1_1_parser_a1a945689f9a90f9029d671ec32262d37}\label{class_twig_1_1_parser_a1a945689f9a90f9029d671ec32262d37} 
+{\bfseries get\+Environment} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_a01f345a64ec10225d4205181cf82c811}\label{class_twig_1_1_parser_a01f345a64ec10225d4205181cf82c811} 
+{\bfseries get\+Var\+Name} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_a21cf446846b77dce36cf0dc548c30059}\label{class_twig_1_1_parser_a21cf446846b77dce36cf0dc548c30059} 
+{\bfseries should\+Ignore\+Unknown\+Twig\+Callables} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_a07d696245c4232053b73251813a86178}\label{class_twig_1_1_parser_a07d696245c4232053b73251813a86178} 
+{\bfseries subparse\+Ignore\+Unknown\+Twig\+Callables} (\$test, bool \$drop\+Needle=false)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_parser_ab1c5543849f0329689e0872ac1ccfdad}{subparse}} (\$test, bool \$drop\+Needle=false)
+\item 
+\Hypertarget{class_twig_1_1_parser_a043c227e73dcf79ae5b24c586e48cbfc}\label{class_twig_1_1_parser_a043c227e73dcf79ae5b24c586e48cbfc} 
+{\bfseries get\+Block\+Stack} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_parser_ac478342b47a171d7f76ab0c860e8ccd5}{peek\+Block\+Stack}} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_a530c1e50ce33798359120714a799f14f}\label{class_twig_1_1_parser_a530c1e50ce33798359120714a799f14f} 
+{\bfseries pop\+Block\+Stack} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_a20b3dae4ef5bc44a48cc8b4f077dc5be}\label{class_twig_1_1_parser_a20b3dae4ef5bc44a48cc8b4f077dc5be} 
+{\bfseries push\+Block\+Stack} (\$name)
+\item 
+\Hypertarget{class_twig_1_1_parser_a2f375174b07920ebe27980abac2f5c4d}\label{class_twig_1_1_parser_a2f375174b07920ebe27980abac2f5c4d} 
+{\bfseries has\+Block} (string \$name)
+\item 
+\Hypertarget{class_twig_1_1_parser_aca96c935aaa9bde7ba015271ae49d076}\label{class_twig_1_1_parser_aca96c935aaa9bde7ba015271ae49d076} 
+{\bfseries get\+Block} (string \$name)
+\item 
+\Hypertarget{class_twig_1_1_parser_a614794aaad36713b9b1ad2c56c2ae9fa}\label{class_twig_1_1_parser_a614794aaad36713b9b1ad2c56c2ae9fa} 
+{\bfseries set\+Block} (string \$name, \doxymbox{\hyperlink{class_twig_1_1_node_1_1_block_node}{Block\+Node}} \$value)
+\item 
+\Hypertarget{class_twig_1_1_parser_a848c815c1ac857f2776d6beb74ec877e}\label{class_twig_1_1_parser_a848c815c1ac857f2776d6beb74ec877e} 
+{\bfseries has\+Macro} (string \$name)
+\item 
+\Hypertarget{class_twig_1_1_parser_ae6b5b19c9e0c695fdac87526a4e9a96f}\label{class_twig_1_1_parser_ae6b5b19c9e0c695fdac87526a4e9a96f} 
+{\bfseries set\+Macro} (string \$name, \doxymbox{\hyperlink{class_twig_1_1_node_1_1_macro_node}{Macro\+Node}} \$node)
+\item 
+\Hypertarget{class_twig_1_1_parser_a232cb22c4f3dc89dc727567021036770}\label{class_twig_1_1_parser_a232cb22c4f3dc89dc727567021036770} 
+{\bfseries add\+Trait} (\$trait)
+\item 
+\Hypertarget{class_twig_1_1_parser_ad52a88405ecca93c8a0bea73b0539348}\label{class_twig_1_1_parser_ad52a88405ecca93c8a0bea73b0539348} 
+{\bfseries has\+Traits} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_parser_a23f1af659c7f7fa157216e5ab60ae48e}{embed\+Template}} (Module\+Node \$template)
+\item 
+\Hypertarget{class_twig_1_1_parser_a03595713cb1cdb8bd264ef8c54efe725}\label{class_twig_1_1_parser_a03595713cb1cdb8bd264ef8c54efe725} 
+{\bfseries add\+Imported\+Symbol} (string \$type, string \$alias, ?string \$name=null, \doxymbox{\hyperlink{class_twig_1_1_node_1_1_expression_1_1_abstract_expression}{Abstract\+Expression}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{class_twig_1_1_node_1_1_expression_1_1_variable_1_1_assign_template_variable}{Assign\+Template\+Variable}}\texorpdfstring{$\vert$}{|}null \$internal\+Ref=null)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_parser_a6ffa7a1837360e845b26cd6af31d5d65}{get\+Imported\+Symbol}} (string \$type, string \$alias)
+\item 
+\Hypertarget{class_twig_1_1_parser_a9018e83fae9f837d042fa54d713626cc}\label{class_twig_1_1_parser_a9018e83fae9f837d042fa54d713626cc} 
+{\bfseries is\+Main\+Scope} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_afd728d8c584c248c8bf098a8b0e162db}\label{class_twig_1_1_parser_afd728d8c584c248c8bf098a8b0e162db} 
+{\bfseries push\+Local\+Scope} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_a516a18d30a1aa1a09e19d47f3f391c66}\label{class_twig_1_1_parser_a516a18d30a1aa1a09e19d47f3f391c66} 
+{\bfseries pop\+Local\+Scope} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_parser_ace16df8b342fd0e63669db2a8ea3b060}{get\+Expression\+Parser}} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_a51d24bd66213758f1c01e880f7a045d3}\label{class_twig_1_1_parser_a51d24bd66213758f1c01e880f7a045d3} 
+{\bfseries parse\+Expression} (int \$precedence=0)
+\item 
+\Hypertarget{class_twig_1_1_parser_a95ecaee3537b1ad29b04ef383a57bbae}\label{class_twig_1_1_parser_a95ecaee3537b1ad29b04ef383a57bbae} 
+{\bfseries get\+Parent} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_parser_a3bf613bb3de60ab8f99c7a8594e2b931}{has\+Inheritance}} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_a6c6a986a17e22a5f5c8d1f724321336f}\label{class_twig_1_1_parser_a6c6a986a17e22a5f5c8d1f724321336f} 
+{\bfseries set\+Parent} (?Node \$parent)
+\item 
+\Hypertarget{class_twig_1_1_parser_a3e5834ff3daeecd091712270886a16fb}\label{class_twig_1_1_parser_a3e5834ff3daeecd091712270886a16fb} 
+{\bfseries get\+Stream} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_aa8c70f7e7e5c449b03703ff558a026a5}\label{class_twig_1_1_parser_aa8c70f7e7e5c449b03703ff558a026a5} 
+{\bfseries get\+Current\+Token} ()
+\item 
+\Hypertarget{class_twig_1_1_parser_a49ef0f54d756c56288f268d2f957579f}\label{class_twig_1_1_parser_a49ef0f54d756c56288f268d2f957579f} 
+{\bfseries get\+Function} (string \$name, int \$line)
+\item 
+\Hypertarget{class_twig_1_1_parser_a38b2aa1d7fdce4296fcbcc880badbcb7}\label{class_twig_1_1_parser_a38b2aa1d7fdce4296fcbcc880badbcb7} 
+{\bfseries get\+Filter} (string \$name, int \$line)
+\item 
+\Hypertarget{class_twig_1_1_parser_a8974e007205862d858f108d368d7e8aa}\label{class_twig_1_1_parser_a8974e007205862d858f108d368d7e8aa} 
+{\bfseries get\+Test} (int \$line)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_parser_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_parser_a23f1af659c7f7fa157216e5ab60ae48e}\index{Parser@{Parser}!embedTemplate@{embedTemplate}}
+\index{embedTemplate@{embedTemplate}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{embedTemplate()}{embedTemplate()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_parser_a23f1af659c7f7fa157216e5ab60ae48e} 
+embed\+Template (\begin{DoxyParamCaption}\item[{Module\+Node}]{\$template}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_parser_ace16df8b342fd0e63669db2a8ea3b060}\index{Parser@{Parser}!getExpressionParser@{getExpressionParser}}
+\index{getExpressionParser@{getExpressionParser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getExpressionParser()}{getExpressionParser()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_parser_ace16df8b342fd0e63669db2a8ea3b060} 
+get\+Expression\+Parser (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000036}{Obsolète}}]since Twig 3.\+21 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_parser_a6ffa7a1837360e845b26cd6af31d5d65}\index{Parser@{Parser}!getImportedSymbol@{getImportedSymbol}}
+\index{getImportedSymbol@{getImportedSymbol}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getImportedSymbol()}{getImportedSymbol()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_parser_a6ffa7a1837360e845b26cd6af31d5d65} 
+get\+Imported\+Symbol (\begin{DoxyParamCaption}\item[{string}]{\$type}{, }\item[{string}]{\$alias}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+array\{name:\+ string, node:\+ Assign\+Template\+Variable\texorpdfstring{$\vert$}{|}null\}\texorpdfstring{$\vert$}{|}null 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_parser_a3bf613bb3de60ab8f99c7a8594e2b931}\index{Parser@{Parser}!hasInheritance@{hasInheritance}}
+\index{hasInheritance@{hasInheritance}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{hasInheritance()}{hasInheritance()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_parser_a3bf613bb3de60ab8f99c7a8594e2b931} 
+has\+Inheritance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_parser_ac478342b47a171d7f76ab0c860e8ccd5}\index{Parser@{Parser}!peekBlockStack@{peekBlockStack}}
+\index{peekBlockStack@{peekBlockStack}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{peekBlockStack()}{peekBlockStack()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_parser_ac478342b47a171d7f76ab0c860e8ccd5} 
+peek\+Block\+Stack (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}null 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_parser_ab1c5543849f0329689e0872ac1ccfdad}\index{Parser@{Parser}!subparse@{subparse}}
+\index{subparse@{subparse}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{subparse()}{subparse()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_parser_ab1c5543849f0329689e0872ac1ccfdad} 
+subparse (\begin{DoxyParamCaption}\item[{}]{\$test}{, }\item[{bool}]{\$drop\+Needle}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Syntax\+Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+Parser.\+php\end{DoxyCompactItemize}

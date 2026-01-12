@@ -1,0 +1,104 @@
+\doxysection{Référence de l\textquotesingle{}interface Loader\+Interface}
+\hypertarget{interface_twig_1_1_loader_1_1_loader_interface}{}\label{interface_twig_1_1_loader_1_1_loader_interface}\index{LoaderInterface@{LoaderInterface}}
+Graphe d\textquotesingle{}héritage de Loader\+Interface:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_twig_1_1_loader_1_1_loader_interface}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface_abfc637f5f1aae6c5380d152c8fd3d90b}{get\+Source\+Context}} (string \$name)
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface_abae7186a3c0b7a02bc3d953496e4ac87}{get\+Cache\+Key}} (string \$name)
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface_a8523ad7036f1545e34abece31daa914e}{is\+Fresh}} (string \$name, int \$time)
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface_acaf4047bd8411d1720781784a49c3818}{exists}} (string \$name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Interface all loaders must implement.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{interface_twig_1_1_loader_1_1_loader_interface_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interface_twig_1_1_loader_1_1_loader_interface_acaf4047bd8411d1720781784a49c3818}\index{LoaderInterface@{LoaderInterface}!exists@{exists}}
+\index{exists@{exists}!LoaderInterface@{LoaderInterface}}
+\doxysubsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_loader_1_1_loader_interface_acaf4047bd8411d1720781784a49c3818} 
+exists (\begin{DoxyParamCaption}\item[{string}]{\$name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_array_loader_acaf4047bd8411d1720781784a49c3818}{Array\+Loader}}, \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_chain_loader_acaf4047bd8411d1720781784a49c3818}{Chain\+Loader}}, et \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_filesystem_loader_acaf4047bd8411d1720781784a49c3818}{Filesystem\+Loader}}.
+
+\Hypertarget{interface_twig_1_1_loader_1_1_loader_interface_abae7186a3c0b7a02bc3d953496e4ac87}\index{LoaderInterface@{LoaderInterface}!getCacheKey@{getCacheKey}}
+\index{getCacheKey@{getCacheKey}!LoaderInterface@{LoaderInterface}}
+\doxysubsubsection{\texorpdfstring{getCacheKey()}{getCacheKey()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_loader_1_1_loader_interface_abae7186a3c0b7a02bc3d953496e4ac87} 
+get\+Cache\+Key (\begin{DoxyParamCaption}\item[{string}]{\$name}{}\end{DoxyParamCaption})}
+
+Gets the cache key to use for the cache for a given template name.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When \$name is not found \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_array_loader_abae7186a3c0b7a02bc3d953496e4ac87}{Array\+Loader}}, \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_chain_loader_abae7186a3c0b7a02bc3d953496e4ac87}{Chain\+Loader}}, et \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_filesystem_loader_abae7186a3c0b7a02bc3d953496e4ac87}{Filesystem\+Loader}}.
+
+\Hypertarget{interface_twig_1_1_loader_1_1_loader_interface_abfc637f5f1aae6c5380d152c8fd3d90b}\index{LoaderInterface@{LoaderInterface}!getSourceContext@{getSourceContext}}
+\index{getSourceContext@{getSourceContext}!LoaderInterface@{LoaderInterface}}
+\doxysubsubsection{\texorpdfstring{getSourceContext()}{getSourceContext()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_loader_1_1_loader_interface_abfc637f5f1aae6c5380d152c8fd3d90b} 
+get\+Source\+Context (\begin{DoxyParamCaption}\item[{string}]{\$name}{}\end{DoxyParamCaption})}
+
+Returns the source context for a given template logical name.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When \$name is not found \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_array_loader_abfc637f5f1aae6c5380d152c8fd3d90b}{Array\+Loader}}, \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_chain_loader_abfc637f5f1aae6c5380d152c8fd3d90b}{Chain\+Loader}}, et \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_filesystem_loader_abfc637f5f1aae6c5380d152c8fd3d90b}{Filesystem\+Loader}}.
+
+\Hypertarget{interface_twig_1_1_loader_1_1_loader_interface_a8523ad7036f1545e34abece31daa914e}\index{LoaderInterface@{LoaderInterface}!isFresh@{isFresh}}
+\index{isFresh@{isFresh}!LoaderInterface@{LoaderInterface}}
+\doxysubsubsection{\texorpdfstring{isFresh()}{isFresh()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_loader_1_1_loader_interface_a8523ad7036f1545e34abece31daa914e} 
+is\+Fresh (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{int}]{\$time}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$time} & Timestamp of the last modification time of the cached template\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When \$name is not found \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_array_loader_a8523ad7036f1545e34abece31daa914e}{Array\+Loader}}, \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_chain_loader_a8523ad7036f1545e34abece31daa914e}{Chain\+Loader}}, et \doxymbox{\hyperlink{class_twig_1_1_loader_1_1_filesystem_loader_a8523ad7036f1545e34abece31daa914e}{Filesystem\+Loader}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Loader/\+Loader\+Interface.\+php\end{DoxyCompactItemize}

@@ -1,0 +1,46 @@
+\doxysection{Référence de l\textquotesingle{}interface Runtime\+Loader\+Interface}
+\hypertarget{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface}{}\label{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface}\index{RuntimeLoaderInterface@{RuntimeLoaderInterface}}
+Graphe d\textquotesingle{}héritage de Runtime\+Loader\+Interface:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface_ae5605e9050b404cea90a04c01b61f6da}{load}} (string \$class)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Creates runtime implementations for Twig elements (filters/\+functions/\+tests).
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface_ae5605e9050b404cea90a04c01b61f6da}\index{RuntimeLoaderInterface@{RuntimeLoaderInterface}!load@{load}}
+\index{load@{load}!RuntimeLoaderInterface@{RuntimeLoaderInterface}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface_ae5605e9050b404cea90a04c01b61f6da} 
+load (\begin{DoxyParamCaption}\item[{string}]{\$class}{}\end{DoxyParamCaption})}
+
+Creates the runtime implementation of a Twig element (filter/\+function/\+test).
+
+\begin{DoxyReturn}{Renvoie}
+object\texorpdfstring{$\vert$}{|}null The runtime instance or null if the loader does not know how to create the runtime for this class 
+\end{DoxyReturn}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_runtime_loader_1_1_container_runtime_loader_ae5605e9050b404cea90a04c01b61f6da}{Container\+Runtime\+Loader}}, et \doxymbox{\hyperlink{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader_ae5605e9050b404cea90a04c01b61f6da}{Factory\+Runtime\+Loader}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Runtime\+Loader/\+Runtime\+Loader\+Interface.\+php\end{DoxyCompactItemize}

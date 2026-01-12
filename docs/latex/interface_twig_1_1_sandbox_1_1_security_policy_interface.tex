@@ -1,0 +1,103 @@
+\doxysection{Référence de l\textquotesingle{}interface Security\+Policy\+Interface}
+\hypertarget{interface_twig_1_1_sandbox_1_1_security_policy_interface}{}\label{interface_twig_1_1_sandbox_1_1_security_policy_interface}\index{SecurityPolicyInterface@{SecurityPolicyInterface}}
+Graphe d\textquotesingle{}héritage de Security\+Policy\+Interface:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_twig_1_1_sandbox_1_1_security_policy_interface}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_sandbox_1_1_security_policy_interface_a0cc084f6abef1e1ba223ddd057ddcd2b}{check\+Security}} (\$tags, \$filters, \$functions)
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_sandbox_1_1_security_policy_interface_a90633d7d23e0b157387b886a8ef87a36}{check\+Method\+Allowed}} (\$obj, \$method)
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_sandbox_1_1_security_policy_interface_a182de0b428b216f43d865cbf54ff7c4c}{check\+Property\+Allowed}} (\$obj, \$property)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Interface that all security policy classes must implements.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{interface_twig_1_1_sandbox_1_1_security_policy_interface_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interface_twig_1_1_sandbox_1_1_security_policy_interface_a90633d7d23e0b157387b886a8ef87a36}\index{SecurityPolicyInterface@{SecurityPolicyInterface}!checkMethodAllowed@{checkMethodAllowed}}
+\index{checkMethodAllowed@{checkMethodAllowed}!SecurityPolicyInterface@{SecurityPolicyInterface}}
+\doxysubsubsection{\texorpdfstring{checkMethodAllowed()}{checkMethodAllowed()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_sandbox_1_1_security_policy_interface_a90633d7d23e0b157387b886a8ef87a36} 
+check\+Method\+Allowed (\begin{DoxyParamCaption}\item[{}]{\$obj}{, }\item[{}]{\$method}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+object & {\em \$obj} & \\
+\hline
+string & {\em \$method} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Security\+Not\+Allowed\+Method\+Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_sandbox_1_1_security_policy_a90633d7d23e0b157387b886a8ef87a36}{Security\+Policy}}.
+
+\Hypertarget{interface_twig_1_1_sandbox_1_1_security_policy_interface_a182de0b428b216f43d865cbf54ff7c4c}\index{SecurityPolicyInterface@{SecurityPolicyInterface}!checkPropertyAllowed@{checkPropertyAllowed}}
+\index{checkPropertyAllowed@{checkPropertyAllowed}!SecurityPolicyInterface@{SecurityPolicyInterface}}
+\doxysubsubsection{\texorpdfstring{checkPropertyAllowed()}{checkPropertyAllowed()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_sandbox_1_1_security_policy_interface_a182de0b428b216f43d865cbf54ff7c4c} 
+check\+Property\+Allowed (\begin{DoxyParamCaption}\item[{}]{\$obj}{, }\item[{}]{\$property}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+object & {\em \$obj} & \\
+\hline
+string & {\em \$property} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Security\+Not\+Allowed\+Property\+Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_sandbox_1_1_security_policy_a182de0b428b216f43d865cbf54ff7c4c}{Security\+Policy}}.
+
+\Hypertarget{interface_twig_1_1_sandbox_1_1_security_policy_interface_a0cc084f6abef1e1ba223ddd057ddcd2b}\index{SecurityPolicyInterface@{SecurityPolicyInterface}!checkSecurity@{checkSecurity}}
+\index{checkSecurity@{checkSecurity}!SecurityPolicyInterface@{SecurityPolicyInterface}}
+\doxysubsubsection{\texorpdfstring{checkSecurity()}{checkSecurity()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_sandbox_1_1_security_policy_interface_a0cc084f6abef1e1ba223ddd057ddcd2b} 
+check\+Security (\begin{DoxyParamCaption}\item[{}]{\$tags}{, }\item[{}]{\$filters}{, }\item[{}]{\$functions}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string\+[$\,$]\+ & {\em \$tags} & \\
+\hline
+string\+[$\,$]\+ & {\em \$filters} & \\
+\hline
+string\+[$\,$]\+ & {\em \$functions} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Security\+Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_sandbox_1_1_security_policy_a0cc084f6abef1e1ba223ddd057ddcd2b}{Security\+Policy}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Sandbox/\+Security\+Policy\+Interface.\+php\end{DoxyCompactItemize}

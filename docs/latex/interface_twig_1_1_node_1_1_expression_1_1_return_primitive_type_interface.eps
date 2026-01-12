@@ -1,0 +1,355 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: ClassName
+%%Creator: Doxygen
+%%CreationDate: Time
+%%For: 
+%Magnification: 1.00
+%%Orientation: Portrait
+%%BoundingBox: 0 0 500 259.562836
+%%Pages: 0
+%%BeginSetup
+%%EndSetup
+%%EndComments
+
+% ----- variables -----
+
+/boxwidth 0 def
+/boxheight 40 def
+/fontheight 24 def
+/marginwidth 10 def
+/distx 20 def
+/disty 40 def
+/boundaspect 1.926316 def  % aspect ratio of the BoundingBox (width/height)
+/boundx 500 def
+/boundy boundx boundaspect div def
+/xspacing 0 def
+/yspacing 0 def
+/rows 19 def
+/cols 8 def
+/scalefactor 0 def
+/boxfont /Times-Roman findfont fontheight scalefont def
+
+% ----- procedures -----
+
+/dotted { [1 4] 0 setdash } def
+/dashed { [5] 0 setdash } def
+/solid  { [] 0 setdash } def
+
+/max % result = MAX(arg1,arg2)
+{
+  /a exch def
+  /b exch def
+  a b gt {a} {b} ifelse
+} def
+
+/xoffset % result = MAX(0,(scalefactor-(boxwidth*cols+distx*(cols-1)))/2)
+{
+  0 scalefactor boxwidth cols mul distx cols 1 sub mul add sub 2 div max
+} def
+
+/cw % boxwidth = MAX(boxwidth, stringwidth(arg1))
+{
+  /str exch def
+  /boxwidth boxwidth str stringwidth pop max def
+} def
+
+/box % draws a box with text 'arg1' at grid pos (arg2,arg3)
+{ gsave
+  2 setlinewidth
+  newpath
+  exch xspacing mul xoffset add
+  exch yspacing mul
+  moveto
+  boxwidth 0 rlineto 
+  0 boxheight rlineto 
+  boxwidth neg 0 rlineto 
+  0 boxheight neg rlineto 
+  closepath
+  dup stringwidth pop neg boxwidth add 2 div
+  boxheight fontheight 2 div sub 2 div
+  rmoveto show stroke
+  grestore
+} def  
+
+/mark
+{ newpath
+  exch xspacing mul xoffset add boxwidth add
+  exch yspacing mul
+  moveto
+  0 boxheight 4 div rlineto
+  boxheight neg 4 div boxheight neg 4 div rlineto
+  closepath
+  eofill
+  stroke
+} def
+
+/arrow
+{ newpath
+  moveto
+  3 -8 rlineto
+  -6 0 rlineto
+  3 8 rlineto
+  closepath
+  eofill
+  stroke
+} def
+
+/out % draws an output connector for the block at (arg1,arg2)
+{
+  newpath
+  exch xspacing mul xoffset add boxwidth 2 div add
+  exch yspacing mul boxheight add
+  /y exch def
+  /x exch def
+  x y moveto
+  0 disty 2 div rlineto 
+  stroke
+  1 eq { x y disty 2 div add arrow } if
+} def
+
+/in % draws an input connector for the block at (arg1,arg2)
+{
+  newpath
+  exch xspacing mul xoffset add boxwidth 2 div add
+  exch yspacing mul disty 2 div sub
+  /y exch def
+  /x exch def
+  x y moveto
+  0 disty 2 div rlineto
+  stroke
+  1 eq { x y disty 2 div add arrow } if
+} def
+
+/hedge
+{
+  exch xspacing mul xoffset add boxwidth 2 div add
+  exch yspacing mul boxheight 2 div sub
+  /y exch def
+  /x exch def
+  newpath
+  x y moveto
+  boxwidth 2 div distx add 0 rlineto
+  stroke
+  1 eq
+  { newpath x boxwidth 2 div distx add add y moveto
+    -8 3 rlineto
+    0 -6 rlineto
+    8 3 rlineto
+    closepath
+    eofill
+    stroke
+  } if
+} def
+
+/vedge
+{
+  /ye exch def
+  /ys exch def
+  /xs exch def
+  newpath
+  xs xspacing mul xoffset add boxwidth 2 div add dup
+  ys yspacing mul boxheight 2 div sub
+  moveto
+  ye yspacing mul boxheight 2 div sub
+  lineto
+  stroke
+} def
+
+/conn % connections the blocks from col 'arg1' to 'arg2' of row 'arg3'
+{
+  /ys exch def
+  /xe exch def
+  /xs exch def
+  newpath
+  xs xspacing mul xoffset add boxwidth 2 div add
+  ys yspacing mul disty 2 div sub
+  moveto
+  xspacing xe xs sub mul 0
+  rlineto
+  stroke
+} def
+
+% ----- main ------
+
+boxfont setfont
+1 boundaspect scale
+(ReturnPrimitiveTypeInterface) cw
+(ConstantExpression) cw
+(ReturnArrayInterface) cw
+(ReturnBoolInterface) cw
+(ReturnNumberInterface) cw
+(ReturnStringInterface) cw
+(ArrayExpression) cw
+(RangeBinary) cw
+(AndBinary) cw
+(EndsWithBinary) cw
+(EqualBinary) cw
+(GreaterBinary) cw
+(GreaterEqualBinary) cw
+(HasEveryBinary) cw
+(HasSomeBinary) cw
+(InBinary) cw
+(LessBinary) cw
+(LessEqualBinary) cw
+(MatchesBinary) cw
+(NotEqualBinary) cw
+(NotInBinary) cw
+(OrBinary) cw
+(StartsWithBinary) cw
+(XorBinary) cw
+(TestExpression) cw
+(AddBinary) cw
+(BitwiseAndBinary) cw
+(BitwiseOrBinary) cw
+(BitwiseXorBinary) cw
+(DivBinary) cw
+(FloorDivBinary) cw
+(ModBinary) cw
+(MulBinary) cw
+(PowerBinary) cw
+(SpaceshipBinary) cw
+(SubBinary) cw
+(ConcatBinary) cw
+/boxwidth boxwidth marginwidth 2 mul add def
+/xspacing boxwidth distx add def
+/yspacing boxheight disty add def
+/scalefactor 
+  boxwidth cols mul distx cols 1 sub mul add
+  boxheight rows mul disty rows 1 sub mul add boundaspect mul 
+  max def
+boundx scalefactor div boundy scalefactor div scale
+
+% ----- classes -----
+
+ (ReturnPrimitiveTypeInterface) 3.000000 18.000000 box
+ (ConstantExpression) 0.000000 17.000000 box
+ (ReturnArrayInterface) 1.000000 17.000000 box
+ (ReturnBoolInterface) 3.000000 17.000000 box
+ (ReturnNumberInterface) 5.000000 17.000000 box
+ (ReturnStringInterface) 7.000000 17.000000 box
+ (ArrayExpression) 2.000000 16.000000 box
+2.000000 16.000000 mark
+ (RangeBinary) 2.000000 15.000000 box
+ (AndBinary) 4.000000 16.000000 box
+ (EndsWithBinary) 4.000000 15.000000 box
+ (EqualBinary) 4.000000 14.000000 box
+ (GreaterBinary) 4.000000 13.000000 box
+ (GreaterEqualBinary) 4.000000 12.000000 box
+ (HasEveryBinary) 4.000000 11.000000 box
+ (HasSomeBinary) 4.000000 10.000000 box
+ (InBinary) 4.000000 9.000000 box
+ (LessBinary) 4.000000 8.000000 box
+ (LessEqualBinary) 4.000000 7.000000 box
+ (MatchesBinary) 4.000000 6.000000 box
+ (NotEqualBinary) 4.000000 5.000000 box
+ (NotInBinary) 4.000000 4.000000 box
+ (OrBinary) 4.000000 3.000000 box
+ (StartsWithBinary) 4.000000 2.000000 box
+ (XorBinary) 4.000000 1.000000 box
+ (TestExpression) 4.000000 0.000000 box
+4.000000 0.000000 mark
+ (AddBinary) 6.000000 16.000000 box
+ (BitwiseAndBinary) 6.000000 15.000000 box
+ (BitwiseOrBinary) 6.000000 14.000000 box
+ (BitwiseXorBinary) 6.000000 13.000000 box
+ (DivBinary) 6.000000 12.000000 box
+ (FloorDivBinary) 6.000000 11.000000 box
+ (ModBinary) 6.000000 10.000000 box
+ (MulBinary) 6.000000 9.000000 box
+ (PowerBinary) 6.000000 8.000000 box
+ (SpaceshipBinary) 6.000000 7.000000 box
+ (SubBinary) 6.000000 6.000000 box
+ (ConcatBinary) 7.000000 16.000000 box
+
+% ----- relations -----
+
+solid
+1 3.000000 17.250000 out
+solid
+0.000000 7.000000 18.000000 conn
+solid
+0 0.000000 17.750000 in
+solid
+0 1.000000 17.750000 in
+solid
+1 1.000000 16.250000 out
+solid
+0 3.000000 17.750000 in
+solid
+1 3.000000 16.250000 out
+solid
+0 5.000000 17.750000 in
+solid
+1 5.000000 16.250000 out
+solid
+0 7.000000 17.750000 in
+solid
+1 7.000000 16.250000 out
+solid
+0 1.000000 16.500000 hedge
+solid
+0 1.000000 15.500000 hedge
+solid
+1.000000 17.000000 15.500000 vedge
+solid
+0 3.000000 16.500000 hedge
+solid
+0 3.000000 15.500000 hedge
+solid
+0 3.000000 14.500000 hedge
+solid
+0 3.000000 13.500000 hedge
+solid
+0 3.000000 12.500000 hedge
+solid
+0 3.000000 11.500000 hedge
+solid
+0 3.000000 10.500000 hedge
+solid
+0 3.000000 9.500000 hedge
+solid
+0 3.000000 8.500000 hedge
+solid
+0 3.000000 7.500000 hedge
+solid
+0 3.000000 6.500000 hedge
+solid
+0 3.000000 5.500000 hedge
+solid
+0 3.000000 4.500000 hedge
+solid
+0 3.000000 3.500000 hedge
+solid
+0 3.000000 2.500000 hedge
+solid
+0 3.000000 1.500000 hedge
+solid
+0 3.000000 0.500000 hedge
+solid
+3.000000 17.000000 0.500000 vedge
+solid
+0 5.000000 16.500000 hedge
+solid
+0 5.000000 15.500000 hedge
+solid
+0 5.000000 14.500000 hedge
+solid
+0 5.000000 13.500000 hedge
+solid
+0 5.000000 12.500000 hedge
+solid
+0 5.000000 11.500000 hedge
+solid
+0 5.000000 10.500000 hedge
+solid
+0 5.000000 9.500000 hedge
+solid
+0 5.000000 8.500000 hedge
+solid
+0 5.000000 7.500000 hedge
+solid
+0 5.000000 6.500000 hedge
+solid
+5.000000 17.000000 6.500000 vedge
+solid
+0 7.000000 16.750000 in

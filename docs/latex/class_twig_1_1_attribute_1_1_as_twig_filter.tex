@@ -1,0 +1,59 @@
+\doxysection{Référence de la classe As\+Twig\+Filter}
+\hypertarget{class_twig_1_1_attribute_1_1_as_twig_filter}{}\label{class_twig_1_1_attribute_1_1_as_twig_filter}\index{AsTwigFilter@{AsTwigFilter}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_attribute_1_1_as_twig_filter_a8d7204ff39d3670656dff97a7b54b517}{\+\_\+\+\_\+construct}} (public string \$name, public ?bool \$needs\+Charset=null, public ?bool \$needs\+Environment=null, public ?bool \$needs\+Context=null, public ?array \$is\+Safe=null, public string\texorpdfstring{$\vert$}{|}array\texorpdfstring{$\vert$}{|}null \$is\+Safe\+Callback=null, public ?string \$pre\+Escape=null, public ?array \$preserves\+Safety=null, public ?\doxymbox{\hyperlink{class_twig_1_1_deprecated_callable_info}{Deprecated\+Callable\+Info}} \$deprecation\+Info=null,)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Registers a method as template filter.
+
+If the first argument of the method has Twig\textbackslash{}\+Environment type-\/hint, the filter will receive the current environment. Additional arguments of the method come from the filter call. \begin{DoxyVerb}#[AsTwigFilter(name: 'foo')]
+function fooFilter(Environment $env, $string, $arg1 = null, ...) { ... }
+\end{DoxyVerb}
+
+
+\{\{ \textquotesingle{}string\textquotesingle{}\texorpdfstring{$\vert$}{|}foo(arg1) \}\}
+
+\begin{DoxySeeAlso}{Voir également}
+Twig\+Filter 
+\end{DoxySeeAlso}
+
+
+\label{doc-constructors}
+\Hypertarget{class_twig_1_1_attribute_1_1_as_twig_filter_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_twig_1_1_attribute_1_1_as_twig_filter_a8d7204ff39d3670656dff97a7b54b517}\index{AsTwigFilter@{AsTwigFilter}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!AsTwigFilter@{AsTwigFilter}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_attribute_1_1_as_twig_filter_a8d7204ff39d3670656dff97a7b54b517} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{public string}]{\$name}{, }\item[{public ?bool}]{\$needs\+Charset}{ = {\ttfamily null}, }\item[{public ?bool}]{\$needs\+Environment}{ = {\ttfamily null}, }\item[{public ?bool}]{\$needs\+Context}{ = {\ttfamily null}, }\item[{public ?array}]{\$is\+Safe}{ = {\ttfamily null}, }\item[{public string\texorpdfstring{$\vert$}{|}array\texorpdfstring{$\vert$}{|}null}]{\$is\+Safe\+Callback}{ = {\ttfamily null}, }\item[{public ?string}]{\$pre\+Escape}{ = {\ttfamily null}, }\item[{public ?array}]{\$preserves\+Safety}{ = {\ttfamily null}, }\item[{public ?\doxymbox{\hyperlink{class_twig_1_1_deprecated_callable_info}{Deprecated\+Callable\+Info}}}]{\$deprecation\+Info}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+non-\/empty-\/string & {\em \$name} & The name of the filter in Twig \\
+\hline
+bool | null & {\em \$needs\+Charset} & Whether the filter needs the charset passed as the first argument \\
+\hline
+bool | null & {\em \$needs\+Environment} & Whether the filter needs the environment passed as the first argument, or after the charset \\
+\hline
+bool | null & {\em \$needs\+Context} & Whether the filter needs the context array passed as the first argument, or after the charset and the environment \\
+\hline
+string\+[$\,$]\+ | null & {\em \$is\+Safe} & List of formats in which you want the raw output to be printed unescaped \\
+\hline
+string | array | null & {\em \$is\+Safe\+Callback} & Function called at compilation time to determine if the filter is safe \\
+\hline
+string | null & {\em \$pre\+Escape} & Some filters may need to work on input that is already escaped or safe \\
+\hline
+string\+[$\,$]\+ | null & {\em \$preserves\+Safety} & Preserves the safety of the value that the filter is applied to \\
+\hline
+Deprecated\+Callable\+Info | null & {\em \$deprecation\+Info} & Information about the deprecation \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Attribute/\+As\+Twig\+Filter.\+php\end{DoxyCompactItemize}

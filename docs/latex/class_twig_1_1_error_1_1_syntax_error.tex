@@ -1,0 +1,65 @@
+\doxysection{Référence de la classe Syntax\+Error}
+\hypertarget{class_twig_1_1_error_1_1_syntax_error}{}\label{class_twig_1_1_error_1_1_syntax_error}\index{SyntaxError@{SyntaxError}}
+Graphe d\textquotesingle{}héritage de Syntax\+Error:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_twig_1_1_error_1_1_syntax_error}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_error_1_1_syntax_error_a6524a87e7727478f2133a2ffe5902703}{add\+Suggestions}} (string \$name, array \$items)
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \doxymbox{\hyperlink{class_twig_1_1_error_1_1_error}{Error}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_error_1_1_error_aa0e9bcdcbc538cefdf27fb62512422fe}{\+\_\+\+\_\+construct}} (string \$message, int \$lineno=-\/1, ?\doxymbox{\hyperlink{class_twig_1_1_source}{Source}} \$source=null, ?\textbackslash{}Throwable \$previous=null)
+\item 
+{\bfseries get\+Raw\+Message} ()
+\item 
+{\bfseries get\+Template\+Line} ()
+\item 
+{\bfseries set\+Template\+Line} (int \$lineno)
+\item 
+{\bfseries get\+Source\+Context} ()
+\item 
+{\bfseries set\+Source\+Context} (?\doxymbox{\hyperlink{class_twig_1_1_source}{Source}} \$source=null)
+\item 
+{\bfseries guess} ()
+\item 
+{\bfseries append\+Message} (\$raw\+Message)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\textbackslash{}\+Exception thrown when a syntax error occurs during lexing or parsing of a template.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_error_1_1_syntax_error_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_error_1_1_syntax_error_a6524a87e7727478f2133a2ffe5902703}\index{SyntaxError@{SyntaxError}!addSuggestions@{addSuggestions}}
+\index{addSuggestions@{addSuggestions}!SyntaxError@{SyntaxError}}
+\doxysubsubsection{\texorpdfstring{addSuggestions()}{addSuggestions()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_error_1_1_syntax_error_a6524a87e7727478f2133a2ffe5902703} 
+add\+Suggestions (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{array}]{\$items}{}\end{DoxyParamCaption})}
+
+Tweaks the error message to include suggestions.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$name} & The original name of the item that does not exist \\
+\hline
+array & {\em \$items} & An array of possible items \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Error/\+Syntax\+Error.\+php\end{DoxyCompactItemize}

@@ -1,0 +1,116 @@
+\doxysection{Référence de la classe Chain\+Cache}
+\hypertarget{class_twig_1_1_cache_1_1_chain_cache}{}\label{class_twig_1_1_cache_1_1_chain_cache}\index{ChainCache@{ChainCache}}
+Graphe d\textquotesingle{}héritage de Chain\+Cache:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_twig_1_1_cache_1_1_chain_cache}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_chain_cache_a96cec547b00949e2e6152d41106a385f}{\+\_\+\+\_\+construct}} (private iterable \$caches,)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_chain_cache_ad0f6e2fd521d743a97e81e9e62c3b72f}{generate\+Key}} (string \$name, string \$class\+Name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_chain_cache_aaa23ff10c2597ea61f62d9684b10cd19}{write}} (string \$key, string \$content)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_chain_cache_a486dfb4d7cc9fbc8e33c089ad5ed75f2}{load}} (string \$key)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_chain_cache_af23cfeaf66d592b80bffc90bc300994a}{get\+Timestamp}} (string \$key)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_chain_cache_a638262bdb6694c0149261a1289034e83}{remove}} (string \$name, string \$cls)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Chains several caches together.
+
+Cached items are fetched from the first cache having them in its data store. They are saved and deleted in all adapters at once.
+
+\begin{DoxyAuthor}{Auteur}
+Quentin Devos \href{mailto:quentin@devos.pm}{\texttt{quentin@devos.\+pm}} 
+\end{DoxyAuthor}
+
+
+\label{doc-constructors}
+\Hypertarget{class_twig_1_1_cache_1_1_chain_cache_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_twig_1_1_cache_1_1_chain_cache_a96cec547b00949e2e6152d41106a385f}\index{ChainCache@{ChainCache}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ChainCache@{ChainCache}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_chain_cache_a96cec547b00949e2e6152d41106a385f} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{private iterable}]{\$caches}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em iterable$<$\+Cache\+Interface$>$} & \$caches The ordered list of caches used to store and fetch cached items \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_cache_1_1_chain_cache_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_cache_1_1_chain_cache_ad0f6e2fd521d743a97e81e9e62c3b72f}\index{ChainCache@{ChainCache}!generateKey@{generateKey}}
+\index{generateKey@{generateKey}!ChainCache@{ChainCache}}
+\doxysubsubsection{\texorpdfstring{generateKey()}{generateKey()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_chain_cache_ad0f6e2fd521d743a97e81e9e62c3b72f} 
+generate\+Key (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{string}]{\$class\+Name}{}\end{DoxyParamCaption})}
+
+Generates a cache key for the given template class name. 
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_ad0f6e2fd521d743a97e81e9e62c3b72f}{Cache\+Interface}}.
+
+\Hypertarget{class_twig_1_1_cache_1_1_chain_cache_af23cfeaf66d592b80bffc90bc300994a}\index{ChainCache@{ChainCache}!getTimestamp@{getTimestamp}}
+\index{getTimestamp@{getTimestamp}!ChainCache@{ChainCache}}
+\doxysubsubsection{\texorpdfstring{getTimestamp()}{getTimestamp()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_chain_cache_af23cfeaf66d592b80bffc90bc300994a} 
+get\+Timestamp (\begin{DoxyParamCaption}\item[{string}]{\$key}{}\end{DoxyParamCaption})}
+
+Returns the modification timestamp of a key. 
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_af23cfeaf66d592b80bffc90bc300994a}{Cache\+Interface}}.
+
+\Hypertarget{class_twig_1_1_cache_1_1_chain_cache_a486dfb4d7cc9fbc8e33c089ad5ed75f2}\index{ChainCache@{ChainCache}!load@{load}}
+\index{load@{load}!ChainCache@{ChainCache}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_chain_cache_a486dfb4d7cc9fbc8e33c089ad5ed75f2} 
+load (\begin{DoxyParamCaption}\item[{string}]{\$key}{}\end{DoxyParamCaption})}
+
+Loads a template from the cache. 
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_a486dfb4d7cc9fbc8e33c089ad5ed75f2}{Cache\+Interface}}.
+
+\Hypertarget{class_twig_1_1_cache_1_1_chain_cache_a638262bdb6694c0149261a1289034e83}\index{ChainCache@{ChainCache}!remove@{remove}}
+\index{remove@{remove}!ChainCache@{ChainCache}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_chain_cache_a638262bdb6694c0149261a1289034e83} 
+remove (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{string}]{\$cls}{}\end{DoxyParamCaption})}
+
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_removable_cache_interface}{Removable\+Cache\+Interface}}.
+
+\Hypertarget{class_twig_1_1_cache_1_1_chain_cache_aaa23ff10c2597ea61f62d9684b10cd19}\index{ChainCache@{ChainCache}!write@{write}}
+\index{write@{write}!ChainCache@{ChainCache}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_chain_cache_aaa23ff10c2597ea61f62d9684b10cd19} 
+write (\begin{DoxyParamCaption}\item[{string}]{\$key}{, }\item[{string}]{\$content}{}\end{DoxyParamCaption})}
+
+Writes the compiled template to cache.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$content} & The template representation as a PHP class \\
+\hline
+\end{DoxyParams}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_aaa23ff10c2597ea61f62d9684b10cd19}{Cache\+Interface}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Cache/\+Chain\+Cache.\+php\end{DoxyCompactItemize}

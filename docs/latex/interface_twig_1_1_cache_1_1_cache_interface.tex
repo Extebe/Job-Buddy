@@ -1,0 +1,86 @@
+\doxysection{Référence de l\textquotesingle{}interface Cache\+Interface}
+\hypertarget{interface_twig_1_1_cache_1_1_cache_interface}{}\label{interface_twig_1_1_cache_1_1_cache_interface}\index{CacheInterface@{CacheInterface}}
+Graphe d\textquotesingle{}héritage de Cache\+Interface:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{interface_twig_1_1_cache_1_1_cache_interface}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_ad0f6e2fd521d743a97e81e9e62c3b72f}{generate\+Key}} (string \$name, string \$class\+Name)
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_aaa23ff10c2597ea61f62d9684b10cd19}{write}} (string \$key, string \$content)
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_a486dfb4d7cc9fbc8e33c089ad5ed75f2}{load}} (string \$key)
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_af23cfeaf66d592b80bffc90bc300994a}{get\+Timestamp}} (string \$key)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Interface implemented by cache classes.
+
+It is highly recommended to always store templates on the filesystem to benefit from the PHP opcode cache. This interface is mostly useful if you need to implement a custom strategy for storing templates on the filesystem.
+
+\begin{DoxyAuthor}{Auteur}
+Andrew Tch \href{mailto:andrew@noop.lv}{\texttt{andrew@noop.\+lv}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{interface_twig_1_1_cache_1_1_cache_interface_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interface_twig_1_1_cache_1_1_cache_interface_ad0f6e2fd521d743a97e81e9e62c3b72f}\index{CacheInterface@{CacheInterface}!generateKey@{generateKey}}
+\index{generateKey@{generateKey}!CacheInterface@{CacheInterface}}
+\doxysubsubsection{\texorpdfstring{generateKey()}{generateKey()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_cache_1_1_cache_interface_ad0f6e2fd521d743a97e81e9e62c3b72f} 
+generate\+Key (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{string}]{\$class\+Name}{}\end{DoxyParamCaption})}
+
+Generates a cache key for the given template class name. 
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_chain_cache_ad0f6e2fd521d743a97e81e9e62c3b72f}{Chain\+Cache}}, \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_filesystem_cache_ad0f6e2fd521d743a97e81e9e62c3b72f}{Filesystem\+Cache}}, et \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_null_cache_ad0f6e2fd521d743a97e81e9e62c3b72f}{Null\+Cache}}.
+
+\Hypertarget{interface_twig_1_1_cache_1_1_cache_interface_af23cfeaf66d592b80bffc90bc300994a}\index{CacheInterface@{CacheInterface}!getTimestamp@{getTimestamp}}
+\index{getTimestamp@{getTimestamp}!CacheInterface@{CacheInterface}}
+\doxysubsubsection{\texorpdfstring{getTimestamp()}{getTimestamp()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_cache_1_1_cache_interface_af23cfeaf66d592b80bffc90bc300994a} 
+get\+Timestamp (\begin{DoxyParamCaption}\item[{string}]{\$key}{}\end{DoxyParamCaption})}
+
+Returns the modification timestamp of a key. 
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_chain_cache_af23cfeaf66d592b80bffc90bc300994a}{Chain\+Cache}}, \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_filesystem_cache_af23cfeaf66d592b80bffc90bc300994a}{Filesystem\+Cache}}, et \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_null_cache_af23cfeaf66d592b80bffc90bc300994a}{Null\+Cache}}.
+
+\Hypertarget{interface_twig_1_1_cache_1_1_cache_interface_a486dfb4d7cc9fbc8e33c089ad5ed75f2}\index{CacheInterface@{CacheInterface}!load@{load}}
+\index{load@{load}!CacheInterface@{CacheInterface}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_cache_1_1_cache_interface_a486dfb4d7cc9fbc8e33c089ad5ed75f2} 
+load (\begin{DoxyParamCaption}\item[{string}]{\$key}{}\end{DoxyParamCaption})}
+
+Loads a template from the cache. 
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_chain_cache_a486dfb4d7cc9fbc8e33c089ad5ed75f2}{Chain\+Cache}}, \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_filesystem_cache_a486dfb4d7cc9fbc8e33c089ad5ed75f2}{Filesystem\+Cache}}, et \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_null_cache_a486dfb4d7cc9fbc8e33c089ad5ed75f2}{Null\+Cache}}.
+
+\Hypertarget{interface_twig_1_1_cache_1_1_cache_interface_aaa23ff10c2597ea61f62d9684b10cd19}\index{CacheInterface@{CacheInterface}!write@{write}}
+\index{write@{write}!CacheInterface@{CacheInterface}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_cache_1_1_cache_interface_aaa23ff10c2597ea61f62d9684b10cd19} 
+write (\begin{DoxyParamCaption}\item[{string}]{\$key}{, }\item[{string}]{\$content}{}\end{DoxyParamCaption})}
+
+Writes the compiled template to cache.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$content} & The template representation as a PHP class \\
+\hline
+\end{DoxyParams}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_chain_cache_aaa23ff10c2597ea61f62d9684b10cd19}{Chain\+Cache}}, \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_filesystem_cache_aaa23ff10c2597ea61f62d9684b10cd19}{Filesystem\+Cache}}, \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_null_cache_aaa23ff10c2597ea61f62d9684b10cd19}{Null\+Cache}}, et \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_read_only_filesystem_cache_aaa23ff10c2597ea61f62d9684b10cd19}{Read\+Only\+Filesystem\+Cache}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Cache/\+Cache\+Interface.\+php\end{DoxyCompactItemize}

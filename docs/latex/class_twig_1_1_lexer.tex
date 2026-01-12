@@ -1,0 +1,82 @@
+\doxysection{Référence de la classe Lexer}
+\hypertarget{class_twig_1_1_lexer}{}\label{class_twig_1_1_lexer}\index{Lexer@{Lexer}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_lexer_a6ae1fcb2881c44b90314359909641ed9}\label{class_twig_1_1_lexer_a6ae1fcb2881c44b90314359909641ed9} 
+{\bfseries \+\_\+\+\_\+construct} (\doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}} \$env, array \$options=\+[$\,$]\+)
+\item 
+\Hypertarget{class_twig_1_1_lexer_a7103721d759296dd3a808f66f983b338}\label{class_twig_1_1_lexer_a7103721d759296dd3a808f66f983b338} 
+{\bfseries tokenize} (\doxymbox{\hyperlink{class_twig_1_1_source}{Source}} \$source)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_lexer_aed1034ab76d6f68a9936141fb43e46c4}\label{class_twig_1_1_lexer_aed1034ab76d6f68a9936141fb43e46c4} 
+const {\bfseries STATE\+\_\+\+DATA} = 0
+\item 
+\Hypertarget{class_twig_1_1_lexer_a7943cc4ef427db839acf8405ab7622b1}\label{class_twig_1_1_lexer_a7943cc4ef427db839acf8405ab7622b1} 
+const {\bfseries STATE\+\_\+\+BLOCK} = 1
+\item 
+\Hypertarget{class_twig_1_1_lexer_ace602c247a72e20792de0cbbaece8d4e}\label{class_twig_1_1_lexer_ace602c247a72e20792de0cbbaece8d4e} 
+const {\bfseries STATE\+\_\+\+VAR} = 2
+\item 
+\Hypertarget{class_twig_1_1_lexer_aee10c9511fcc8204cd8ba7ced221e096}\label{class_twig_1_1_lexer_aee10c9511fcc8204cd8ba7ced221e096} 
+const {\bfseries STATE\+\_\+\+STRING} = 3
+\item 
+\Hypertarget{class_twig_1_1_lexer_ab366646ed1df9dc0a6b90e96dbaa2293}\label{class_twig_1_1_lexer_ab366646ed1df9dc0a6b90e96dbaa2293} 
+const {\bfseries STATE\+\_\+\+INTERPOLATION} = 4
+\item 
+\Hypertarget{class_twig_1_1_lexer_a16ad69f49b3f1e3d15823ce6760c49c1}\label{class_twig_1_1_lexer_a16ad69f49b3f1e3d15823ce6760c49c1} 
+const {\bfseries REGEX\+\_\+\+NAME} = \textquotesingle{}/\+\+[a-\/zA-\/Z\+\_\+\textbackslash{}x7f-\/\textbackslash{}xff]\+\+[a-\/zA-\/Z0-\/9\+\_\+\textbackslash{}x7f-\/\textbackslash{}xff]\+\texorpdfstring{$\ast$}{*}/\+A\textquotesingle{}
+\item 
+\Hypertarget{class_twig_1_1_lexer_ae6555ae628472b4a4b9c77f0ffb77538}\label{class_twig_1_1_lexer_ae6555ae628472b4a4b9c77f0ffb77538} 
+const {\bfseries REGEX\+\_\+\+STRING} = \textquotesingle{}/\+"{}(\+[\texorpdfstring{$^\wedge$}{\string^}\+\#"{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}]\+\texorpdfstring{$\ast$}{*}(?:\+\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}.\+[\texorpdfstring{$^\wedge$}{\string^}\+\#"{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}]\+\texorpdfstring{$\ast$}{*})\texorpdfstring{$\ast$}{*})"{}\texorpdfstring{$\vert$}{|}\textbackslash{}\textquotesingle{}(\+[\texorpdfstring{$^\wedge$}{\string^}\textbackslash{}\textquotesingle{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}]\+\texorpdfstring{$\ast$}{*}(?:\+\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}.\+[\texorpdfstring{$^\wedge$}{\string^}\textbackslash{}\textquotesingle{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}]\+\texorpdfstring{$\ast$}{*})\texorpdfstring{$\ast$}{*})\textbackslash{}\textquotesingle{}/\+As\textquotesingle{}
+\item 
+const \doxymbox{\hyperlink{class_twig_1_1_lexer_aba3337b652ecdf16df6874ebc9307462}{REGEX\+\_\+\+NUMBER}}
+\item 
+\Hypertarget{class_twig_1_1_lexer_a4b8929b8c0c28e947ed9f7bb68ad2b1f}\label{class_twig_1_1_lexer_a4b8929b8c0c28e947ed9f7bb68ad2b1f} 
+const {\bfseries REGEX\+\_\+\+DQ\+\_\+\+STRING\+\_\+\+DELIM} = \textquotesingle{}/\+"{}/\+A\textquotesingle{}
+\item 
+\Hypertarget{class_twig_1_1_lexer_a703a02d213d85b11041fa5b74f756dcf}\label{class_twig_1_1_lexer_a703a02d213d85b11041fa5b74f756dcf} 
+const {\bfseries REGEX\+\_\+\+DQ\+\_\+\+STRING\+\_\+\+PART} = \textquotesingle{}/\+\+[\texorpdfstring{$^\wedge$}{\string^}\+\#"{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}]\+\texorpdfstring{$\ast$}{*}(?:\+(?:\+\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}.\texorpdfstring{$\vert$}{|}\+\#(?!\textbackslash{}\{))\+[\texorpdfstring{$^\wedge$}{\string^}\+\#"{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}]\+\texorpdfstring{$\ast$}{*})\texorpdfstring{$\ast$}{*}/\+As\textquotesingle{}
+\item 
+\Hypertarget{class_twig_1_1_lexer_a386b890da3ebd57693b65c4fc1bde759}\label{class_twig_1_1_lexer_a386b890da3ebd57693b65c4fc1bde759} 
+const {\bfseries REGEX\+\_\+\+INLINE\+\_\+\+COMMENT} = \textquotesingle{}/\+\+\#\+[\texorpdfstring{$^\wedge$}{\string^}\textbackslash{}n]\+\texorpdfstring{$\ast$}{*}/\+A\textquotesingle{}
+\item 
+\Hypertarget{class_twig_1_1_lexer_a11e565318270644ea275995c4a100291}\label{class_twig_1_1_lexer_a11e565318270644ea275995c4a100291} 
+const {\bfseries PUNCTUATION} = \textquotesingle{}()\+[$\,$]\+\{\}?:\+.,\texorpdfstring{$\vert$}{|}\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_twig_1_1_lexer_doc-variable-members}
+\doxysubsection{Documentation des champs}
+\Hypertarget{class_twig_1_1_lexer_aba3337b652ecdf16df6874ebc9307462}\index{Lexer@{Lexer}!REGEX\_NUMBER@{REGEX\_NUMBER}}
+\index{REGEX\_NUMBER@{REGEX\_NUMBER}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{REGEX\_NUMBER}{REGEX\_NUMBER}}
+{\footnotesize\ttfamily \label{class_twig_1_1_lexer_aba3337b652ecdf16df6874ebc9307462} 
+const REGEX\+\_\+\+NUMBER}
+
+{\bfseries Valeur initiale :\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{'/(?(DEFINE)}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ (?<LNUM>[0-\/9]+(\_[0-\/9]+)*)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Integers\ (with\ underscores)\ \ \ 123\_456}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ (?<FRAC>\(\backslash\).(?\&LNUM))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Fractional\ part\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .456}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ (?<EXPONENT>[eE][+-\/]?(?\&LNUM))\ \ \ \ \ \ \ \ \ \ \#\ Exponent\ part\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ E+10}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ (?<DNUM>(?\&LNUM)(?:(?\&FRAC))?)\ \ \ \ \ \ \ \ \ \ \#\ Decimal\ number\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 123\_456.456}}
+\DoxyCodeLine{\textcolor{stringliteral}{)(?:(?\&DNUM)(?:(?\&EXPONENT))?)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 123\_456.456E+10}}
+\DoxyCodeLine{\textcolor{stringliteral}{/Ax'}}
+
+\end{DoxyCode}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+Lexer.\+php\end{DoxyCompactItemize}

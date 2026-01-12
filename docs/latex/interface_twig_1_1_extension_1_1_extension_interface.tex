@@ -1,0 +1,131 @@
+\doxysection{Référence de l\textquotesingle{}interface Extension\+Interface}
+\hypertarget{interface_twig_1_1_extension_1_1_extension_interface}{}\label{interface_twig_1_1_extension_1_1_extension_interface}\index{ExtensionInterface@{ExtensionInterface}}
+Graphe d\textquotesingle{}héritage de Extension\+Interface:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{interface_twig_1_1_extension_1_1_extension_interface}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_extension_1_1_extension_interface_a8fd35903c3d01c0f0078f59d142eb063}{get\+Token\+Parsers}} ()
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_extension_1_1_extension_interface_aec02093179d390d22ae4083f23a1d74a}{get\+Node\+Visitors}} ()
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_extension_1_1_extension_interface_a428d91319fc73d3038784cf5436936b6}{get\+Filters}} ()
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_extension_1_1_extension_interface_a7e247dd31cc8d37a6c97353a062a0080}{get\+Tests}} ()
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_extension_1_1_extension_interface_a131c2522f07821f77cd1d038c216031b}{get\+Functions}} ()
+\item 
+\doxymbox{\hyperlink{interface_twig_1_1_extension_1_1_extension_interface_aeaf58da661970280d00b67c17dc4f8d4}{get\+Operators}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Interface implemented by extension classes.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}}
+\end{DoxyAuthor}
+@method array$<$\+Expression\+Parser\+Interface$>$ get\+Expression\+Parsers() 
+
+\label{doc-func-members}
+\Hypertarget{interface_twig_1_1_extension_1_1_extension_interface_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interface_twig_1_1_extension_1_1_extension_interface_a428d91319fc73d3038784cf5436936b6}\index{ExtensionInterface@{ExtensionInterface}!getFilters@{getFilters}}
+\index{getFilters@{getFilters}!ExtensionInterface@{ExtensionInterface}}
+\doxysubsubsection{\texorpdfstring{getFilters()}{getFilters()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_extension_1_1_extension_interface_a428d91319fc73d3038784cf5436936b6} 
+get\+Filters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns a list of filters to add to the existing list.
+
+\begin{DoxyReturn}{Renvoie}
+Twig\+Filter\+[]\+ 
+\end{DoxyReturn}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_abstract_extension_a428d91319fc73d3038784cf5436936b6}{Abstract\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_attribute_extension_a428d91319fc73d3038784cf5436936b6}{Attribute\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_core_extension_a428d91319fc73d3038784cf5436936b6}{Core\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_escaper_extension_a428d91319fc73d3038784cf5436936b6}{Escaper\+Extension}}, et \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_staging_extension_a428d91319fc73d3038784cf5436936b6}{Staging\+Extension}}.
+
+\Hypertarget{interface_twig_1_1_extension_1_1_extension_interface_a131c2522f07821f77cd1d038c216031b}\index{ExtensionInterface@{ExtensionInterface}!getFunctions@{getFunctions}}
+\index{getFunctions@{getFunctions}!ExtensionInterface@{ExtensionInterface}}
+\doxysubsubsection{\texorpdfstring{getFunctions()}{getFunctions()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_extension_1_1_extension_interface_a131c2522f07821f77cd1d038c216031b} 
+get\+Functions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns a list of functions to add to the existing list.
+
+\begin{DoxyReturn}{Renvoie}
+Twig\+Function\+[]\+ 
+\end{DoxyReturn}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_abstract_extension_a131c2522f07821f77cd1d038c216031b}{Abstract\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_attribute_extension_a131c2522f07821f77cd1d038c216031b}{Attribute\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_core_extension_a131c2522f07821f77cd1d038c216031b}{Core\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_debug_extension_a131c2522f07821f77cd1d038c216031b}{Debug\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_staging_extension_a131c2522f07821f77cd1d038c216031b}{Staging\+Extension}}, et \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_string_loader_extension_a131c2522f07821f77cd1d038c216031b}{String\+Loader\+Extension}}.
+
+\Hypertarget{interface_twig_1_1_extension_1_1_extension_interface_aec02093179d390d22ae4083f23a1d74a}\index{ExtensionInterface@{ExtensionInterface}!getNodeVisitors@{getNodeVisitors}}
+\index{getNodeVisitors@{getNodeVisitors}!ExtensionInterface@{ExtensionInterface}}
+\doxysubsubsection{\texorpdfstring{getNodeVisitors()}{getNodeVisitors()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_extension_1_1_extension_interface_aec02093179d390d22ae4083f23a1d74a} 
+get\+Node\+Visitors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the node visitor instances to add to the existing list.
+
+\begin{DoxyReturn}{Renvoie}
+Node\+Visitor\+Interface\+[]\+ 
+\end{DoxyReturn}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_abstract_extension_aec02093179d390d22ae4083f23a1d74a}{Abstract\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_core_extension_aec02093179d390d22ae4083f23a1d74a}{Core\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_escaper_extension_aec02093179d390d22ae4083f23a1d74a}{Escaper\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_optimizer_extension_aec02093179d390d22ae4083f23a1d74a}{Optimizer\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_profiler_extension_aec02093179d390d22ae4083f23a1d74a}{Profiler\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_sandbox_extension_aec02093179d390d22ae4083f23a1d74a}{Sandbox\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_staging_extension_aec02093179d390d22ae4083f23a1d74a}{Staging\+Extension}}, et \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_yield_not_ready_extension_aec02093179d390d22ae4083f23a1d74a}{Yield\+Not\+Ready\+Extension}}.
+
+\Hypertarget{interface_twig_1_1_extension_1_1_extension_interface_aeaf58da661970280d00b67c17dc4f8d4}\index{ExtensionInterface@{ExtensionInterface}!getOperators@{getOperators}}
+\index{getOperators@{getOperators}!ExtensionInterface@{ExtensionInterface}}
+\doxysubsubsection{\texorpdfstring{getOperators()}{getOperators()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_extension_1_1_extension_interface_aeaf58da661970280d00b67c17dc4f8d4} 
+get\+Operators (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns a list of operators to add to the existing list.
+
+\begin{DoxyReturn}{Renvoie}
+array$<$array$>$
+\end{DoxyReturn}
+@psalm-\/return array\{ array\texorpdfstring{$<$}{<}string, array\{precedence:\+ int, precedence\+\_\+change?:\+ Precedence\+Change, class:\+ class-\/string$<$\+Abstract\+Unary$>$\}\texorpdfstring{$>$}{>}, array\texorpdfstring{$<$}{<}string, array\{precedence:\+ int, precedence\+\_\+change?:\+ Precedence\+Change, class?:\+ class-\/string$<$\+Abstract\+Binary$>$, associativity:\+ Expression\+Parser::\+\+OPERATOR\+\_\+\texorpdfstring{$\ast$}{*}\}\texorpdfstring{$>$}{>} \} 
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_abstract_extension_aeaf58da661970280d00b67c17dc4f8d4}{Abstract\+Extension}}.
+
+\Hypertarget{interface_twig_1_1_extension_1_1_extension_interface_a7e247dd31cc8d37a6c97353a062a0080}\index{ExtensionInterface@{ExtensionInterface}!getTests@{getTests}}
+\index{getTests@{getTests}!ExtensionInterface@{ExtensionInterface}}
+\doxysubsubsection{\texorpdfstring{getTests()}{getTests()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_extension_1_1_extension_interface_a7e247dd31cc8d37a6c97353a062a0080} 
+get\+Tests (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns a list of tests to add to the existing list.
+
+\begin{DoxyReturn}{Renvoie}
+Twig\+Test\+[]\+ 
+\end{DoxyReturn}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_abstract_extension_a7e247dd31cc8d37a6c97353a062a0080}{Abstract\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_attribute_extension_a7e247dd31cc8d37a6c97353a062a0080}{Attribute\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_core_extension_a7e247dd31cc8d37a6c97353a062a0080}{Core\+Extension}}, et \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_staging_extension_a7e247dd31cc8d37a6c97353a062a0080}{Staging\+Extension}}.
+
+\Hypertarget{interface_twig_1_1_extension_1_1_extension_interface_a8fd35903c3d01c0f0078f59d142eb063}\index{ExtensionInterface@{ExtensionInterface}!getTokenParsers@{getTokenParsers}}
+\index{getTokenParsers@{getTokenParsers}!ExtensionInterface@{ExtensionInterface}}
+\doxysubsubsection{\texorpdfstring{getTokenParsers()}{getTokenParsers()}}
+{\footnotesize\ttfamily \label{interface_twig_1_1_extension_1_1_extension_interface_a8fd35903c3d01c0f0078f59d142eb063} 
+get\+Token\+Parsers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the token parser instances to add to the existing list.
+
+\begin{DoxyReturn}{Renvoie}
+Token\+Parser\+Interface\+[]\+ 
+\end{DoxyReturn}
+
+
+Implémenté dans \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_abstract_extension_a8fd35903c3d01c0f0078f59d142eb063}{Abstract\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_core_extension_a8fd35903c3d01c0f0078f59d142eb063}{Core\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_escaper_extension_a8fd35903c3d01c0f0078f59d142eb063}{Escaper\+Extension}}, \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_sandbox_extension_a8fd35903c3d01c0f0078f59d142eb063}{Sandbox\+Extension}}, et \doxymbox{\hyperlink{class_twig_1_1_extension_1_1_staging_extension_a8fd35903c3d01c0f0078f59d142eb063}{Staging\+Extension}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Extension/\+Extension\+Interface.\+php\end{DoxyCompactItemize}

@@ -1,5 +1,10 @@
 \doxysection{Référence de la classe Signalement\+Utilisateur\+Dao}
 \hypertarget{class_signalement_utilisateur_dao}{}\label{class_signalement_utilisateur_dao}\index{SignalementUtilisateurDao@{SignalementUtilisateurDao}}
+
+
+DAO pour la gestion des signalements d\textquotesingle{}utilisateurs.  
+
+
 Graphe d\textquotesingle{}héritage de Signalement\+Utilisateur\+Dao:\+\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -10,27 +15,30 @@ Graphe d\textquotesingle{}héritage de Signalement\+Utilisateur\+Dao:\+\begin{fi
 \begin{DoxyCompactItemize}
 \item 
 \doxymbox{\hyperlink{class_signalement_utilisateur_dao_a73a1b0348919b6755e4f69dcc70eba64}{find\+All}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Récupère tous les signalements d\textquotesingle{}utilisateurs. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_signalement_utilisateur_dao_a48d48013b7a2536dff0ae9cdda03dd7e}{find}} (?int \$id)
-\item 
+\begin{DoxyCompactList}\small\item\em Trouve un signalement par l\textquotesingle{}ID de l\textquotesingle{}utilisateur signalé. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_signalement_utilisateur_dao_a584ce41683cc8dfa9f035be21416074d}{find\+All\+Assoc}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Récupère tous les signalements sous forme de tableau associatif. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_signalement_utilisateur_dao_a5094aa92cda0504aa7484dd4c5d89230}{find\+Assoc}} (?int \$id)
-\item 
+\begin{DoxyCompactList}\small\item\em Trouve un signalement par ID utilisateur (retourne tableau assoc). \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_signalement_utilisateur_dao_af25ea6725e23d399c8ad498f5a6aa930}{hydrate}} (\$tableau\+Assoc)
-\item 
+\begin{DoxyCompactList}\small\item\em Hydrate un objet \doxylink{class_signalement_utilisateur}{Signalement\+Utilisateur}. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_signalement_utilisateur_dao_a61551f73ae009dd7f2203929e566887d}{hydrate\+All}} (\$tab)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Hydrate une liste de signalements d\textquotesingle{}utilisateurs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Fonctions membres publiques hérités de \doxymbox{\hyperlink{class_signalement_dao}{Signalement\+Dao}}}
 \begin{DoxyCompactItemize}
 \item 
 \doxymbox{\hyperlink{class_signalement_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0}{\+\_\+\+\_\+construct}} (?PDO \$pdo=null)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructeur du DAO \doxylink{class_signalement}{Signalement}. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_signalement_dao_a6e7560ad95a7986be67f7528c80e7f1a}{get\+Pdo}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Récupère l\textquotesingle{}objet PDO. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_signalement_dao_aafe9ccc8334eff61c1211a7aba46d93b}{set\+Pdo}} (\$pdo)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Définit l\textquotesingle{}objet PDO. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Description détaillée}
+DAO pour la gestion des signalements d\textquotesingle{}utilisateurs. 
 
 \label{doc-func-members}
 \Hypertarget{class_signalement_utilisateur_dao_doc-func-members}
@@ -41,30 +49,80 @@ Graphe d\textquotesingle{}héritage de Signalement\+Utilisateur\+Dao:\+\begin{fi
 {\footnotesize\ttfamily \label{class_signalement_utilisateur_dao_a48d48013b7a2536dff0ae9cdda03dd7e} 
 find (\begin{DoxyParamCaption}\item[{?int}]{\$id}{}\end{DoxyParamCaption})}
 
+
+
+Trouve un signalement par l\textquotesingle{}ID de l\textquotesingle{}utilisateur signalé. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | null & {\em \$id} & ID de l\textquotesingle{}utilisateur signalé. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Signalement\+Utilisateur\texorpdfstring{$\vert$}{|}null Le signalement trouvé. 
+\end{DoxyReturn}
 \Hypertarget{class_signalement_utilisateur_dao_a73a1b0348919b6755e4f69dcc70eba64}\index{SignalementUtilisateurDao@{SignalementUtilisateurDao}!findAll@{findAll}}
 \index{findAll@{findAll}!SignalementUtilisateurDao@{SignalementUtilisateurDao}}
 \doxysubsubsection{\texorpdfstring{findAll()}{findAll()}}
 {\footnotesize\ttfamily \label{class_signalement_utilisateur_dao_a73a1b0348919b6755e4f69dcc70eba64} 
 find\+All (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
+
+
+Récupère tous les signalements d\textquotesingle{}utilisateurs. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau de signalements. 
+\end{DoxyReturn}
 \Hypertarget{class_signalement_utilisateur_dao_a584ce41683cc8dfa9f035be21416074d}\index{SignalementUtilisateurDao@{SignalementUtilisateurDao}!findAllAssoc@{findAllAssoc}}
 \index{findAllAssoc@{findAllAssoc}!SignalementUtilisateurDao@{SignalementUtilisateurDao}}
 \doxysubsubsection{\texorpdfstring{findAllAssoc()}{findAllAssoc()}}
 {\footnotesize\ttfamily \label{class_signalement_utilisateur_dao_a584ce41683cc8dfa9f035be21416074d} 
 find\+All\+Assoc (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
+
+
+Récupère tous les signalements sous forme de tableau associatif. 
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau associatif. 
+\end{DoxyReturn}
 \Hypertarget{class_signalement_utilisateur_dao_a5094aa92cda0504aa7484dd4c5d89230}\index{SignalementUtilisateurDao@{SignalementUtilisateurDao}!findAssoc@{findAssoc}}
 \index{findAssoc@{findAssoc}!SignalementUtilisateurDao@{SignalementUtilisateurDao}}
 \doxysubsubsection{\texorpdfstring{findAssoc()}{findAssoc()}}
 {\footnotesize\ttfamily \label{class_signalement_utilisateur_dao_a5094aa92cda0504aa7484dd4c5d89230} 
 find\+Assoc (\begin{DoxyParamCaption}\item[{?int}]{\$id}{}\end{DoxyParamCaption})}
 
+
+
+Trouve un signalement par ID utilisateur (retourne tableau assoc). 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | null & {\em \$id} & ID utilisateur signalé. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Signalement\+Utilisateur\texorpdfstring{$\vert$}{|}null Le signalement. 
+\end{DoxyReturn}
 \Hypertarget{class_signalement_utilisateur_dao_af25ea6725e23d399c8ad498f5a6aa930}\index{SignalementUtilisateurDao@{SignalementUtilisateurDao}!hydrate@{hydrate}}
 \index{hydrate@{hydrate}!SignalementUtilisateurDao@{SignalementUtilisateurDao}}
 \doxysubsubsection{\texorpdfstring{hydrate()}{hydrate()}}
 {\footnotesize\ttfamily \label{class_signalement_utilisateur_dao_af25ea6725e23d399c8ad498f5a6aa930} 
 hydrate (\begin{DoxyParamCaption}\item[{}]{\$tableau\+Assoc}{}\end{DoxyParamCaption})}
 
+
+
+Hydrate un objet \doxylink{class_signalement_utilisateur}{Signalement\+Utilisateur}. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tableau\+Assoc} & Données du signalement. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Signalement\+Utilisateur\texorpdfstring{$\vert$}{|}null L\textquotesingle{}objet hydraté. 
+\end{DoxyReturn}
 \Hypertarget{class_signalement_utilisateur_dao_a61551f73ae009dd7f2203929e566887d}\index{SignalementUtilisateurDao@{SignalementUtilisateurDao}!hydrateAll@{hydrateAll}}
 \index{hydrateAll@{hydrateAll}!SignalementUtilisateurDao@{SignalementUtilisateurDao}}
 \doxysubsubsection{\texorpdfstring{hydrateAll()}{hydrateAll()}}
@@ -73,6 +131,18 @@ hydrate\+All (\begin{DoxyParamCaption}\item[{}]{\$tab}{}\end{DoxyParamCaption})}
 
 
 
+Hydrate une liste de signalements d\textquotesingle{}utilisateurs. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tab} & Tableau de données. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Tableau d\textquotesingle{}objets \doxylink{class_signalement_utilisateur}{Signalement\+Utilisateur}. 
+\end{DoxyReturn}
+
+
 La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
 \item 
-modeles/\+\doxymbox{\hyperlink{signalement_utilisateur_8dao_8php}{signalement\+Utilisateur.\+dao.\+php}}\end{DoxyCompactItemize}
+modeles/\+signalement\+Utilisateur.\+dao.\+php\end{DoxyCompactItemize}

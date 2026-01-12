@@ -1,0 +1,29 @@
+\doxysection{Répertoire de référence de vendor/\+symfony/\+deprecation-\/contracts}
+\hypertarget{dir_2b08ac7011a1f4a6c70d2e5302e86cf8}{}\label{dir_2b08ac7011a1f4a6c70d2e5302e86cf8}\index{Répertoire de référence de vendor/symfony/deprecation-\/contracts@{Répertoire de référence de vendor/symfony/deprecation-\/contracts}}
+
+
+\doxysubsection{Description détaillée}
+A generic function and convention to trigger deprecation notices.
+
+This package provides a single global function named {\ttfamily trigger\+\_\+deprecation()} that triggers silenced deprecation notices.
+
+By using a custom PHP error handler such as the one provided by the Symfony Error\+Handler component, the triggered deprecations can be caught and logged for later discovery, both on dev and prod environments.
+
+The function requires at least 3 arguments:\+
+\begin{DoxyItemize}
+\item the name of the Composer package that is triggering the deprecation
+\item the version of the package that introduced the deprecation
+\item the message of the deprecation
+\item more arguments can be provided:\+ they will be inserted in the message using {\ttfamily printf()} formatting
+\end{DoxyItemize}
+
+Example:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{trigger\_deprecation(\textcolor{stringliteral}{'symfony/blockchain'},\ \textcolor{stringliteral}{'8.9'},\ \textcolor{stringliteral}{'Using\ "{}\%s"{}\ is\ deprecated,\ use\ "{}\%s"{}\ instead.'},\ \textcolor{stringliteral}{'bitcoin'},\ \textcolor{stringliteral}{'fabcoin'});}
+
+\end{DoxyCode}
+
+
+This will generate the following message:\+ {\ttfamily Since symfony/\+blockchain 8.\+9:\+ Using "{}bitcoin"{} is deprecated, use "{}fabcoin"{} instead.}
+
+While not recommended, the deprecation notices can be completely ignored by declaring an empty {\ttfamily function trigger\+\_\+deprecation() \{\}} in your application. 

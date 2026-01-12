@@ -1,0 +1,77 @@
+\doxysection{Référence de la classe Error}
+\hypertarget{class_twig_1_1_error_1_1_error}{}\label{class_twig_1_1_error_1_1_error}\index{Error@{Error}}
+Graphe d\textquotesingle{}héritage de Error:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.777778cm]{class_twig_1_1_error_1_1_error}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_error_1_1_error_aa0e9bcdcbc538cefdf27fb62512422fe}{\+\_\+\+\_\+construct}} (string \$message, int \$lineno=-\/1, ?\doxymbox{\hyperlink{class_twig_1_1_source}{Source}} \$source=null, ?\textbackslash{}Throwable \$previous=null)
+\item 
+\Hypertarget{class_twig_1_1_error_1_1_error_ae10360028f8c467cf5855bcaf76b091f}\label{class_twig_1_1_error_1_1_error_ae10360028f8c467cf5855bcaf76b091f} 
+{\bfseries get\+Raw\+Message} ()
+\item 
+\Hypertarget{class_twig_1_1_error_1_1_error_abe0a6ba69feb4cba19f4a408462a976e}\label{class_twig_1_1_error_1_1_error_abe0a6ba69feb4cba19f4a408462a976e} 
+{\bfseries get\+Template\+Line} ()
+\item 
+\Hypertarget{class_twig_1_1_error_1_1_error_afe8d2dac59a362916c5271c17db9f632}\label{class_twig_1_1_error_1_1_error_afe8d2dac59a362916c5271c17db9f632} 
+{\bfseries set\+Template\+Line} (int \$lineno)
+\item 
+\Hypertarget{class_twig_1_1_error_1_1_error_a38152512ea69c5f598112d1e1064e4b5}\label{class_twig_1_1_error_1_1_error_a38152512ea69c5f598112d1e1064e4b5} 
+{\bfseries get\+Source\+Context} ()
+\item 
+\Hypertarget{class_twig_1_1_error_1_1_error_ae063bc092415abba4a64a7cee8861453}\label{class_twig_1_1_error_1_1_error_ae063bc092415abba4a64a7cee8861453} 
+{\bfseries set\+Source\+Context} (?\doxymbox{\hyperlink{class_twig_1_1_source}{Source}} \$source=null)
+\item 
+\Hypertarget{class_twig_1_1_error_1_1_error_a16664471dad3413d0fb0370b4068d634}\label{class_twig_1_1_error_1_1_error_a16664471dad3413d0fb0370b4068d634} 
+{\bfseries guess} ()
+\item 
+\Hypertarget{class_twig_1_1_error_1_1_error_aea80188b878e626c939e71fa4213d0ac}\label{class_twig_1_1_error_1_1_error_aea80188b878e626c939e71fa4213d0ac} 
+{\bfseries append\+Message} (\$raw\+Message)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Twig base exception.
+
+This exception class and its children must only be used when an error occurs during the loading of a template, when a syntax error is detected in a template, or when rendering a template. Other errors must use regular PHP exception classes (like when the template cache directory is not writable for instance).
+
+To help debugging template issues, this class tracks the original template name and line where the error occurred.
+
+Whenever possible, you must set these information (original template name and line number) yourself by passing them to the constructor. If some or all these information are not available from where you throw the exception, then this class will guess them automatically.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-constructors}
+\Hypertarget{class_twig_1_1_error_1_1_error_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_twig_1_1_error_1_1_error_aa0e9bcdcbc538cefdf27fb62512422fe}\index{Error@{Error}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Error@{Error}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_error_1_1_error_aa0e9bcdcbc538cefdf27fb62512422fe} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{string}]{\$message}{, }\item[{int}]{\$lineno}{ = {\ttfamily -\/1}, }\item[{?\doxymbox{\hyperlink{class_twig_1_1_source}{Source}}}]{\$source}{ = {\ttfamily null}, }\item[{?\textbackslash{}Throwable}]{\$previous}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Constructor.
+
+By default, automatic guessing is enabled.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$message} & The error message \\
+\hline
+int & {\em \$lineno} & The template line where the error occurred \\
+\hline
+Source | null & {\em \$source} & The source context where the error occurred \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Error/\+Error.\+php\end{DoxyCompactItemize}

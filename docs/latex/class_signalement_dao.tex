@@ -1,5 +1,10 @@
 \doxysection{Référence de la classe Signalement\+Dao}
 \hypertarget{class_signalement_dao}{}\label{class_signalement_dao}\index{SignalementDao@{SignalementDao}}
+
+
+DAO de base pour la gestion des signalements.  
+
+
 Graphe d\textquotesingle{}héritage de Signalement\+Dao:\+\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -10,12 +15,15 @@ Graphe d\textquotesingle{}héritage de Signalement\+Dao:\+\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \doxymbox{\hyperlink{class_signalement_dao_a547eaaa1e35bdd4cab1800ac47b3a3b0}{\+\_\+\+\_\+construct}} (?PDO \$pdo=null)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructeur du DAO \doxylink{class_signalement}{Signalement}. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_signalement_dao_a6e7560ad95a7986be67f7528c80e7f1a}{get\+Pdo}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Récupère l\textquotesingle{}objet PDO. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_signalement_dao_aafe9ccc8334eff61c1211a7aba46d93b}{set\+Pdo}} (\$pdo)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Définit l\textquotesingle{}objet PDO. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Description détaillée}
+DAO de base pour la gestion des signalements. 
 
 \label{doc-constructors}
 \Hypertarget{class_signalement_dao_doc-constructors}
@@ -28,6 +36,15 @@ Graphe d\textquotesingle{}héritage de Signalement\+Dao:\+\begin{figure}[H]
 
 
 
+Constructeur du DAO \doxylink{class_signalement}{Signalement}. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+PDO | null & {\em \$pdo} & Instance de PDO. \\
+\hline
+\end{DoxyParams}
+
+
 \label{doc-func-members}
 \Hypertarget{class_signalement_dao_doc-func-members}
 \doxysubsection{Documentation des fonctions membres}
@@ -37,14 +54,30 @@ Graphe d\textquotesingle{}héritage de Signalement\+Dao:\+\begin{figure}[H]
 {\footnotesize\ttfamily \label{class_signalement_dao_a6e7560ad95a7986be67f7528c80e7f1a} 
 get\+Pdo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Get the value of pdo \Hypertarget{class_signalement_dao_aafe9ccc8334eff61c1211a7aba46d93b}\index{SignalementDao@{SignalementDao}!setPdo@{setPdo}}
+
+
+Récupère l\textquotesingle{}objet PDO. 
+
+\begin{DoxyReturn}{Renvoie}
+PDO\texorpdfstring{$\vert$}{|}null L\textquotesingle{}objet PDO. 
+\end{DoxyReturn}
+\Hypertarget{class_signalement_dao_aafe9ccc8334eff61c1211a7aba46d93b}\index{SignalementDao@{SignalementDao}!setPdo@{setPdo}}
 \index{setPdo@{setPdo}!SignalementDao@{SignalementDao}}
 \doxysubsubsection{\texorpdfstring{setPdo()}{setPdo()}}
 {\footnotesize\ttfamily \label{class_signalement_dao_aafe9ccc8334eff61c1211a7aba46d93b} 
 set\+Pdo (\begin{DoxyParamCaption}\item[{}]{\$pdo}{}\end{DoxyParamCaption})}
 
-Set the value of pdo 
+
+
+Définit l\textquotesingle{}objet PDO. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+PDO | null & {\em \$pdo} & L\textquotesingle{}objet PDO. \\
+\hline
+\end{DoxyParams}
+
 
 La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
 \item 
-modeles/\+\doxymbox{\hyperlink{signalement_8dao_8php}{signalement.\+dao.\+php}}\end{DoxyCompactItemize}
+modeles/\+signalement.\+dao.\+php\end{DoxyCompactItemize}

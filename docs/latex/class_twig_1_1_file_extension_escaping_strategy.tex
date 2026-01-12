@@ -1,0 +1,45 @@
+\doxysection{Référence de la classe File\+Extension\+Escaping\+Strategy}
+\hypertarget{class_twig_1_1_file_extension_escaping_strategy}{}\label{class_twig_1_1_file_extension_escaping_strategy}\index{FileExtensionEscapingStrategy@{FileExtensionEscapingStrategy}}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_twig_1_1_file_extension_escaping_strategy_a49f80384d4895cb1d383e62729f83852}{guess}} (string \$name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Default autoescaping strategy based on file names.
+
+This strategy sets the HTML as the default autoescaping strategy, but changes it based on the template name.
+
+\doxylink{class_note}{Note} that there is no runtime performance impact as the default autoescaping strategy is set at compilation time.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_file_extension_escaping_strategy_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_file_extension_escaping_strategy_a49f80384d4895cb1d383e62729f83852}\index{FileExtensionEscapingStrategy@{FileExtensionEscapingStrategy}!guess@{guess}}
+\index{guess@{guess}!FileExtensionEscapingStrategy@{FileExtensionEscapingStrategy}}
+\doxysubsubsection{\texorpdfstring{guess()}{guess()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_file_extension_escaping_strategy_a49f80384d4895cb1d383e62729f83852} 
+guess (\begin{DoxyParamCaption}\item[{string}]{\$name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Guesses the best autoescaping strategy based on the file name.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$name} & The template name\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}false The escaping strategy name to use or false to disable 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+File\+Extension\+Escaping\+Strategy.\+php\end{DoxyCompactItemize}

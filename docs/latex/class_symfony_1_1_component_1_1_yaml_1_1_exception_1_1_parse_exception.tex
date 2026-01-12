@@ -1,0 +1,103 @@
+\doxysection{Référence de la classe Parse\+Exception}
+\hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception}{}\label{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception}\index{ParseException@{ParseException}}
+Graphe d\textquotesingle{}héritage de Parse\+Exception:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_ad36f24a818cf26aa3b33df33bfecf5da}{\+\_\+\+\_\+construct}} (private string \$raw\+Message, private int \$parsed\+Line=-\/1, private ?string \$snippet=null, private ?string \$parsed\+File=null, ?\textbackslash{}Throwable \$previous=null,)
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a3577a5cda40bf567864069acc15de9aa}{get\+Snippet}} ()
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_ad96d53ede33c223bb8d2216065641fd5}{set\+Snippet}} (string \$snippet)
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a9b45ea03698aba0960d95b6cd650531f}{get\+Parsed\+File}} ()
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a42a0d7e5f1c4ec7ac79ecaee6f87d6ec}{set\+Parsed\+File}} (string \$parsed\+File)
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a9b38ce4f9248c08d644f4a09688e8ced}{get\+Parsed\+Line}} ()
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_ac4a37077ffc13e75dd4d3d8f83ca4fda}{set\+Parsed\+Line}} (int \$parsed\+Line)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Exception class thrown when an error occurs during parsing.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-constructors}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_ad36f24a818cf26aa3b33df33bfecf5da}\index{ParseException@{ParseException}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ParseException@{ParseException}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_ad36f24a818cf26aa3b33df33bfecf5da} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{private string}]{\$raw\+Message}{, }\item[{private int}]{\$parsed\+Line}{ = {\ttfamily -\/1}, }\item[{private ?string}]{\$snippet}{ = {\ttfamily null}, }\item[{private ?string}]{\$parsed\+File}{ = {\ttfamily null}, }\item[{?\textbackslash{}Throwable}]{\$previous}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$raw\+Message} & The error message \\
+\hline
+int & {\em \$parsed\+Line} & The line where the error occurred \\
+\hline
+string | null & {\em \$snippet} & The snippet of code near the problem \\
+\hline
+string | null & {\em \$parsed\+File} & The file name where the error occurred \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a9b45ea03698aba0960d95b6cd650531f}\index{ParseException@{ParseException}!getParsedFile@{getParsedFile}}
+\index{getParsedFile@{getParsedFile}!ParseException@{ParseException}}
+\doxysubsubsection{\texorpdfstring{getParsedFile()}{getParsedFile()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a9b45ea03698aba0960d95b6cd650531f} 
+get\+Parsed\+File (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the filename where the error occurred.
+
+This method returns null if a string is parsed. \Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a9b38ce4f9248c08d644f4a09688e8ced}\index{ParseException@{ParseException}!getParsedLine@{getParsedLine}}
+\index{getParsedLine@{getParsedLine}!ParseException@{ParseException}}
+\doxysubsubsection{\texorpdfstring{getParsedLine()}{getParsedLine()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a9b38ce4f9248c08d644f4a09688e8ced} 
+get\+Parsed\+Line (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the line where the error occurred. \Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a3577a5cda40bf567864069acc15de9aa}\index{ParseException@{ParseException}!getSnippet@{getSnippet}}
+\index{getSnippet@{getSnippet}!ParseException@{ParseException}}
+\doxysubsubsection{\texorpdfstring{getSnippet()}{getSnippet()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a3577a5cda40bf567864069acc15de9aa} 
+get\+Snippet (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the snippet of code near the error. \Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a42a0d7e5f1c4ec7ac79ecaee6f87d6ec}\index{ParseException@{ParseException}!setParsedFile@{setParsedFile}}
+\index{setParsedFile@{setParsedFile}!ParseException@{ParseException}}
+\doxysubsubsection{\texorpdfstring{setParsedFile()}{setParsedFile()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_a42a0d7e5f1c4ec7ac79ecaee6f87d6ec} 
+set\+Parsed\+File (\begin{DoxyParamCaption}\item[{string}]{\$parsed\+File}{}\end{DoxyParamCaption})}
+
+Sets the filename where the error occurred. \Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_ac4a37077ffc13e75dd4d3d8f83ca4fda}\index{ParseException@{ParseException}!setParsedLine@{setParsedLine}}
+\index{setParsedLine@{setParsedLine}!ParseException@{ParseException}}
+\doxysubsubsection{\texorpdfstring{setParsedLine()}{setParsedLine()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_ac4a37077ffc13e75dd4d3d8f83ca4fda} 
+set\+Parsed\+Line (\begin{DoxyParamCaption}\item[{int}]{\$parsed\+Line}{}\end{DoxyParamCaption})}
+
+Sets the line where the error occurred. \Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_ad96d53ede33c223bb8d2216065641fd5}\index{ParseException@{ParseException}!setSnippet@{setSnippet}}
+\index{setSnippet@{setSnippet}!ParseException@{ParseException}}
+\doxysubsubsection{\texorpdfstring{setSnippet()}{setSnippet()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_exception_1_1_parse_exception_ad96d53ede33c223bb8d2216065641fd5} 
+set\+Snippet (\begin{DoxyParamCaption}\item[{string}]{\$snippet}{}\end{DoxyParamCaption})}
+
+Sets the snippet of code near the error. 
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+symfony/\+yaml/\+\+Exception/\+Parse\+Exception.\+php\end{DoxyCompactItemize}

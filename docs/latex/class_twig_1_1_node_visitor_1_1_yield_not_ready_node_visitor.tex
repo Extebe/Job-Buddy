@@ -1,0 +1,77 @@
+\doxysection{Référence de la classe Yield\+Not\+Ready\+Node\+Visitor}
+\hypertarget{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor}{}\label{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor}\index{YieldNotReadyNodeVisitor@{YieldNotReadyNodeVisitor}}
+Graphe d\textquotesingle{}héritage de Yield\+Not\+Ready\+Node\+Visitor:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_a3c99d714d70cd91ffe11157b086f7d16}\label{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_a3c99d714d70cd91ffe11157b086f7d16} 
+{\bfseries \+\_\+\+\_\+construct} (private bool \$use\+Yield,)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_ace41ffc86b3ec3a45ff1766a95d69e79}{enter\+Node}} (\doxymbox{\hyperlink{class_twig_1_1_node_1_1_node}{Node}} \$node, \doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}} \$env)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_a4cc01934748f1d74931c884f27a8b921}{leave\+Node}} (\doxymbox{\hyperlink{class_twig_1_1_node_1_1_node}{Node}} \$node, \doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}} \$env)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_a1e7a3c168dcd0901a0d2669c67575b55}{get\+Priority}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_ace41ffc86b3ec3a45ff1766a95d69e79}\index{YieldNotReadyNodeVisitor@{YieldNotReadyNodeVisitor}!enterNode@{enterNode}}
+\index{enterNode@{enterNode}!YieldNotReadyNodeVisitor@{YieldNotReadyNodeVisitor}}
+\doxysubsubsection{\texorpdfstring{enterNode()}{enterNode()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_ace41ffc86b3ec3a45ff1766a95d69e79} 
+enter\+Node (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_node_1_1_node}{Node}}}]{\$node}{, }\item[{\doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}}}]{\$env}{}\end{DoxyParamCaption})}
+
+Called before child nodes are visited.
+
+\begin{DoxyReturn}{Renvoie}
+Node The modified node 
+\end{DoxyReturn}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_node_visitor_1_1_node_visitor_interface_ace41ffc86b3ec3a45ff1766a95d69e79}{Node\+Visitor\+Interface}}.
+
+\Hypertarget{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_a1e7a3c168dcd0901a0d2669c67575b55}\index{YieldNotReadyNodeVisitor@{YieldNotReadyNodeVisitor}!getPriority@{getPriority}}
+\index{getPriority@{getPriority}!YieldNotReadyNodeVisitor@{YieldNotReadyNodeVisitor}}
+\doxysubsubsection{\texorpdfstring{getPriority()}{getPriority()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_a1e7a3c168dcd0901a0d2669c67575b55} 
+get\+Priority (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the priority for this visitor.
+
+Priority should be between -\/10 and 10 (0 is the default).
+
+\begin{DoxyReturn}{Renvoie}
+int The priority level 
+\end{DoxyReturn}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_node_visitor_1_1_node_visitor_interface_a1e7a3c168dcd0901a0d2669c67575b55}{Node\+Visitor\+Interface}}.
+
+\Hypertarget{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_a4cc01934748f1d74931c884f27a8b921}\index{YieldNotReadyNodeVisitor@{YieldNotReadyNodeVisitor}!leaveNode@{leaveNode}}
+\index{leaveNode@{leaveNode}!YieldNotReadyNodeVisitor@{YieldNotReadyNodeVisitor}}
+\doxysubsubsection{\texorpdfstring{leaveNode()}{leaveNode()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_node_visitor_1_1_yield_not_ready_node_visitor_a4cc01934748f1d74931c884f27a8b921} 
+leave\+Node (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_node_1_1_node}{Node}}}]{\$node}{, }\item[{\doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}}}]{\$env}{}\end{DoxyParamCaption})}
+
+Called after child nodes are visited.
+
+\begin{DoxyReturn}{Renvoie}
+Node\texorpdfstring{$\vert$}{|}null The modified node or null if the node must be removed 
+\end{DoxyReturn}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_node_visitor_1_1_node_visitor_interface_a4cc01934748f1d74931c884f27a8b921}{Node\+Visitor\+Interface}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Node\+Visitor/\+Yield\+Not\+Ready\+Node\+Visitor.\+php\end{DoxyCompactItemize}

@@ -1,0 +1,55 @@
+\doxysection{Référence de la classe As\+Twig\+Function}
+\hypertarget{class_twig_1_1_attribute_1_1_as_twig_function}{}\label{class_twig_1_1_attribute_1_1_as_twig_function}\index{AsTwigFunction@{AsTwigFunction}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_attribute_1_1_as_twig_function_a4c02f92040be2e22d20e877ce10f7299}{\+\_\+\+\_\+construct}} (public string \$name, public ?bool \$needs\+Charset=null, public ?bool \$needs\+Environment=null, public ?bool \$needs\+Context=null, public ?array \$is\+Safe=null, public string\texorpdfstring{$\vert$}{|}array\texorpdfstring{$\vert$}{|}null \$is\+Safe\+Callback=null, public ?\doxymbox{\hyperlink{class_twig_1_1_deprecated_callable_info}{Deprecated\+Callable\+Info}} \$deprecation\+Info=null,)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Registers a method as template function.
+
+If the first argument of the method has Twig\textbackslash{}\+Environment type-\/hint, the function will receive the current environment. Additional arguments of the method come from the function call. \begin{DoxyVerb}#[AsTwigFunction(name: 'foo')]
+function fooFunction(Environment $env, string $string, $arg1 = null, ...) { ... }
+
+{{ foo('string', arg1) }}
+\end{DoxyVerb}
+
+
+\begin{DoxySeeAlso}{Voir également}
+Twig\+Function 
+\end{DoxySeeAlso}
+
+
+\label{doc-constructors}
+\Hypertarget{class_twig_1_1_attribute_1_1_as_twig_function_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_twig_1_1_attribute_1_1_as_twig_function_a4c02f92040be2e22d20e877ce10f7299}\index{AsTwigFunction@{AsTwigFunction}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!AsTwigFunction@{AsTwigFunction}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_attribute_1_1_as_twig_function_a4c02f92040be2e22d20e877ce10f7299} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{public string}]{\$name}{, }\item[{public ?bool}]{\$needs\+Charset}{ = {\ttfamily null}, }\item[{public ?bool}]{\$needs\+Environment}{ = {\ttfamily null}, }\item[{public ?bool}]{\$needs\+Context}{ = {\ttfamily null}, }\item[{public ?array}]{\$is\+Safe}{ = {\ttfamily null}, }\item[{public string\texorpdfstring{$\vert$}{|}array\texorpdfstring{$\vert$}{|}null}]{\$is\+Safe\+Callback}{ = {\ttfamily null}, }\item[{public ?\doxymbox{\hyperlink{class_twig_1_1_deprecated_callable_info}{Deprecated\+Callable\+Info}}}]{\$deprecation\+Info}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+non-\/empty-\/string & {\em \$name} & The name of the function in Twig \\
+\hline
+bool | null & {\em \$needs\+Charset} & Whether the function needs the charset passed as the first argument \\
+\hline
+bool | null & {\em \$needs\+Environment} & Whether the function needs the environment passed as the first argument, or after the charset \\
+\hline
+bool | null & {\em \$needs\+Context} & Whether the function needs the context array passed as the first argument, or after the charset and the environment \\
+\hline
+string\+[$\,$]\+ | null & {\em \$is\+Safe} & List of formats in which you want the raw output to be printed unescaped \\
+\hline
+string | array | null & {\em \$is\+Safe\+Callback} & Function called at compilation time to determine if the function is safe \\
+\hline
+Deprecated\+Callable\+Info | null & {\em \$deprecation\+Info} & Information about the deprecation \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Attribute/\+As\+Twig\+Function.\+php\end{DoxyCompactItemize}

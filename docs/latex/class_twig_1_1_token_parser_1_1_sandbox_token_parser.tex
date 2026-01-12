@@ -1,0 +1,89 @@
+\doxysection{Référence de la classe Sandbox\+Token\+Parser}
+\hypertarget{class_twig_1_1_token_parser_1_1_sandbox_token_parser}{}\label{class_twig_1_1_token_parser_1_1_sandbox_token_parser}\index{SandboxTokenParser@{SandboxTokenParser}}
+Graphe d\textquotesingle{}héritage de Sandbox\+Token\+Parser:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_twig_1_1_token_parser_1_1_sandbox_token_parser}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_parser_1_1_sandbox_token_parser_a9555bfac01648dc509d1b4026b1363ae}{parse}} (\doxymbox{\hyperlink{class_twig_1_1_token}{Token}} \$token)
+\item 
+\Hypertarget{class_twig_1_1_token_parser_1_1_sandbox_token_parser_a6a58c40ae7bce3ca1d6ede5af6cc1243}\label{class_twig_1_1_token_parser_1_1_sandbox_token_parser_a6a58c40ae7bce3ca1d6ede5af6cc1243} 
+{\bfseries decide\+Block\+End} (\doxymbox{\hyperlink{class_twig_1_1_token}{Token}} \$token)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_parser_1_1_sandbox_token_parser_ab86ba36154b20e6bbfa3ba705f12f9d6}{get\+Tag}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \doxymbox{\hyperlink{class_twig_1_1_token_parser_1_1_abstract_token_parser}{Abstract\+Token\+Parser}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_parser_1_1_abstract_token_parser_ad7906b0e440ec9e8c0946d0a9e3459e8}{set\+Parser}} (\doxymbox{\hyperlink{class_twig_1_1_parser}{Parser}} \$parser)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Membres hérités additionnels}
+\doxysubsection*{Fonctions membres protégées hérités de \doxymbox{\hyperlink{class_twig_1_1_token_parser_1_1_abstract_token_parser}{Abstract\+Token\+Parser}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_parser_1_1_abstract_token_parser_a9d63b236eb972c8932a82eb72b6b74d2}{parse\+Assignment\+Expression}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Attributs protégés hérités de \doxymbox{\hyperlink{class_twig_1_1_token_parser_1_1_abstract_token_parser}{Abstract\+Token\+Parser}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \$parser}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Marks a section of a template as untrusted code that must be evaluated in the sandbox mode.
+
+\{\% sandbox \%\} \{\% include \textquotesingle{}user.\+html.\+twig\textquotesingle{} \%\} \{\% endsandbox \%\}
+
+\begin{DoxySeeAlso}{Voir également}
+\href{https://twig.symfony.com/doc/api.html\#sandbox-extension}{\texttt{https:\+/\+/\+twig.\+symfony.\+com/\+doc/\+api.\+html\+\#sandbox-\/extension}} for details 
+\end{DoxySeeAlso}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_token_parser_1_1_sandbox_token_parser_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_token_parser_1_1_sandbox_token_parser_ab86ba36154b20e6bbfa3ba705f12f9d6}\index{SandboxTokenParser@{SandboxTokenParser}!getTag@{getTag}}
+\index{getTag@{getTag}!SandboxTokenParser@{SandboxTokenParser}}
+\doxysubsubsection{\texorpdfstring{getTag()}{getTag()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_token_parser_1_1_sandbox_token_parser_ab86ba36154b20e6bbfa3ba705f12f9d6} 
+get\+Tag (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the tag name associated with this token parser.
+
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_token_parser_1_1_token_parser_interface_ab86ba36154b20e6bbfa3ba705f12f9d6}{Token\+Parser\+Interface}}.
+
+\Hypertarget{class_twig_1_1_token_parser_1_1_sandbox_token_parser_a9555bfac01648dc509d1b4026b1363ae}\index{SandboxTokenParser@{SandboxTokenParser}!parse@{parse}}
+\index{parse@{parse}!SandboxTokenParser@{SandboxTokenParser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_token_parser_1_1_sandbox_token_parser_a9555bfac01648dc509d1b4026b1363ae} 
+parse (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_token}{Token}}}]{\$token}{}\end{DoxyParamCaption})}
+
+Parses a token and returns a node.
+
+\begin{DoxyReturn}{Renvoie}
+Node
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Syntax\+Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_token_parser_1_1_token_parser_interface_a9555bfac01648dc509d1b4026b1363ae}{Token\+Parser\+Interface}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Token\+Parser/\+Sandbox\+Token\+Parser.\+php\end{DoxyCompactItemize}

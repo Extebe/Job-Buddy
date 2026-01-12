@@ -1,0 +1,53 @@
+\doxysection{Référence de la classe Container\+Runtime\+Loader}
+\hypertarget{class_twig_1_1_runtime_loader_1_1_container_runtime_loader}{}\label{class_twig_1_1_runtime_loader_1_1_container_runtime_loader}\index{ContainerRuntimeLoader@{ContainerRuntimeLoader}}
+Graphe d\textquotesingle{}héritage de Container\+Runtime\+Loader:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_twig_1_1_runtime_loader_1_1_container_runtime_loader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_runtime_loader_1_1_container_runtime_loader_af1033ccb2c7154fa3d6e4a842612b7be}\label{class_twig_1_1_runtime_loader_1_1_container_runtime_loader_af1033ccb2c7154fa3d6e4a842612b7be} 
+{\bfseries \+\_\+\+\_\+construct} (private Container\+Interface \$container,)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_runtime_loader_1_1_container_runtime_loader_ae5605e9050b404cea90a04c01b61f6da}{load}} (string \$class)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Lazily loads Twig runtime implementations from a PSR-\/11 container.
+
+\doxylink{class_note}{Note} that the runtime services MUST use their class names as identifiers.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+
+Robin Chalas \href{mailto:robin.chalas@gmail.com}{\texttt{robin.\+chalas@gmail.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_runtime_loader_1_1_container_runtime_loader_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_runtime_loader_1_1_container_runtime_loader_ae5605e9050b404cea90a04c01b61f6da}\index{ContainerRuntimeLoader@{ContainerRuntimeLoader}!load@{load}}
+\index{load@{load}!ContainerRuntimeLoader@{ContainerRuntimeLoader}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_runtime_loader_1_1_container_runtime_loader_ae5605e9050b404cea90a04c01b61f6da} 
+load (\begin{DoxyParamCaption}\item[{string}]{\$class}{}\end{DoxyParamCaption})}
+
+Creates the runtime implementation of a Twig element (filter/\+function/\+test).
+
+\begin{DoxyReturn}{Renvoie}
+object\texorpdfstring{$\vert$}{|}null The runtime instance or null if the loader does not know how to create the runtime for this class 
+\end{DoxyReturn}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface_ae5605e9050b404cea90a04c01b61f6da}{Runtime\+Loader\+Interface}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Runtime\+Loader/\+Container\+Runtime\+Loader.\+php\end{DoxyCompactItemize}

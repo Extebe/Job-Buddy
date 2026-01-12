@@ -1,0 +1,62 @@
+\doxysection{Référence de la classe Deprecation\+Collector}
+\hypertarget{class_twig_1_1_util_1_1_deprecation_collector}{}\label{class_twig_1_1_util_1_1_deprecation_collector}\index{DeprecationCollector@{DeprecationCollector}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_util_1_1_deprecation_collector_ae3f750051d8b59ba2ae45abba951b691}\label{class_twig_1_1_util_1_1_deprecation_collector_ae3f750051d8b59ba2ae45abba951b691} 
+{\bfseries \+\_\+\+\_\+construct} (private \doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}} \$twig,)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_util_1_1_deprecation_collector_a0b14c0026558ac42a86ac24c74a8c420}{collect\+Dir}} (string \$dir, string \$ext=\textquotesingle{}.twig\textquotesingle{})
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_util_1_1_deprecation_collector_a41cef5535d20f0c714226e7fb9886215}{collect}} (\textbackslash{}Traversable \$iterator)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_util_1_1_deprecation_collector_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_util_1_1_deprecation_collector_a41cef5535d20f0c714226e7fb9886215}\index{DeprecationCollector@{DeprecationCollector}!collect@{collect}}
+\index{collect@{collect}!DeprecationCollector@{DeprecationCollector}}
+\doxysubsubsection{\texorpdfstring{collect()}{collect()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_util_1_1_deprecation_collector_a41cef5535d20f0c714226e7fb9886215} 
+collect (\begin{DoxyParamCaption}\item[{\textbackslash{}Traversable}]{\$iterator}{}\end{DoxyParamCaption})}
+
+Returns deprecations for passed templates.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\textbackslash{}\+Traversable & {\em \$iterator} & An iterator of templates (where keys are template names and values the contents of the template)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array An array of deprecations 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_util_1_1_deprecation_collector_a0b14c0026558ac42a86ac24c74a8c420}\index{DeprecationCollector@{DeprecationCollector}!collectDir@{collectDir}}
+\index{collectDir@{collectDir}!DeprecationCollector@{DeprecationCollector}}
+\doxysubsubsection{\texorpdfstring{collectDir()}{collectDir()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_util_1_1_deprecation_collector_a0b14c0026558ac42a86ac24c74a8c420} 
+collect\+Dir (\begin{DoxyParamCaption}\item[{string}]{\$dir}{, }\item[{string}]{\$ext}{ = {\ttfamily \textquotesingle{}.twig\textquotesingle{}}}\end{DoxyParamCaption})}
+
+Returns deprecations for templates contained in a directory.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$dir} & A directory where templates are stored \\
+\hline
+string & {\em \$ext} & Limit the loaded templates by extension\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array An array of deprecations 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Util/\+Deprecation\+Collector.\+php\end{DoxyCompactItemize}

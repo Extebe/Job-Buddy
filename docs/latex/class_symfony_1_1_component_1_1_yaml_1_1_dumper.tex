@@ -1,0 +1,62 @@
+\doxysection{Référence de la classe Dumper}
+\hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_dumper}{}\label{class_symfony_1_1_component_1_1_yaml_1_1_dumper}\index{Dumper@{Dumper}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_dumper_a7a352bbae16ab61f4b819dcb18e510d5}{\+\_\+\+\_\+construct}} (private int \$indentation=4)
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_dumper_a140ec83e5b904abf34c8149cf7150c85}{dump}} (mixed \$input, int \$inline=0, int \$indent=0, int \$flags=0)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Dumper dumps PHP variables to YAML strings.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}}
+\end{DoxyAuthor}
+@final 
+
+\label{doc-constructors}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_dumper_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_dumper_a7a352bbae16ab61f4b819dcb18e510d5}\index{Dumper@{Dumper}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Dumper@{Dumper}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_dumper_a7a352bbae16ab61f4b819dcb18e510d5} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{private int}]{\$indentation}{ = {\ttfamily 4}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$indentation} & The amount of spaces to use for indentation of nested nodes \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_dumper_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_dumper_a140ec83e5b904abf34c8149cf7150c85}\index{Dumper@{Dumper}!dump@{dump}}
+\index{dump@{dump}!Dumper@{Dumper}}
+\doxysubsubsection{\texorpdfstring{dump()}{dump()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_dumper_a140ec83e5b904abf34c8149cf7150c85} 
+dump (\begin{DoxyParamCaption}\item[{mixed}]{\$input}{, }\item[{int}]{\$inline}{ = {\ttfamily 0}, }\item[{int}]{\$indent}{ = {\ttfamily 0}, }\item[{int}]{\$flags}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+Dumps a PHP value to YAML.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$input} & The PHP value \\
+\hline
+int & {\em \$inline} & The level where you switch to inline YAML \\
+\hline
+int & {\em \$indent} & The level of indentation (used internally) \\
+\hline
+ & {\em int-\/mask-\/of$<$\+Yaml::\+\+DUMP\+\_\+\texorpdfstring{$\ast$}{*}$>$} & \$flags A bit field of Yaml::\+\+DUMP\+\_\+\texorpdfstring{$\ast$}{*} constants to customize the dumped YAML string \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+symfony/\+yaml/\+Dumper.\+php\end{DoxyCompactItemize}

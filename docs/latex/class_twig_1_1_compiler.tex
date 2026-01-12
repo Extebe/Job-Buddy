@@ -1,0 +1,159 @@
+\doxysection{Référence de la classe Compiler}
+\hypertarget{class_twig_1_1_compiler}{}\label{class_twig_1_1_compiler}\index{Compiler@{Compiler}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_compiler_a09e08433ceb4803eb62efe759d65665a}\label{class_twig_1_1_compiler_a09e08433ceb4803eb62efe759d65665a} 
+{\bfseries \+\_\+\+\_\+construct} (private \doxymbox{\hyperlink{class_twig_1_1_environment}{Environment}} \$env,)
+\item 
+\Hypertarget{class_twig_1_1_compiler_a1a945689f9a90f9029d671ec32262d37}\label{class_twig_1_1_compiler_a1a945689f9a90f9029d671ec32262d37} 
+{\bfseries get\+Environment} ()
+\item 
+\Hypertarget{class_twig_1_1_compiler_a42fdd8313c99d9c5f80219c1e192b93a}\label{class_twig_1_1_compiler_a42fdd8313c99d9c5f80219c1e192b93a} 
+{\bfseries get\+Source} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_compiler_a1adf39a5792d15817d84154ab82b3768}{reset}} (int \$indentation=0)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_compiler_a9aaed6b221ebd75f3d070a4cc90ba3d9}{compile}} (Node \$node, int \$indentation=0)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_compiler_a32036a845303eb46a5e4a734b331fefe}{subcompile}} (Node \$node, bool \$\doxymbox{\hyperlink{class_twig_1_1_compiler_a1f006c202b671ff562d729a486cbaaff}{raw}}=true)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_compiler_a1f006c202b671ff562d729a486cbaaff}{raw}} (\doxymbox{\hyperlink{class_twig_1_1_compiler_a3709c6929311eccf3c6fd6f1b2fc3b3a}{string}} \$\doxymbox{\hyperlink{class_twig_1_1_compiler_a3709c6929311eccf3c6fd6f1b2fc3b3a}{string}})
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_compiler_ae38401e48c07a15e4e1fab8744d7bb0a}{write}} (... \$strings)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_compiler_a3709c6929311eccf3c6fd6f1b2fc3b3a}{string}} (string \$value)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_compiler_a6f9785d88c108c5eef3d6f946c620e66}{repr}} (\$value)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_compiler_a0ad243b29e0ed2f647f2be2f6cb541b4}{add\+Debug\+Info}} (Node \$node)
+\item 
+\Hypertarget{class_twig_1_1_compiler_abd0ecb0136f4228db2bd963bfc1e20d7}\label{class_twig_1_1_compiler_abd0ecb0136f4228db2bd963bfc1e20d7} 
+{\bfseries get\+Debug\+Info} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_compiler_a11ea1c0f105849d221b230c50f04ce6f}{indent}} (int \$step=1)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_compiler_a14731e39d996c6f3dc0a8f8483ee7ce1}{outdent}} (int \$step=1)
+\item 
+\Hypertarget{class_twig_1_1_compiler_a01f345a64ec10225d4205181cf82c811}\label{class_twig_1_1_compiler_a01f345a64ec10225d4205181cf82c811} 
+{\bfseries get\+Var\+Name} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_compiler_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_compiler_a0ad243b29e0ed2f647f2be2f6cb541b4}\index{Compiler@{Compiler}!addDebugInfo@{addDebugInfo}}
+\index{addDebugInfo@{addDebugInfo}!Compiler@{Compiler}}
+\doxysubsubsection{\texorpdfstring{addDebugInfo()}{addDebugInfo()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_compiler_a0ad243b29e0ed2f647f2be2f6cb541b4} 
+add\+Debug\+Info (\begin{DoxyParamCaption}\item[{Node}]{\$node}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+\$this 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_compiler_a9aaed6b221ebd75f3d070a4cc90ba3d9}\index{Compiler@{Compiler}!compile@{compile}}
+\index{compile@{compile}!Compiler@{Compiler}}
+\doxysubsubsection{\texorpdfstring{compile()}{compile()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_compiler_a9aaed6b221ebd75f3d070a4cc90ba3d9} 
+compile (\begin{DoxyParamCaption}\item[{Node}]{\$node}{, }\item[{int}]{\$indentation}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+\$this 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_compiler_a11ea1c0f105849d221b230c50f04ce6f}\index{Compiler@{Compiler}!indent@{indent}}
+\index{indent@{indent}!Compiler@{Compiler}}
+\doxysubsubsection{\texorpdfstring{indent()}{indent()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_compiler_a11ea1c0f105849d221b230c50f04ce6f} 
+indent (\begin{DoxyParamCaption}\item[{int}]{\$step}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+\$this 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_compiler_a14731e39d996c6f3dc0a8f8483ee7ce1}\index{Compiler@{Compiler}!outdent@{outdent}}
+\index{outdent@{outdent}!Compiler@{Compiler}}
+\doxysubsubsection{\texorpdfstring{outdent()}{outdent()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_compiler_a14731e39d996c6f3dc0a8f8483ee7ce1} 
+outdent (\begin{DoxyParamCaption}\item[{int}]{\$step}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+\$this
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Logic\+Exception When trying to outdent too much so the indentation would become negative \Hypertarget{class_twig_1_1_compiler_a1f006c202b671ff562d729a486cbaaff}\index{Compiler@{Compiler}!raw@{raw}}
+\index{raw@{raw}!Compiler@{Compiler}}
+\doxysubsubsection{\texorpdfstring{raw()}{raw()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_compiler_a1f006c202b671ff562d729a486cbaaff} 
+raw (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_compiler_a3709c6929311eccf3c6fd6f1b2fc3b3a}{string}}}]{\$string}{}\end{DoxyParamCaption})}
+
+Adds a raw string to the compiled code.
+
+\begin{DoxyReturn}{Renvoie}
+\$this 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_compiler_a6f9785d88c108c5eef3d6f946c620e66}\index{Compiler@{Compiler}!repr@{repr}}
+\index{repr@{repr}!Compiler@{Compiler}}
+\doxysubsubsection{\texorpdfstring{repr()}{repr()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_compiler_a6f9785d88c108c5eef3d6f946c620e66} 
+repr (\begin{DoxyParamCaption}\item[{}]{\$value}{}\end{DoxyParamCaption})}
+
+Returns a PHP representation of a given value.
+
+\begin{DoxyReturn}{Renvoie}
+\$this 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_compiler_a1adf39a5792d15817d84154ab82b3768}\index{Compiler@{Compiler}!reset@{reset}}
+\index{reset@{reset}!Compiler@{Compiler}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_compiler_a1adf39a5792d15817d84154ab82b3768} 
+reset (\begin{DoxyParamCaption}\item[{int}]{\$indentation}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+\$this 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_compiler_a3709c6929311eccf3c6fd6f1b2fc3b3a}\index{Compiler@{Compiler}!string@{string}}
+\index{string@{string}!Compiler@{Compiler}}
+\doxysubsubsection{\texorpdfstring{string()}{string()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_compiler_a3709c6929311eccf3c6fd6f1b2fc3b3a} 
+string (\begin{DoxyParamCaption}\item[{string}]{\$value}{}\end{DoxyParamCaption})}
+
+Adds a quoted string to the compiled code.
+
+\begin{DoxyReturn}{Renvoie}
+\$this 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_compiler_a32036a845303eb46a5e4a734b331fefe}\index{Compiler@{Compiler}!subcompile@{subcompile}}
+\index{subcompile@{subcompile}!Compiler@{Compiler}}
+\doxysubsubsection{\texorpdfstring{subcompile()}{subcompile()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_compiler_a32036a845303eb46a5e4a734b331fefe} 
+subcompile (\begin{DoxyParamCaption}\item[{Node}]{\$node}{, }\item[{bool}]{\$raw}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+\$this 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_compiler_ae38401e48c07a15e4e1fab8744d7bb0a}\index{Compiler@{Compiler}!write@{write}}
+\index{write@{write}!Compiler@{Compiler}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_compiler_ae38401e48c07a15e4e1fab8744d7bb0a} 
+write (\begin{DoxyParamCaption}\item[{}]{...}{}\end{DoxyParamCaption})}
+
+Writes a string to the compiled code by adding indentation.
+
+\begin{DoxyReturn}{Renvoie}
+\$this 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+Compiler.\+php\end{DoxyCompactItemize}

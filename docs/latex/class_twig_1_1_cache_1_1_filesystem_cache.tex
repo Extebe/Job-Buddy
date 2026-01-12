@@ -1,0 +1,109 @@
+\doxysection{Référence de la classe Filesystem\+Cache}
+\hypertarget{class_twig_1_1_cache_1_1_filesystem_cache}{}\label{class_twig_1_1_cache_1_1_filesystem_cache}\index{FilesystemCache@{FilesystemCache}}
+Graphe d\textquotesingle{}héritage de Filesystem\+Cache:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_twig_1_1_cache_1_1_filesystem_cache}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_cache_1_1_filesystem_cache_aa10765a651d234e9475e935f191443be}\label{class_twig_1_1_cache_1_1_filesystem_cache_aa10765a651d234e9475e935f191443be} 
+{\bfseries \+\_\+\+\_\+construct} (string \$directory, int \$options=0)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_filesystem_cache_ad0f6e2fd521d743a97e81e9e62c3b72f}{generate\+Key}} (string \$name, string \$class\+Name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_filesystem_cache_a486dfb4d7cc9fbc8e33c089ad5ed75f2}{load}} (string \$key)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_filesystem_cache_aaa23ff10c2597ea61f62d9684b10cd19}{write}} (string \$key, string \$content)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_filesystem_cache_a638262bdb6694c0149261a1289034e83}{remove}} (string \$name, string \$cls)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_cache_1_1_filesystem_cache_af23cfeaf66d592b80bffc90bc300994a}{get\+Timestamp}} (string \$key)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_cache_1_1_filesystem_cache_ae234eda1efdf02107556d9b4d8e4846c}\label{class_twig_1_1_cache_1_1_filesystem_cache_ae234eda1efdf02107556d9b4d8e4846c} 
+const {\bfseries FORCE\+\_\+\+BYTECODE\+\_\+\+INVALIDATION} = 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Implements a cache on the filesystem.
+
+\begin{DoxyAuthor}{Auteur}
+Andrew Tch \href{mailto:andrew@noop.lv}{\texttt{andrew@noop.\+lv}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_cache_1_1_filesystem_cache_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_cache_1_1_filesystem_cache_ad0f6e2fd521d743a97e81e9e62c3b72f}\index{FilesystemCache@{FilesystemCache}!generateKey@{generateKey}}
+\index{generateKey@{generateKey}!FilesystemCache@{FilesystemCache}}
+\doxysubsubsection{\texorpdfstring{generateKey()}{generateKey()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_filesystem_cache_ad0f6e2fd521d743a97e81e9e62c3b72f} 
+generate\+Key (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{string}]{\$class\+Name}{}\end{DoxyParamCaption})}
+
+Generates a cache key for the given template class name. 
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_ad0f6e2fd521d743a97e81e9e62c3b72f}{Cache\+Interface}}.
+
+\Hypertarget{class_twig_1_1_cache_1_1_filesystem_cache_af23cfeaf66d592b80bffc90bc300994a}\index{FilesystemCache@{FilesystemCache}!getTimestamp@{getTimestamp}}
+\index{getTimestamp@{getTimestamp}!FilesystemCache@{FilesystemCache}}
+\doxysubsubsection{\texorpdfstring{getTimestamp()}{getTimestamp()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_filesystem_cache_af23cfeaf66d592b80bffc90bc300994a} 
+get\+Timestamp (\begin{DoxyParamCaption}\item[{string}]{\$key}{}\end{DoxyParamCaption})}
+
+Returns the modification timestamp of a key. 
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_af23cfeaf66d592b80bffc90bc300994a}{Cache\+Interface}}.
+
+\Hypertarget{class_twig_1_1_cache_1_1_filesystem_cache_a486dfb4d7cc9fbc8e33c089ad5ed75f2}\index{FilesystemCache@{FilesystemCache}!load@{load}}
+\index{load@{load}!FilesystemCache@{FilesystemCache}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_filesystem_cache_a486dfb4d7cc9fbc8e33c089ad5ed75f2} 
+load (\begin{DoxyParamCaption}\item[{string}]{\$key}{}\end{DoxyParamCaption})}
+
+Loads a template from the cache. 
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_a486dfb4d7cc9fbc8e33c089ad5ed75f2}{Cache\+Interface}}.
+
+\Hypertarget{class_twig_1_1_cache_1_1_filesystem_cache_a638262bdb6694c0149261a1289034e83}\index{FilesystemCache@{FilesystemCache}!remove@{remove}}
+\index{remove@{remove}!FilesystemCache@{FilesystemCache}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_filesystem_cache_a638262bdb6694c0149261a1289034e83} 
+remove (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{string}]{\$cls}{}\end{DoxyParamCaption})}
+
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_removable_cache_interface}{Removable\+Cache\+Interface}}.
+
+\Hypertarget{class_twig_1_1_cache_1_1_filesystem_cache_aaa23ff10c2597ea61f62d9684b10cd19}\index{FilesystemCache@{FilesystemCache}!write@{write}}
+\index{write@{write}!FilesystemCache@{FilesystemCache}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_cache_1_1_filesystem_cache_aaa23ff10c2597ea61f62d9684b10cd19} 
+write (\begin{DoxyParamCaption}\item[{string}]{\$key}{, }\item[{string}]{\$content}{}\end{DoxyParamCaption})}
+
+Writes the compiled template to cache.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$content} & The template representation as a PHP class \\
+\hline
+\end{DoxyParams}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_cache_1_1_cache_interface_aaa23ff10c2597ea61f62d9684b10cd19}{Cache\+Interface}}.
+
+
+
+Réimplémentée dans \doxymbox{\hyperlink{class_twig_1_1_cache_1_1_read_only_filesystem_cache_aaa23ff10c2597ea61f62d9684b10cd19}{Read\+Only\+Filesystem\+Cache}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Cache/\+Filesystem\+Cache.\+php\end{DoxyCompactItemize}

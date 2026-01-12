@@ -1,0 +1,64 @@
+\doxysection{Référence de la classe Factory\+Runtime\+Loader}
+\hypertarget{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader}{}\label{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader}\index{FactoryRuntimeLoader@{FactoryRuntimeLoader}}
+Graphe d\textquotesingle{}héritage de Factory\+Runtime\+Loader:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader_a86d85881fd64238d48ac2eeec52bd88c}{\+\_\+\+\_\+construct}} (private array \$map=\+[$\,$]\+,)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader_ae5605e9050b404cea90a04c01b61f6da}{load}} (string \$class)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Lazy loads the runtime implementations for a Twig element.
+
+\begin{DoxyAuthor}{Auteur}
+Robin Chalas \href{mailto:robin.chalas@gmail.com}{\texttt{robin.\+chalas@gmail.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-constructors}
+\Hypertarget{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader_a86d85881fd64238d48ac2eeec52bd88c}\index{FactoryRuntimeLoader@{FactoryRuntimeLoader}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!FactoryRuntimeLoader@{FactoryRuntimeLoader}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader_a86d85881fd64238d48ac2eeec52bd88c} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{private array}]{\$map}{ = {\ttfamily \+[]\+}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$map} & An array where keys are class names and values factory callables \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader_ae5605e9050b404cea90a04c01b61f6da}\index{FactoryRuntimeLoader@{FactoryRuntimeLoader}!load@{load}}
+\index{load@{load}!FactoryRuntimeLoader@{FactoryRuntimeLoader}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_runtime_loader_1_1_factory_runtime_loader_ae5605e9050b404cea90a04c01b61f6da} 
+load (\begin{DoxyParamCaption}\item[{string}]{\$class}{}\end{DoxyParamCaption})}
+
+Creates the runtime implementation of a Twig element (filter/\+function/\+test).
+
+\begin{DoxyReturn}{Renvoie}
+object\texorpdfstring{$\vert$}{|}null The runtime instance or null if the loader does not know how to create the runtime for this class 
+\end{DoxyReturn}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface_ae5605e9050b404cea90a04c01b61f6da}{Runtime\+Loader\+Interface}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Runtime\+Loader/\+Factory\+Runtime\+Loader.\+php\end{DoxyCompactItemize}

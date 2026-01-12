@@ -1,0 +1,89 @@
+\doxysection{Référence de la classe Escaper}
+\hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_escaper}{}\label{class_symfony_1_1_component_1_1_yaml_1_1_escaper}\index{Escaper@{Escaper}}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_escaper_a27a91a29f75e7bab19ab1e9d9a571280}{requires\+Double\+Quoting}} (string \$value)
+\item 
+static \doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_escaper_acfaf5ef09521c38f06f9642e65437d9d}{escape\+With\+Double\+Quotes}} (string \$value)
+\item 
+static \doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_escaper_ad0f9c5f7d3716a41cc182af3129cb88e}{requires\+Single\+Quoting}} (string \$value)
+\item 
+static \doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_escaper_a1919aa59601bd0d1fd064052798a754a}{escape\+With\+Single\+Quotes}} (string \$value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_escaper_a35ce88401a0b249e400659276c997046}\label{class_symfony_1_1_component_1_1_yaml_1_1_escaper_a35ce88401a0b249e400659276c997046} 
+const {\bfseries REGEX\+\_\+\+CHARACTER\+\_\+\+TO\+\_\+\+ESCAPE} = "{}\+[\textbackslash{}\textbackslash{}x00-\/\textbackslash{}\textbackslash{}x1f]\+\texorpdfstring{$\vert$}{|}\textbackslash{}x7f\texorpdfstring{$\vert$}{|}\textbackslash{}xc2\textbackslash{}x85\texorpdfstring{$\vert$}{|}\textbackslash{}xc2\textbackslash{}xa0\texorpdfstring{$\vert$}{|}\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa8\texorpdfstring{$\vert$}{|}\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa9"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Escaper encapsulates escaping rules for single and double-\/quoted YAML strings.
+
+\begin{DoxyAuthor}{Auteur}
+Matthew Lewinski \href{mailto:matthew@lewinski.org}{\texttt{matthew@lewinski.\+org}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_escaper_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_escaper_acfaf5ef09521c38f06f9642e65437d9d}\index{Escaper@{Escaper}!escapeWithDoubleQuotes@{escapeWithDoubleQuotes}}
+\index{escapeWithDoubleQuotes@{escapeWithDoubleQuotes}!Escaper@{Escaper}}
+\doxysubsubsection{\texorpdfstring{escapeWithDoubleQuotes()}{escapeWithDoubleQuotes()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_escaper_acfaf5ef09521c38f06f9642e65437d9d} 
+escape\+With\+Double\+Quotes (\begin{DoxyParamCaption}\item[{string}]{\$value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Escapes and surrounds a PHP value with double quotes.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$value} & A PHP value \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_escaper_a1919aa59601bd0d1fd064052798a754a}\index{Escaper@{Escaper}!escapeWithSingleQuotes@{escapeWithSingleQuotes}}
+\index{escapeWithSingleQuotes@{escapeWithSingleQuotes}!Escaper@{Escaper}}
+\doxysubsubsection{\texorpdfstring{escapeWithSingleQuotes()}{escapeWithSingleQuotes()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_escaper_a1919aa59601bd0d1fd064052798a754a} 
+escape\+With\+Single\+Quotes (\begin{DoxyParamCaption}\item[{string}]{\$value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Escapes and surrounds a PHP value with single quotes.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$value} & A PHP value \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_escaper_a27a91a29f75e7bab19ab1e9d9a571280}\index{Escaper@{Escaper}!requiresDoubleQuoting@{requiresDoubleQuoting}}
+\index{requiresDoubleQuoting@{requiresDoubleQuoting}!Escaper@{Escaper}}
+\doxysubsubsection{\texorpdfstring{requiresDoubleQuoting()}{requiresDoubleQuoting()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_escaper_a27a91a29f75e7bab19ab1e9d9a571280} 
+requires\+Double\+Quoting (\begin{DoxyParamCaption}\item[{string}]{\$value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Determines if a PHP value would require double quoting in YAML.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$value} & A PHP value \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_escaper_ad0f9c5f7d3716a41cc182af3129cb88e}\index{Escaper@{Escaper}!requiresSingleQuoting@{requiresSingleQuoting}}
+\index{requiresSingleQuoting@{requiresSingleQuoting}!Escaper@{Escaper}}
+\doxysubsubsection{\texorpdfstring{requiresSingleQuoting()}{requiresSingleQuoting()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_escaper_ad0f9c5f7d3716a41cc182af3129cb88e} 
+requires\+Single\+Quoting (\begin{DoxyParamCaption}\item[{string}]{\$value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Determines if a PHP value would require single quoting in YAML.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$value} & A PHP value \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+symfony/\+yaml/\+Escaper.\+php\end{DoxyCompactItemize}

@@ -1,0 +1,146 @@
+\doxysection{Répertoire de référence de node\+\_\+modules/\+tarteaucitronjs}
+\hypertarget{dir_21604649a9fa9e99f3ecc90c3c220e56}{}\label{dir_21604649a9fa9e99f3ecc90c3c220e56}\index{Répertoire de référence de node\_modules/tarteaucitronjs@{Répertoire de référence de node\_modules/tarteaucitronjs}}
+
+
+\doxysubsection{Description détaillée}
+\href{https://www.jsdelivr.com/package/npm/tarteaucitronjs}{\texttt{}} \href{https://www.npmjs.com/package/tarteaucitronjs}{\texttt{}} \href{https://github.com/AmauriC/tarteaucitron.js/graphs/contributors}{\texttt{}} \href{https://github.com/sponsors/AmauriC}{\texttt{}}
+
+👋 Hey, I\textquotesingle{}m Amauri, a french dev that build a GDPR friendly cookie manager.
+
+tarteaucitron was initially a simple script for my personal blog (in 2013), a few months later, the Github repository is opened and tarteaucitron is now reliable and recognized.
+
+The european cookie law regulates the management of cookies and you should ask your visitors their consent before exposing them to third party services.
+
+Clearly this script will:\+
+\begin{DoxyItemize}
+\item Disable all services by default,
+\item Display a banner on the first page view and a small one on other pages,
+\item Display a panel to allow or deny each services one by one,
+\item Store the consent in a cookie for 365 days.
+\end{DoxyItemize}
+
+Bonus:\+
+\begin{DoxyItemize}
+\item Load service when user click on Allow (without reload of the page),
+\item Incorporate a fallback system (display a link instead of social button and a static banner instead of advertising).
+\end{DoxyItemize}\hypertarget{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md34}{}\doxysubsection{\texorpdfstring{How to use}{How to use}}\label{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md34}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ src="{}/tarteaucitron/tarteaucitron.js"{}></script>}
+\DoxyCodeLine{}
+\DoxyCodeLine{<script>}
+\DoxyCodeLine{tarteaucitron.init(\{}
+\DoxyCodeLine{\ \ \ \ "{}privacyUrl"{}:\ "{}"{},\ /*\ Privacy\ policy\ url\ */}
+\DoxyCodeLine{\ \ \ \ "{}bodyPosition"{}:\ "{}bottom"{},\ /*\ or\ top\ to\ bring\ it\ as\ first\ element\ for\ accessibility\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ "{}hashtag"{}:\ "{}\#tarteaucitron"{},\ /*\ Open\ the\ panel\ with\ this\ hashtag\ */}
+\DoxyCodeLine{\ \ \ \ "{}cookieName"{}:\ "{}tarteaucitron"{},\ /*\ Cookie\ name\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ "{}orientation"{}:\ "{}middle"{},\ /*\ Banner\ position\ (top\ -\/\ bottom\ -\/\ middle\ -\/\ popup)\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ "{}groupServices"{}:\ false,\ /*\ Group\ services\ by\ category\ */}
+\DoxyCodeLine{\ \ \ \ "{}showDetailsOnClick"{}:\ true,\ /*\ Click\ to\ expand\ the\ description\ */}
+\DoxyCodeLine{\ \ \ \ "{}serviceDefaultState"{}:\ "{}wait"{},\ /*\ Default\ state\ (true\ -\/\ wait\ -\/\ false)\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ "{}showAlertSmall"{}:\ false,\ /*\ Show\ the\ small\ banner\ on\ bottom\ right\ */}
+\DoxyCodeLine{\ \ \ \ "{}cookieslist"{}:\ false,\ /*\ Show\ the\ cookie\ list\ in\ a\ mini\ banner\ */}
+\DoxyCodeLine{\ \ \ \ "{}cookieslistEmbed"{}:\ false,\ /*\ Show\ the\ cookie\ list\ on\ the\ control\ panel\ */}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ "{}showIcon"{}:\ true,\ /*\ Show\ cookie\ icon\ to\ manage\ cookies\ */}
+\DoxyCodeLine{\ \ \ \ //\ "{}iconSrc"{}:\ "{}"{},\ /*\ Optional:\ URL\ or\ base64\ encoded\ image\ */}
+\DoxyCodeLine{\ \ \ \ "{}iconPosition"{}:\ "{}BottomRight"{},\ /*\ Position\ of\ the\ icon\ between\ BottomRight,\ BottomLeft,\ TopRight\ and\ TopLeft\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ "{}adblocker"{}:\ false,\ /*\ Show\ a\ Warning\ if\ an\ adblocker\ is\ detected\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ "{}DenyAllCta"{}\ :\ true,\ /*\ Show\ the\ deny\ all\ button\ */}
+\DoxyCodeLine{\ \ \ \ "{}AcceptAllCta"{}\ :\ true,\ /*\ Show\ the\ accept\ all\ button\ when\ highPrivacy\ on\ */}
+\DoxyCodeLine{\ \ \ \ "{}highPrivacy"{}:\ true,\ /*\ HIGHLY\ RECOMMANDED\ Disable\ auto\ consent\ */}
+\DoxyCodeLine{\ \ \ \ "{}alwaysNeedConsent"{}:\ false,\ /*\ Ask\ the\ consent\ for\ "{}Privacy\ by\ design"{}\ services\ */}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ "{}handleBrowserDNTRequest"{}:\ false,\ /*\ If\ Do\ Not\ Track\ ==\ 1,\ disallow\ all\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ "{}removeCredit"{}:\ false,\ /*\ Remove\ credit\ link\ */}
+\DoxyCodeLine{\ \ \ \ "{}moreInfoLink"{}:\ true,\ /*\ Show\ more\ info\ link\ */}
+\DoxyCodeLine{\ \ \ \ "{}useExternalCss"{}:\ false,\ /*\ If\ false,\ the\ tarteaucitron.css\ file\ will\ be\ loaded\ */}
+\DoxyCodeLine{\ \ \ \ "{}useExternalJs"{}:\ false,\ /*\ If\ false,\ the\ tarteaucitron.services.js\ file\ and\ lang\ files\ will\ be\ loaded\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ "{}cookieDomain"{}:\ "{}.my-\/multisite-\/domaine.fr"{},\ /*\ Shared\ cookie\ for\ subdomain\ website\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ "{}readmoreLink"{}:\ "{}"{},\ /*\ Change\ the\ default\ readmore\ link\ pointing\ to\ tarteaucitron.io\ */}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ "{}mandatory"{}:\ true,\ /*\ Show\ a\ message\ about\ mandatory\ cookies\ */}
+\DoxyCodeLine{\ \ \ \ "{}mandatoryCta"{}:\ true,\ /*\ Show\ the\ disabled\ accept\ button\ when\ mandatory\ on\ */}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ //\ "{}customCloserId"{}:\ "{}"{},\ /*\ Optional\ a11y:\ Custom\ element\ ID\ used\ to\ open\ the\ panel\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ "{}googleConsentMode"{}:\ true,\ /*\ Enable\ Google\ Consent\ Mode\ v2\ for\ Google\ ads\ and\ GA4\ */}
+\DoxyCodeLine{\ \ \ \ "{}bingConsentMode"{}:\ true,\ /*\ Enable\ Bing\ Consent\ Mode\ for\ Clarity\ and\ Bing\ Ads\ */}
+\DoxyCodeLine{\ \ \ \ "{}pianoConsentMode"{}:\ true,\ /*\ Enable\ Piano\ Analytics\ Consent\ Mode\ */}
+\DoxyCodeLine{\ \ \ \ "{}pianoConsentModeEssential"{}:\ false,\ /*\ Load\ in\ Essential\ mode\ instead\ of\ opt-\/out\ by\ default\ */}
+\DoxyCodeLine{\ \ \ \ "{}softConsentMode"{}:\ false,\ /*\ Soft\ consent\ mode\ (consent\ is\ required\ to\ load\ the\ services)\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ "{}dataLayer"{}:\ false,\ /*\ Send\ an\ event\ to\ dataLayer\ with\ the\ services\ status\ */}
+\DoxyCodeLine{\ \ \ \ "{}serverSide"{}:\ false,\ /*\ Server\ side\ only,\ tags\ are\ not\ loaded\ client\ side\ */}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ "{}partnersList"{}:\ false\ /*\ Details\ the\ number\ of\ partners\ on\ the\ popup\ and\ middle\ banner\ */}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md35}{}\doxysubsection{\texorpdfstring{Add a service}{Add a service}}\label{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md35}
+\href{https://tarteaucitron.io/en/free-installation-open-source/}{\texttt{Installation guide}}\hypertarget{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md36}{}\doxysubsection{\texorpdfstring{Customization}{Customization}}\label{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md36}
+\hypertarget{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md37}{}\doxysubsubsection{\texorpdfstring{Create custom service}{Create custom service}}\label{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md37}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{tarteaucitron.services.mycustomservice\ =\ \{}
+\DoxyCodeLine{\ \ "{}key"{}:\ "{}mycustomservice"{},}
+\DoxyCodeLine{\ \ "{}type"{}:\ "{}ads|analytic|api|comment|other|social|support|video"{},}
+\DoxyCodeLine{\ \ "{}name"{}:\ "{}MyCustomService"{},}
+\DoxyCodeLine{\ \ "{}needConsent"{}:\ true,}
+\DoxyCodeLine{\ \ "{}cookies"{}:\ ['cookie',\ 'cookie2'],}
+\DoxyCodeLine{\ \ "{}readmoreLink"{}:\ "{}/custom\_read\_more"{},\ //\ If\ you\ want\ to\ change\ readmore\ link}
+\DoxyCodeLine{\ \ "{}js"{}:\ function\ ()\ \{}
+\DoxyCodeLine{\ \ \ \ "{}use\ strict"{};}
+\DoxyCodeLine{\ \ \ \ //\ When\ user\ allow\ cookie}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ "{}fallback"{}:\ function\ ()\ \{}
+\DoxyCodeLine{\ \ \ \ "{}use\ strict"{};}
+\DoxyCodeLine{\ \ \ \ //\ when\ use\ deny\ cookie}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md38}{}\doxysubsubsection{\texorpdfstring{Events}{Events}}\label{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md38}
+The following events are available:\+
+\begin{DoxyItemize}
+\item (document) {\ttfamily \{SERVICE\+\_\+\+KEY\}\+\_\+added} for each enabled service
+\item (document) {\ttfamily \{SERVICE\+\_\+\+KEY\}\+\_\+loaded} for each enabled service
+\item (document) {\ttfamily \{SERVICE\+\_\+\+KEY\}\+\_\+allowed} for each service when allowed
+\item (document) {\ttfamily \{SERVICE\+\_\+\+KEY\}\+\_\+disallowed } for each service when disallowed
+\item (window) {\ttfamily tac.\+root\+\_\+available}:\+ the root element with panel has been created, services will be loaded
+\item (window) {\ttfamily tac.\+open\+\_\+alert}
+\item (window) {\ttfamily tac.\+close\+\_\+alert}
+\item (window) {\ttfamily tac.\+open\+\_\+panel}
+\item (window) {\ttfamily tac.\+close\+\_\+panel}
+\end{DoxyItemize}\hypertarget{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md39}{}\doxysubsubsection{\texorpdfstring{Customize text}{Customize text}}\label{dir_21604649a9fa9e99f3ecc90c3c220e56_autotoc_md39}
+To change a translation, use {\ttfamily tarteaucitron\+Custom\+Text} variable. It will be merge with the translation shipping with TAC. This variable must be defined before the initialization. For example:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{tarteaucitronCustomText\ =\ \{}
+\DoxyCodeLine{\ \ 'support':\ \{}
+\DoxyCodeLine{\ \ \ \ 'title':\ 'Support\ client',}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ 'close':\ 'Enregistrer\ et\ fermer',}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{tarteaucitron.init(...);}
+
+\end{DoxyCode}
+
+
+There is a special case for engagement text. By the default, the engagement text is \+\_\+\{SERVICE\+\_\+\+NAME\} is disabled.\+\_\+, however you can change it per service. For example:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{tarteaucitronCustomText\ =\ \{}
+\DoxyCodeLine{\ \ 'engage-\/twitter':\ 'Follow\ us\ on\ Twitter!'}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+        

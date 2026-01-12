@@ -1,0 +1,121 @@
+\doxysection{Référence de la classe Security\+Policy}
+\hypertarget{class_twig_1_1_sandbox_1_1_security_policy}{}\label{class_twig_1_1_sandbox_1_1_security_policy}\index{SecurityPolicy@{SecurityPolicy}}
+Graphe d\textquotesingle{}héritage de Security\+Policy:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_twig_1_1_sandbox_1_1_security_policy}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_sandbox_1_1_security_policy_a1ee4333ebf958cf28b90be966ff8e500}\label{class_twig_1_1_sandbox_1_1_security_policy_a1ee4333ebf958cf28b90be966ff8e500} 
+{\bfseries \+\_\+\+\_\+construct} (array \$allowed\+Tags=\+[$\,$]\+, array \$allowed\+Filters=\+[$\,$]\+, array \$allowed\+Methods=\+[$\,$]\+, array \$allowed\+Properties=\+[$\,$]\+, array \$allowed\+Functions=\+[$\,$]\+)
+\item 
+\Hypertarget{class_twig_1_1_sandbox_1_1_security_policy_a4125bc9f2be37e437d0ba7c7247e3f13}\label{class_twig_1_1_sandbox_1_1_security_policy_a4125bc9f2be37e437d0ba7c7247e3f13} 
+{\bfseries set\+Allowed\+Tags} (array \$tags)
+\item 
+\Hypertarget{class_twig_1_1_sandbox_1_1_security_policy_ae0bdb77fd92459be98bdfefa9f718440}\label{class_twig_1_1_sandbox_1_1_security_policy_ae0bdb77fd92459be98bdfefa9f718440} 
+{\bfseries set\+Allowed\+Filters} (array \$filters)
+\item 
+\Hypertarget{class_twig_1_1_sandbox_1_1_security_policy_af566c2892a8cee90ee805464f8af9555}\label{class_twig_1_1_sandbox_1_1_security_policy_af566c2892a8cee90ee805464f8af9555} 
+{\bfseries set\+Allowed\+Methods} (array \$methods)
+\item 
+\Hypertarget{class_twig_1_1_sandbox_1_1_security_policy_adebca74d932998a242294bd7ca96b785}\label{class_twig_1_1_sandbox_1_1_security_policy_adebca74d932998a242294bd7ca96b785} 
+{\bfseries set\+Allowed\+Properties} (array \$properties)
+\item 
+\Hypertarget{class_twig_1_1_sandbox_1_1_security_policy_a60d0caccd400dac1a01c50edb61d5927}\label{class_twig_1_1_sandbox_1_1_security_policy_a60d0caccd400dac1a01c50edb61d5927} 
+{\bfseries set\+Allowed\+Functions} (array \$functions)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_sandbox_1_1_security_policy_a0cc084f6abef1e1ba223ddd057ddcd2b}{check\+Security}} (\$tags, \$filters, \$functions)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_sandbox_1_1_security_policy_a90633d7d23e0b157387b886a8ef87a36}{check\+Method\+Allowed}} (\$obj, \$method)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_sandbox_1_1_security_policy_a182de0b428b216f43d865cbf54ff7c4c}{check\+Property\+Allowed}} (\$obj, \$property)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Represents a security policy which need to be enforced when sandbox mode is enabled.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_sandbox_1_1_security_policy_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_sandbox_1_1_security_policy_a90633d7d23e0b157387b886a8ef87a36}\index{SecurityPolicy@{SecurityPolicy}!checkMethodAllowed@{checkMethodAllowed}}
+\index{checkMethodAllowed@{checkMethodAllowed}!SecurityPolicy@{SecurityPolicy}}
+\doxysubsubsection{\texorpdfstring{checkMethodAllowed()}{checkMethodAllowed()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_sandbox_1_1_security_policy_a90633d7d23e0b157387b886a8ef87a36} 
+check\+Method\+Allowed (\begin{DoxyParamCaption}\item[{}]{\$obj}{, }\item[{}]{\$method}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+object & {\em \$obj} & \\
+\hline
+string & {\em \$method} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Security\+Not\+Allowed\+Method\+Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_sandbox_1_1_security_policy_interface_a90633d7d23e0b157387b886a8ef87a36}{Security\+Policy\+Interface}}.
+
+\Hypertarget{class_twig_1_1_sandbox_1_1_security_policy_a182de0b428b216f43d865cbf54ff7c4c}\index{SecurityPolicy@{SecurityPolicy}!checkPropertyAllowed@{checkPropertyAllowed}}
+\index{checkPropertyAllowed@{checkPropertyAllowed}!SecurityPolicy@{SecurityPolicy}}
+\doxysubsubsection{\texorpdfstring{checkPropertyAllowed()}{checkPropertyAllowed()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_sandbox_1_1_security_policy_a182de0b428b216f43d865cbf54ff7c4c} 
+check\+Property\+Allowed (\begin{DoxyParamCaption}\item[{}]{\$obj}{, }\item[{}]{\$property}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+object & {\em \$obj} & \\
+\hline
+string & {\em \$property} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Security\+Not\+Allowed\+Property\+Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_sandbox_1_1_security_policy_interface_a182de0b428b216f43d865cbf54ff7c4c}{Security\+Policy\+Interface}}.
+
+\Hypertarget{class_twig_1_1_sandbox_1_1_security_policy_a0cc084f6abef1e1ba223ddd057ddcd2b}\index{SecurityPolicy@{SecurityPolicy}!checkSecurity@{checkSecurity}}
+\index{checkSecurity@{checkSecurity}!SecurityPolicy@{SecurityPolicy}}
+\doxysubsubsection{\texorpdfstring{checkSecurity()}{checkSecurity()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_sandbox_1_1_security_policy_a0cc084f6abef1e1ba223ddd057ddcd2b} 
+check\+Security (\begin{DoxyParamCaption}\item[{}]{\$tags}{, }\item[{}]{\$filters}{, }\item[{}]{\$functions}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string\+[$\,$]\+ & {\em \$tags} & \\
+\hline
+string\+[$\,$]\+ & {\em \$filters} & \\
+\hline
+string\+[$\,$]\+ & {\em \$functions} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Security\+Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implémente \doxymbox{\hyperlink{interface_twig_1_1_sandbox_1_1_security_policy_interface_a0cc084f6abef1e1ba223ddd057ddcd2b}{Security\+Policy\+Interface}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+\+Sandbox/\+Security\+Policy.\+php\end{DoxyCompactItemize}

@@ -1,10 +1,5 @@
 \doxysection{Référence de la classe Controller\+Utilisateur}
 \hypertarget{class_controller_utilisateur}{}\label{class_controller_utilisateur}\index{ControllerUtilisateur@{ControllerUtilisateur}}
-
-
-Contrôleur gérant les utilisateurs.  
-
-
 Graphe d\textquotesingle{}héritage de Controller\+Utilisateur:\+\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -14,46 +9,54 @@ Graphe d\textquotesingle{}héritage de Controller\+Utilisateur:\+\begin{figure}[
 \doxysubsubsection*{Fonctions membres publiques}
 \begin{DoxyCompactItemize}
 \item 
-\doxymbox{\hyperlink{class_controller_utilisateur_aac1b432a1dde9fc9cd6a6c7a699e4d39}{\+\_\+\+\_\+construct}} (\textbackslash{}Twig\textbackslash{}\+Environment \$twig, \textbackslash{}Twig\textbackslash{}\+Loader\textbackslash{}\+Filesystem\+Loader \$loader)
-\begin{DoxyCompactList}\small\item\em Constructeur du contrôleur \doxylink{class_utilisateur}{Utilisateur}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_controller_utilisateur_aac1b432a1dde9fc9cd6a6c7a699e4d39}{\+\_\+\+\_\+construct}} (\textbackslash{}\doxymbox{\hyperlink{class_twig_1_1_environment}{Twig\textbackslash{}\+Environment}} \$twig, \textbackslash{}\doxymbox{\hyperlink{class_twig_1_1_loader_1_1_filesystem_loader}{Twig\textbackslash{}\+Loader\textbackslash{}\+Filesystem\+Loader}} \$loader)
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \doxylink{class_controller}{Controller}. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a0efd304a58561691f2c7c70e136d6b92}{page\+Connexion}} ()
-\begin{DoxyCompactList}\small\item\em Affiche la page de connexion. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a19b98d82c0c39110807d29c271bcdde6}{page\+Inscription}} ()
-\begin{DoxyCompactList}\small\item\em Affiche la page d\textquotesingle{}inscription. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_ac7a9a34416a075dce10deccfd5daeacf}{inscription\+Bd}} (\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}} \$user)
-\begin{DoxyCompactList}\small\item\em Inscrit un utilisateur dans la base de données. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a4557a98375bdb947deb544e20403b81a}{inscription}} ()
-\begin{DoxyCompactList}\small\item\em Traite le formulaire d\textquotesingle{}inscription. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a4b230e3373fa8eadbbd18a8e6896982f}{reinitialiser\+Tentatives\+Connexion}} (\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}} \$user)
-\begin{DoxyCompactList}\small\item\em Réinitialise les tentatives de connexion échouées. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a4462ad51b758b5bfcd175d730cd2db0f}{temps\+Restant\+Avant\+Deblocage}} (\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}} \$user)
-\begin{DoxyCompactList}\small\item\em Calcule le temps restant avant le déblocage du compte. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a4aab795d4b6a41ce623350146d084f76}{reactiver\+Compte}} (\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}} \$user)
-\begin{DoxyCompactList}\small\item\em Réactive un compte désactivé. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a53fecdd8058a6fde7200afdf4c3c9460}{gerer\+Echec\+Connexion}} (\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}} \$user)
-\begin{DoxyCompactList}\small\item\em Gère les échecs de connexion. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_ad69d39884592faba2a84dc82be03cb89}{authentification}} (\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}} \$user)
-\begin{DoxyCompactList}\small\item\em Authentifie un utilisateur. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a72636d5958b9e74f0bf44d4f8088036e}{connexion}} ()
-\begin{DoxyCompactList}\small\item\em Traite la demande de connexion. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a103b73b3db77861aebee507a07162393}{affiche\+Compte}} ()
-\begin{DoxyCompactList}\small\item\em Affiche la page du compte utilisateur. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_ae6d543b6dc896901864ae123e2c69789}{page\+Modifier\+Compte}} ()
-\begin{DoxyCompactList}\small\item\em Affiche la page de modification du compte. \end{DoxyCompactList}\item 
+\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a999ec8c14031968ce9d6ba2410105d4b}{deconnexion}} ()
-\begin{DoxyCompactList}\small\item\em Déconnecte l\textquotesingle{}utilisateur. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{class_controller_utilisateur_aa3f52bae52ae1a8fb6b12012403133a6}{modifer\+Compte}} ()
-\begin{DoxyCompactList}\small\item\em Traite la modification du compte (non implémenté totalement). \end{DoxyCompactList}\item 
+\item 
+\Hypertarget{class_controller_utilisateur_aba1e270436c0d68443cc665b353c8e67}\label{class_controller_utilisateur_aba1e270436c0d68443cc665b353c8e67} 
+{\bfseries modifier\+Compte} ()
+\begin{DoxyCompactList}\small\item\em Traite la modification du compte. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_controller_utilisateur_a0aeae6dbbdf02edff0adc9ffd8696d01}{newsletter}} ()
-\begin{DoxyCompactList}\small\item\em Inscrit l\textquotesingle{}utilisateur à la newsletter. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{class_controller_utilisateur_a0418d22e14785132c232ef68a32d0659}{admin}} ()
-\begin{DoxyCompactList}\small\item\em Affiche la page admin (étudiants seulement). \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{class_controller_utilisateur_a47eca8e5ae7dcb76fc4bb18b62388aca}{gerer\+Utilisateurs}} ()
-\begin{DoxyCompactList}\small\item\em Affiche la page de gestion des utilisateurs. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{class_controller_utilisateur_a40475b996c4560a4abf396f07ddae083}{gerer\+Annonces}} ()
-\begin{DoxyCompactList}\small\item\em Affiche la page de gestion des annonces. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{class_controller_utilisateur_a36e04ae7069e3c646b4aad259551ecfa}{gerer\+Note}} ()
-\begin{DoxyCompactList}\small\item\em Affiche la page de gestion des notes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+\Hypertarget{class_controller_utilisateur_a0418d22e14785132c232ef68a32d0659}\label{class_controller_utilisateur_a0418d22e14785132c232ef68a32d0659} 
+{\bfseries admin} ()
+\item 
+\Hypertarget{class_controller_utilisateur_a47eca8e5ae7dcb76fc4bb18b62388aca}\label{class_controller_utilisateur_a47eca8e5ae7dcb76fc4bb18b62388aca} 
+{\bfseries gerer\+Utilisateurs} ()
+\item 
+\Hypertarget{class_controller_utilisateur_a40475b996c4560a4abf396f07ddae083}\label{class_controller_utilisateur_a40475b996c4560a4abf396f07ddae083} 
+{\bfseries gerer\+Annonces} ()
+\item 
+\Hypertarget{class_controller_utilisateur_a36e04ae7069e3c646b4aad259551ecfa}\label{class_controller_utilisateur_a36e04ae7069e3c646b4aad259551ecfa} 
+{\bfseries gerer\+Note} ()
+\item 
+\Hypertarget{class_controller_utilisateur_a419d0ad2c40f28ca8ac7614ec3c188c8}\label{class_controller_utilisateur_a419d0ad2c40f28ca8ac7614ec3c188c8} 
+{\bfseries supprimer\+Compte} ()
+\begin{DoxyCompactList}\small\item\em Supprime le compte de l\textquotesingle{}utilisateur courant. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Fonctions membres publiques hérités de \doxymbox{\hyperlink{class_controller}{Controller}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -65,11 +68,11 @@ Graphe d\textquotesingle{}héritage de Controller\+Utilisateur:\+\begin{figure}[
 \begin{DoxyCompactList}\small\item\em Définit la connexion PDO. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_controller_a461527c1de39a5520c52951b8f03d99f}{get\+Loader}} ()
 \begin{DoxyCompactList}\small\item\em Récupère le chargeur Twig. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{class_controller_a10494ca974c2daf76db36de4e404cd45}{set\+Loader}} (\textbackslash{}Twig\textbackslash{}\+Loader\textbackslash{}\+Filesystem\+Loader \$loader)
+\doxymbox{\hyperlink{class_controller_a10494ca974c2daf76db36de4e404cd45}{set\+Loader}} (\textbackslash{}\doxymbox{\hyperlink{class_twig_1_1_loader_1_1_filesystem_loader}{Twig\textbackslash{}\+Loader\textbackslash{}\+Filesystem\+Loader}} \$loader)
 \begin{DoxyCompactList}\small\item\em Définit le chargeur Twig. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_controller_a203a8d14d122ff10e474df98bb08ec88}{get\+Twig}} ()
 \begin{DoxyCompactList}\small\item\em Récupère l\textquotesingle{}environnement Twig. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{class_controller_a54b314dcf8baf691b5bbc90ab2b3b54f}{set\+Twig}} (\textbackslash{}Twig\textbackslash{}\+Environment \$twig)
+\doxymbox{\hyperlink{class_controller_a54b314dcf8baf691b5bbc90ab2b3b54f}{set\+Twig}} (\textbackslash{}\doxymbox{\hyperlink{class_twig_1_1_environment}{Twig\textbackslash{}\+Environment}} \$twig)
 \begin{DoxyCompactList}\small\item\em Définit l\textquotesingle{}environnement Twig. \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_controller_a24ae158b3c668bc9787c1639d9b72b04}{get\+Get}} ()
 \begin{DoxyCompactList}\small\item\em Récupère les données GET. \end{DoxyCompactList}\item 
@@ -81,9 +84,6 @@ Graphe d\textquotesingle{}héritage de Controller\+Utilisateur:\+\begin{figure}[
 \begin{DoxyCompactList}\small\item\em Définit les données POST. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Description détaillée}
-Contrôleur gérant les utilisateurs. 
-
 \label{doc-constructors}
 \Hypertarget{class_controller_utilisateur_doc-constructors}
 \doxysubsection{Documentation des constructeurs et destructeur}
@@ -91,11 +91,11 @@ Contrôleur gérant les utilisateurs.
 \index{\_\_construct@{\_\_construct}!ControllerUtilisateur@{ControllerUtilisateur}}
 \doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
 {\footnotesize\ttfamily \label{class_controller_utilisateur_aac1b432a1dde9fc9cd6a6c7a699e4d39} 
-\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{\textbackslash{}Twig\textbackslash{}\+Environment}]{\$twig}{, }\item[{\textbackslash{}Twig\textbackslash{}\+Loader\textbackslash{}\+Filesystem\+Loader}]{\$loader}{}\end{DoxyParamCaption})}
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{\textbackslash{}\doxymbox{\hyperlink{class_twig_1_1_environment}{Twig\textbackslash{}\+Environment}}}]{\$twig}{, }\item[{\textbackslash{}\doxymbox{\hyperlink{class_twig_1_1_loader_1_1_filesystem_loader}{Twig\textbackslash{}\+Loader\textbackslash{}\+Filesystem\+Loader}}}]{\$loader}{}\end{DoxyParamCaption})}
 
 
 
-Constructeur du contrôleur \doxylink{class_utilisateur}{Utilisateur}. 
+Constructeur de la classe \doxylink{class_controller}{Controller}. 
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -113,176 +113,110 @@ Réimplémentée à partir de \doxymbox{\hyperlink{class_controller_aac1b432a1dd
 \label{doc-func-members}
 \Hypertarget{class_controller_utilisateur_doc-func-members}
 \doxysubsection{Documentation des fonctions membres}
-\Hypertarget{class_controller_utilisateur_a0418d22e14785132c232ef68a32d0659}\index{ControllerUtilisateur@{ControllerUtilisateur}!admin@{admin}}
-\index{admin@{admin}!ControllerUtilisateur@{ControllerUtilisateur}}
-\doxysubsubsection{\texorpdfstring{admin()}{admin()}}
-{\footnotesize\ttfamily \label{class_controller_utilisateur_a0418d22e14785132c232ef68a32d0659} 
-admin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
-
-
-
-Affiche la page admin (étudiants seulement). 
-
 \Hypertarget{class_controller_utilisateur_a103b73b3db77861aebee507a07162393}\index{ControllerUtilisateur@{ControllerUtilisateur}!afficheCompte@{afficheCompte}}
 \index{afficheCompte@{afficheCompte}!ControllerUtilisateur@{ControllerUtilisateur}}
 \doxysubsubsection{\texorpdfstring{afficheCompte()}{afficheCompte()}}
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a103b73b3db77861aebee507a07162393} 
 affiche\+Compte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-
-
-Affiche la page du compte utilisateur. 
-
+Affiche les informations du du compte de l\textquotesingle{}utilisateur \begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
 \Hypertarget{class_controller_utilisateur_ad69d39884592faba2a84dc82be03cb89}\index{ControllerUtilisateur@{ControllerUtilisateur}!authentification@{authentification}}
 \index{authentification@{authentification}!ControllerUtilisateur@{ControllerUtilisateur}}
 \doxysubsubsection{\texorpdfstring{authentification()}{authentification()}}
 {\footnotesize\ttfamily \label{class_controller_utilisateur_ad69d39884592faba2a84dc82be03cb89} 
 authentification (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}}}]{\$user}{}\end{DoxyParamCaption})}
 
-
-
-Authentifie un utilisateur. 
-
-
+Vérifie si les identifiants récupérés correspondent à ceux de la base de données 
 \begin{DoxyParams}[1]{Paramètres}
-\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & L\textquotesingle{}utilisateur (avec email et mdp). \\
+\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-bool True si authentifié, False sinon. 
-\end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em Exception} & Si compte bloqué, email invalide, etc. \\
+{\em Exception} & \\
 \hline
 \end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
 \Hypertarget{class_controller_utilisateur_a72636d5958b9e74f0bf44d4f8088036e}\index{ControllerUtilisateur@{ControllerUtilisateur}!connexion@{connexion}}
 \index{connexion@{connexion}!ControllerUtilisateur@{ControllerUtilisateur}}
 \doxysubsubsection{\texorpdfstring{connexion()}{connexion()}}
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a72636d5958b9e74f0bf44d4f8088036e} 
 connexion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-
-
-Traite la demande de connexion. 
-
+Récupère les informations de connexions de l\textquotesingle{}utilisateur, vérifie s\textquotesingle{}ils sont valides et affiche la page d\textquotesingle{}accueil selon le role de l\textquotesingle{}utilisateur (particulier -\/ étudiant) \begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
 \Hypertarget{class_controller_utilisateur_a999ec8c14031968ce9d6ba2410105d4b}\index{ControllerUtilisateur@{ControllerUtilisateur}!deconnexion@{deconnexion}}
 \index{deconnexion@{deconnexion}!ControllerUtilisateur@{ControllerUtilisateur}}
 \doxysubsubsection{\texorpdfstring{deconnexion()}{deconnexion()}}
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a999ec8c14031968ce9d6ba2410105d4b} 
 deconnexion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-
-
-Déconnecte l\textquotesingle{}utilisateur. 
-
-\begin{DoxyReturn}{Renvoie}
-void 
+Se déconnecte et affiche la page d\textquotesingle{}accueil \begin{DoxyReturn}{Renvoie}
+never 
 \end{DoxyReturn}
-\Hypertarget{class_controller_utilisateur_a40475b996c4560a4abf396f07ddae083}\index{ControllerUtilisateur@{ControllerUtilisateur}!gererAnnonces@{gererAnnonces}}
-\index{gererAnnonces@{gererAnnonces}!ControllerUtilisateur@{ControllerUtilisateur}}
-\doxysubsubsection{\texorpdfstring{gererAnnonces()}{gererAnnonces()}}
-{\footnotesize\ttfamily \label{class_controller_utilisateur_a40475b996c4560a4abf396f07ddae083} 
-gerer\+Annonces (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
-
-
-
-Affiche la page de gestion des annonces. 
-
 \Hypertarget{class_controller_utilisateur_a53fecdd8058a6fde7200afdf4c3c9460}\index{ControllerUtilisateur@{ControllerUtilisateur}!gererEchecConnexion@{gererEchecConnexion}}
 \index{gererEchecConnexion@{gererEchecConnexion}!ControllerUtilisateur@{ControllerUtilisateur}}
 \doxysubsubsection{\texorpdfstring{gererEchecConnexion()}{gererEchecConnexion()}}
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a53fecdd8058a6fde7200afdf4c3c9460} 
 gerer\+Echec\+Connexion (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}}}]{\$user}{}\end{DoxyParamCaption})}
 
-
-
-Gère les échecs de connexion. 
-
-
+Gère les échecs de connexion, incrémente le nombre de tentative échouée et désactive le compte si le nombre de tentatives est supérieur au maximum autorisé (3) 
 \begin{DoxyParams}[1]{Paramètres}
-\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & L\textquotesingle{}utilisateur. \\
+\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-void 
-\end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em Exception} & Si trop de tentatives ou mdp invalide. \\
+{\em Exception} & \\
 \hline
 \end{DoxyExceptions}
-\Hypertarget{class_controller_utilisateur_a36e04ae7069e3c646b4aad259551ecfa}\index{ControllerUtilisateur@{ControllerUtilisateur}!gererNote@{gererNote}}
-\index{gererNote@{gererNote}!ControllerUtilisateur@{ControllerUtilisateur}}
-\doxysubsubsection{\texorpdfstring{gererNote()}{gererNote()}}
-{\footnotesize\ttfamily \label{class_controller_utilisateur_a36e04ae7069e3c646b4aad259551ecfa} 
-gerer\+Note (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
-
-
-
-Affiche la page de gestion des notes. 
-
-\Hypertarget{class_controller_utilisateur_a47eca8e5ae7dcb76fc4bb18b62388aca}\index{ControllerUtilisateur@{ControllerUtilisateur}!gererUtilisateurs@{gererUtilisateurs}}
-\index{gererUtilisateurs@{gererUtilisateurs}!ControllerUtilisateur@{ControllerUtilisateur}}
-\doxysubsubsection{\texorpdfstring{gererUtilisateurs()}{gererUtilisateurs()}}
-{\footnotesize\ttfamily \label{class_controller_utilisateur_a47eca8e5ae7dcb76fc4bb18b62388aca} 
-gerer\+Utilisateurs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
-
-
-
-Affiche la page de gestion des utilisateurs. 
-
+\begin{DoxyReturn}{Renvoie}
+never 
+\end{DoxyReturn}
 \Hypertarget{class_controller_utilisateur_a4557a98375bdb947deb544e20403b81a}\index{ControllerUtilisateur@{ControllerUtilisateur}!inscription@{inscription}}
 \index{inscription@{inscription}!ControllerUtilisateur@{ControllerUtilisateur}}
 \doxysubsubsection{\texorpdfstring{inscription()}{inscription()}}
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a4557a98375bdb947deb544e20403b81a} 
 inscription (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
+Permet de récupérer les informations de l\textquotesingle{}utilisateur depuis le formulaire et les inscrits dans la BD
 
-
-Traite le formulaire d\textquotesingle{}inscription. 
-
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
 \Hypertarget{class_controller_utilisateur_ac7a9a34416a075dce10deccfd5daeacf}\index{ControllerUtilisateur@{ControllerUtilisateur}!inscriptionBd@{inscriptionBd}}
 \index{inscriptionBd@{inscriptionBd}!ControllerUtilisateur@{ControllerUtilisateur}}
 \doxysubsubsection{\texorpdfstring{inscriptionBd()}{inscriptionBd()}}
 {\footnotesize\ttfamily \label{class_controller_utilisateur_ac7a9a34416a075dce10deccfd5daeacf} 
 inscription\+Bd (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}}}]{\$user}{}\end{DoxyParamCaption})}
 
-
-
-Inscrit un utilisateur dans la base de données. 
+Permet d\textquotesingle{}inscrire les données de l\textquotesingle{}utilisateur dans la base de données tout en chiffrant le mot de passe
 
 
 \begin{DoxyParams}[1]{Paramètres}
-\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & L\textquotesingle{}utilisateur à inscrire. \\
+\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em Exception} & Si le mdp est faible ou si le compte existe déjà. \\
+{\em Exception} & \\
 \hline
 \end{DoxyExceptions}
-\Hypertarget{class_controller_utilisateur_aa3f52bae52ae1a8fb6b12012403133a6}\index{ControllerUtilisateur@{ControllerUtilisateur}!modiferCompte@{modiferCompte}}
-\index{modiferCompte@{modiferCompte}!ControllerUtilisateur@{ControllerUtilisateur}}
-\doxysubsubsection{\texorpdfstring{modiferCompte()}{modiferCompte()}}
-{\footnotesize\ttfamily \label{class_controller_utilisateur_aa3f52bae52ae1a8fb6b12012403133a6} 
-modifer\+Compte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
-
-
-
-Traite la modification du compte (non implémenté totalement). 
-
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
 \Hypertarget{class_controller_utilisateur_a0aeae6dbbdf02edff0adc9ffd8696d01}\index{ControllerUtilisateur@{ControllerUtilisateur}!newsletter@{newsletter}}
 \index{newsletter@{newsletter}!ControllerUtilisateur@{ControllerUtilisateur}}
 \doxysubsubsection{\texorpdfstring{newsletter()}{newsletter()}}
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a0aeae6dbbdf02edff0adc9ffd8696d01} 
 newsletter (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-
-
-Inscrit l\textquotesingle{}utilisateur à la newsletter. 
-
-\begin{DoxyReturn}{Renvoie}
+Inscrit l\textquotesingle{}utilisateur à la newsletter \begin{DoxyReturn}{Renvoie}
 void 
 \end{DoxyReturn}
 \Hypertarget{class_controller_utilisateur_a0efd304a58561691f2c7c70e136d6b92}\index{ControllerUtilisateur@{ControllerUtilisateur}!pageConnexion@{pageConnexion}}
@@ -291,11 +225,7 @@ void
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a0efd304a58561691f2c7c70e136d6b92} 
 page\+Connexion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-
-
-Affiche la page de connexion. 
-
-\begin{DoxyReturn}{Renvoie}
+Pous se connecter à la page de connexion \begin{DoxyReturn}{Renvoie}
 void 
 \end{DoxyReturn}
 \Hypertarget{class_controller_utilisateur_a19b98d82c0c39110807d29c271bcdde6}\index{ControllerUtilisateur@{ControllerUtilisateur}!pageInscription@{pageInscription}}
@@ -304,11 +234,7 @@ void
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a19b98d82c0c39110807d29c271bcdde6} 
 page\+Inscription (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-
-
-Affiche la page d\textquotesingle{}inscription. 
-
-\begin{DoxyReturn}{Renvoie}
+Pous se connecter à la page d\textquotesingle{}inscription \begin{DoxyReturn}{Renvoie}
 void 
 \end{DoxyReturn}
 \Hypertarget{class_controller_utilisateur_ae6d543b6dc896901864ae123e2c69789}\index{ControllerUtilisateur@{ControllerUtilisateur}!pageModifierCompte@{pageModifierCompte}}
@@ -317,23 +243,18 @@ void
 {\footnotesize\ttfamily \label{class_controller_utilisateur_ae6d543b6dc896901864ae123e2c69789} 
 page\+Modifier\+Compte (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-
-
-Affiche la page de modification du compte. 
-
+Affiche la page de modification du compte \begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
 \Hypertarget{class_controller_utilisateur_a4aab795d4b6a41ce623350146d084f76}\index{ControllerUtilisateur@{ControllerUtilisateur}!reactiverCompte@{reactiverCompte}}
 \index{reactiverCompte@{reactiverCompte}!ControllerUtilisateur@{ControllerUtilisateur}}
 \doxysubsubsection{\texorpdfstring{reactiverCompte()}{reactiverCompte()}}
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a4aab795d4b6a41ce623350146d084f76} 
 reactiver\+Compte (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}}}]{\$user}{}\end{DoxyParamCaption})}
 
-
-
-Réactive un compte désactivé. 
-
-
+Réactive le compte une fois que le délai soit écoulé 
 \begin{DoxyParams}[1]{Paramètres}
-\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & L\textquotesingle{}utilisateur. \\
+\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -345,13 +266,11 @@ void
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a4b230e3373fa8eadbbd18a8e6896982f} 
 reinitialiser\+Tentatives\+Connexion (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}}}]{\$user}{}\end{DoxyParamCaption})}
 
-
-
-Réinitialise les tentatives de connexion échouées. 
+Réinitialise les tentatives échouées après une authentification réussie
 
 
 \begin{DoxyParams}[1]{Paramètres}
-\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & L\textquotesingle{}utilisateur. \\
+\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -363,17 +282,13 @@ void
 {\footnotesize\ttfamily \label{class_controller_utilisateur_a4462ad51b758b5bfcd175d730cd2db0f} 
 temps\+Restant\+Avant\+Deblocage (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_utilisateur}{Utilisateur}}}]{\$user}{}\end{DoxyParamCaption})}
 
-
-
-Calcule le temps restant avant le déblocage du compte. 
-
-
+Calcul le temps restant avant que le compte soit débloqué 
 \begin{DoxyParams}[1]{Paramètres}
-\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & L\textquotesingle{}utilisateur. \\
+\doxylink{class_utilisateur}{Utilisateur} & {\em \$user} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-int Temps restant en secondes. 
+float\texorpdfstring{$\vert$}{|}int 
 \end{DoxyReturn}
 
 

@@ -1,0 +1,99 @@
+\doxysection{Référence de la classe Token\+Stream}
+\hypertarget{class_twig_1_1_token_stream}{}\label{class_twig_1_1_token_stream}\index{TokenStream@{TokenStream}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_token_stream_a2f772aa538133fc25ef5ba0e575c70d5}\label{class_twig_1_1_token_stream_a2f772aa538133fc25ef5ba0e575c70d5} 
+{\bfseries \+\_\+\+\_\+construct} (private array \$tokens, private ?\doxymbox{\hyperlink{class_twig_1_1_source}{Source}} \$source=null,)
+\item 
+\Hypertarget{class_twig_1_1_token_stream_a7516ca30af0db3cdbf9a7739b48ce91d}\label{class_twig_1_1_token_stream_a7516ca30af0db3cdbf9a7739b48ce91d} 
+{\bfseries \+\_\+\+\_\+to\+String} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_stream_a122abdaaaa2c432ded9e8d38dce57255}{inject\+Tokens}} (array \$tokens)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_stream_acea62048bfee7b3cd80ed446c86fb78a}{next}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_stream_a98299de67ed3a15ecfadcbbaade22468}{next\+If}} (\$primary, \$secondary=null)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_stream_a0eb058e5d6eaf61b55dd6d59195202f7}{expect}} (\$type, \$value=null, ?string \$message=null)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_stream_aad1ec215b5f6346b9b11456d6cd66d33}{look}} (int \$number=1)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_stream_a9467b43d6c92b7033f09a94f9c7266d6}{test}} (\$primary, \$secondary=null)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_token_stream_afea23cbffd2f62df19df9b394f77dee5}{is\+EOF}} ()
+\item 
+\Hypertarget{class_twig_1_1_token_stream_ad926899d7cac34a3f1a90e552d8eb27d}\label{class_twig_1_1_token_stream_ad926899d7cac34a3f1a90e552d8eb27d} 
+{\bfseries get\+Current} ()
+\item 
+\Hypertarget{class_twig_1_1_token_stream_a38152512ea69c5f598112d1e1064e4b5}\label{class_twig_1_1_token_stream_a38152512ea69c5f598112d1e1064e4b5} 
+{\bfseries get\+Source\+Context} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Represents a token stream.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_token_stream_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_token_stream_a0eb058e5d6eaf61b55dd6d59195202f7}\index{TokenStream@{TokenStream}!expect@{expect}}
+\index{expect@{expect}!TokenStream@{TokenStream}}
+\doxysubsubsection{\texorpdfstring{expect()}{expect()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_token_stream_a0eb058e5d6eaf61b55dd6d59195202f7} 
+expect (\begin{DoxyParamCaption}\item[{}]{\$type}{, }\item[{}]{\$value}{ = {\ttfamily null}, }\item[{?string}]{\$message}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Tests a token and returns it or throws a syntax error. \Hypertarget{class_twig_1_1_token_stream_a122abdaaaa2c432ded9e8d38dce57255}\index{TokenStream@{TokenStream}!injectTokens@{injectTokens}}
+\index{injectTokens@{injectTokens}!TokenStream@{TokenStream}}
+\doxysubsubsection{\texorpdfstring{injectTokens()}{injectTokens()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_token_stream_a122abdaaaa2c432ded9e8d38dce57255} 
+inject\+Tokens (\begin{DoxyParamCaption}\item[{array}]{\$tokens}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_token_stream_afea23cbffd2f62df19df9b394f77dee5}\index{TokenStream@{TokenStream}!isEOF@{isEOF}}
+\index{isEOF@{isEOF}!TokenStream@{TokenStream}}
+\doxysubsubsection{\texorpdfstring{isEOF()}{isEOF()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_token_stream_afea23cbffd2f62df19df9b394f77dee5} 
+is\+EOF (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if end of stream was reached. \Hypertarget{class_twig_1_1_token_stream_aad1ec215b5f6346b9b11456d6cd66d33}\index{TokenStream@{TokenStream}!look@{look}}
+\index{look@{look}!TokenStream@{TokenStream}}
+\doxysubsubsection{\texorpdfstring{look()}{look()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_token_stream_aad1ec215b5f6346b9b11456d6cd66d33} 
+look (\begin{DoxyParamCaption}\item[{int}]{\$number}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+Looks at the next token. \Hypertarget{class_twig_1_1_token_stream_acea62048bfee7b3cd80ed446c86fb78a}\index{TokenStream@{TokenStream}!next@{next}}
+\index{next@{next}!TokenStream@{TokenStream}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_token_stream_acea62048bfee7b3cd80ed446c86fb78a} 
+next (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Sets the pointer to the next token and returns the old one. \Hypertarget{class_twig_1_1_token_stream_a98299de67ed3a15ecfadcbbaade22468}\index{TokenStream@{TokenStream}!nextIf@{nextIf}}
+\index{nextIf@{nextIf}!TokenStream@{TokenStream}}
+\doxysubsubsection{\texorpdfstring{nextIf()}{nextIf()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_token_stream_a98299de67ed3a15ecfadcbbaade22468} 
+next\+If (\begin{DoxyParamCaption}\item[{}]{\$primary}{, }\item[{}]{\$secondary}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Tests a token, sets the pointer to the next one and returns it or throws a syntax error.
+
+\begin{DoxyReturn}{Renvoie}
+Token\texorpdfstring{$\vert$}{|}null The next token if the condition is true, null otherwise 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_token_stream_a9467b43d6c92b7033f09a94f9c7266d6}\index{TokenStream@{TokenStream}!test@{test}}
+\index{test@{test}!TokenStream@{TokenStream}}
+\doxysubsubsection{\texorpdfstring{test()}{test()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_token_stream_a9467b43d6c92b7033f09a94f9c7266d6} 
+test (\begin{DoxyParamCaption}\item[{}]{\$primary}{, }\item[{}]{\$secondary}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Tests the current token. 
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+Token\+Stream.\+php\end{DoxyCompactItemize}

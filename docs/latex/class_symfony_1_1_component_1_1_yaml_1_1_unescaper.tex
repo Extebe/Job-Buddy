@@ -1,0 +1,69 @@
+\doxysection{Référence de la classe Unescaper}
+\hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_unescaper}{}\label{class_symfony_1_1_component_1_1_yaml_1_1_unescaper}\index{Unescaper@{Unescaper}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_a2a881a3d1cb8448f933f7e2809bd2396}{unescape\+Single\+Quoted\+String}} (string \$value)
+\item 
+\doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_a9d55b72557892de026ac0ccd5f46a465}{unescape\+Double\+Quoted\+String}} (string \$value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+const \doxymbox{\hyperlink{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_a5356e3ed7b9c99d134587dc04ca30e45}{REGEX\+\_\+\+ESCAPED\+\_\+\+CHARACTER}} = \textquotesingle{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}(x\+[0-\/9a-\/fA-\/F]\+\{2\}\texorpdfstring{$\vert$}{|}u\+[0-\/9a-\/fA-\/F]\+\{4\}\texorpdfstring{$\vert$}{|}U\+[0-\/9a-\/fA-\/F]\+\{8\}\texorpdfstring{$\vert$}{|}.)\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Unescaper encapsulates unescaping rules for single and double-\/quoted YAML strings.
+
+\begin{DoxyAuthor}{Auteur}
+Matthew Lewinski \href{mailto:matthew@lewinski.org}{\texttt{matthew@lewinski.\+org}} 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_a9d55b72557892de026ac0ccd5f46a465}\index{Unescaper@{Unescaper}!unescapeDoubleQuotedString@{unescapeDoubleQuotedString}}
+\index{unescapeDoubleQuotedString@{unescapeDoubleQuotedString}!Unescaper@{Unescaper}}
+\doxysubsubsection{\texorpdfstring{unescapeDoubleQuotedString()}{unescapeDoubleQuotedString()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_a9d55b72557892de026ac0ccd5f46a465} 
+unescape\+Double\+Quoted\+String (\begin{DoxyParamCaption}\item[{string}]{\$value}{}\end{DoxyParamCaption})}
+
+Unescapes a double quoted string.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$value} & A double quoted string \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_a2a881a3d1cb8448f933f7e2809bd2396}\index{Unescaper@{Unescaper}!unescapeSingleQuotedString@{unescapeSingleQuotedString}}
+\index{unescapeSingleQuotedString@{unescapeSingleQuotedString}!Unescaper@{Unescaper}}
+\doxysubsubsection{\texorpdfstring{unescapeSingleQuotedString()}{unescapeSingleQuotedString()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_a2a881a3d1cb8448f933f7e2809bd2396} 
+unescape\+Single\+Quoted\+String (\begin{DoxyParamCaption}\item[{string}]{\$value}{}\end{DoxyParamCaption})}
+
+Unescapes a single quoted string.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$value} & A single quoted string \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_doc-variable-members}
+\doxysubsection{Documentation des champs}
+\Hypertarget{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_a5356e3ed7b9c99d134587dc04ca30e45}\index{Unescaper@{Unescaper}!REGEX\_ESCAPED\_CHARACTER@{REGEX\_ESCAPED\_CHARACTER}}
+\index{REGEX\_ESCAPED\_CHARACTER@{REGEX\_ESCAPED\_CHARACTER}!Unescaper@{Unescaper}}
+\doxysubsubsection{\texorpdfstring{REGEX\_ESCAPED\_CHARACTER}{REGEX\_ESCAPED\_CHARACTER}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_yaml_1_1_unescaper_a5356e3ed7b9c99d134587dc04ca30e45} 
+const REGEX\+\_\+\+ESCAPED\+\_\+\+CHARACTER = \textquotesingle{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}(x\+[0-\/9a-\/fA-\/F]\+\{2\}\texorpdfstring{$\vert$}{|}u\+[0-\/9a-\/fA-\/F]\+\{4\}\texorpdfstring{$\vert$}{|}U\+[0-\/9a-\/fA-\/F]\+\{8\}\texorpdfstring{$\vert$}{|}.)\textquotesingle{}}
+
+Regex fragment that matches an escaped character in a double quoted string. 
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+symfony/\+yaml/\+Unescaper.\+php\end{DoxyCompactItemize}

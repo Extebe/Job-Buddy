@@ -1,0 +1,873 @@
+\doxysection{Référence de la classe Environment}
+\hypertarget{class_twig_1_1_environment}{}\label{class_twig_1_1_environment}\index{Environment@{Environment}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ab33526831f8674f4663175f8842aa034}{\+\_\+\+\_\+construct}} (\doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface}{Loader\+Interface}} \$loader, array \$options=\+[$\,$]\+)
+\item 
+\Hypertarget{class_twig_1_1_environment_aa0eceef201c7817babb572f84c289e7e}\label{class_twig_1_1_environment_aa0eceef201c7817babb572f84c289e7e} 
+{\bfseries use\+Yield} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a942b0cfbc1005c9bb0a5f2b0f7d25a25}{enable\+Debug}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ad8fe55ee3d188c1b0d71585653debfef}{disable\+Debug}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a017d21b4d0e1ee6f9cdd9d805793f076}{is\+Debug}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_af27b2d02a1bd3d7dc0d2e72dff771cab}{enable\+Auto\+Reload}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a46062846c7f95b6b290e36d90c296491}{disable\+Auto\+Reload}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a7ba43ac4c9bdd0aefcd5140e4ea87a08}{is\+Auto\+Reload}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_afe904f5f015cd40f965d5f524611c3fa}{enable\+Strict\+Variables}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a91b21a6aa5aed10b4f89888eaadefc80}{disable\+Strict\+Variables}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ab39d5897ee5022ecc92032d769b9c60c}{is\+Strict\+Variables}} ()
+\item 
+\Hypertarget{class_twig_1_1_environment_a04fd6ce91c38db466ed0aa4b4c94584a}\label{class_twig_1_1_environment_a04fd6ce91c38db466ed0aa4b4c94584a} 
+{\bfseries remove\+Cache} (string \$name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a060984befe7f03db2d97afd3cf0d6d58}{get\+Cache}} (\$original=true)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a1bfa0b30d50d9ccce38cd1bcf2375109}{set\+Cache}} (\$cache)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ae449c7730f070d3081345100761b1f88}{get\+Template\+Class}} (string \$name, ?int \$index=null)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a9ca32ac75c89d070d3b4eb1a06683fe9}{render}} (\$name, array \$context=\+[$\,$]\+)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_aded30b0f625fc211ad303e0293c4f4cd}{display}} (\$name, array \$context=\+[$\,$]\+)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a5d4a434c5fe83bade81f5815706a3551}{load}} (\$name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a0a1fc2aa0d591cb25d176f6d2048bb27}{load\+Template}} (string \$cls, string \$name, ?int \$index=null)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a4659c713c182a562f635dc7a2c4adc2d}{create\+Template}} (string \$template, ?string \$name=null)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ac4bcb91c61fe549728fccf9cde787576}{is\+Template\+Fresh}} (string \$name, int \$time)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_af1cc34fcbd8561be8a6075517d107630}{resolve\+Template}} (\$names)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ab45ff486cb7432604bba024320b6bf35}{set\+Lexer}} (\doxymbox{\hyperlink{class_twig_1_1_lexer}{Lexer}} \$lexer)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a7103721d759296dd3a808f66f983b338}{tokenize}} (\doxymbox{\hyperlink{class_twig_1_1_source}{Source}} \$source)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ad7906b0e440ec9e8c0946d0a9e3459e8}{set\+Parser}} (\doxymbox{\hyperlink{class_twig_1_1_parser}{Parser}} \$parser)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ac0ce73fec677ee1f432ce6564c03b1ff}{parse}} (\doxymbox{\hyperlink{class_twig_1_1_token_stream}{Token\+Stream}} \$stream)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_aa94ab1f31ab8a709c312f890a5dd2e45}{set\+Compiler}} (\doxymbox{\hyperlink{class_twig_1_1_compiler}{Compiler}} \$compiler)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a1cf77d34b6644bf4db61c990d32081b4}{compile}} (Node \$node)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a52f91eebe87d94b65e96d0b66a5b7346}{compile\+Source}} (\doxymbox{\hyperlink{class_twig_1_1_source}{Source}} \$source)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a3c1c2b5e14b61c167e9c70331781629f}{set\+Loader}} (\doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface}{Loader\+Interface}} \$loader)
+\item 
+\Hypertarget{class_twig_1_1_environment_a461527c1de39a5520c52951b8f03d99f}\label{class_twig_1_1_environment_a461527c1de39a5520c52951b8f03d99f} 
+{\bfseries get\+Loader} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a1a82088b82d31594343cbba27fc3571b}{set\+Charset}} (string \$charset)
+\item 
+\Hypertarget{class_twig_1_1_environment_abca2d528da8311b6fcfe040768cbaa24}\label{class_twig_1_1_environment_abca2d528da8311b6fcfe040768cbaa24} 
+{\bfseries get\+Charset} ()
+\item 
+\Hypertarget{class_twig_1_1_environment_ab0312781e1ea827d5c22425f36ec2b40}\label{class_twig_1_1_environment_ab0312781e1ea827d5c22425f36ec2b40} 
+{\bfseries has\+Extension} (string \$class)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a9fce3164dae4b657e8b14a63c9fe7fcd}{add\+Runtime\+Loader}} (\doxymbox{\hyperlink{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface}{Runtime\+Loader\+Interface}} \$loader)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a5023c2a5ed30e298f55126721092f13d}{get\+Extension}} (string \$class)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a80cc16f74f851af6d4ba3d5fb548e3d8}{get\+Runtime}} (string \$class)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a749a6d4932e84cf49aba55fb86c8e03c}{add\+Extension}} (\doxymbox{\hyperlink{interface_twig_1_1_extension_1_1_extension_interface}{Extension\+Interface}} \$extension)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ad226f4ce37612efcc6717bd592ca7b7d}{set\+Extensions}} (array \$extensions)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a0bf1cdb692f876fae6acd2bfbb548244}{get\+Extensions}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a4c731778b930ed4b614f7b4d1583a234}{add\+Token\+Parser}} (\doxymbox{\hyperlink{interface_twig_1_1_token_parser_1_1_token_parser_interface}{Token\+Parser\+Interface}} \$parser)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a8fd35903c3d01c0f0078f59d142eb063}{get\+Token\+Parsers}} ()
+\item 
+\Hypertarget{class_twig_1_1_environment_af5a009d104f93a5e207f8b28fd6b289d}\label{class_twig_1_1_environment_af5a009d104f93a5e207f8b28fd6b289d} 
+{\bfseries get\+Token\+Parser} (string \$name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a0006df6766845e6bd95643d92ffa635d}{register\+Undefined\+Token\+Parser\+Callback}} (callable \$callable)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a07dba68275997f1b73655674f6b4abb1}{add\+Node\+Visitor}} (\doxymbox{\hyperlink{interface_twig_1_1_node_visitor_1_1_node_visitor_interface}{Node\+Visitor\+Interface}} \$visitor)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_aec02093179d390d22ae4083f23a1d74a}{get\+Node\+Visitors}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a28392e0bb5979f36bee92c124812b9f7}{add\+Filter}} (\doxymbox{\hyperlink{class_twig_1_1_twig_filter}{Twig\+Filter}} \$filter)
+\item 
+\Hypertarget{class_twig_1_1_environment_a5de8f9c9c01c9f3b1b661bfefc2e8705}\label{class_twig_1_1_environment_a5de8f9c9c01c9f3b1b661bfefc2e8705} 
+{\bfseries get\+Filter} (string \$name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a10d5547d61ff46235e05a70d247abbcd}{register\+Undefined\+Filter\+Callback}} (callable \$callable)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a428d91319fc73d3038784cf5436936b6}{get\+Filters}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a77564f751c23c9a158de051fb75dfbc2}{add\+Test}} (\doxymbox{\hyperlink{class_twig_1_1_twig_test}{Twig\+Test}} \$test)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a7e247dd31cc8d37a6c97353a062a0080}{get\+Tests}} ()
+\item 
+\Hypertarget{class_twig_1_1_environment_ae6186ce4a037ebfd1c22288838aadca4}\label{class_twig_1_1_environment_ae6186ce4a037ebfd1c22288838aadca4} 
+{\bfseries get\+Test} (string \$name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a1cef4c88206067fbf2ccd7cd5354f0db}{register\+Undefined\+Test\+Callback}} (callable \$callable)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a95c4648430d6a27f2c507a08b78f4466}{add\+Function}} (\doxymbox{\hyperlink{class_twig_1_1_twig_function}{Twig\+Function}} \$function)
+\item 
+\Hypertarget{class_twig_1_1_environment_a88037b18fd97b7eba6fa5fac8867feab}\label{class_twig_1_1_environment_a88037b18fd97b7eba6fa5fac8867feab} 
+{\bfseries get\+Function} (string \$name)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ac327b1d2af77aeb64f9e490e79a7c957}{register\+Undefined\+Function\+Callback}} (callable \$callable)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a131c2522f07821f77cd1d038c216031b}{get\+Functions}} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a4ee0f2b1dd1d362161e34f4d58e63154}{add\+Global}} (string \$name, \$value)
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_ae3a26252ce6efe503698085a7ed69dad}{get\+Globals}} ()
+\item 
+\Hypertarget{class_twig_1_1_environment_ae0efdc01f016b74e9eafaf0c500f2528}\label{class_twig_1_1_environment_ae0efdc01f016b74e9eafaf0c500f2528} 
+{\bfseries reset\+Globals} ()
+\item 
+\doxymbox{\hyperlink{class_twig_1_1_environment_a7e84fd2f4a105b68c7167060ae59b87d}{merge\+Globals}} (array \$context)
+\item 
+\Hypertarget{class_twig_1_1_environment_a59fc7f922a51ff25ad261326be33eb63}\label{class_twig_1_1_environment_a59fc7f922a51ff25ad261326be33eb63} 
+{\bfseries get\+Expression\+Parsers} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_twig_1_1_environment_af71005841ce53adac00581ab0ba24c1f}\label{class_twig_1_1_environment_af71005841ce53adac00581ab0ba24c1f} 
+const {\bfseries VERSION} = \textquotesingle{}3.\+22.\+1\textquotesingle{}
+\item 
+\Hypertarget{class_twig_1_1_environment_a835ac83b0f0a2c196532f370dc585aa0}\label{class_twig_1_1_environment_a835ac83b0f0a2c196532f370dc585aa0} 
+const {\bfseries VERSION\+\_\+\+ID} = 32201
+\item 
+\Hypertarget{class_twig_1_1_environment_a3131af273a7c8eca1728d5b8660bb9c0}\label{class_twig_1_1_environment_a3131af273a7c8eca1728d5b8660bb9c0} 
+const {\bfseries MAJOR\+\_\+\+VERSION} = 3
+\item 
+\Hypertarget{class_twig_1_1_environment_a71fef52dee161026277f7c3e34642b9e}\label{class_twig_1_1_environment_a71fef52dee161026277f7c3e34642b9e} 
+const {\bfseries MINOR\+\_\+\+VERSION} = 22
+\item 
+\Hypertarget{class_twig_1_1_environment_ab5f5867fb342cd126faaecf77e3e1497}\label{class_twig_1_1_environment_ab5f5867fb342cd126faaecf77e3e1497} 
+const {\bfseries RELEASE\+\_\+\+VERSION} = 1
+\item 
+\Hypertarget{class_twig_1_1_environment_aa66e26fb5190d4eae5aa807a51e8599d}\label{class_twig_1_1_environment_aa66e26fb5190d4eae5aa807a51e8599d} 
+const {\bfseries EXTRA\+\_\+\+VERSION} = \textquotesingle{}\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Stores the Twig configuration and renders templates.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\label{doc-constructors}
+\Hypertarget{class_twig_1_1_environment_doc-constructors}
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_twig_1_1_environment_ab33526831f8674f4663175f8842aa034}\index{Environment@{Environment}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ab33526831f8674f4663175f8842aa034} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface}{Loader\+Interface}}}]{\$loader}{, }\item[{array}]{\$options}{ = {\ttfamily \+[]\+}}\end{DoxyParamCaption})}
+
+Constructor.
+
+Available options:\+
+
+
+\begin{DoxyItemize}
+\item debug:\+ When set to true, it automatically set "{}auto\+\_\+reload"{} to true as well (default to false).
+\item charset:\+ The charset used by the templates (default to UTF-\/8).
+\item cache:\+ An absolute path where to store the compiled templates, a \textbackslash{}\+Twig\textbackslash{}\+Cache\textbackslash{}\+Cache\+Interface implementation, or false to disable compilation cache (default).
+\item auto\+\_\+reload:\+ Whether to reload the template if the original source changed. If you don\textquotesingle{}t provide the auto\+\_\+reload option, it will be determined automatically based on the debug value.
+\item strict\+\_\+variables:\+ Whether to ignore invalid variables in templates (default to false).
+\item autoescape:\+ Whether to enable auto-\/escaping (default to html):\+
+\begin{DoxyItemize}
+\item false:\+ disable auto-\/escaping
+\item html, js:\+ set the autoescaping to one of the supported strategies
+\item name:\+ set the autoescaping strategy based on the template name extension
+\item PHP callback:\+ a PHP callback that returns an escaping strategy based on the template "{}name"{}
+\end{DoxyItemize}
+\item optimizations:\+ A flag that indicates which optimizations to apply (default to -\/1 which means that all optimizations are enabled; set it to 0 to disable).
+\item use\+\_\+yield:\+ true:\+ forces templates to exclusively use "{}yield"{} instead of "{}echo"{} (all extensions must be yield ready) false (default):\+ allows templates to use a mix of "{}yield"{} and "{}echo"{} calls to allow for a progressive migration Switch to "{}true"{} when possible as this will be the only supported mode in Twig 4.\+0 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{class_twig_1_1_environment_doc-func-members}
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_twig_1_1_environment_a749a6d4932e84cf49aba55fb86c8e03c}\index{Environment@{Environment}!addExtension@{addExtension}}
+\index{addExtension@{addExtension}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{addExtension()}{addExtension()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a749a6d4932e84cf49aba55fb86c8e03c} 
+add\+Extension (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{interface_twig_1_1_extension_1_1_extension_interface}{Extension\+Interface}}}]{\$extension}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a28392e0bb5979f36bee92c124812b9f7}\index{Environment@{Environment}!addFilter@{addFilter}}
+\index{addFilter@{addFilter}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{addFilter()}{addFilter()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a28392e0bb5979f36bee92c124812b9f7} 
+add\+Filter (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_twig_filter}{Twig\+Filter}}}]{\$filter}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a95c4648430d6a27f2c507a08b78f4466}\index{Environment@{Environment}!addFunction@{addFunction}}
+\index{addFunction@{addFunction}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{addFunction()}{addFunction()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a95c4648430d6a27f2c507a08b78f4466} 
+add\+Function (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_twig_function}{Twig\+Function}}}]{\$function}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a4ee0f2b1dd1d362161e34f4d58e63154}\index{Environment@{Environment}!addGlobal@{addGlobal}}
+\index{addGlobal@{addGlobal}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{addGlobal()}{addGlobal()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a4ee0f2b1dd1d362161e34f4d58e63154} 
+add\+Global (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{}]{\$value}{}\end{DoxyParamCaption})}
+
+Registers a Global.
+
+New globals can be added before compiling or rendering a template; but after, you can only update existing globals.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$value} & The global value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a07dba68275997f1b73655674f6b4abb1}\index{Environment@{Environment}!addNodeVisitor@{addNodeVisitor}}
+\index{addNodeVisitor@{addNodeVisitor}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{addNodeVisitor()}{addNodeVisitor()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a07dba68275997f1b73655674f6b4abb1} 
+add\+Node\+Visitor (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{interface_twig_1_1_node_visitor_1_1_node_visitor_interface}{Node\+Visitor\+Interface}}}]{\$visitor}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a9fce3164dae4b657e8b14a63c9fe7fcd}\index{Environment@{Environment}!addRuntimeLoader@{addRuntimeLoader}}
+\index{addRuntimeLoader@{addRuntimeLoader}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{addRuntimeLoader()}{addRuntimeLoader()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a9fce3164dae4b657e8b14a63c9fe7fcd} 
+add\+Runtime\+Loader (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{interface_twig_1_1_runtime_loader_1_1_runtime_loader_interface}{Runtime\+Loader\+Interface}}}]{\$loader}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a77564f751c23c9a158de051fb75dfbc2}\index{Environment@{Environment}!addTest@{addTest}}
+\index{addTest@{addTest}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{addTest()}{addTest()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a77564f751c23c9a158de051fb75dfbc2} 
+add\+Test (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_twig_test}{Twig\+Test}}}]{\$test}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a4c731778b930ed4b614f7b4d1583a234}\index{Environment@{Environment}!addTokenParser@{addTokenParser}}
+\index{addTokenParser@{addTokenParser}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{addTokenParser()}{addTokenParser()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a4c731778b930ed4b614f7b4d1583a234} 
+add\+Token\+Parser (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{interface_twig_1_1_token_parser_1_1_token_parser_interface}{Token\+Parser\+Interface}}}]{\$parser}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a1cf77d34b6644bf4db61c990d32081b4}\index{Environment@{Environment}!compile@{compile}}
+\index{compile@{compile}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{compile()}{compile()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a1cf77d34b6644bf4db61c990d32081b4} 
+compile (\begin{DoxyParamCaption}\item[{Node}]{\$node}{}\end{DoxyParamCaption})}
+
+Compiles a node and returns the PHP code. \Hypertarget{class_twig_1_1_environment_a52f91eebe87d94b65e96d0b66a5b7346}\index{Environment@{Environment}!compileSource@{compileSource}}
+\index{compileSource@{compileSource}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{compileSource()}{compileSource()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a52f91eebe87d94b65e96d0b66a5b7346} 
+compile\+Source (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_source}{Source}}}]{\$source}{}\end{DoxyParamCaption})}
+
+Compiles a template source code.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Syntax\+Error} & When there was an error during tokenizing, parsing or compiling \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_twig_1_1_environment_a4659c713c182a562f635dc7a2c4adc2d}\index{Environment@{Environment}!createTemplate@{createTemplate}}
+\index{createTemplate@{createTemplate}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{createTemplate()}{createTemplate()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a4659c713c182a562f635dc7a2c4adc2d} 
+create\+Template (\begin{DoxyParamCaption}\item[{string}]{\$template}{, }\item[{?string}]{\$name}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Creates a template from source.
+
+This method should not be used as a generic way to load templates.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$template} & The template source \\
+\hline
+string | null & {\em \$name} & An optional name of the template to be used in error messages\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When the template cannot be found \\
+\hline
+{\em Syntax\+Error} & When an error occurred during compilation \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_twig_1_1_environment_a46062846c7f95b6b290e36d90c296491}\index{Environment@{Environment}!disableAutoReload@{disableAutoReload}}
+\index{disableAutoReload@{disableAutoReload}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{disableAutoReload()}{disableAutoReload()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a46062846c7f95b6b290e36d90c296491} 
+disable\+Auto\+Reload (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Disables the auto\+\_\+reload option.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_ad8fe55ee3d188c1b0d71585653debfef}\index{Environment@{Environment}!disableDebug@{disableDebug}}
+\index{disableDebug@{disableDebug}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{disableDebug()}{disableDebug()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ad8fe55ee3d188c1b0d71585653debfef} 
+disable\+Debug (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Disables debugging mode.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a91b21a6aa5aed10b4f89888eaadefc80}\index{Environment@{Environment}!disableStrictVariables@{disableStrictVariables}}
+\index{disableStrictVariables@{disableStrictVariables}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{disableStrictVariables()}{disableStrictVariables()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a91b21a6aa5aed10b4f89888eaadefc80} 
+disable\+Strict\+Variables (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Disables the strict\+\_\+variables option.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_aded30b0f625fc211ad303e0293c4f4cd}\index{Environment@{Environment}!display@{display}}
+\index{display@{display}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_aded30b0f625fc211ad303e0293c4f4cd} 
+display (\begin{DoxyParamCaption}\item[{}]{\$name}{, }\item[{array}]{\$context}{ = {\ttfamily \+[]\+}}\end{DoxyParamCaption})}
+
+Displays a template.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | Template\+Wrapper & {\em \$name} & The template name\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When the template cannot be found \\
+\hline
+{\em Syntax\+Error} & When an error occurred during compilation \\
+\hline
+{\em Runtime\+Error} & When an error occurred during rendering \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_twig_1_1_environment_af27b2d02a1bd3d7dc0d2e72dff771cab}\index{Environment@{Environment}!enableAutoReload@{enableAutoReload}}
+\index{enableAutoReload@{enableAutoReload}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{enableAutoReload()}{enableAutoReload()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_af27b2d02a1bd3d7dc0d2e72dff771cab} 
+enable\+Auto\+Reload (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Enables the auto\+\_\+reload option.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a942b0cfbc1005c9bb0a5f2b0f7d25a25}\index{Environment@{Environment}!enableDebug@{enableDebug}}
+\index{enableDebug@{enableDebug}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{enableDebug()}{enableDebug()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a942b0cfbc1005c9bb0a5f2b0f7d25a25} 
+enable\+Debug (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Enables debugging mode.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_afe904f5f015cd40f965d5f524611c3fa}\index{Environment@{Environment}!enableStrictVariables@{enableStrictVariables}}
+\index{enableStrictVariables@{enableStrictVariables}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{enableStrictVariables()}{enableStrictVariables()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_afe904f5f015cd40f965d5f524611c3fa} 
+enable\+Strict\+Variables (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Enables the strict\+\_\+variables option.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a060984befe7f03db2d97afd3cf0d6d58}\index{Environment@{Environment}!getCache@{getCache}}
+\index{getCache@{getCache}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getCache()}{getCache()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a060984befe7f03db2d97afd3cf0d6d58} 
+get\+Cache (\begin{DoxyParamCaption}\item[{}]{\$original}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+Gets the current cache implementation.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+bool & {\em \$original} & Whether to return the original cache option or the real cache instance\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Cache\+Interface\texorpdfstring{$\vert$}{|}string\texorpdfstring{$\vert$}{|}false A Twig\textbackslash{}\+Cache\textbackslash{}\+Cache\+Interface implementation, an absolute path to the compiled templates, or false to disable cache 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a5023c2a5ed30e298f55126721092f13d}\index{Environment@{Environment}!getExtension@{getExtension}}
+\index{getExtension@{getExtension}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getExtension()}{getExtension()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a5023c2a5ed30e298f55126721092f13d} 
+get\+Extension (\begin{DoxyParamCaption}\item[{string}]{\$class}{}\end{DoxyParamCaption})}
+
+@template TExtension of Extension\+Interface
+
+
+\begin{DoxyParams}{Paramètres}
+{\em class-\/string$<$\+TExtension$>$} & \$class\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+TExtension 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a0bf1cdb692f876fae6acd2bfbb548244}\index{Environment@{Environment}!getExtensions@{getExtensions}}
+\index{getExtensions@{getExtensions}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getExtensions()}{getExtensions()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a0bf1cdb692f876fae6acd2bfbb548244} 
+get\+Extensions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+Extension\+Interface\+[]\+ An array of extensions (keys are for internal usage only and should not be relied on) 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a428d91319fc73d3038784cf5436936b6}\index{Environment@{Environment}!getFilters@{getFilters}}
+\index{getFilters@{getFilters}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getFilters()}{getFilters()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a428d91319fc73d3038784cf5436936b6} 
+get\+Filters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the registered Filters.
+
+Be warned that this method cannot return filters defined with register\+Undefined\+Filter\+Callback.
+
+\begin{DoxyReturn}{Renvoie}
+Twig\+Filter\+[]\+
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+register\+Undefined\+Filter\+Callback 
+\end{DoxySeeAlso}
+\Hypertarget{class_twig_1_1_environment_a131c2522f07821f77cd1d038c216031b}\index{Environment@{Environment}!getFunctions@{getFunctions}}
+\index{getFunctions@{getFunctions}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getFunctions()}{getFunctions()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a131c2522f07821f77cd1d038c216031b} 
+get\+Functions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets registered functions.
+
+Be warned that this method cannot return functions defined with register\+Undefined\+Function\+Callback.
+
+\begin{DoxyReturn}{Renvoie}
+Twig\+Function\+[]\+
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+register\+Undefined\+Function\+Callback 
+\end{DoxySeeAlso}
+\Hypertarget{class_twig_1_1_environment_ae3a26252ce6efe503698085a7ed69dad}\index{Environment@{Environment}!getGlobals@{getGlobals}}
+\index{getGlobals@{getGlobals}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getGlobals()}{getGlobals()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ae3a26252ce6efe503698085a7ed69dad} 
+get\+Globals (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+array$<$string, mixed$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_aec02093179d390d22ae4083f23a1d74a}\index{Environment@{Environment}!getNodeVisitors@{getNodeVisitors}}
+\index{getNodeVisitors@{getNodeVisitors}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getNodeVisitors()}{getNodeVisitors()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_aec02093179d390d22ae4083f23a1d74a} 
+get\+Node\+Visitors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+Node\+Visitor\+Interface\+[]\+ 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a80cc16f74f851af6d4ba3d5fb548e3d8}\index{Environment@{Environment}!getRuntime@{getRuntime}}
+\index{getRuntime@{getRuntime}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getRuntime()}{getRuntime()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a80cc16f74f851af6d4ba3d5fb548e3d8} 
+get\+Runtime (\begin{DoxyParamCaption}\item[{string}]{\$class}{}\end{DoxyParamCaption})}
+
+Returns the runtime implementation of a Twig element (filter/\+function/\+tag/\+test).
+
+@template TRuntime of object
+
+
+\begin{DoxyParams}{Paramètres}
+{\em class-\/string$<$\+TRuntime$>$} & \$class A runtime class name\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+TRuntime The runtime implementation
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Runtime\+Error} & When the template cannot be found \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_twig_1_1_environment_ae449c7730f070d3081345100761b1f88}\index{Environment@{Environment}!getTemplateClass@{getTemplateClass}}
+\index{getTemplateClass@{getTemplateClass}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getTemplateClass()}{getTemplateClass()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ae449c7730f070d3081345100761b1f88} 
+get\+Template\+Class (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{?int}]{\$index}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Gets the template class associated with the given string.
+
+The generated template class is based on the following parameters:\+
+
+
+\begin{DoxyItemize}
+\item The cache key for the given template;
+\item The currently enabled extensions;
+\item PHP version;
+\item Twig version;
+\item Options with what environment was created.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$name} & The name for which to calculate the template class name \\
+\hline
+int | null & {\em \$index} & The index if it is an embedded template \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_twig_1_1_environment_a7e247dd31cc8d37a6c97353a062a0080}\index{Environment@{Environment}!getTests@{getTests}}
+\index{getTests@{getTests}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getTests()}{getTests()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a7e247dd31cc8d37a6c97353a062a0080} 
+get\+Tests (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+Twig\+Test\+[]\+ 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a8fd35903c3d01c0f0078f59d142eb063}\index{Environment@{Environment}!getTokenParsers@{getTokenParsers}}
+\index{getTokenParsers@{getTokenParsers}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{getTokenParsers()}{getTokenParsers()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a8fd35903c3d01c0f0078f59d142eb063} 
+get\+Token\+Parsers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+Token\+Parser\+Interface\+[]\+ 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a7ba43ac4c9bdd0aefcd5140e4ea87a08}\index{Environment@{Environment}!isAutoReload@{isAutoReload}}
+\index{isAutoReload@{isAutoReload}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{isAutoReload()}{isAutoReload()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a7ba43ac4c9bdd0aefcd5140e4ea87a08} 
+is\+Auto\+Reload (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the auto\+\_\+reload option is enabled.
+
+\begin{DoxyReturn}{Renvoie}
+bool true if auto\+\_\+reload is enabled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a017d21b4d0e1ee6f9cdd9d805793f076}\index{Environment@{Environment}!isDebug@{isDebug}}
+\index{isDebug@{isDebug}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{isDebug()}{isDebug()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a017d21b4d0e1ee6f9cdd9d805793f076} 
+is\+Debug (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if debug mode is enabled.
+
+\begin{DoxyReturn}{Renvoie}
+bool true if debug mode is enabled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_ab39d5897ee5022ecc92032d769b9c60c}\index{Environment@{Environment}!isStrictVariables@{isStrictVariables}}
+\index{isStrictVariables@{isStrictVariables}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{isStrictVariables()}{isStrictVariables()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ab39d5897ee5022ecc92032d769b9c60c} 
+is\+Strict\+Variables (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the strict\+\_\+variables option is enabled.
+
+\begin{DoxyReturn}{Renvoie}
+bool true if strict\+\_\+variables is enabled, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_ac4bcb91c61fe549728fccf9cde787576}\index{Environment@{Environment}!isTemplateFresh@{isTemplateFresh}}
+\index{isTemplateFresh@{isTemplateFresh}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{isTemplateFresh()}{isTemplateFresh()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ac4bcb91c61fe549728fccf9cde787576} 
+is\+Template\+Fresh (\begin{DoxyParamCaption}\item[{string}]{\$name}{, }\item[{int}]{\$time}{}\end{DoxyParamCaption})}
+
+Returns true if the template is still fresh.
+
+Besides checking the loader for freshness information, this method also checks if the enabled extensions have not changed.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$time} & The last modification time of the cached template \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_twig_1_1_environment_a5d4a434c5fe83bade81f5815706a3551}\index{Environment@{Environment}!load@{load}}
+\index{load@{load}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a5d4a434c5fe83bade81f5815706a3551} 
+load (\begin{DoxyParamCaption}\item[{}]{\$name}{}\end{DoxyParamCaption})}
+
+Loads a template.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | Template\+Wrapper & {\em \$name} & The template name\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When the template cannot be found \\
+\hline
+{\em Runtime\+Error} & When a previously generated cache is corrupted \\
+\hline
+{\em Syntax\+Error} & When an error occurred during compilation \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_twig_1_1_environment_a0a1fc2aa0d591cb25d176f6d2048bb27}\index{Environment@{Environment}!loadTemplate@{loadTemplate}}
+\index{loadTemplate@{loadTemplate}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{loadTemplate()}{loadTemplate()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a0a1fc2aa0d591cb25d176f6d2048bb27} 
+load\+Template (\begin{DoxyParamCaption}\item[{string}]{\$cls}{, }\item[{string}]{\$name}{, }\item[{?int}]{\$index}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Loads a template internal representation.
+
+This method is for internal use only and should never be called directly.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$name} & The template name \\
+\hline
+int | null & {\em \$index} & The index if it is an embedded template\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When the template cannot be found \\
+\hline
+{\em Runtime\+Error} & When a previously generated cache is corrupted \\
+\hline
+{\em Syntax\+Error} & When an error occurred during compilation \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_twig_1_1_environment_a7e84fd2f4a105b68c7167060ae59b87d}\index{Environment@{Environment}!mergeGlobals@{mergeGlobals}}
+\index{mergeGlobals@{mergeGlobals}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{mergeGlobals()}{mergeGlobals()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a7e84fd2f4a105b68c7167060ae59b87d} 
+merge\+Globals (\begin{DoxyParamCaption}\item[{array}]{\$context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Obsolète}
+\item[\doxymbox{\hyperlink{deprecated__deprecated000006}{Obsolète}}]since Twig 3.\+14 \end{DoxyRefDesc}
+\Hypertarget{class_twig_1_1_environment_ac0ce73fec677ee1f432ce6564c03b1ff}\index{Environment@{Environment}!parse@{parse}}
+\index{parse@{parse}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ac0ce73fec677ee1f432ce6564c03b1ff} 
+parse (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_token_stream}{Token\+Stream}}}]{\$stream}{}\end{DoxyParamCaption})}
+
+Converts a token stream to a node tree.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Syntax\+Error} & When the token stream is syntactically or semantically wrong \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_twig_1_1_environment_a10d5547d61ff46235e05a70d247abbcd}\index{Environment@{Environment}!registerUndefinedFilterCallback@{registerUndefinedFilterCallback}}
+\index{registerUndefinedFilterCallback@{registerUndefinedFilterCallback}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{registerUndefinedFilterCallback()}{registerUndefinedFilterCallback()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a10d5547d61ff46235e05a70d247abbcd} 
+register\+Undefined\+Filter\+Callback (\begin{DoxyParamCaption}\item[{callable}]{\$callable}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em callable(string)} & (Twig\+Filter\texorpdfstring{$\vert$}{|}false) \$callable \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_twig_1_1_environment_ac327b1d2af77aeb64f9e490e79a7c957}\index{Environment@{Environment}!registerUndefinedFunctionCallback@{registerUndefinedFunctionCallback}}
+\index{registerUndefinedFunctionCallback@{registerUndefinedFunctionCallback}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{registerUndefinedFunctionCallback()}{registerUndefinedFunctionCallback()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ac327b1d2af77aeb64f9e490e79a7c957} 
+register\+Undefined\+Function\+Callback (\begin{DoxyParamCaption}\item[{callable}]{\$callable}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em callable(string)} & (Twig\+Function\texorpdfstring{$\vert$}{|}false) \$callable \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_twig_1_1_environment_a1cef4c88206067fbf2ccd7cd5354f0db}\index{Environment@{Environment}!registerUndefinedTestCallback@{registerUndefinedTestCallback}}
+\index{registerUndefinedTestCallback@{registerUndefinedTestCallback}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{registerUndefinedTestCallback()}{registerUndefinedTestCallback()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a1cef4c88206067fbf2ccd7cd5354f0db} 
+register\+Undefined\+Test\+Callback (\begin{DoxyParamCaption}\item[{callable}]{\$callable}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em callable(string)} & (Twig\+Test\texorpdfstring{$\vert$}{|}false) \$callable \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_twig_1_1_environment_a0006df6766845e6bd95643d92ffa635d}\index{Environment@{Environment}!registerUndefinedTokenParserCallback@{registerUndefinedTokenParserCallback}}
+\index{registerUndefinedTokenParserCallback@{registerUndefinedTokenParserCallback}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{registerUndefinedTokenParserCallback()}{registerUndefinedTokenParserCallback()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a0006df6766845e6bd95643d92ffa635d} 
+register\+Undefined\+Token\+Parser\+Callback (\begin{DoxyParamCaption}\item[{callable}]{\$callable}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em callable(string)} & (Token\+Parser\+Interface\texorpdfstring{$\vert$}{|}false) \$callable \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_twig_1_1_environment_a9ca32ac75c89d070d3b4eb1a06683fe9}\index{Environment@{Environment}!render@{render}}
+\index{render@{render}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a9ca32ac75c89d070d3b4eb1a06683fe9} 
+render (\begin{DoxyParamCaption}\item[{}]{\$name}{, }\item[{array}]{\$context}{ = {\ttfamily \+[]\+}}\end{DoxyParamCaption})}
+
+Renders a template.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | Template\+Wrapper & {\em \$name} & The template name\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When the template cannot be found \\
+\hline
+{\em Syntax\+Error} & When an error occurred during compilation \\
+\hline
+{\em Runtime\+Error} & When an error occurred during rendering \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_twig_1_1_environment_af1cc34fcbd8561be8a6075517d107630}\index{Environment@{Environment}!resolveTemplate@{resolveTemplate}}
+\index{resolveTemplate@{resolveTemplate}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{resolveTemplate()}{resolveTemplate()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_af1cc34fcbd8561be8a6075517d107630} 
+resolve\+Template (\begin{DoxyParamCaption}\item[{}]{\$names}{}\end{DoxyParamCaption})}
+
+Tries to load a template consecutively from an array.
+
+Similar to load() but it also accepts instances of \textbackslash{}\+Twig\textbackslash{}\+Template\+Wrapper and an array of templates where each is tried to be loaded.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em string\texorpdfstring{$\vert$}{|}\+Template\+Wrapper\texorpdfstring{$\vert$}{|}array$<$string\texorpdfstring{$\vert$}{|}\+Template\+Wrapper$>$} & \$names A template or an array of templates to try consecutively\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Loader\+Error} & When none of the templates can be found \\
+\hline
+{\em Syntax\+Error} & When an error occurred during compilation \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_twig_1_1_environment_a1bfa0b30d50d9ccce38cd1bcf2375109}\index{Environment@{Environment}!setCache@{setCache}}
+\index{setCache@{setCache}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{setCache()}{setCache()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a1bfa0b30d50d9ccce38cd1bcf2375109} 
+set\+Cache (\begin{DoxyParamCaption}\item[{}]{\$cache}{}\end{DoxyParamCaption})}
+
+Sets the current cache implementation.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Cache\+Interface | string | false & {\em \$cache} & A Twig\textbackslash{}\+Cache\textbackslash{}\+Cache\+Interface implementation, an absolute path to the compiled templates, or false to disable cache\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a1a82088b82d31594343cbba27fc3571b}\index{Environment@{Environment}!setCharset@{setCharset}}
+\index{setCharset@{setCharset}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{setCharset()}{setCharset()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a1a82088b82d31594343cbba27fc3571b} 
+set\+Charset (\begin{DoxyParamCaption}\item[{string}]{\$charset}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_aa94ab1f31ab8a709c312f890a5dd2e45}\index{Environment@{Environment}!setCompiler@{setCompiler}}
+\index{setCompiler@{setCompiler}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{setCompiler()}{setCompiler()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_aa94ab1f31ab8a709c312f890a5dd2e45} 
+set\+Compiler (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_compiler}{Compiler}}}]{\$compiler}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_ad226f4ce37612efcc6717bd592ca7b7d}\index{Environment@{Environment}!setExtensions@{setExtensions}}
+\index{setExtensions@{setExtensions}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{setExtensions()}{setExtensions()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ad226f4ce37612efcc6717bd592ca7b7d} 
+set\+Extensions (\begin{DoxyParamCaption}\item[{array}]{\$extensions}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Extension\+Interface\+[$\,$]\+ & {\em \$extensions} & An array of extensions\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_ab45ff486cb7432604bba024320b6bf35}\index{Environment@{Environment}!setLexer@{setLexer}}
+\index{setLexer@{setLexer}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{setLexer()}{setLexer()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ab45ff486cb7432604bba024320b6bf35} 
+set\+Lexer (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_lexer}{Lexer}}}]{\$lexer}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a3c1c2b5e14b61c167e9c70331781629f}\index{Environment@{Environment}!setLoader@{setLoader}}
+\index{setLoader@{setLoader}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{setLoader()}{setLoader()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a3c1c2b5e14b61c167e9c70331781629f} 
+set\+Loader (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{interface_twig_1_1_loader_1_1_loader_interface}{Loader\+Interface}}}]{\$loader}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_ad7906b0e440ec9e8c0946d0a9e3459e8}\index{Environment@{Environment}!setParser@{setParser}}
+\index{setParser@{setParser}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{setParser()}{setParser()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_ad7906b0e440ec9e8c0946d0a9e3459e8} 
+set\+Parser (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_parser}{Parser}}}]{\$parser}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_twig_1_1_environment_a7103721d759296dd3a808f66f983b338}\index{Environment@{Environment}!tokenize@{tokenize}}
+\index{tokenize@{tokenize}!Environment@{Environment}}
+\doxysubsubsection{\texorpdfstring{tokenize()}{tokenize()}}
+{\footnotesize\ttfamily \label{class_twig_1_1_environment_a7103721d759296dd3a808f66f983b338} 
+tokenize (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_twig_1_1_source}{Source}}}]{\$source}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Syntax\+Error} & When the code is syntactically wrong \\
+\hline
+\end{DoxyExceptions}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\+\begin{DoxyCompactItemize}
+\item 
+vendor/\+twig/\+twig/\+src/\+Environment.\+php\end{DoxyCompactItemize}
