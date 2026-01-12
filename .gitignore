@@ -2,8 +2,3 @@
 /config/constantes.yaml
 !/config/constantes.yaml.exemple
 /vendor
-composer.phar
-.idea/
-node_modules
-package.json
-package-lock.json
