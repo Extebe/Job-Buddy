@@ -24,7 +24,7 @@ class ControllerAnnonce extends Controller
 
         //recupération des annonces
         $managerAnnonce = new AnnonceDao($this->getPdo());
-        $tableau = $managerAnnonce->findAllAssoc();
+        $tableau = $managerAnnonce->findAllAssocDispo();
         $annonces = $managerAnnonce->hydrateAll($tableau);
         $icons = Constantes::getConstantes()['icons'];
 

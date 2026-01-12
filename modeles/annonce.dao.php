@@ -98,6 +98,20 @@ class AnnonceDao
     }
 
     /**
+     * @brief Récupère toutes les annonces disponibles sous forme de tableau associatif.
+     * @return array Tableau associatif des annonces disponibles.
+     */
+    public function findAllAssocDispo()
+    {
+        $sql = "SELECT * FROM Annonce WHERE etat = 'DISPONIBLE'";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute();
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $annonce = $pdoStatement->fetchAll();
+        return $annonce;
+    }
+
+    /**
      * @brief Hydrate un objet Annonce à partir d'un tableau associatif.
      * @param array $tableauAssoc Données de l'annonce.
      * @return Annonce|null L'objet Annonce hydraté.
