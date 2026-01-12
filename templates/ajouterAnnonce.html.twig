@@ -1,7 +1,7 @@
 {% extends 'base_template.html.twig' %}
     {% block content %}
         <div class="container form-narrow">
-            <form action="index.php?controleur=annonce&methode=traiteFormAnnonce">
+            <form action="index.php?controleur=annonce&methode=traiteFormAnnonce" method="post">
                 <div class="mb-3">
                     <label for="" class="form-label">Titre de l'annonce</label>
                     <input type="text" class="form-control" id="titreAnnonce" name="titreAnnonce" required>
@@ -28,17 +28,31 @@
 
                 <div class="mb-3">
                     <label for="text" class="form-label">Prix</label>
-                    <input type="number" class="form-control" id="prix" name="prix" required >
+                    <input type="number" class="form-control" id="prix" name="prix" min="0" max="999" required >
                 </div>
 
                 <div class="mb-3">
-                    <label for="date-time" class="form-label">Date début réalisation</label>
-                    <input type="datetime-local" class="form-control" id="dateDebut" name="dateDebut" required >
+                    <label class="form-label">Date début réalisation</label>
+                    <input
+                            type="datetime-local"
+                            class="form-control"
+                            id="dateDebut"
+                            name="dateDebut"
+                            required
+                            min="<?= date('Y-m-d\TH:i') ?>"
+                    >
                 </div>
 
-                <div class="date-time">
-                    <label for="" class="form-label">Date fin de réalisation</label>
-                    <input type="datetime-local" class="form-control" id="dateFin" name="dateFin" required>
+                <div class="mb-3">
+                    <label class="form-label">Date fin de réalisation</label>
+                    <input
+                            type="datetime-local"
+                            class="form-control"
+                            id="dateFin"
+                            name="dateFin"
+                            required
+                            min="<?= date('Y-m-d\TH:i') ?>"
+                    >
                 </div>
 
                 <div class="mb-3">

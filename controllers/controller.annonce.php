@@ -63,13 +63,13 @@ class ControllerAnnonce extends Controller
     public function traiteFormAnnonce()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $titre = $_POST['titre'];
+            $titre = $_POST['titreAnnonce'];
             $typeService = $_POST['typeService'];
             $dateDebut = $_POST['dateDebut'];
             $dateFin = $_POST['dateFin'];
             $description = $_POST['description'];
             $lieu = $_POST['lieu'];
-            $remuneration = $_POST['remuneration'];
+            $remuneration = $_POST['prix'];
 
             $particulierDao = new ParticulierDao($this->getPdo());
             $particulier = $particulierDao->find(Utilisateur::getUser()->getId());
