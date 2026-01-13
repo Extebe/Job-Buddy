@@ -310,4 +310,40 @@ class ControllerAnnonce extends Controller
             'annonce' => $annonce,
         ]);
     }
+
+    /**
+     * @brief Affiche les statistiques des annonces par type de service.
+     * 
+     * Utilise une requête SQL avec sous-requête et GROUP BY pour calculer :
+     * - Le nombre d'annonces par type de service
+     * - La rémunération moyenne et totale
+     * - Le nombre total de postulants par type
+     */
+    public function afficherStatistiques(): void
+    {
+        $template = $this->getTwig();
+
+        $managerAnnonce = new AnnonceDao($this->getPdo());
+        $statistiques = $managerAnnonce->getStatistiquesParType();
+
+        // Calcul des totaux globaux
+        $totaux = [
+            'nbAnnonces' => 0,
+            'remunerationTotale' => 0,
+            'totalPostulants' => 0
+        ];
+
+        foreach ($statistiques as $stat) {
+            $totaux['nbAnnonces'] += $stat['nbAnnonces'];
+            $totaux['remunerationTotale'] += $stat['remunerationTotale'];
+            $totaux['totalPostulants'] += $stat['totalPostulants'];
+        }
+
+        echo $template->render('statistiques.html.twig', [
+            'user' => Utilisateur::getUser(),
+            'statistiques' => $statistiques,
+            'totaux' => $totaux,
+            'icons' => Constantes::getConstantes()['icons']
+        ]);
+    }
 }
