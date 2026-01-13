@@ -1,17 +1,9 @@
-# fichiers de configuration
+# les fichiers du dossier config
 /config/constantes.yaml
 !/config/constantes.yaml.exemple
-
 /vendor
 
-# composer
-composer.lock
-composer.phar
-
-# tarteaucitron
-node_modules
-package.json
-package-lock.json
-
-# pour tom 
 .idea/
+node_modules/
+package-lock.json
+package.json

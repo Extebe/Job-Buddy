@@ -81,7 +81,7 @@ class ControllerAnnonce extends Controller
                 $description,
                 $typeService,
                 $lieu,
-                (float)$remuneration,
+                (float) $remuneration,
                 $dateDebut,
                 $dateFin,
                 "DISPONIBLE",
@@ -89,15 +89,14 @@ class ControllerAnnonce extends Controller
                 null,
                 null
             );
-            $managerAnnonce = new AnnonceDao($this->getPdo());
-            $managerAnnonce->insererAnnonce($annonce1);
-
             $managerAnnonce = new AnnonceDAO($this->getPdo());
             try {
+                if (!$particulier) {
+                    throw new Exception("Erreur : Impossible de récupérer le profil Particulier. Verifiez que vous tes connecté avec un compte Particulier.");
+                }
                 $managerAnnonce->insererAnnonce($annonce1);
-            }
-            catch (\Exception $e) {
-                echo $e->getMessage();
+            } catch (\Exception $e) {
+                echo "Erreur lors de l'insertion : " . $e->getMessage();
             }
             //Appel de la requête qui créé l'annonce
             header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ALL");
