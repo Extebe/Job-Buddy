@@ -4,6 +4,6 @@ parameters:
     secondary: '#D4A373'
     accent: '#CCD5AE'
     bg_color: '#FAEDCD'
-    card_bg: '#FFFEFA'
+    card_bg: '#F7F5EF'
     text_dark: '#2D1E17'
     text_light: '#6D5A50'
