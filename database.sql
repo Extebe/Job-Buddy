@@ -57,10 +57,9 @@ CREATE TABLE Annonce(
 
 
   PRIMARY KEY(id),
-  FOREIGN KEY(idParticulier) REFERENCES Utilisateur(id)
+  FOREIGN KEY(idParticulier) REFERENCES Utilisateur(id),
+  FULLTEXT(titre, description, typeService, lieu)
 );
-
-
 
 
 CREATE TABLE Signalement(
