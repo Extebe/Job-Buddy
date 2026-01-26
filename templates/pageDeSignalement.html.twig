@@ -1,0 +1,24 @@
+{% extends 'base_template.html.twig' %}
+
+{% block content %}
+    <div class="contenaire">
+        <h3>Signalement de l'annonce</h3>
+        <form action="index.php?controleur=signalement&methode=ajouterBd" method="post" class="mt-4 w-75 mx-auto">
+            <input type="hidden" name="idAnnonce" value= {{ idAnnonce }}>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Motif du signalement</label>
+                <input type="text" class="form-control" maxlength="50" title="Max 50 caractères" id="motif" name="motif" required>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Description du signalement</label>
+                <input type="text" class="form-control" maxlength="500" title="Max 500 caractères" id="description" name="description" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Signaler l'annonce</button>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}

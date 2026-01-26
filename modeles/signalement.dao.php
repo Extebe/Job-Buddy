@@ -112,5 +112,21 @@ class SignalementDao
         }
         return $listeSignalement;
     }
+
+    /**
+     * @brief Ajoute le signalement de l'annonce dans la base de données
+     * @param Signalement $signalement .
+     */
+    public function updateSignalementAnnonce($motif, $description, $idSignaleur, $idAnnonceSignale):void
+    {
+        $sql="INSERT INTO Signalement (dateSignalement, motif, description, idSignaleur,idAnnonceSignale)
+              VALUES (NOW(), '$motif', '$description', $idSignaleur, $idAnnonceSignale)";
+              
+        $pdoStatement=$this->pdo->prepare($sql);
+        $pdoStatement->execute();
+        
+        header("Location: index.php");
+                exit();
+    }
 }
 ?>

@@ -356,6 +356,21 @@ class AnnonceDao
             "idEtudiant" => $idEtudiant
         ));
     }
+    /**
+     * @brief Trouve l'annonces par l'id de l'utilisateur et l'id de l'annonce.
+     * @param int $utilisateur ID de l'utilisateur.
+     * @return array Tableau d'annonces.
+     */
+    public function findById($utilisateur,$idAnnonce)
+    {
+        $sql = "SELECT * FROM Annonce WHERE idParticulier = :idParticulier AND id=:id";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array("idParticulier" => $utilisateur,"id"=>$idAnnonce));
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $annonce = $pdoStatement->fetch();
+        $annonce = $this->hydrate($annonce);
+        return $annonce;
+    }
 
     /**
      * @brief Trouve les annonces par utilisateur et par état.

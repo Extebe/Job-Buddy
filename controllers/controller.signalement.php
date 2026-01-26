@@ -21,14 +21,38 @@ class ControllerSignalement extends Controller
     public function signalerAnnonce()
     {
         $template = $this->getTwig();
+        $idAnnonce=$_GET['idAnnonce'];
 
         //recupération des annonces
-        $managerSignalement = new SignalementDao($this->getPdo());
-        $tableau = $managerSignalement->findAllAssoc();
-        $signalements = $managerSignalement->hydrateAll($tableau);
+        // $managerAnnonce = new AnnonceDao($this->getPdo());
+        // $annonce = $managerAnnonce->findById($idUtilisateur,$idAnnonce);
+        // $annonce = $managerAnnonce->hydrate($annonce);
 
-        echo $template->render('detailAnnonce.html.twig', [
-            'signalements' => $signalements
+        echo $template->render('pageDeSignalement.html.twig', [
+            'idAnnonce' => $idAnnonce,
+            'signaleur'=> Utilisateur::getUser()
         ]);
+    }
+
+    /**
+     * @brief Ajoute à la base de données le signalement
+     */
+    public function ajouterBd()
+    {
+        $signaleur = Utilisateur::getUser();
+        if(!$signaleur){
+            header('Location: index.php?controleur=utilisateur&methode=pageConnexion');
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD']==='POST') {
+            $idAnnonce = $_POST['idAnnonce'];
+            $idSignaleur = $signaleur->getId();
+            $motif = $_POST['motif'];
+            $description = $_POST['description'];
+
+            $managerSignalement= new SignalementDao($this->getPdo());
+            $signalement = $managerSignalement->updateSignalementAnnonce($motif,$description,$idSignaleur,$idAnnonce);
+        }        
     }
 }
