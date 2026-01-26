@@ -415,4 +415,85 @@ class AnnonceDao
         return $pdoStatement->fetchAll();
     }
 
+    public function rechercherAnnonces(array $filtres, string $recherche): array
+    {
+        $sql = "SELECT * FROM Annonce WHERE ";
+        foreach ($filtres as $attribut => $valeur) {
+            $sql .= " $attribut = $valeur AND";
+        }
+        $sql .= " MATCH(titre, description, typeService, lieu) AGAINST (:recherche IN NATURAL LANGUAGE MODE);";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(['recherche' => $recherche]);
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $resultats = $pdoStatement->fetchAll();
+        return $this->hydrateAll($resultats);
+    }
+
+    /**
+     * @brief Recherche et filtre des annonces selon les critères fournis.
+     * @param string $recherche Texte de recherche FULLTEXT.
+     * @param string $typeService Type de service.
+     * @param string $lieu Lieu de l'annonce.
+     * @param string $remunerationMin Rémunération minimale.
+     * @param string $remunerationMax Rémunération maximale.
+     * @param string $dateDebut Date de début souhaitée.
+     * @param string $heureDebut Heure de début souhaitée.
+     * @return array Tableau d'annonces filtrées.
+     */
+    public function search(string $recherche, string $typeService, string $lieu, string $remunerationMin, string $remunerationMax, string $dateDebut, string $heureDebut): array
+    {
+        $sql = "SELECT * FROM Annonce WHERE etat = 'disponible' AND dateSuppression IS NULL";
+        $params = [];
+
+        // Recherche FULLTEXT sur titre, description, typeService, lieu
+        if (!empty($recherche)) {
+            $sql .= " AND MATCH(titre, description, typeService, lieu) AGAINST(:recherche IN NATURAL LANGUAGE MODE)";
+            $params['recherche'] = $recherche;
+        }
+
+        // Filtre type de service
+        if (!empty($typeService)) {
+            $sql .= " AND typeService = :typeService";
+            $params['typeService'] = $typeService;
+        }
+
+        // Filtre lieu
+        if (!empty($lieu)) {
+            $sql .= " AND lieu LIKE :lieu";
+            $params['lieu'] = '%' . $lieu . '%';
+        }
+
+        // Filtre rémunération minimale
+        if (!empty($remunerationMin)) {
+            $sql .= " AND remuneration >= :remunerationMin";
+            $params['remunerationMin'] = (float)$remunerationMin;
+        }
+
+        // Filtre rémunération maximale
+        if (!empty($remunerationMax)) {
+            $sql .= " AND remuneration <= :remunerationMax";
+            $params['remunerationMax'] = (float)$remunerationMax;
+        }
+
+        // Filtre date de début
+        if (!empty($dateDebut)) {
+            $sql .= " AND DATE(dateDebutRealisation) >= :dateDebut";
+            $params['dateDebut'] = $dateDebut;
+        }
+
+        // Filtre heure de début
+        if (!empty($heureDebut)) {
+            $sql .= " AND TIME(dateDebutRealisation) >= :heureDebut";
+            $params['heureDebut'] = $heureDebut;
+        }
+
+        $sql .= " ORDER BY datePublication DESC";
+
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute($params);
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $resultats = $pdoStatement->fetchAll();
+        
+        return $this->hydrateAll($resultats);
+    }
 }

@@ -68,7 +68,7 @@
                     <div class="image-zone">
                         <img
                             src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
-                            class="icon-annoncea"
+                            class="icon-annonce"
                             alt="Icon {{ annonce.typeService }}"
                         >
                     </div>
@@ -116,6 +116,11 @@
                                             </a>
                                         {% endif %}
                                     </div>
+
+                                    {% if annonce.getEtat() == "TERMINE"%}
+                                        <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}"
+                                           class="btn btn-outline-danger btn-sm">Noter</a>
+                                    {% endif %}
 
                                 </div>
                             </div>
