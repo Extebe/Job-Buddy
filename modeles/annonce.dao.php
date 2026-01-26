@@ -226,7 +226,7 @@ class AnnonceDao
             'idParticulier' => $annonce->getCreateur(),
             'titre' => $annonce->getTitre(),
             'description' => $annonce->getDescription(),
-            'typeService' => $annonce->getTypeService(),
+            'typeService' => lcfirst($annonce->getTypeService()),
             'lieu' => $annonce->getLieu(),
             'remuneration' => $annonce->getRemuneration(),
             'dateDebutRealisation' => $annonce->getDateDebutRealisation(),
