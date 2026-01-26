@@ -346,4 +346,45 @@ class ControllerAnnonce extends Controller
             'icons' => Constantes::getConstantes()['icons']
         ]);
     }
+
+    /**
+     * @brief Recherche et filtre des annonces.
+     */
+    public function rechercher() {
+        $template = $this->getTwig();
+        $managerAnnonce = new AnnonceDao($this->getPdo());
+        
+        // Récupérer les paramètres de recherche et filtres
+        $recherche = $_POST['recherche'] ?? '';
+        $typeService = $_POST['typeService'] ?? '';
+        $lieu = $_POST['lieu'] ?? '';
+        $remunerationMin = $_POST['remunerationMin'] ?? '';
+        $remunerationMax = $_POST['remunerationMax'] ?? '';
+        $dateDebut = $_POST['dateDebut'] ?? '';
+        $heureDebut = $_POST['heureDebut'] ?? '';
+        
+        // Construire la requête de recherche
+        $annonces = [];
+        if (!empty($recherche) || !empty($typeService) || !empty($lieu) || !empty($remunerationMin) || !empty($remunerationMax) || !empty($dateDebut) || !empty($heureDebut)) {
+            // Utiliser la méthode search pour filtrer
+            $annonces = $managerAnnonce->search($recherche, $typeService, $lieu, $remunerationMin, $remunerationMax, $dateDebut, $heureDebut);
+        } else {
+            // Si aucun critère, afficher toutes les annonces disponibles
+            $tableau = $managerAnnonce->findAllAssocDispo();
+            $annonces = $managerAnnonce->hydrateAll($tableau);
+        }
+
+        echo $template->render('index.html.twig', [
+            'annonces' => $annonces,
+            'icons' => Constantes::getConstantes()['icons'],
+            'user' => Utilisateur::getUser(),
+            'recherche' => $recherche,
+            'typeService' => $typeService,
+            'lieu' => $lieu,
+            'remunerationMin' => $remunerationMin,
+            'remunerationMax' => $remunerationMax,
+            'dateDebut' => $dateDebut,
+            'heureDebut' => $heureDebut
+        ]);
+    }
 }

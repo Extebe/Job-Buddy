@@ -111,14 +111,23 @@
             </a>
 
             <ul class="navbar-nav mx-auto d-flex align-items-center">
-                <li class="nav-item d-flex align-items-center me-4">
-                    <form class="d-flex">
-                        <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
-                    </form>
-                </li>
-                <li class="nav-item d-flex align-items-center me-2">
-                    <button class="btn btn-outline-success" type="submit">Filtrer</button>
-                </li>
+                <form method='POST' action="index.php?controleur=annonce&methode=rechercher" id="filterForm">
+                    <div class="d-flex align-items-center gap-2">
+                        <li class="nav-item">
+                            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+                                <span>Filtres</span>
+                            </button>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <input class="form-control form-control-lg" type="search" name="rechercheInput" id="searchInput" placeholder="Search" aria-label="Search" value="{{ recherche|default('') }}">
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-outline-success" type="submit">Appliquer</button>
+                        </li>
+                        <!-- Champ de recherche caché pour le formulaire -->
+                        <input type="hidden" name="recherche" id="hiddenRecherche" value="{{ recherche|default('') }}">
+                    </div>
+                </form>
             </ul>
 
             {% if user.role == "Particulier " %}
@@ -174,6 +183,59 @@
     </nav>
 </header>
 
+<!-- Menu des filtres (collapsible) -->
+<div class="collapse" id="filterCollapse">
+    <div style="background-color: #F7F5EF; border-bottom: 2px solid #dee2e6; padding: 20px 0;">
+        <div class="container-fluid">
+            <div class="row g-3">
+                <div class="col-md-2">
+                    <label for="typeService" class="form-label">Type de Service</label>
+                    <select class="form-select" id="typeService" name="typeService" form="filterForm">
+                        <option value="">-- Tous --</option>
+                        <option value="baby-sitting" {% if typeService == 'baby-sitting' %}selected{% endif %}>Baby-sitting</option>
+                        <option value="jardinage" {% if typeService == 'jardinage' %}selected{% endif %}>Jardinage</option>
+                        <option value="bricolage" {% if typeService == 'bricolage' %}selected{% endif %}>Bricolage</option>
+                        <option value="ménage" {% if typeService == 'ménage' %}selected{% endif %}>Ménage</option>
+                        <option value="transport" {% if typeService == 'transport' %}selected{% endif %}>Transport</option>
+                        <option value="aide informatique" {% if typeService == 'aide informatique' %}selected{% endif %}>Aide informatique</option>
+                        <option value="aide aux devoirs" {% if typeService == 'aide aux devoirs' %}selected{% endif %}>Aide aux devoirs</option>
+                        <option value="autre" {% if typeService == 'autre' %}selected{% endif %}>Autre</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label for="lieu" class="form-label">Lieu</label>
+                    <input type="text" class="form-control" id="lieu" name="lieu" form="filterForm" placeholder="Ville ou code postal" value="{{ lieu|default('') }}">
+                </div>
+
+                <div class="col-md-2">
+                    <label for="remunerationMin" class="form-label">Montant Min</label>
+                    <input type="number" class="form-control" id="remunerationMin" name="remunerationMin" form="filterForm" placeholder="Min" step="0.01" value="{{ remunerationMin|default('') }}">
+                </div>
+
+                <div class="col-md-2">
+                    <label for="remunerationMax" class="form-label">Montant Max</label>
+                    <input type="number" class="form-control" id="remunerationMax" name="remunerationMax" form="filterForm" placeholder="Max" step="0.01" value="{{ remunerationMax|default('') }}">
+                </div>
+
+                <div class="col-md-2">
+                    <label for="dateDebut" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="dateDebut" name="dateDebut" form="filterForm" value="{{ dateDebut|default('') }}">
+                </div>
+
+                <div class="col-md-2">
+                    <label for="heureDebut" class="form-label">Heure</label>
+                    <input type="time" class="form-control" id="heureDebut" name="heureDebut" form="filterForm" value="{{ heureDebut|default('') }}">
+                </div>
+
+                <div class="col-12 d-flex justify-content-end gap-2 mt-3">
+                    <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('typeService').value = ''; document.getElementById('lieu').value = ''; document.getElementById('remunerationMin').value = ''; document.getElementById('remunerationMax').value = ''; document.getElementById('dateDebut').value = ''; document.getElementById('heureDebut').value = '';">Réinitialiser les filtres</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% block content %}
 {% endblock %}
 
@@ -208,6 +270,33 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script>
+        // Synchronisation entre la barre de recherche et le champ caché du formulaire
+        const searchInput = document.getElementById('searchInput');
+        const hiddenRecherche = document.getElementById('hiddenRecherche');
+        
+        searchInput.addEventListener('input', function() {
+            hiddenRecherche.value = this.value;
+        });
+
+        // Ouvrir automatiquement le formulaire de filtres s'il y a des filtres actifs
+        window.addEventListener('load', function() {
+            const hasFilters = 
+                document.getElementById('typeService').value ||
+                document.getElementById('lieu').value ||
+                document.getElementById('remunerationMin').value ||
+                document.getElementById('remunerationMax').value ||
+                document.getElementById('dateDebut').value ||
+                document.getElementById('heureDebut').value;
+            
+            if (hasFilters) {
+                const filterCollapse = new bootstrap.Collapse(document.getElementById('filterCollapse'), {
+                    toggle: true
+                });
+            }
+        });
+    </script>
 {% endblock %}
 </body>
 </html>
