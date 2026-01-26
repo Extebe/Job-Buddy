@@ -32,4 +32,32 @@ class ControllerNewsLetter extends Controller
         $template = $this->getTwig();
         echo $template->render('politiqueConfidentialite.html.twig', ['user' => Utilisateur::getUser()]);
     }
+
+    /**
+     * Inscrit l'utilisateur 
+     *  à la newsletter
+     * @return void
+     */
+    public function newsletter(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'];
+            $pdoNewsLetter = new NewLetterDao($this->getPdo());
+
+            if (!$pdoNewsLetter->emailExisteNewsletter($email)) {
+                $newsLetter = new NewLetter(null, $email);
+                $pdoNewsLetter->insererEmail($newsLetter);
+                $template = $this->getTwig();
+                echo $template->render('inscriptionNewsLetterSucces.html.twig', ['user' => Utilisateur::getUser()]);
+            }
+            else {
+                $template = $this->getTwig();
+                echo $template->render('inscriptionNewsLetter.html.twig', [
+                    'user' => Utilisateur::getUser(),
+                    'erreur' => 'Cet email est déjà inscrit à la newsletter.'
+                ]);
+                return;
+            }
+        }
+    }
 }

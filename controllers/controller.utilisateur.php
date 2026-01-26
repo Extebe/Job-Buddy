@@ -42,23 +42,12 @@ class ControllerUtilisateur extends Controller
      */
     public function pageInscription()
     {
-        $msg_erreur = null; // s'il n'y a pas d'erreur, on met la variable à null
-        //En cas d'erreur 
-        if (isset($_SESSION['msg_erreur'])) {
-            $msg_erreur = $_SESSION['msg_erreur'];
-            unset($_SESSION['msg_erreur']);
-        }
-
-        if (isset($_SESSION['id'])) {
-            //À faire, verifier qu'ils sont valides
-            $role = $_SESSION['id'];
-        }
-
         $template = $this->getTwig();
 
         echo $template->render('pageInscription.html.twig', [
             'user' => Utilisateur::getUser(),
-            'msg_erreur' => $msg_erreur
+            'msg_erreur' => null,
+            'formData' => []
         ]);
     }
 
@@ -135,6 +124,21 @@ class ControllerUtilisateur extends Controller
             $password = $_POST['password'] ?? '';
             $cvec = $_POST['cvec'] ?? '';
 
+            // Données du formulaire à transmettre à la vue en cas d'erreur
+            $formData = [
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'datenaiss' => $dateNaiss,
+                'phone' => $phone,
+                'role' => $role,
+                'codeINE' => $codeINE,
+                'ville' => $ville,
+                'adresse' => $adresse,
+                'codePostal' => $codePostal,
+                'email' => $email,
+                'cvec' => $cvec
+            ];
+
             if ($role == 'Etudiant') {
                 $user = new Etudiant($id = null, $codeINE, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null, $cvec);
 
@@ -152,39 +156,41 @@ class ControllerUtilisateur extends Controller
             }
             //sinon affiche des messages d'erreurs selon le probleme
             catch (Exception $e) {
+                $template = $this->getTwig();
+                $msg_erreur = "";
+
                 switch ($e->getMessage()) {
                     case "compte_existant":
-                        $_SESSION['msg_erreur'] = "Ce compte existe déjà.";
-                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
-                        exit();
+                        $msg_erreur = "Ce compte existe déjà.";
+                        break;
 
                     case "mdp_faible":
-                        $_SESSION['msg_erreur'] = "Erreur : Mot de passe invalide.
+                        $msg_erreur = "Erreur : Mot de passe invalide.
                         Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
-                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
-                        exit();
+                        break;
 
                     case "CVEC invalide":
-                        $_SESSION['msg_erreur'] = "Erreur : CVEC invalide.";
-                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
-                        exit();
+                        $msg_erreur = "Erreur : CVEC invalide.";
+                        break;
 
                     case "INE _utilise":
-                        $_SESSION['msg_erreur'] = "Erreur : Ce code INE est déjà utilisé.";
-                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
-                        exit();
+                        $msg_erreur = "Erreur : Ce code INE est déjà utilisé.";
+                        break;
 
                     case "CVEC_utilise":
-                        $_SESSION['msg_erreur'] = "Erreur : Ce CVEC est déjà utilisé.";
-                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
-                        exit();
+                        $msg_erreur = "Erreur : Ce CVEC est déjà utilisé.";
+                        break;
 
                     default:
-                        $_SESSION['msg_erreur'] = "Une erreur inattendue est survenue : {$e->getMessage()}";
-                        header("Location: index.php?controleur=utilisateur&methode=pageInscription");
-                        echo "<h1>Une erreur inattendue est survenue</h1>";
-                        exit();
+                        $msg_erreur = "Une erreur inattendue est survenue : {$e->getMessage()}";
                 }
+
+                // Affichage du formulaire avec les données et le message d'erreur
+                echo $template->render('pageInscription.html.twig', [
+                    'user' => Utilisateur::getUser(),
+                    'msg_erreur' => $msg_erreur,
+                    'formData' => $formData
+                ]);
             }
         }
     }
@@ -558,27 +564,6 @@ class ControllerUtilisateur extends Controller
         } else {
             // Si pas POST, redirection ou affichage formulaire (géré par pageModifierCompte)
             $this->pageModifierCompte();
-        }
-    }
-
-    /**
-     * Inscrit l'utilisateur 
-     *  à la newsletter
-     * @return void
-     */
-    public function newsletter(): void
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'];
-            $pdoNewsLetter = new NewLetterDao($this->getPdo());
-
-            if (!$pdoNewsLetter->emailExisteNewsletter($email)) {
-                $newsLetter = new NewLetter(null, $email);
-                $pdoNewsLetter->insererEmail($newsLetter);
-                echo "l'email a bien été enregistrer dans la base de données";
-            }
-            echo "Vous vous êtes déjà inscrit.";
-            echo "<a href='index.php'> Retour à la page d'accueil</a>";
         }
     }
 

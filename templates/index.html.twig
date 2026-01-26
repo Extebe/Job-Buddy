@@ -17,7 +17,7 @@
             <!-- Image -->
             <div class="image-zone">
                 <img
-                    src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
+                    src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-white.png"
                     class="icon-annoncea"
                     alt="Icon {{ annonce.typeService }}"
                 >
@@ -105,6 +105,27 @@
 
 .card-item {
     overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+.card-item:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 25px -5px rgba(93, 42, 24, 0.1), 0 10px 10px -5px rgba(93, 42, 24, 0.04);
+    border-color: rgba(212, 163, 115, 0.4) !important;
+    z-index: 10;
+}
+
+/* Fluidité pour l'icône */
+.icon-annoncea {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+}
+
+.card-item:hover .icon-annoncea {
+    transform: scale(1.15) rotate(5deg);
 }
 
 

@@ -62,13 +62,13 @@
         {% for annonce in annonces %}
         <div class="col-12 d-flex justify-content-center">
             <div class="card-slot fixed-card-width">
-                <div class="card-item h-100">
+                <div class="card-item">
 
                     <!-- Image -->
                     <div class="image-zone">
                         <img
                             src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
-                            class="icon-annonce"
+                            class="icon-annonceaa"
                             alt="Icon {{ annonce.typeService }}"
                         >
                     </div>
@@ -99,7 +99,7 @@
                                             </a>
                                         {% endif %}
 
-                                        {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE"
+                                        {% if user.getRole() == "Particulier" and annonce.getEtat() == "DISPONIBLE"
                                             and annonce.getCreateur().getId() == user.getId() %}
                                             <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
                                             class="btn btn-outline-success btn-sm">
@@ -107,7 +107,7 @@
                                             </a>
                                         {% endif %}
 
-                                        {% if user.getRole() == "Particulier "
+                                        {% if user.getRole() == "Particulier"
                                             and annonce.getCreateur().getId() == user.getId() %}
                                             <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
                                             class="btn btn-outline-danger btn-sm"
@@ -171,7 +171,6 @@
 .card-item {
     background-color: #ffffff;
     border-radius: 10px;
-    transition: transform 0.2s ease-in-out;
     display: flex;
     flex-direction: row;
     overflow: hidden;
@@ -179,10 +178,25 @@
     position: relative;
     z-index: 1;
     height: 150px;
+    /* Transition plus fluide et spécifique */
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform, box-shadow;
 }
 
 .card-slot:hover .card-item {
-    transform: translate(10px, -10px);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Fluidité pour l'icône */
+.icon-annoncea {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+}
+
+.card-slot:hover .icon-annoncea {
+    transform: scale(1.15) rotate(5deg);
 }
 
 /* Image */
