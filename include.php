@@ -25,12 +25,6 @@ require_once "modeles/bd.class.php";
 require_once "modeles/signalement.class.php";
 require_once "modeles/signalement.dao.php";
 
-require_once "modeles/signalementAnnonce.class.php";
-require_once "modeles/signalementAnnonce.dao.php";
-
-require_once "modeles/signalementUtilisateur.class.php";
-require_once "modeles/signalementUtilisateur.dao.php";
-
 require_once "modeles/newsLetter.class.php";
 require_once "modeles/newsLetter.dao.php";
 
@@ -43,6 +37,7 @@ require_once "controllers/controller.utilisateur.php";
 require_once "controllers/controller.note.php";
 require_once "controllers/controller.particulier.php";
 require_once "controllers/controller.newsLetter.php";
+require_once "controllers/controller.signalement.php";
 
 // Constantes
 require_once "config/constantes.class.php";
