@@ -344,7 +344,7 @@ class AnnonceDao
     public function accepterEtudiant($idAnnonce, $idEtudiant)
     {
         // Accepter un étudiant
-        $sql1 = "UPDATE Annonce SET etat = 'ACCEPTE' WHERE id = :idAnnonce";
+        $sql1 = "UPDATE Annonce SET etat = 'accepte' WHERE id = :idAnnonce";
         $pdoStatement1 = $this->pdo->prepare($sql1);
         $pdoStatement1->execute(array(
             "idAnnonce" => $idAnnonce

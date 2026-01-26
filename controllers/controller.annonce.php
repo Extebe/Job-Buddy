@@ -84,7 +84,7 @@ class ControllerAnnonce extends Controller
                 (float) $remuneration,
                 $dateDebut,
                 $dateFin,
-                "DISPONIBLE",
+                "disponible",
                 date("Y-m-d H:i:s"),
                 null,
                 null
