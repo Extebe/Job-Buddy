@@ -1,0 +1,164 @@
+{% extends 'base_template.html.twig' %}
+
+{% block title %}Statistiques - JobBuddy{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="./CSS/annonces.css">
+
+<div class="container py-4">
+    <h1 class="mb-4">
+        <img src="./images/icons/stats-icon.png" alt="Stats" width="40" height="40" onerror="this.style.display='none'">
+        Statistiques par Type de Service
+    </h1>
+    
+    <p class="text-muted mb-4">
+        Ces statistiques sont calculées à partir d'une requête SQL utilisant une <strong>sous-requête</strong> et <strong>GROUP BY</strong>.
+    </p>
+
+    <!-- Résumé global -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-center h-100" style="background-color: var(--card-bg, #fff8e7); border-color: var(--primary, #712200);">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: var(--primary, #712200);">Total Annonces</h5>
+                    <h2 class="display-4" style="color: var(--primary, #712200);">{{ totaux.nbAnnonces }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center h-100" style="background-color: var(--card-bg, #fff8e7); border-color: var(--primary, #712200);">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: var(--primary, #712200);">Rémunération Totale</h5>
+                    <h2 class="display-4" style="color: var(--primary, #712200);">{{ totaux.remunerationTotale }} €</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center h-100" style="background-color: var(--card-bg, #fff8e7); border-color: var(--primary, #712200);">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: var(--primary, #712200);">Total Candidatures</h5>
+                    <h2 class="display-4" style="color: var(--primary, #712200);">{{ totaux.totalPostulants }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tableau détaillé par type -->
+    <div class="card" style="border-color: var(--primary, #712200);">
+        <div class="card-header" style="background-color: var(--primary, #712200); color: var(--text-light, #fbf2dd);">
+            <h5 class="mb-0">Détail par Type de Service</h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover mb-0">
+                <thead style="background-color: var(--secondary, #a85d00); color: var(--text-light, #fbf2dd);">
+                    <tr>
+                        <th scope="col">Type de Service</th>
+                        <th scope="col" class="text-center">Nb Annonces</th>
+                        <th scope="col" class="text-center">Rémunération Moy.</th>
+                        <th scope="col" class="text-center">Rémunération Totale</th>
+                        <th scope="col" class="text-center">Nb Candidatures</th>
+                        <th scope="col" class="text-center">Candidatures/Annonce</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stat in statistiques %}
+                    <tr>
+                        <td>
+                            {% if icons.types[stat.typeService] is defined %}
+                                <img src="{{ icons.base_path }}/{{ icons.types[stat.typeService] }}-black.png" 
+                                     alt="{{ stat.typeService }}" 
+                                     width="24" height="24"
+                                     class="me-2">
+                            {% endif %}
+                            <strong>{{ stat.typeService|capitalize }}</strong>
+                        </td>
+                        <td class="text-center">
+                            <span class="badge bg-primary" style="background-color: var(--primary, #712200) !important;">
+                                {{ stat.nbAnnonces }}
+                            </span>
+                        </td>
+                        <td class="text-center">{{ stat.remunerationMoyenne }} €</td>
+                        <td class="text-center">{{ stat.remunerationTotale }} €</td>
+                        <td class="text-center">
+                            <span class="badge bg-success" style="background-color: var(--accent, #4a7c59) !important;">
+                                {{ stat.totalPostulants }}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            {% if stat.nbAnnonces > 0 %}
+                                {{ (stat.totalPostulants / stat.nbAnnonces)|round(1) }}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            Aucune statistique disponible
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Explication de la requête SQL -->
+    <div class="card mt-4" style="border-color: var(--primary, #712200);">
+        <div class="card-header" style="background-color: var(--secondary, #a85d00); color: var(--text-light, #fbf2dd);">
+            <h6 class="mb-0">🔍 Requête SQL utilisée</h6>
+        </div>
+        <div class="card-body">
+            <pre style="background-color: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+    a.typeService,
+    COUNT(*) AS nbAnnonces,
+    ROUND(AVG(a.remuneration), 2) AS remunerationMoyenne,
+    ROUND(SUM(a.remuneration), 2) AS remunerationTotale,
+    <span style="color: #66d9ef;">-- Sous-requête pour compter les postulants</span>
+    (
+        SELECT COUNT(*) 
+        FROM Postuler p 
+        INNER JOIN Annonce a2 ON p.idAnnonce = a2.id 
+        WHERE a2.typeService = a.typeService
+    ) AS totalPostulants
+FROM Annonce a
+WHERE a.dateSuppression IS NULL
+<span style="color: #66d9ef;">-- GROUP BY pour regrouper par type</span>
+GROUP BY a.typeService
+ORDER BY nbAnnonces DESC</code></pre>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="index.php" class="btn btn-outline-success">
+            ← Retour à l'accueil
+        </a>
+    </div>
+</div>
+
+<style>
+.card {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.display-4 {
+    font-weight: bold;
+}
+
+.table th {
+    font-weight: 600;
+}
+
+.btn-outline-success {
+    color: var(--primary, #712200);
+    border-color: var(--primary, #712200);
+}
+
+.btn-outline-success:hover {
+    color: var(--text-light, #fbf2dd);
+    background-color: var(--primary, #712200);
+    border-color: var(--primary, #712200);
+}
+</style>
+{% endblock %}

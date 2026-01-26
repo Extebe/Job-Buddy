@@ -227,7 +227,7 @@ class AnnonceDao
             'idParticulier' => $annonce->getCreateur(),
             'titre' => $annonce->getTitre(),
             'description' => $annonce->getDescription(),
-            'typeService' => $annonce->getTypeService(),
+            'typeService' => lcfirst($annonce->getTypeService()),
             'lieu' => $annonce->getLieu(),
             'remuneration' => $annonce->getRemuneration(),
             'dateDebutRealisation' => $annonce->getDateDebutRealisation(),
@@ -374,5 +374,46 @@ class AnnonceDao
         return $annonce;
     }
 
+    /**
+     * @brief Récupère les statistiques des annonces groupées par type de service.
+     * 
+     * Cette requête utilise :
+     * - Une sous-requête pour compter le nombre de postulants par type de service
+     * - GROUP BY pour regrouper les résultats par type de service
+     * - Des fonctions d'agrégation (COUNT, AVG, SUM)
+     * 
+     * @return array Tableau associatif contenant pour chaque type de service :
+     *               - typeService : le type de service
+     *               - nbAnnonces : nombre d'annonces
+     *               - remunerationMoyenne : rémunération moyenne
+     *               - remunerationTotale : somme des rémunérations
+     *               - totalPostulants : nombre total de postulants (via sous-requête)
+     */
+    public function getStatistiquesParType(): array
+    {
+        $sql = "
+            SELECT 
+                a.typeService,
+                COUNT(*) AS nbAnnonces,
+                ROUND(AVG(a.remuneration), 2) AS remunerationMoyenne,
+                ROUND(SUM(a.remuneration), 2) AS remunerationTotale,
+                (
+                    SELECT COUNT(*) 
+                    FROM Postuler p 
+                    INNER JOIN Annonce a2 ON p.idAnnonce = a2.id 
+                    WHERE a2.typeService = a.typeService
+                ) AS totalPostulants
+            FROM Annonce a
+            WHERE a.dateSuppression IS NULL
+            GROUP BY a.typeService
+            ORDER BY nbAnnonces DESC
+        ";
+
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute();
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+
+        return $pdoStatement->fetchAll();
+    }
 
 }

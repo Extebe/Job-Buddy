@@ -81,7 +81,7 @@ class ControllerAnnonce extends Controller
                 $description,
                 $typeService,
                 $lieu,
-                (float)$remuneration,
+                (float) $remuneration,
                 $dateDebut,
                 $dateFin,
                 "DISPONIBLE",
@@ -89,15 +89,14 @@ class ControllerAnnonce extends Controller
                 null,
                 null
             );
-            $managerAnnonce = new AnnonceDao($this->getPdo());
-            $managerAnnonce->insererAnnonce($annonce1);
-
             $managerAnnonce = new AnnonceDAO($this->getPdo());
             try {
+                if (!$particulier) {
+                    throw new Exception("Erreur : Impossible de récupérer le profil Particulier. Verifiez que vous tes connecté avec un compte Particulier.");
+                }
                 $managerAnnonce->insererAnnonce($annonce1);
-            }
-            catch (\Exception $e) {
-                echo $e->getMessage();
+            } catch (\Exception $e) {
+                echo "Erreur lors de l'insertion : " . $e->getMessage();
             }
             //Appel de la requête qui créé l'annonce
             header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ALL");
@@ -309,6 +308,42 @@ class ControllerAnnonce extends Controller
         // echo $annonce->getCreateur()->getId();
         echo $template->render('modifierAnnonce.html.twig', [
             'annonce' => $annonce,
+        ]);
+    }
+
+    /**
+     * @brief Affiche les statistiques des annonces par type de service.
+     * 
+     * Utilise une requête SQL avec sous-requête et GROUP BY pour calculer :
+     * - Le nombre d'annonces par type de service
+     * - La rémunération moyenne et totale
+     * - Le nombre total de postulants par type
+     */
+    public function afficherStatistiques(): void
+    {
+        $template = $this->getTwig();
+
+        $managerAnnonce = new AnnonceDao($this->getPdo());
+        $statistiques = $managerAnnonce->getStatistiquesParType();
+
+        // Calcul des totaux globaux
+        $totaux = [
+            'nbAnnonces' => 0,
+            'remunerationTotale' => 0,
+            'totalPostulants' => 0
+        ];
+
+        foreach ($statistiques as $stat) {
+            $totaux['nbAnnonces'] += $stat['nbAnnonces'];
+            $totaux['remunerationTotale'] += $stat['remunerationTotale'];
+            $totaux['totalPostulants'] += $stat['totalPostulants'];
+        }
+
+        echo $template->render('statistiques.html.twig', [
+            'user' => Utilisateur::getUser(),
+            'statistiques' => $statistiques,
+            'totaux' => $totaux,
+            'icons' => Constantes::getConstantes()['icons']
         ]);
     }
 }
