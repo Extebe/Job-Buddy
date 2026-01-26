@@ -103,7 +103,8 @@ class AnnonceDao
      */
     public function findAllAssocDispo()
     {
-        $sql = "SELECT * FROM Annonce LEFT JOIN Postuler ON Annonce.id=Postuler.idAnnonce WHERE etat = 'DISPONIBLE' GROUP BY typeService ORDER BY COUNT(Postuler.idEtudiant)";
+        $sql = "SELECT id, idParticulier,titre, description, typeService, lieu, remuneration, dateDebutRealisation, dateFinRealisation, etat, datePublication, dateSuppression, motifSuppression,COUNT(Postuler.idEtudiant) as nbEtudiant
+        FROM Annonce LEFT JOIN Postuler ON Annonce.id=Postuler.idAnnonce WHERE etat = 'disponible' GROUP BY id ORDER BY typeService,nbEtudiant DESC ;";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute();
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
