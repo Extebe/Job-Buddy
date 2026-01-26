@@ -9,33 +9,33 @@
         <form action="index.php?controleur=utilisateur&methode=inscription" method="POST" class="mx-auto p-4" style="max-width: 500px; border: 1.5px solid #4B352A; border-radius: 8px;">
             <div class="mb-3">
                 <label for="text" class="form-label">Nom :</label>
-                <input type="text" name="nom" id="nom" class="form-control" required>
+                <input type="text" name="nom" id="nom" class="form-control" value="{{ formData.nom ?? '' }}" required>
             </div>
             <div class="mb-3">
                 <label for="text" class="form-label">Prenom :</label>
-                <input type="text" name="prenom" id="prenom" class="form-control" required>
+                <input type="text" name="prenom" id="prenom" class="form-control" value="{{ formData.prenom ?? '' }}" required>
             </div>
             <div class="mb-3">
                 <label for="date" class="form-label">Date de naissance :</label>
-                <input type="date" name="datenaiss" id="datenaiss" class="form-control" required>
+                <input type="date" name="datenaiss" id="datenaiss" class="form-control" value="{{ formData.datenaiss ?? '' }}" required>
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Téléphone :</label>
-                <input type="text" name="phone" id="phone" class="form-control" required>
+                <input type="text" name="phone" id="phone" class="form-control" value="{{ formData.phone ?? '' }}" required>
             </div>
             {# -------------------------------------------------------------------------------------------------- #}
             <div class="mb-3">
                 <label for="role" class="form-label">Rôle :</label>
                 <select name="role" id="role" class="form-control" required onchange="toggleEtudiantFields()">
-                    <option value="" selected disabled>-- Choisissez une option --</option>
-                    <option value="Particulier">Particulier</option>
-                    <option value="Etudiant">Etudiant</option>
+                    <option value="" {% if formData.role ?? '' == '' %}selected disabled{% endif %}>-- Choisissez une option --</option>
+                    <option value="Particulier" {% if formData.role ?? '' == 'Particulier' %}selected{% endif %}>Particulier</option>
+                    <option value="Etudiant" {% if formData.role ?? '' == 'Etudiant' %}selected{% endif %}>Etudiant</option>
                 </select>
             </div>
 
             <div class="mb-3" id="blocINE" style="display:none;">
                 <label for="codeINE" class="form-label">Code INE :</label>
-                <input type="text" name="codeINE" id="codeINE" class="form-control">
+                <input type="text" name="codeINE" id="codeINE" class="form-control" value="{{ formData.codeINE ?? '' }}">
             </div>
 
             <div class="mb-3" id="blocCVEC" style="display:none;">
@@ -49,6 +49,7 @@
                     maxlength="12" 
                     pattern="^[A-Za-z0-9]{12}$" 
                     title="Le CVEC doit comporter exactement 12 caractères sans espace"
+                    value="{{ formData.cvec ?? '' }}"
                     required
                 >
             </div>
@@ -84,19 +85,19 @@
 
             <div class="mb-3">
                 <label for="text" class="form-label">Ville :</label>
-                <input type="text" name="ville" id="ville" class="form-control" required>
+                <input type="text" name="ville" id="ville" class="form-control" value="{{ formData.ville ?? '' }}" required>
             </div>
             <div class="mb-3">
                 <label for="text" class="form-label">Adresse :</label>
-                <input type="text" name="adresse" id="adresse" class="form-control" required>
+                <input type="text" name="adresse" id="adresse" class="form-control" value="{{ formData.adresse ?? '' }}" required>
             </div>
             <div class="mb-3">
                 <label for="text" class="form-label">Code postale :</label>
-                <input type="text" name="codePostal" id="codePostal" class="form-control" required>
+                <input type="text" name="codePostal" id="codePostal" class="form-control" value="{{ formData.codePostal ?? '' }}" required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email :</label>
-                <input type="email" name="email" id="email" class="form-control" required>
+                <input type="email" name="email" id="email" class="form-control" value="{{ formData.email ?? '' }}" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe :</label>

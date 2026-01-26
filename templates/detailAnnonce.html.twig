@@ -21,26 +21,29 @@
                     </a>
                 </div>
             {% endif %}
-<div class="d-flex gap-2 mt-3 justify-content-end">
-            {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
-                
-                    <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
-                       class="btn btn-outline-success btn-sm">
-                        Modifier
-                    </a>
+            <div class="d-flex gap-2 mt-3 justify-content-end">
+                {# bouton pour signaler une annonce  #}
+                <a href="index.php?controleur=signalement&methode=afficher"
+                    class="btn btn-outline-success btn-sm">
+                    Signaler
+                </a>
+
+                {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
+                    
+                        <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
+                        class="btn btn-outline-success btn-sm">
+                            Modifier
+                        </a>
+                    {% endif %}
+
+                {% if user.getRole() == "Particulier " and annonce.getCreateur().getId() == user.getId() %}
+                        <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
+                        class="btn btn-outline-danger btn-sm"
+                        onclick="return confirm('Supprimer cette annonce ?');">
+                            Supprimer
+                        </a>
                 {% endif %}
-
-            {% if user.getRole() == "Particulier " and annonce.getCreateur().getId() == user.getId() %}
-                    <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
-                       class="btn btn-outline-danger btn-sm"
-                       onclick="return confirm('Supprimer cette annonce ?');">
-                        Supprimer
-                    </a>
-
-            {% endif %}
-
-
-             </div>
+            </div>
         </div>
     </div>
 
