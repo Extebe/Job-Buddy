@@ -65,11 +65,11 @@ class ControllerNote extends Controller
 
 
 
-        if (!in_array($annonce->getId(), $ids)) {
+        //if (!in_array($annonce->getId(), $ids)) {
             //on ne peut pas se noter soi-même
-            header("Location: index.php?controleur=note&methode=afficher");
-            exit();
-        }
+        //    header("Location: index.php?controleur=note&methode=afficher");
+        //    exit();
+        //}
         //recupération des annonces
         $managerNote = new NoteDao($this->getPdo());
         $managerParticulier = new ParticulierDAO($this->getPdo());
