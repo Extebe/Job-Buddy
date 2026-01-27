@@ -10,29 +10,29 @@
 
 <ul class="nav nav-tabs mb-4 justify-content-center">
     <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'ALL' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ALL">
+        <a class="nav-link {{ filtreActif == 'all' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=all">
             Toutes
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'DISPONIBLE' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=DISPONIBLE">
+        <a class="nav-link {{ filtreActif == 'disponible' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=disponible">
             Disponibles
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'ACCEPTE' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ACCEPTE">
+        <a class="nav-link {{ filtreActif == 'accepte' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=accepte">
             Acceptées
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'TERMINE' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=TERMINE">
+        <a class="nav-link {{ filtreActif == 'termine' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=termine">
             Terminées
         </a>
     </li>
@@ -68,7 +68,7 @@
                     <div class="image-zone">
                         <img
                             src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
-                            class="icon-annonceaa"
+                            class="icon-annoncea"
                             alt="Icon {{ annonce.typeService }}"
                         >
                     </div>

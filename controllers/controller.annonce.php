@@ -129,12 +129,12 @@ class ControllerAnnonce extends Controller
             exit();
         }
         if (!isset($_GET['filtre'])) {
-            $filtre = "ALL";
+            $filtre = "all";
         } else {
             $filtre = $_GET['filtre'];
         }
 
-        if ($filtre === 'ALL' || $filtre === '') {
+        if ($filtre === 'all' || $filtre === '') {
             $tableau = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
         } else {
             $tableau = $managerAnnonce->findAllByIdAndEtat(Utilisateur::getUser()->getId(), $filtre);
