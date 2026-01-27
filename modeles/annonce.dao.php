@@ -286,7 +286,7 @@ class AnnonceDao
         $pdoStatement3->execute(array(
             "idAnnonce" => $idAnnonce
         ));
-        $sql4 = "DELETE FROM SignalementAnonce WHERE idAnnonceSignale = :idAnnonce";
+        $sql4 = "DELETE FROM Signalement WHERE idAnnonceSignale = :idAnnonce";
         $pdoStatement4 = $this->pdo->prepare($sql4);
         $pdoStatement4->execute(array(
             "idAnnonce" => $idAnnonce

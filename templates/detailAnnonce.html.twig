@@ -32,7 +32,7 @@
 
                 {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
                     
-                        <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
+                        <a href="index.php?controleur=annonce&methode=editerAnnonce&idAnnonce={{ annonce.id }}&idCreateur={{ annonce.getCreateur().getId() }}"
                         class="btn btn-outline-success btn-sm">
                             Modifier
                         </a>
