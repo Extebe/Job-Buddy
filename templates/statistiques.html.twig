@@ -103,34 +103,6 @@
             </table>
         </div>
     </div>
-
-    <!-- Explication de la requête SQL -->
-    <div class="card mt-4" style="border-color: var(--primary, #712200);">
-        <div class="card-header" style="background-color: var(--secondary, #a85d00); color: var(--text-light, #fbf2dd);">
-            <h6 class="mb-0">🔍 Requête SQL utilisée</h6>
-        </div>
-        <div class="card-body">
-            <pre style="background-color: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    a.typeService,
-    COUNT(*) AS nbAnnonces,
-    ROUND(AVG(a.remuneration), 2) AS remunerationMoyenne,
-    ROUND(SUM(a.remuneration), 2) AS remunerationTotale,
-    <span style="color: #66d9ef;">-- Sous-requête pour compter les postulants</span>
-    (
-        SELECT COUNT(*) 
-        FROM Postuler p 
-        INNER JOIN Annonce a2 ON p.idAnnonce = a2.id 
-        WHERE a2.typeService = a.typeService
-    ) AS totalPostulants
-FROM Annonce a
-WHERE a.dateSuppression IS NULL
-<span style="color: #66d9ef;">-- GROUP BY pour regrouper par type</span>
-GROUP BY a.typeService
-ORDER BY nbAnnonces DESC</code></pre>
-        </div>
-    </div>
-
-    <div class="mt-4">
         <a href="index.php" class="btn btn-outline-success">
             ← Retour à l'accueil
         </a>
