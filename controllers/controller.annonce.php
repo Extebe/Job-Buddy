@@ -64,7 +64,7 @@ class ControllerAnnonce extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titre = $_POST['titreAnnonce'];
-            $typeService = $_POST['typeService'];
+            $typeService = mb_strtolower($_POST['typeService'], 'UTF-8');
             $dateDebut = $_POST['dateDebut'];
             $dateFin = $_POST['dateFin'];
             $description = $_POST['description'];
