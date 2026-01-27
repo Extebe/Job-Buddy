@@ -1,0 +1,43 @@
+// 1. Imports initiaux
+@import "../node_modules/bootstrap/scss/functions";
+
+// 2. Tes variables perso
+$primary: #5D2A18;
+$secondary: #838383;
+$success: #716B00;
+$danger: #FF4A4A;
+
+// 3. Redéfinition des couleurs thématiques
+$theme-colors: (
+        "primary": $primary,
+        "secondary": $secondary,
+        "success": $success,
+        "danger": $danger
+);
+
+// 4. Imports de Bootstrap (ordre obligatoire)
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// 5. Tes règles perso (APRÈS Bootstrap)
+.btn-outline-secondary {
+  --bs-btn-hover-color: white;
+  --bs-btn-active-color: white;
+  --bs-btn-focus-color: white;
+}
+
+.btn-outline-success {
+  --bs-btn-hover-color: white;
+  --bs-btn-active-color: white;
+  --bs-btn-focus-color: white;
+}
+
+.btn-outline-danger {
+  --bs-btn-hover-color: white;
+  --bs-btn-active-color: white;
+  --bs-btn-focus-color: white;
+}
