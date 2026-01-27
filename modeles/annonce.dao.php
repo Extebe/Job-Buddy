@@ -224,7 +224,7 @@ class AnnonceDao
 
         // Assure-toi d’avoir défini toutes ces variables avant execute
         $pdoStatement->execute([
-            'idParticulier' => $annonce->getCreateur(),
+            'idParticulier' => $annonce->getCreateur()->getId(),
             'titre' => $annonce->getTitre(),
             'description' => $annonce->getDescription(),
             'typeService' => lcfirst($annonce->getTypeService()),

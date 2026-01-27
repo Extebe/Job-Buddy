@@ -90,11 +90,11 @@ class ControllerAnnonce extends Controller
                 null
             );
             $managerAnnonce = new AnnonceDAO($this->getPdo());
+            $managerAnnonce->insererAnnonce($annonce1);
             try {
                 if (!$particulier) {
                     throw new Exception("Erreur : Impossible de récupérer le profil Particulier. Verifiez que vous tes connecté avec un compte Particulier.");
                 }
-                $managerAnnonce->insererAnnonce($annonce1);
             } catch (\Exception $e) {
                 echo "Erreur lors de l'insertion : " . $e->getMessage();
             }
