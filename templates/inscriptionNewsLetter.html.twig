@@ -5,7 +5,13 @@
 
         <h1>Inscris toi à la newsletter !</h1>
 
-        <form method='POST' action="index.php?controleur=utilisateur&methode=newsletter">
+        {% if erreur is defined %}
+            <div class="alert alert-danger" role="alert">
+                {{ erreur }}
+            </div>
+        {% endif %}
+
+        <form method='POST' action="index.php?controleur=newsLetter&methode=newsletter">
             <div class="mb-3">
                 <label for="" class="form-label">Je laisse mon email *</label>
                 <input type="email" class="form-control" id="email" name="email" required >
@@ -26,4 +32,5 @@
         </form>
         </div>
     </div>
+
     {% endblock %}

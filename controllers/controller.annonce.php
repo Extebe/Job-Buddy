@@ -64,7 +64,7 @@ class ControllerAnnonce extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titre = $_POST['titreAnnonce'];
-            $typeService = $_POST['typeService'];
+            $typeService = mb_strtolower($_POST['typeService'], 'UTF-8');
             $dateDebut = $_POST['dateDebut'];
             $dateFin = $_POST['dateFin'];
             $description = $_POST['description'];
@@ -84,22 +84,22 @@ class ControllerAnnonce extends Controller
                 (float) $remuneration,
                 $dateDebut,
                 $dateFin,
-                "DISPONIBLE",
+                "disponible",
                 date("Y-m-d H:i:s"),
                 null,
                 null
             );
             $managerAnnonce = new AnnonceDAO($this->getPdo());
+            $managerAnnonce->insererAnnonce($annonce1);
             try {
                 if (!$particulier) {
                     throw new Exception("Erreur : Impossible de récupérer le profil Particulier. Verifiez que vous tes connecté avec un compte Particulier.");
                 }
-                $managerAnnonce->insererAnnonce($annonce1);
             } catch (\Exception $e) {
                 echo "Erreur lors de l'insertion : " . $e->getMessage();
             }
             //Appel de la requête qui créé l'annonce
-            header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ALL");
+            header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
             exit();
 
         }
@@ -129,12 +129,12 @@ class ControllerAnnonce extends Controller
             exit();
         }
         if (!isset($_GET['filtre'])) {
-            $filtre = "ALL";
+            $filtre = "all";
         } else {
             $filtre = $_GET['filtre'];
         }
 
-        if ($filtre === 'ALL' || $filtre === '') {
+        if ($filtre === 'all' || $filtre === '') {
             $tableau = $managerAnnonce->findAllById(Utilisateur::getUser()->getId());
         } else {
             $tableau = $managerAnnonce->findAllByIdAndEtat(Utilisateur::getUser()->getId(), $filtre);
@@ -252,7 +252,7 @@ class ControllerAnnonce extends Controller
         $managerAnnonce = new AnnonceDAO($this->getPdo());
         $managerAnnonce->supprimer($idAnnonce, Utilisateur::getUser()->getId());
 
-        header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ALL");
+        header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
         exit();
     }
 
@@ -301,18 +301,16 @@ class ControllerAnnonce extends Controller
      */
     public function editerAnnonce(): void
     {
-        $annonce = Annonce::getAnnonce();
-        $annonceDao = new AnnonceDao($this->getPdo());
-        $template = $this->getTwig();
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $idAnnonce = $_POST['idAnnonce'];
-            $idParticulier = $annonce->getCreateur()->getId();
+            $idCreateur = $_POST['idCreateur'];
 
+            $managerParticulier = new ParticulierDAO($this->getPdo());
+            $particulier = $managerParticulier->find($idCreateur);
+            
             $annonce = new Annonce(
                 $idAnnonce,
-                $idParticulier,
+                $particulier,
                 $_POST['titre'],
                 $_POST['description'],
                 $_POST['typeService'],
@@ -325,13 +323,24 @@ class ControllerAnnonce extends Controller
                 null,
                 null
             );
+            $annonceDao= New AnnonceDao($this->getPdo());
             $annonceDao->modifier($annonce);
             header('Location:index.php?controleur=annonce&methode=afficherMesAnnonces');
             exit();
         }
-        // var_dump($annonce);
-        // echo $annonce->getCreateur()->getId();
+
+        else {
+            // récupération des id de l'annonce et de son créateur depuis detailAnnonce.html.twig
+            $idAnnonce = $_GET['idAnnonce'];
+            $idCreateur = $_GET['idCreateur'];
+
+            $annonceDao = new AnnonceDao($this->getPdo());
+            $annonce = $annonceDao->findById($idCreateur,$idAnnonce);
+
+            $template = $this->getTwig();
+        }
         echo $template->render('modifierAnnonce.html.twig', [
+            'user' => Utilisateur::getUser(),
             'annonce' => $annonce,
         ]);
     }

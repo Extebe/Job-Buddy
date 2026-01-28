@@ -23,14 +23,16 @@
             {% endif %}
             <div class="d-flex gap-2 mt-3 justify-content-end">
                 {# bouton pour signaler une annonce  #}
-                <a href="index.php?controleur=signalement&methode=afficher"
+                {% if annonce.getCreateur().getId()!=user.getId() %}
+                <a href="index.php?controleur=signalement&methode=signalerAnnonce&idAnnonce={{ annonce.id }}"
                     class="btn btn-outline-success btn-sm">
                     Signaler
                 </a>
+                {% endif %}
 
                 {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
                     
-                        <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
+                        <a href="index.php?controleur=annonce&methode=editerAnnonce&idAnnonce={{ annonce.id }}&idCreateur={{ annonce.getCreateur().getId() }}"
                         class="btn btn-outline-success btn-sm">
                             Modifier
                         </a>

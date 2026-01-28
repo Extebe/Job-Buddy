@@ -7,20 +7,17 @@
     border: none;
     background: var(--card-bg);
     border-radius: 16px;
-    /* Premium Soft Radius */
     box-shadow: var(--shadow-soft);
-    transition: var(--transition);
     border: 1px solid rgba(93, 42, 24, 0.08);
-    /* Bordure subtile brune */
     overflow: hidden;
+    /* Transition plus fluide et spécifique */
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform, box-shadow;
 }
 
-.card-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(212, 163, 115, 0.4);
-    /* Lueur beige/dorée au survol */
-}
+.card-item:hover {}
 
 /* Zone Image / Icône */
 .image-zone {
@@ -53,10 +50,7 @@
     z-index: 1;
 }
 
-.card-item:hover .icon-annoncea {
-    transform: scale(1.1) rotate(5deg);
-    filter: brightness(0) invert(1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-}
+
 
 /* Contenu */
 .content-zone {
@@ -107,9 +101,4 @@
     display: inline-block;
 }
 
-/* Ajustement boutons dans la carte */
-.card-item .btn-sm {
-    font-size: 0.85rem;
-    padding: 0.5rem 1.2rem;
-    border-radius: 8px;
-}
+/* Boutons dans la carte - styles Bootstrap par défaut */

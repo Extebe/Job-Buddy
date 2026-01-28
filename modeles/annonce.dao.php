@@ -224,7 +224,7 @@ class AnnonceDao
 
         // Assure-toi d’avoir défini toutes ces variables avant execute
         $pdoStatement->execute([
-            'idParticulier' => $annonce->getCreateur(),
+            'idParticulier' => $annonce->getCreateur()->getId(),
             'titre' => $annonce->getTitre(),
             'description' => $annonce->getDescription(),
             'typeService' => lcfirst($annonce->getTypeService()),
@@ -286,7 +286,7 @@ class AnnonceDao
         $pdoStatement3->execute(array(
             "idAnnonce" => $idAnnonce
         ));
-        $sql4 = "DELETE FROM SignalementAnonce WHERE idAnnonceSignale = :idAnnonce";
+        $sql4 = "DELETE FROM Signalement WHERE idAnnonceSignale = :idAnnonce";
         $pdoStatement4 = $this->pdo->prepare($sql4);
         $pdoStatement4->execute(array(
             "idAnnonce" => $idAnnonce
@@ -344,7 +344,7 @@ class AnnonceDao
     public function accepterEtudiant($idAnnonce, $idEtudiant)
     {
         // Accepter un étudiant
-        $sql1 = "UPDATE Annonce SET etat = 'ACCEPTE' WHERE id = :idAnnonce";
+        $sql1 = "UPDATE Annonce SET etat = 'accepte' WHERE id = :idAnnonce";
         $pdoStatement1 = $this->pdo->prepare($sql1);
         $pdoStatement1->execute(array(
             "idAnnonce" => $idAnnonce
@@ -355,6 +355,21 @@ class AnnonceDao
             "idAnnonce" => $idAnnonce,
             "idEtudiant" => $idEtudiant
         ));
+    }
+    /**
+     * @brief Trouve l'annonces par l'id de l'utilisateur et l'id de l'annonce.
+     * @param int $utilisateur ID de l'utilisateur.
+     * @return array Tableau d'annonces.
+     */
+    public function findById($utilisateur,$idAnnonce)
+    {
+        $sql = "SELECT * FROM Annonce WHERE idParticulier = :idParticulier AND id=:id";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array("idParticulier" => $utilisateur,"id"=>$idAnnonce));
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $annonce = $pdoStatement->fetch();
+        $annonce = $this->hydrate($annonce);
+        return $annonce;
     }
 
     /**

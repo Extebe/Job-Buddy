@@ -567,27 +567,6 @@ class ControllerUtilisateur extends Controller
         }
     }
 
-    /**
-     * Inscrit l'utilisateur 
-     *  à la newsletter
-     * @return void
-     */
-    public function newsletter(): void
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'];
-            $pdoNewsLetter = new NewLetterDao($this->getPdo());
-
-            if (!$pdoNewsLetter->emailExisteNewsletter($email)) {
-                $newsLetter = new NewLetter(null, $email);
-                $pdoNewsLetter->insererEmail($newsLetter);
-                echo "l'email a bien été enregistrer dans la base de données";
-            }
-            echo "Vous vous êtes déjà inscrit.";
-            echo "<a href='index.php'> Retour à la page d'accueil</a>";
-        }
-    }
-
     public function admin()
     {
         $template = $this->getTwig();

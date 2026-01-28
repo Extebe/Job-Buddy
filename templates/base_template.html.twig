@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="CSS/styles.css">
     {# ---- PARTIE COOKIE ----   
      # commande à écrirer pour installer la bibliothèque : 
      #  npm i tarteaucitronjs 
@@ -79,9 +80,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Page du projet JobBuddy">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="./CSS/styleHeader.css">
-    
+   
     <style>
         :root {
             {% if config.parameters.colors is defined %}
@@ -93,6 +92,23 @@
                 --text-dark: {{ config.parameters.colors.text_dark }};
                 --text-light: {{ config.parameters.colors.text_light }};
             {% endif %}
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            margin-top: auto;
         }
     </style>
 
@@ -106,7 +122,7 @@
      <nav class="navbar navbar-expand-lg" style="background-color: #F7F5EF;">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
-                <img src="./images/logo/logoHibouTransparent.png" alt="Logo" width="75" height="75" class="d-inline-block align-text-center ms-2">
+                <img src="./images/logo/logo_jobbuddy.png" alt="Logo" width="75" height="75" class="d-inline-block align-text-center ms-2">
                 Jobbuddy
             </a>
 
@@ -122,7 +138,7 @@
                             <input class="form-control form-control-lg" type="search" name="rechercheInput" id="searchInput" placeholder="Search" aria-label="Search" value="{{ recherche|default('') }}">
                         </li>
                         <li class="nav-item">
-                            <button class="btn btn-outline-success" type="submit">Appliquer</button>
+                            <button class="btn btn-outline-primary" type="submit">Appliquer</button>
                         </li>
                         <!-- Champ de recherche caché pour le formulaire -->
                         <input type="hidden" name="recherche" id="hiddenRecherche" value="{{ recherche|default('') }}">
@@ -133,15 +149,15 @@
             {% if user.role == "Particulier " %}
                 <div class="btn-compte d-flex align-items-center">
                     <a href="index.php?controleur=annonce&methode=afficheFormAnnonce">
-                        <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Poster Une Annonce</button>
+                        <button class="btn btn-outline-primary my-2 my-sm-0 me-2" type="submit">Poster Une Annonce</button>
                     </a>
 
                     <a href="index.php?controleur=annonce&methode=afficherMesAnnonces">
-                        <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>
+                        <button class="btn btn-outline-primary my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>
                     </a>
 
                     <div class="dropdown">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="./images/icons/account-black.png" width="30" height="30">
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
@@ -155,11 +171,11 @@
             {% elseif user.role == "Etudiant" %}
                 <div class="btn-compte d-flex align-items-center">
                     <a href="index.php?controleur=annonce&methode=afficherMesAnnonces">
-                        <button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>
+                        <button class="btn btn-outline-primary my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>
                     </a>
 
                     <div class="dropdown">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="./images/icons/account-black.png" width="30" height="30">
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
@@ -172,8 +188,8 @@
 
             {% else %}
                 <div class="btn-compte d-flex align-items-center">
-                    <a href="index.php?controleur=utilisateur&methode=pageConnexion"><button class="btn btn-outline-success my-2 my-sm-0 me-2" type="submit">se connecter</button></a>
-                    <a href="index.php?controleur=utilisateur&methode=pageInscription"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">s'inscrire</button></a>
+                    <a href="index.php?controleur=utilisateur&methode=pageConnexion"><button class="btn btn-outline-primary my-2 my-sm-0 me-2" type="submit">se connecter</button></a>
+                    <a href="index.php?controleur=utilisateur&methode=pageInscription"><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">s'inscrire</button></a>
                 </div>
 
             {% endif %}
@@ -236,8 +252,11 @@
     </div>
 </div>
 
+<main>
 {% block content %}
+<link rel="stylesheet" href="CSS/styles.css">
 {% endblock %}
+</main>
 
 <footer>
     <div class="container-fluid">
@@ -270,26 +289,26 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+
     <script>
         // Synchronisation entre la barre de recherche et le champ caché du formulaire
         const searchInput = document.getElementById('searchInput');
         const hiddenRecherche = document.getElementById('hiddenRecherche');
-        
+
         searchInput.addEventListener('input', function() {
             hiddenRecherche.value = this.value;
         });
 
         // Ouvrir automatiquement le formulaire de filtres s'il y a des filtres actifs
         window.addEventListener('load', function() {
-            const hasFilters = 
+            const hasFilters =
                 document.getElementById('typeService').value ||
                 document.getElementById('lieu').value ||
                 document.getElementById('remunerationMin').value ||
                 document.getElementById('remunerationMax').value ||
                 document.getElementById('dateDebut').value ||
                 document.getElementById('heureDebut').value;
-            
+
             if (hasFilters) {
                 const filterCollapse = new bootstrap.Collapse(document.getElementById('filterCollapse'), {
                     toggle: true

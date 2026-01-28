@@ -10,29 +10,29 @@
 
 <ul class="nav nav-tabs mb-4 justify-content-center">
     <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'ALL' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ALL">
+        <a class="nav-link {{ filtreActif == 'all' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=all">
             Toutes
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'DISPONIBLE' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=DISPONIBLE">
+        <a class="nav-link {{ filtreActif == 'disponible' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=disponible">
             Disponibles
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'ACCEPTE' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=ACCEPTE">
+        <a class="nav-link {{ filtreActif == 'accepte' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=accepte">
             Acceptées
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'TERMINE' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=TERMINE">
+        <a class="nav-link {{ filtreActif == 'termine' ? 'active' : '' }}"
+           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=termine">
             Terminées
         </a>
     </li>
@@ -62,13 +62,13 @@
         {% for annonce in annonces %}
         <div class="col-12 d-flex justify-content-center">
             <div class="card-slot fixed-card-width">
-                <div class="card-item h-100">
+                <div class="card-item">
 
                     <!-- Image -->
                     <div class="image-zone">
                         <img
                             src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
-                            class="icon-annonce"
+                            class="icon-annoncea"
                             alt="Icon {{ annonce.typeService }}"
                         >
                     </div>
@@ -99,7 +99,7 @@
                                             </a>
                                         {% endif %}
 
-                                        {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE"
+                                        {% if user.getRole() == "Particulier" and annonce.getEtat() == "DISPONIBLE"
                                             and annonce.getCreateur().getId() == user.getId() %}
                                             <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
                                             class="btn btn-outline-success btn-sm">
@@ -107,7 +107,7 @@
                                             </a>
                                         {% endif %}
 
-                                        {% if user.getRole() == "Particulier "
+                                        {% if user.getRole() == "Particulier"
                                             and annonce.getCreateur().getId() == user.getId() %}
                                             <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
                                             class="btn btn-outline-danger btn-sm"
@@ -188,7 +188,6 @@
 .card-item {
     background-color: #ffffff;
     border-radius: 10px;
-    transition: transform 0.2s ease-in-out;
     display: flex;
     flex-direction: row;
     overflow: hidden;
@@ -196,10 +195,25 @@
     position: relative;
     z-index: 1;
     height: 150px;
+    /* Transition plus fluide et spécifique */
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform, box-shadow;
 }
 
 .card-slot:hover .card-item {
-    transform: translate(10px, -10px);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Fluidité pour l'icône */
+.icon-annoncea {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+}
+
+.card-slot:hover .icon-annoncea {
+    transform: scale(1.15) rotate(5deg);
 }
 
 /* Image */
@@ -213,7 +227,7 @@
     padding: 10px;
 }
 
-.icon-annoncea {
+.icon-annonce {
     max-width: 70px;
     max-height: 70px;
     object-fit: contain;
@@ -235,49 +249,11 @@
     color: #6c757d;
 }
 
-/* Boutons */
+/* Boutons - z-index pour la cliquabilité uniquement, styles Bootstrap par défaut */
 .btn {
     position: relative !important;
     z-index: 100 !important;
     pointer-events: auto !important;
-}
-
-.btn-outline-success {
-    color: #712200;
-    border-color: #712200;
-}
-.btn-outline-success:hover,
-.btn-outline-success:focus,
-.btn-outline-success::selection {
-    color: #fbf2dd;
-    background-color: #712200;
-    border-color: #fbf2dd;
-}
-
-.btn-outline-danger {
-    color: #ff0000;
-    border-color: #ff0000;
-}
-.btn-outline-danger:hover,
-.btn-outline-danger:focus,
-.btn-outline-danger::selection {
-    color: #fbf2dd;
-    background-color: #ff0000;
-    border-color: #fbf2dd;
-}
-
-.nav-tabs .nav-link {
-    color: #712200;
-}
-
-.nav-tabs .nav-link:hover {
-    color: #8B2C00;
-}
-
-.nav-tabs .nav-link.active {
-    color: #712200;
-    font-weight: bold;
-    border-bottom-color: #712200;
 }
 
 /* Responsive : mobile */

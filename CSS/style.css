@@ -104,38 +104,7 @@ header form {
 }
 
 /* --- BOUTONS --- */
-.btn {
-    border-radius: 12px;
-    padding: 0.6rem 1.5rem;
-    font-weight: 600;
-    transition: var(--transition);
-    font-family: 'Outfit', sans-serif;
-    letter-spacing: 0.3px;
-}
-
-/* Override complet du vert Bootstrap */
-.btn-outline-success {
-    color: var(--primary);
-    border: 2px solid var(--primary);
-    background-color: transparent;
-}
-
-.btn-outline-success:hover,
-.btn-outline-success:active,
-.btn-outline-success:focus,
-.btn-outline-success.active {
-    background-color: var(--primary) !important;
-    border-color: var(--primary) !important;
-    color: var(--bg-color) !important;
-    /* Texte clair (creme) */
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
-}
-
-.btn-outline-success:focus {
-    box-shadow: 0 0 0 3px rgba(93, 42, 24, 0.25);
-    /* Focus ring brun */
-}
+/* Styles Bootstrap par défaut conservés */
 
 /* Correction des cartes user (garder la structure clean) */
 .card {
