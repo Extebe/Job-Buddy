@@ -1,0 +1,25 @@
+{% extends 'base_template.html.twig' %}
+
+{% block content %}
+    <div class="contenaire">
+        <h3>Signalement de l'utilisateur</h3>
+        <form action="index.php?controleur=signalement&methode=ajouterBdSignalementUtilisateur" method="post" class="mt-4 w-75 mx-auto">
+            <input type="hidden" name="idOther" value= {{ idOther }}>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Motif du signalement</label>
+                <input type="text" class="form-control" maxlength="50" title="Max 50 caractères" id="motif" name="motif" placeholder="Ex : "required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">Description du signalement</label>
+                <textarea type="textarea" class="form-control" id="description" name="description" rows="10" ></textarea>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Signaler l'utilisateur</button>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}

@@ -634,4 +634,34 @@ class ControllerUtilisateur extends Controller
             exit();
         }
     }
+
+    /**
+     * Pous afficher le compte
+     * d'un utilisateur
+     * @return void
+     */
+    public function pageUtilisateur()
+    {
+        // création d'une instance de la bd
+        $pdo = $this->getPdo();
+
+        // Recherche de l'utilisateur
+        $requete = $pdo->prepare(
+            'SELECT id, nom, prenom, tel, ville, codePostal, role FROM Utilisateur WHERE id =:id;'
+        );
+
+        $idUser = (int)$_GET['id'];
+
+        // Exécution de la requête avec l'email de l'utilisateur
+        $requete->execute(['id' => $idUser]);
+        // Récupération des infos de l'utilisateur
+        $other = $requete->fetch(PDO::FETCH_ASSOC);
+
+        $template = $this->getTwig();
+
+        echo $template->render('compteUtilisateur.html.twig', [
+            'user' => Utilisateur::getUser(),
+            'other' => $other
+        ]);
+    }
 }

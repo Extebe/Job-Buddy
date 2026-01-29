@@ -1,0 +1,31 @@
+{% extends 'base_template.html.twig' %}
+
+{% block css %} <link rel="stylesheet" href="./CSS/compte.css"> {% endblock %}
+    {% block content %}
+    {% if other.nom != "" %}
+    <div class="card-container">
+        <div class="card">
+            <div class="card-body mx-auto p-4">
+                <h4 class="card-title">Compte {{other.role}}</h4>
+
+                <p>Nom de famille : {{ other.nom }}</p>
+                <p>Prénom : {{ other.prenom }}</p>
+                <p>N° de téléphone : {{ other.tel }}</p>
+                <p>Ville : {{ other.ville }}</p>
+                <p>Code postal : {{ other.codePostal }}</p>
+
+                {% if other.id != user.id %}
+                    <div class="d-grid gap-2 d-md-block">
+                        <a href="index.php?controleur=signalement&methode=signalerUtilisateur&idOther={{ other.id }}">
+                            <button class="btn btn-outline-danger mt-2">Signaler Utilisateur</button>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+        header('Location: index.php');
+    {% endif %}
+    {% endblock %}
+

@@ -13,6 +13,8 @@
             <p><strong>Lieu :</strong> {{ annonce.lieu }}</p>
             <p><strong>Date de début de réalisation :</strong> {{ annonce.dateDebutRealisation|date("H:i d/m/Y") }}</p>
             <p><strong>Type de service :</strong> {{ annonce.typeService }}</p>
+            <a href="index.php?controleur=utilisateur&methode=pageUtilisateur&id={{  annonce.getCreateur() }}">
+            <strong>Voir Utilisateur</strong></a>
 
             {% if user.role == "Etudiant" and annonce.etat == "disponible" and not aPostule %}
                 <div class="d-flex gap-2 mt-3 justify-content-end">

@@ -128,5 +128,21 @@ class SignalementDao
         header("Location: index.php");
                 exit();
     }
+
+    /**
+     * @brief Ajoute le signalement de l'utilisateur dans la base de données
+     * @param Utilisateur $utilisateur .
+     */
+    public function updateSignalementUtilisateur($motif, $description, $idSignaleur, $idUtilisateurSignale):void
+    {
+        $sql="INSERT INTO Signalement (dateSignalement, motif, description, idSignaleur,idUtilisateurSignale)
+              VALUES (NOW(), '$motif', '$description', $idSignaleur, $idUtilisateurSignale)";
+              
+        $pdoStatement=$this->pdo->prepare($sql);
+        $pdoStatement->execute();
+        
+        header("Location: index.php");
+                exit();
+    }
 }
 ?>
