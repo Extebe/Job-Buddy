@@ -336,16 +336,16 @@ class ControllerAnnonce extends Controller
 
         else {
             // récupération des id de l'annonce et de son créateur depuis detailAnnonce.html.twig
-            $idAnnonce = $_GET['idAnnonce'];
-            $idCreateur = $_GET['idCreateur'];
-
+            $idAnnonce = $_GET['id'];
+            $user = Utilisateur::getUser();
+            $idCreateur = $user->getId();
             $annonceDao = new AnnonceDao($this->getPdo());
             $annonce = $annonceDao->findById($idCreateur,$idAnnonce);
 
             $template = $this->getTwig();
         }
         echo $template->render('modifierAnnonce.html.twig', [
-            'user' => Utilisateur::getUser(),
+            'user' => $user,
             'annonce' => $annonce,
         ]);
     }

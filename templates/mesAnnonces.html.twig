@@ -99,7 +99,7 @@
                                             </a>
                                         {% endif %}
 
-                                        {% if user.getRole() == "Particulier" and annonce.getEtat() == "DISPONIBLE"
+                                        {% if user.getRole() == "Particulier " and annonce.getEtat() == "disponible"
                                             and annonce.getCreateur().getId() == user.getId() %}
                                             <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
                                             class="btn btn-outline-success btn-sm">
@@ -107,7 +107,7 @@
                                             </a>
                                         {% endif %}
 
-                                        {% if user.getRole() == "Particulier"
+                                        {% if user.getRole() == "Particulier "
                                             and annonce.getCreateur().getId() == user.getId() %}
                                             <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
                                             class="btn btn-outline-danger btn-sm"
