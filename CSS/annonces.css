@@ -3,32 +3,55 @@
     padding: 40px 0;
 }
 
+/* Conteneur externe "creux" */
+.card-slot {
+    position: relative;
+    border-radius: 12px;
+    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    padding: 2px;
+    /* Un peu d'espace pour l'ombre interne */
+}
+
+/* La carte elle-même qui "flotte" */
 .card-item {
     border: none;
-    background: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid rgba(93, 42, 24, 0.08);
+    background: var(--card-bg, #ffffff);
+    border-radius: 10px;
     overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    min-height: 140px;
     /* Transition plus fluide et spécifique */
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
         box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
         border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     will-change: transform, box-shadow;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-.card-item:hover {}
+.card-slot:hover .card-item {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
 
 /* Zone Image / Icône */
 .image-zone {
-    background: linear-gradient(135deg, var(--secondary), var(--primary));
-    /* Dégradé Original */
-    width: 120px !important;
-    min-width: 120px !important;
+    background: linear-gradient(135deg, var(--secondary, #D4A373), var(--primary, #5D2A18));
+    width: 120px;
+    min-width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
+    padding: 10px;
 }
 
 .image-zone::after {
@@ -40,45 +63,54 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(to bottom, transparent 0%, rgba(93, 42, 24, 0.1) 100%);
+    pointer-events: none;
 }
 
 .icon-annoncea {
     filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-    width: 48px;
-    height: 48px;
-    transition: var(--transition);
+    max-width: 70px;
+    max-height: 70px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
     z-index: 1;
 }
 
-
+.card-slot:hover .icon-annoncea {
+    transform: scale(1.15) rotate(5deg);
+}
 
 /* Contenu */
 .content-zone {
-    padding: 1.5rem;
+    flex: 1;
+    min-width: 0;
+    padding: 1.25rem;
+    position: relative;
 }
 
 .card-title {
-    color: var(--primary);
+    color: var(--primary, #5D2A18);
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
     font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     letter-spacing: -0.01em;
 }
 
 .card-subtitle {
-    color: var(--secondary) !important;
+    color: var(--secondary, #D4A373) !important;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .card-text {
-    color: var(--text-light);
-    /* Utilise la nouvelle variable gris-brun */
+    color: var(--text-light, #6D5A50);
     font-size: 0.95rem;
     line-height: 1.6;
     display: -webkit-box;
@@ -88,17 +120,24 @@
     margin-bottom: 1rem;
 }
 
-.remuneration-badge {
-    background: rgba(204, 213, 174, 0.3);
-    /* Accent translucide */
-    color: #4A5D23;
-    /* Darker green for contrast on accent */
-    padding: 6px 14px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    font-family: 'Outfit', sans-serif;
-    display: inline-block;
+/* Boutons dans la carte */
+.card-item .btn {
+    position: relative;
+    z-index: 10;
+    /* Pour être au-dessus du stretched-link */
 }
 
-/* Boutons dans la carte - styles Bootstrap par défaut */
+/* Responsive : mobile */
+@media (max-width: 576px) {
+    .card-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: auto;
+    }
+
+    .image-zone {
+        width: 100%;
+        min-height: 100px;
+    }
+}

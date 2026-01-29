@@ -31,7 +31,6 @@ class ControllerAnnonce extends Controller
         foreach ($annonces as $key => $annonce) {
             $tab[$key] = $managerAnnonce->addRelations($annonce);
         }
-        var_dump($tab[0]->getPostulations());
 
 
         echo $template->render('index.html.twig', [

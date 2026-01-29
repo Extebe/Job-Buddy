@@ -44,9 +44,9 @@
         {# ============ AJOUT ANNONCE ============ #}
         {% if user.role == "Particulier " %}
         <div class="col-12 d-flex justify-content-center mb-2">
-            <div class="card-slot fixed-card-width">
-                <div class="card-item h-100 add-card-style">
-                    <div class="card-body d-flex align-items-center justify-content-center" style="min-height: 120px;">
+            <div class="card-slot">
+                <div class="card-item add-card-style">
+                    <div class="card-body d-flex align-items-center justify-content-center w-100" style="min-height: 120px;">
                         <a href="index.php?controleur=annonce&methode=afficheFormAnnonce"
                            class="stretched-link d-flex align-items-center text-decoration-none">
                             <span class="display-4 fw-bold me-3" style="color: #712200;">+</span>
@@ -61,13 +61,13 @@
         {# ============ CARTES ANNONCES ============ #}
         {% for annonce in annonces %}
         <div class="col-12 d-flex justify-content-center">
-            <div class="card-slot fixed-card-width">
+            <div class="card-slot">
                 <div class="card-item">
 
                     <!-- Image -->
                     <div class="image-zone">
                         <img
-                            src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
+                            src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-white.png"
                             class="icon-annoncea"
                             alt="Icon {{ annonce.typeService }}"
                         >
@@ -75,7 +75,7 @@
 
                     <!-- Contenu -->
                     <div class="content-zone">
-                        <div class="card-body">
+                        <div class="card-body p-0">
 
                             <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}"
                                class="stretched-link"></a>
@@ -86,8 +86,8 @@
                                     <span class="fw-bold">{{ annonce.remuneration }} €</span>
                                 </div>
 
-                                <div class="d-flex flex-column align-items-end" style="position: relative; z-index: 2;">
-                                    <h6 class="card-title mb-1">
+                                <div class="btn-group-ads">
+                                    <h6 class="card-title mb-1 text-end">
                                         {{annonce.etat}}
                                     </h6>
 
@@ -116,27 +116,23 @@
                                             </a>
                                         {% endif %}
 
-{# 1. Create a flag variable, assume false initially #}
-{% set aDejaPostule = false %}
+                                        {% set aDejaPostule = false %}
+                                        {% for candidat in annonce.postulations %}
+                                            {% if candidat.id == user.id %}
+                                                {% set aDejaPostule = true %}
+                                            {% endif %}
+                                        {% endfor %}
 
-{# 2. Loop through the array to check IDs #}
-{% for candidat in annonce.postulations %}
-    {% if candidat.id == user.id %}
-        {% set aDejaPostule = true %}
-    {% endif %}
-{% endfor %}
-
-{# 3. Use the flag in your condition #}
-{% if user.role == "Etudiant" and annonce.etat == "disponible" and not aDejaPostule %}
+                                        {% if user.role == "Etudiant" and annonce.etat == "disponible" and not aDejaPostule %}
                                             <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
                                                 <button class="btn btn-outline-success btn-sm">Postuler</button>
                                             </a>
-{% endif %}
+                                        {% endif %}
                                     </div>
 
                                     {% if annonce.getEtat() == "TERMINE"%}
                                         <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}"
-                                           class="btn btn-outline-danger btn-sm">Noter</a>
+                                           class="btn btn-outline-danger btn-sm mt-1">Noter</a>
                                     {% endif %}
 
                                 </div>
@@ -168,109 +164,13 @@
 
 
 <style>
-.fixed-card-width {
-    width: 100%;
-    max-width: 750px;
-}
-
-/* Carte et effet creux */
-.card-slot {
+/* Ajustements spécifiques pour la zone d'action */
+.btn-group-ads {
     position: relative;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    max-width: 750px;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-    height: auto;
-}
-
-.card-item {
-    background-color: #ffffff;
-    border-radius: 10px;
+    z-index: 10;
     display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    width: 800px;
-    position: relative;
-    z-index: 1;
-    height: 150px;
-    /* Transition plus fluide et spécifique */
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: transform, box-shadow;
-}
-
-.card-slot:hover .card-item {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* Fluidité pour l'icône */
-.icon-annoncea {
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: transform;
-}
-
-.card-slot:hover .icon-annoncea {
-    transform: scale(1.15) rotate(5deg);
-}
-
-/* Image */
-.image-zone {
-    width: 120px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 10px;
-}
-
-.icon-annonce {
-    max-width: 70px;
-    max-height: 70px;
-    object-fit: contain;
-}
-
-/* Contenu */
-.content-zone {
-    flex: 1;
-    min-width: 0;
-    padding: 10px;
-}
-
-/* Titres et sous-titres */
-.card-title {
-    margin-bottom: 5px;
-}
-.card-subtitle {
-    font-size: 0.85rem;
-    color: #6c757d;
-}
-
-/* Boutons - z-index pour la cliquabilité uniquement, styles Bootstrap par défaut */
-.btn {
-    position: relative !important;
-    z-index: 100 !important;
-    pointer-events: auto !important;
-}
-
-/* Responsive : mobile */
-@media (max-width: 576px) {
-    .card-item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .image-zone {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    .icon-annoncea {
-        max-width: 100px;
-        max-height: 100px;
-    }
+    flex-direction: column;
+    align-items: flex-end;
 }
 </style>
 {% endblock %}
