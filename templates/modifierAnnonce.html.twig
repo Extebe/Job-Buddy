@@ -3,7 +3,7 @@
     {% block content %}
         <div class="container">
             <h1>Modifier l'annonce : {{ annonce.titre }} </h1>
-            <form action="index.php?controleur=annonce&methode=editerAnnonce&idAnnonce={{ annonce.id }}" method="post" class="mt-4 w-75 mx-auto">
+            <form action="index.php?controleur=annonce&methode=editerAnnonce" method="post" class="mt-4 w-75 mx-auto">
                 <input type="hidden" name="idAnnonce" value="{{ annonce.id }}">
                 <input type="hidden" name="idCreateur" value="{{ annonce.getCreateur() }}">
                 <div class="mb-3">

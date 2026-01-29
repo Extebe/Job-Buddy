@@ -275,16 +275,16 @@ class ControllerAnnonce extends Controller
      * @brief Edite une annonce existante.
      */
     public function editerAnnonce(): void
-    {
+    {   
+        //si la méthode est appelé depuis un formulaire
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $idAnnonce = $_POST['idAnnonce'];
             $idCreateur = $_POST['idCreateur'];
 
             $managerParticulier = new ParticulierDAO($this->getPdo());
             $particulier = $managerParticulier->find($idCreateur);
             
             $annonce = new Annonce(
-                $idAnnonce,
+                $_POST['idAnnonce'],
                 $particulier,
                 $_POST['titre'],
                 $_POST['description'],
