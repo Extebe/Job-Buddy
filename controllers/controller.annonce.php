@@ -27,9 +27,15 @@ class ControllerAnnonce extends Controller
         $tableau = $managerAnnonce->findAllAssocDispo();
         $annonces = $managerAnnonce->hydrateAll($tableau);
         $icons = Constantes::getConstantes()['icons'];
+        
+        foreach ($annonces as $key => $annonce) {
+            $tab[$key] = $managerAnnonce->addRelations($annonce);
+        }
+        var_dump($tab[0]->getPostulations());
+
 
         echo $template->render('index.html.twig', [
-            'annonces' => $annonces,
+            'annonces' => $tab,
             'icons' => $icons,
             'user' => Utilisateur::getUser()
         ]);
@@ -139,10 +145,13 @@ class ControllerAnnonce extends Controller
         } else {
             $tableau = $managerAnnonce->findAllByIdAndEtat(Utilisateur::getUser()->getId(), $filtre);
         }
+        foreach ($tableau as $key => $annonce) {
+            $managerAnnonce->addRelations($annonce);
+        }
         echo $template->render('mesAnnonces.html.twig', [
             'user' => Utilisateur::getUser(),
             'annonces' => $tableau,
-            'icons' => Constantes::getConstantes()['icons']
+            'icons' => Constantes::getConstantes()['icons'],
         ]);
 
     }
@@ -152,36 +161,57 @@ class ControllerAnnonce extends Controller
      * @brief Affiche les détails d'une annonce.
      */
     public function afficherDetail()
-    {
-        $template = $this->getTwig();
+{
+    $template = $this->getTwig();
 
-        if (!isset($_SESSION['id'])) {
-            header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
-            exit();
-        }
-
-
-        if (!isset($_GET['id'])) {
-            header("Location: index.php");
-            exit();
-        }
-        $idAnnonce = $_GET['id'];
-
-        $managerAnnonce = new AnnonceDao($this->getPdo());
-        $annonce = $managerAnnonce->find($idAnnonce);
-        if ($annonce->getEtuditantsSelectionnes() == null) {
-            $annonce = $managerAnnonce->addRelations($annonce);
-        } else {
-            $annonce = $managerAnnonce->addSelectedStudents($annonce);
-        }
-
-
-        echo $template->render('detailAnnonce.html.twig', [
-            'user' => Utilisateur::getUser(),
-            'annonce' => $annonce,
-            'icons' => Constantes::getConstantes()['icons']
-        ]);
+    // 1. Auth Check
+    if (!isset($_SESSION['id'])) {
+        header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+        exit();
     }
+
+    // 2. Input Validation
+    // Good practice: Ensure ID is actually an integer
+    if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
+        header("Location: index.php");
+        exit();
+    }
+    $idAnnonce = (int)$_GET['id'];
+
+    $managerAnnonce = new AnnonceDao($this->getPdo());
+    $annonce = $managerAnnonce->find($idAnnonce);
+
+    // 3. Safety Check: Does the announcement exist?
+    if (!$annonce) {
+        // Redirect or show a 404 error if the ID is invalid
+        header("Location: index.php"); 
+        exit();
+    }
+
+    // 4. Hydration Logic
+    if ($annonce->getEtuditantsSelectionnes() == null) {
+        $annonce = $managerAnnonce->addRelations($annonce);
+    } else {
+        $annonce = $managerAnnonce->addSelectedStudents($annonce);
+    }
+
+    // 5. Initialize $aPostule Default Value (The Fix)
+    // We set this to false (or null) by default so the variable exists for ALL roles.
+    $aPostule = false; 
+    foreach ($annonce->getPostulations() as $etudiant) {
+        if ($etudiant->getId() == Utilisateur::getUser()->getId()) {
+            $aPostule = true;
+            break;
+        }
+    }
+
+    echo $template->render('detailAnnonce.html.twig', [
+        'user'    => Utilisateur::getUser(),
+        'annonce' => $annonce,
+        'icons'   => Constantes::getConstantes()['icons'],
+        'aPostule' => $aPostule 
+    ]);
+}
 
     /**
      * @brief Permet à un étudiant de postuler à une annonce.
@@ -306,16 +336,16 @@ class ControllerAnnonce extends Controller
 
         else {
             // récupération des id de l'annonce et de son créateur depuis detailAnnonce.html.twig
-            $idAnnonce = $_GET['idAnnonce'];
-            $idCreateur = $_GET['idCreateur'];
-
+            $idAnnonce = $_GET['id'];
+            $user = Utilisateur::getUser();
+            $idCreateur = $user->getId();
             $annonceDao = new AnnonceDao($this->getPdo());
             $annonce = $annonceDao->findById($idCreateur,$idAnnonce);
 
             $template = $this->getTwig();
         }
         echo $template->render('modifierAnnonce.html.twig', [
-            'user' => Utilisateur::getUser(),
+            'user' => $user,
             'annonce' => $annonce,
         ]);
     }

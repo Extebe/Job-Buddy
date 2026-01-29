@@ -512,4 +512,18 @@ class AnnonceDao
         
         return $this->hydrateAll($resultats);
     }
+
+    public function findPostulatedAnnonceIdsByStudentId($studentId,$annonceId): bool
+    {
+        $sql = "SELECT idAnnonce FROM Postuler WHERE idEtudiant = :idEtudiant";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array("idEtudiant" => $studentId));
+        $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $annonceIds = $pdoStatement->fetchAll(PDO::FETCH_COLUMN, 0);
+        if (in_array($annonceId, $annonceIds)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

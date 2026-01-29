@@ -390,6 +390,11 @@ class Annonce
         return null;
     }
 
-}
+    public function aPostule(int $etudiantId): bool
+    {
+        $managerAnnonce = new AnnonceDAO(Bd::getInstance()->getConnexion());
+        $managerAnnonce->addRelations($this);
+        return in_array($etudiantId, $this->postulations);
+    }
 
-?>
+}

@@ -99,7 +99,7 @@
                                             </a>
                                         {% endif %}
 
-                                        {% if user.getRole() == "Particulier" and annonce.getEtat() == "DISPONIBLE"
+                                        {% if user.getRole() == "Particulier " and annonce.getEtat() == "disponible"
                                             and annonce.getCreateur().getId() == user.getId() %}
                                             <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
                                             class="btn btn-outline-success btn-sm">
@@ -107,7 +107,7 @@
                                             </a>
                                         {% endif %}
 
-                                        {% if user.getRole() == "Particulier"
+                                        {% if user.getRole() == "Particulier "
                                             and annonce.getCreateur().getId() == user.getId() %}
                                             <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
                                             class="btn btn-outline-danger btn-sm"
@@ -115,6 +115,23 @@
                                                 Supprimer
                                             </a>
                                         {% endif %}
+
+{# 1. Create a flag variable, assume false initially #}
+{% set aDejaPostule = false %}
+
+{# 2. Loop through the array to check IDs #}
+{% for candidat in annonce.postulations %}
+    {% if candidat.id == user.id %}
+        {% set aDejaPostule = true %}
+    {% endif %}
+{% endfor %}
+
+{# 3. Use the flag in your condition #}
+{% if user.role == "Etudiant" and annonce.etat == "disponible" and not aDejaPostule %}
+                                            <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
+                                                <button class="btn btn-outline-success btn-sm">Postuler</button>
+                                            </a>
+{% endif %}
                                     </div>
 
                                     {% if annonce.getEtat() == "TERMINE"%}

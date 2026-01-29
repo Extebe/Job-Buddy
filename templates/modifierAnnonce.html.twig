@@ -5,7 +5,7 @@
             <h1>Modifier l'annonce : {{ annonce.titre }} </h1>
             <form action="index.php?controleur=annonce&methode=editerAnnonce" method="post" class="mt-4 w-75 mx-auto">
                 <input type="hidden" name="idAnnonce" value="{{ annonce.id }}">
-                <input type="hidden" name="idCreateur" value="{{ annonce.getCreateur() }}">
+                <input type="hidden" name="idCreateur" value="{{ user.id }}">
                 <div class="mb-3">
                     <label for="" class="form-label">Titre de l'annonce</label>
                     <input type="text" class="form-control" id="titre" name="titre" value="{{ annonce.titre }}" required>
