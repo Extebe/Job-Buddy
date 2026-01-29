@@ -17,7 +17,7 @@
             <!-- Image -->
             <div class="image-zone">
                 <img
-                    src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-white.png"
+                    src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-black.png"
                     class="icon-annoncea"
                     alt="Icon {{ annonce.typeService }}"
                 >
@@ -38,13 +38,21 @@
                         </div>
 
                         <!-- Boutons -->
-                {% if user.role == "Etudiant" and annonce.etat == "DISPONIBLE" %}
-                    <div class="d-flex gap-2 mt-2 justify-content-end">
-                    <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
-                         <button class="btn btn-outline-success mt-2">Postuler</button>
-                    </a>
-                </div>
-                {% endif %}
+{% set aDejaPostule = false %}
+
+{# 2. Loop through the array to check IDs #}
+{% for candidat in annonce.postulations %}
+    {% if candidat.id == user.id %}
+        {% set aDejaPostule = true %}
+    {% endif %}
+{% endfor %}
+
+{# 3. Use the flag in your condition #}
+{% if user.role == "Etudiant" and annonce.etat == "disponible" and not aDejaPostule %}
+                                            <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
+                                                <button class="btn btn-outline-success btn-sm">Postuler</button>
+                                            </a>
+{% endif %}
 
 
 
@@ -105,31 +113,57 @@
 
 .card-item {
     overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: transform, box-shadow;
-}
-
-.card-item:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 20px 25px -5px rgba(93, 42, 24, 0.1), 0 10px 10px -5px rgba(93, 42, 24, 0.04);
-    border-color: rgba(212, 163, 115, 0.4) !important;
-    z-index: 10;
-}
-
-/* Fluidité pour l'icône */
-.icon-annoncea {
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: transform;
-}
-
-.card-item:hover .icon-annoncea {
-    transform: scale(1.15) rotate(5deg);
 }
 
 
-/* Boutons - z-index pour la cliquabilité uniquement, styles Bootstrap par défaut */
+
+
+.btn-outline-success {
+    color: #712200;
+    border-color: #712200;
+}
+
+.btn-outline-success:hover {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success:focus {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success::selection {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.btn-outline-success-danger:hover {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger:focus {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger::selection {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
 .btn, .d-flex.gap-2 {
     position: relative;
     z-index: 1; /* pour être au-dessus du stretched-link */

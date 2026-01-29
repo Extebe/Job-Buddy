@@ -27,9 +27,15 @@ class ControllerAnnonce extends Controller
         $tableau = $managerAnnonce->findAllAssocDispo();
         $annonces = $managerAnnonce->hydrateAll($tableau);
         $icons = Constantes::getConstantes()['icons'];
+        
+        foreach ($annonces as $key => $annonce) {
+            $tab[$key] = $managerAnnonce->addRelations($annonce);
+        }
+        var_dump($tab[0]->getPostulations());
+
 
         echo $template->render('index.html.twig', [
-            'annonces' => $annonces,
+            'annonces' => $tab,
             'icons' => $icons,
             'user' => Utilisateur::getUser()
         ]);
@@ -142,7 +148,6 @@ class ControllerAnnonce extends Controller
         foreach ($tableau as $key => $annonce) {
             $managerAnnonce->addRelations($annonce);
         }
-        var_dump($tableau);
         echo $template->render('mesAnnonces.html.twig', [
             'user' => Utilisateur::getUser(),
             'annonces' => $tableau,
