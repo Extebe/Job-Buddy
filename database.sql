@@ -142,3 +142,18 @@ INSERT INTO Postuler VALUES(2, 2, '2025-11-04 10:00:00', FALSE);
 INSERT INTO Note VALUES(1, 1, 1, 2, 4, 'Très bonne expérience, mais un peu trop cher.');
 INSERT INTO Note VALUES(2, 2, 2, 1, 2, "Le travail n'a pas été bien fait.");
 
+
+-- TRIGGERS
+DELIMITER $$
+DROP TRIGGER IF EXISTS verif_bcp_signalement$$
+CREATE TRIGGER verif_bcp_signalement
+BEFORE INSERT
+ON Signalement
+FOR EACH ROW
+BEGIN
+DECLARE nbSignalement INT;
+SELECT COUNT(*) INTO nbSignalement FROM Signalement WHERE idUtilisateurSignale = NEW.idUtilisateurSignale;
+IF nbSignalement >= 5 THEN
+	UPDATE Utilisateur SET statutCompte = 'suspect' WHERE id = NEW.idUtilisateurSignale;
+END IF;
+END$$
