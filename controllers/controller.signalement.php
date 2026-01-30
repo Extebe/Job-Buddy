@@ -29,6 +29,7 @@ class ControllerSignalement extends Controller
         // $annonce = $managerAnnonce->hydrate($annonce);
 
         echo $template->render('pageDeSignalement.html.twig', [
+            'user' => Utilisateur::getUser(),
             'idAnnonce' => $idAnnonce,
             'signaleur'=> Utilisateur::getUser()
         ]);
@@ -65,8 +66,9 @@ class ControllerSignalement extends Controller
         $idOther=$_GET['idOther'];
 
         echo $template->render('pageDeSignalementUtilisateur.html.twig', [
+            'user' => Utilisateur::getUser(),    
             'idOther' => $idOther,
-            'signaleur'=> Utilisateur::getUser()
+            'signaleur' => Utilisateur::getUser()
         ]);
     }
 
