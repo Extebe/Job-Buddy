@@ -26,7 +26,8 @@ CREATE TABLE Utilisateur(
   codePostal VARCHAR(5),
   tentativesEchouees INT DEFAULT 0 NOT NULL,
   dateDernierEchecConnexion DATETIME DEFAULT NULL, -- Date et heure du dernier échec de connexion
-  statutCompte ENUM('actif', 'desactive', 'suspect') DEFAULT 'actif',
+  statutCompte ENUM('actif', 'desactive') DEFAULT 'actif',
+  statutModeration ENUM('normal', 'banni', 'suspendu', 'suspect') DEFAULT 'normal',
   cvec VARCHAR(12),
   PRIMARY KEY(id)
 );
@@ -154,6 +155,6 @@ BEGIN
 DECLARE nbSignalement INT;
 SELECT COUNT(*) INTO nbSignalement FROM Signalement WHERE idUtilisateurSignale = NEW.idUtilisateurSignale;
 IF nbSignalement >= 5 THEN
-	UPDATE Utilisateur SET statutCompte = 'suspect' WHERE id = NEW.idUtilisateurSignale;
+	UPDATE Utilisateur SET statutModeration = 'suspect' WHERE id = NEW.idUtilisateurSignale;
 END IF;
 END$$
