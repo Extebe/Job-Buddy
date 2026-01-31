@@ -162,7 +162,7 @@ WHERE id = :id
     values (:role, :codeINE, :nom, :prenom, :tel, :dateNaiss, :email, :mdp, :ville, :adresse, :codePostal,:tentativesEchouees,:dateDernierEchecConnexion,:statutCompte,:cvec);";
         $pdoStatement = $this->pdo->prepare($requete);
         $pdoStatement->execute([
-            ':role' => 'Etudiant',
+            ':role' => 'etudiant',
             ':codeINE' => $user->getCodeINE(),
             ':nom' => $user->getNom(),
             ':prenom' => $user->getPrenom(),

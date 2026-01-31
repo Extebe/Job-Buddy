@@ -146,7 +146,7 @@
                 </form>
             </ul>
 
-            {% if user.role == "Particulier " %}
+            {% if user.role == "particulier" %}
                 <div class="btn-compte d-flex align-items-center">
                     <a href="index.php?controleur=annonce&methode=afficheFormAnnonce">
                         <button class="btn btn-outline-primary my-2 my-sm-0 me-2" type="submit">Poster Une Annonce</button>
@@ -168,7 +168,7 @@
                     </div>
                 </div>
 
-            {% elseif user.role == "Etudiant" %}
+            {% elseif user.role == "etudiant" %}
                 <div class="btn-compte d-flex align-items-center">
                     <a href="index.php?controleur=annonce&methode=afficherMesAnnonces">
                         <button class="btn btn-outline-primary my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>

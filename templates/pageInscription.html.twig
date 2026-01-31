@@ -28,8 +28,8 @@
                 <label for="role" class="form-label">Rôle :</label>
                 <select name="role" id="role" class="form-control" required onchange="toggleEtudiantFields()">
                     <option value="" {% if formData.role ?? '' == '' %}selected disabled{% endif %}>-- Choisissez une option --</option>
-                    <option value="Particulier" {% if formData.role ?? '' == 'Particulier' %}selected{% endif %}>Particulier</option>
-                    <option value="Etudiant" {% if formData.role ?? '' == 'Etudiant' %}selected{% endif %}>Etudiant</option>
+                    <option value="Particulier" {% if formData.role ?? '' == 'particulier' %}selected{% endif %}>Particulier</option>
+                    <option value="Etudiant" {% if formData.role ?? '' == 'etudiant' %}selected{% endif %}>Etudiant</option>
                 </select>
             </div>
 
@@ -64,7 +64,7 @@
                     const inputINE = document.getElementById('codeINE');
                     const inputCVEC = document.getElementById('cvec');
 
-                    if (role === 'Etudiant') {
+                    if (role === 'etudiant') {
                         blocINE.style.display = 'block';
                         blocCVEC.style.display = 'block';
                         inputINE.required = true;
