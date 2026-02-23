@@ -1,177 +1,309 @@
-    {% extends 'base_template.html.twig' %}
+{% extends 'base_template.html.twig' %}
 
-    {% block content %}
-    <link rel="stylesheet" href="./CSS/annonces.css">
-    <h1 class="mt-3">
-        Bienvenue sur JobBuddy.
-    </h1>
-    {{ annonces|length }} annonce(s) trouvée(s).
-    <div class="container">
-        <div id="zone_cartes" class="row row-cols-1 g-4 justify-content-center">
+{% block title %}Accueil - JobBuddy{% endblock %}
 
-            {% for annonce in annonces %}
-<div class="col-12 col-md-6 col-lg-6 d-flex justify-content-center">
-    <div class="card-slot w-75">
-        <div class="card h-100 card-item d-flex flex-row position-relative">
-
-            <!-- Image -->
-            <div class="image-zone">
-                <img
-                    src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-white.png"
-                    class="icon-annoncea"
-                    alt="Icon {{ annonce.typeService }}"
-                >
+{% block content %}
+<div class="container">
+    {# Hero Section avec meilleur guidage #}
+    <div class="row align-items-center mb-5 mt-4">
+        <div class="col-lg-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <i class="bi bi-house-door me-1"></i>
+                        Accueil
+                    </li>
+                </ol>
+            </nav>
+            
+            <h1 class="display-5 fw-bold mb-3">
+                Trouvez le job étudiant idéal
+            </h1>
+            <p class="lead text-muted mb-4">
+                <span class="badge badge-custom badge-primary">
+                    <i class="bi bi-clock-history"></i>
+                    {{ annonces|length }} annonce{{ annonces|length > 1 ? 's' : '' }} disponible{{ annonces|length > 1 ? 's' : '' }}
+                </span>
+            </p>
+        </div>
+        
+        {% if user is defined and user and user.role == "Particulier" %}
+        <div class="col-lg-4 text-lg-end">
+            <a href="index.php?controleur=annonce&methode=ajouterAnnonce" class="btn btn-primary btn-lg">
+                <i class="bi bi-plus-circle me-2"></i>
+                Publier une annonce
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    
+    {# Filtres et Recherche (Guidage amélioré) #}
+    <div class="card-custom mb-4 p-4">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-5">
+                <label class="form-label">
+                    <i class="bi bi-search me-1"></i>
+                    Rechercher une annonce
+                </label>
+                <input type="text" id="searchInput" class="form-control" placeholder="Titre, description...">
             </div>
-
-            <!-- Contenu -->
-            <div class="content-zone">
-                <div class="card-body">
-
-                    <!-- lien carte -->
-                    <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}" class="stretched-link"></a>
-
-                    <div class="d-flex justify-content-between align-items-start">
-
-                        <div>
-                            <h5 class="card-title mb-1">{{ annonce.titre }}</h5>
-                            <span class="fw-bold">{{ annonce.remuneration }} €</span>
+            <div class="col-md-4">
+                <label class="form-label">
+                    <i class="bi bi-funnel me-1"></i>
+                    Type de service
+                </label>
+                <select id="filterType" class="form-select">
+                    <option value="">Tous les services</option>
+                    <option value="Baby-sitting">Baby-sitting</option>
+                    <option value="Jardinage">Jardinage</option>
+                    <option value="Bricolage">Bricolage</option>
+                    <option value="Ménage">Ménage</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Aide Informatique">Aide Informatique</option>
+                    <option value="Aide Aux Devoirs">Aide Aux Devoirs</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">
+                    <i class="bi bi-sort-down me-1"></i>
+                    Trier par
+                </label>
+                <select id="sortBy" class="form-select">
+                    <option value="date">Plus récentes</option>
+                    <option value="price-asc">Prix croissant</option>
+                    <option value="price-desc">Prix décroissant</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    {# Message si aucune annonce #}
+    {% if annonces|length == 0 %}
+    <div class="text-center py-5">
+        <div class="mb-4">
+            <i class="bi bi-inbox" style="font-size: 4rem; color: var(--gray-400);"></i>
+        </div>
+        <h3 class="text-muted mb-3">Aucune annonce disponible</h3>
+        <p class="text-muted mb-4">Il n'y a pas encore d'annonces publiées.</p>
+        {% if user is defined and user and user.role == "Particulier" %}
+        <a href="index.php?controleur=annonce&methode=ajouterAnnonce" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-2"></i>
+            Publier la première annonce
+        </a>
+        {% endif %}
+    </div>
+    {% else %}
+    
+    {# Liste des annonces - Design amélioré #}
+    <div id="zone_cartes" class="row g-4">
+        {% for annonce in annonces %}
+        <div class="col-12 col-lg-6">
+            <div class="card-custom h-100 annonce-card" data-type="{{ annonce.typeService }}" data-title="{{ annonce.titre|lower }}" data-description="{{ annonce.description|lower }}" data-price="{{ annonce.remuneration }}">
+                <div class="card-body p-4">
+                    <div class="d-flex gap-3">
+                        {# Icône du service #}
+                        <div class="flex-shrink-0">
+                            <div class="service-icon">
+                                {% set iconMap = {
+                                    'Baby-sitting': 'bi-person-hearts',
+                                    'Jardinage': 'bi-tree',
+                                    'Bricolage': 'bi-hammer',
+                                    'Ménage': 'bi-house-heart',
+                                    'Transport': 'bi-car-front',
+                                    'Aide Informatique': 'bi-laptop',
+                                    'Aide Aux Devoirs': 'bi-book',
+                                    'Autre': 'bi-briefcase'
+                                } %}
+                                <i class="bi {{ iconMap[annonce.typeService] ?? 'bi-briefcase' }}"></i>
+                            </div>
                         </div>
-
-                        <!-- Boutons -->
-{% set aDejaPostule = false %}
-
-{# 2. Loop through the array to check IDs #}
-{% for candidat in annonce.postulations %}
-    {% if candidat.id == user.id %}
-        {% set aDejaPostule = true %}
-    {% endif %}
-{% endfor %}
-
-{# 3. Use the flag in your condition #}
-{% if user.role == "etudiant" and annonce.etat == "disponible" and not aDejaPostule %}
-                                            <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
-                                                <button class="btn btn-outline-success btn-sm">Postuler</button>
-                                            </a>
-{% endif %}
-
-
-
+                        
+                        {# Contenu #}
+                        <div class="flex-grow-1 min-w-0">
+                            {# En-tête #}
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="flex-grow-1 min-w-0">
+                                    <h5 class="card-title mb-1">
+                                        <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}" class="text-decoration-none text-dark stretched-link">
+                                            {{ annonce.titre }}
+                                        </a>
+                                    </h5>
+                                    <span class="badge badge-custom badge-primary mb-2">
+                                        {{ annonce.typeService }}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            {# Informations clés #}
+                            <div class="d-flex flex-wrap gap-3 mb-3 text-muted small">
+                                <span>
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    {{ annonce.lieu }}
+                                </span>
+                                <span>
+                                    <i class="bi bi-calendar-event me-1"></i>
+                                    {{ annonce.dateDebutRealisation|date("d/m/Y à H:i") }}
+                                </span>
+                            </div>
+                            
+                            {# Description #}
+                            <p class="card-text text-muted mb-3">
+                                {{ annonce.description|length > 120 ? annonce.description|slice(0, 120) ~ '...' : annonce.description }}
+                            </p>
+                            
+                            {# Footer avec prix et action #}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="price-tag">
+                                    <span class="h4 mb-0 text-primary fw-bold">{{ annonce.remuneration }} €</span>
+                                    <small class="text-muted d-block">Rémunération</small>
+                                </div>
+                                
+                                {% set aDejaPostule = false %}
+                                {% for candidat in annonce.postulations %}
+                                    {% if candidat.id == user.id %}
+                                        {% set aDejaPostule = true %}
+                                    {% endif %}
+                                {% endfor %}
+                                
+                                {% if user is defined and user.role == "Etudiant" and annonce.etat == "disponible" and not aDejaPostule %}
+                                <div style="position: relative; z-index: 2;">
+                                    <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-success">
+                                        <i class="bi bi-hand-thumbs-up me-1"></i>
+                                        Postuler
+                                    </a>
+                                </div>
+                                {% elseif aDejaPostule %}
+                                <div style="position: relative; z-index: 2;">
+                                    <span class="badge badge-custom badge-success">
+                                        <i class="bi bi-check-circle me-1"></i>
+                                        Candidature envoyée
+                                    </span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        {{ annonce.lieu }} - {{ annonce.dateDebutRealisation|date("H:i d/m/y") }}
-                    </h6>
-
-                    <p class="card-text">
-                        {{ annonce.description }}
-                    </p>
-
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    <div class="d-flex gap-2 mt-2 justify-content-end" style="position: relative; z-index: 2;">
-    
-
+    {% endif %}
 </div>
-</div>
-
-            {% endfor %}
-
-        </div>
-    </div>
-
 
 <style>
-/* Zone image : largeur fixe et petite */
-.image-zone {
-    width: 120px;        /* ↓ réduit fortement */
-    min-width: 120px;
-    max-width: 120px;
-    height: 100%;
-    flex-shrink: 0;
+/* Icône de service */
+.service-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary-100) 0%, var(--primary-200) 100%);
+    border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;   /* empêche tout débordement */
+    font-size: 1.8rem;
+    color: var(--primary-700);
+    flex-shrink: 0;
 }
 
-/* Image elle-même */
-.icon-annoncea {
-    max-width: 70px;    /* ↓ image réellement petite */
-    max-height: 70px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+/* Animation au hover de la carte */
+.annonce-card {
+    transition: all var(--transition-base);
 }
 
-/* Contenu : ne sort jamais de la carte */
-.content-zone {
-    flex: 1;
-    min-width: 0;       /* IMPORTANT : empêche le texte de déborder */
+.annonce-card:hover .service-icon {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, var(--primary-200) 0%, var(--primary-300) 100%);
 }
 
-.card-item {
-    overflow: hidden;
+/* Prix stylisé */
+.price-tag {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-
-
-
-.btn-outline-success {
-    color: #712200;
-    border-color: #712200;
+/* Breadcrumb personnalisé */
+.breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 1rem;
 }
 
-.btn-outline-success:hover {
-    color: #fbf2dd;
-    background-color: #712200;
-    border-color: #fbf2dd;
+.breadcrumb-item {
+    color: var(--gray-600);
 }
 
-.btn-outline-success:focus {
-    color: #fbf2dd;
-    background-color: #712200;
-    border-color: #fbf2dd;
+.breadcrumb-item.active {
+    color: var(--primary-700);
+    font-weight: 500;
 }
 
-.btn-outline-success::selection {
-    color: #fbf2dd;
-    background-color: #712200;
-    border-color: #fbf2dd;
+/* Responsive */
+@media (max-width: 768px) {
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .price-tag h4 {
+        font-size: 1.5rem;
+    }
 }
-
-.btn-outline-success-danger {
-    color: #ff0000;
-    border-color: #ff0000;
-}
-
-.btn-outline-success-danger:hover {
-    color: #fbf2dd;
-    background-color: #ff0000;
-    border-color: #fbf2dd;
-}
-
-.btn-outline-success-danger:focus {
-    color: #fbf2dd;
-    background-color: #ff0000;
-    border-color: #fbf2dd;
-}
-
-.btn-outline-success-danger::selection {
-    color: #fbf2dd;
-    background-color: #ff0000;
-    border-color: #fbf2dd;
-}
-
-.btn, .d-flex.gap-2 {
-    position: relative;
-    z-index: 1; /* pour être au-dessus du stretched-link */
-}
-
 </style>
-    {% endblock %}
 
-
-
-
+<script>
+// Recherche et filtrage en temps réel
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const filterType = document.getElementById('filterType');
+    const sortBy = document.getElementById('sortBy');
+    const cards = document.querySelectorAll('.annonce-card');
+    
+    function filterAndSort() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const typeFilter = filterType.value;
+        let visibleCards = [];
+        
+        // Filtrage
+        cards.forEach(card => {
+            const title = card.dataset.title;
+            const description = card.dataset.description;
+            const type = card.dataset.type;
+            
+            const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+            const matchesType = !typeFilter || type === typeFilter;
+            
+            if (matchesSearch && matchesType) {
+                card.closest('.col-12').style.display = '';
+                visibleCards.push(card);
+            } else {
+                card.closest('.col-12').style.display = 'none';
+            }
+        });
+        
+        // Tri
+        const sortValue = sortBy.value;
+        if (sortValue !== 'date') {
+            const container = document.getElementById('zone_cartes');
+            visibleCards.sort((a, b) => {
+                const priceA = parseFloat(a.dataset.price);
+                const priceB = parseFloat(b.dataset.price);
+                return sortValue === 'price-asc' ? priceA - priceB : priceB - priceA;
+            });
+            
+            visibleCards.forEach(card => {
+                container.appendChild(card.closest('.col-12'));
+            });
+        }
+    }
+    
+    // Événements
+    searchInput?.addEventListener('input', filterAndSort);
+    filterType?.addEventListener('change', filterAndSort);
+    sortBy?.addEventListener('change', filterAndSort);
+});
+</script>
+{% endblock %}
