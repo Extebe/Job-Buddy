@@ -17,18 +17,10 @@
                 </span>
             </p>
         </div>
-        
-        {% if user is defined and user and user.role == "Particulier" %}
-        <div class="col-lg-4 text-lg-end">
-            <a href="index.php?controleur=annonce&methode=ajouterAnnonce" class="btn btn-primary btn-lg">
-                <i class="bi bi-plus-circle me-2"></i>
-                Publier une annonce
-            </a>
-        </div>
-        {% endif %}
     </div>
     
     {# Filtres et Recherche (Guidage amélioré) #}
+    <form id="filterForm" method="POST" action="index.php?controleur=annonce&methode=rechercher">
     <div class="card-custom mb-4 p-4">
         <div class="row g-3 align-items-end">
             <div class="col-md-5">
@@ -36,23 +28,23 @@
                     <i class="bi bi-search me-1"></i>
                     Rechercher une annonce
                 </label>
-                <input type="text" id="searchInput" class="form-control" placeholder="Titre, description...">
+                <input type="text" id="recherche" name="recherche" class="form-control" placeholder="Titre, description..." value={{ recherche|default('') }}>
             </div>
             <div class="col-md-4">
                 <label class="form-label">
                     <i class="bi bi-funnel me-1"></i>
                     Type de service
                 </label>
-                <select id="filterType" class="form-select">
-                    <option value="">Tous les services</option>
-                    <option value="Baby-sitting">Baby-sitting</option>
-                    <option value="Jardinage">Jardinage</option>
-                    <option value="Bricolage">Bricolage</option>
-                    <option value="Ménage">Ménage</option>
-                    <option value="Transport">Transport</option>
-                    <option value="Aide Informatique">Aide Informatique</option>
-                    <option value="Aide Aux Devoirs">Aide Aux Devoirs</option>
-                    <option value="Autre">Autre</option>
+                <select id="typeService" name="typeService" class="form-select">
+                    <option value="" {% if typeService|default('') == '' %}selected{% endif %}>Tous les services</option>
+                    <option value="Baby-sitting" {% if typeService|default('') == 'Baby-sitting' %}selected{% endif %}>Baby-sitting</option>
+                    <option value="Jardinage" {% if typeService|default('') == 'Jardinage' %}selected{% endif %}>Jardinage</option>
+                    <option value="Bricolage" {% if typeService|default('') == 'Bricolage' %}selected{% endif %}>Bricolage</option>
+                    <option value="Ménage" {% if typeService|default('') == 'Ménage' %}selected{% endif %}>Ménage</option>
+                    <option value="Transport" {% if typeService|default('') == 'Transport' %}selected{% endif %}>Transport</option>
+                    <option value="Aide Informatique" {% if typeService|default('') == 'Aide Informatique' %}selected{% endif %}>Aide Informatique</option>
+                    <option value="Aide Aux Devoirs" {% if typeService|default('') == 'Aide Aux Devoirs' %}selected{% endif %}>Aide Aux Devoirs</option>
+                    <option value="Autre" {% if typeService|default('') == 'Autre' %}selected{% endif %}>Autre</option>
                 </select>
             </div>
             <div class="col-md-3">
@@ -60,14 +52,29 @@
                     <i class="bi bi-sort-down me-1"></i>
                     Trier par
                 </label>
-                <select id="sortBy" class="form-select">
-                    <option value="date">Plus récentes</option>
-                    <option value="price-asc">Prix croissant</option>
-                    <option value="price-desc">Prix décroissant</option>
+                <select id="sortBy" name="sortBy" class="form-select">
+                    <option value="date" {% if sortBy|default('date') == 'date' %}selected{% endif %}>Plus récentes</option>
+                    <option value="remunerationAsc" {% if sortBy|default('date') == 'remunerationAsc' %}selected{% endif %}>Prix croissant</option>
+                    <option value="remunerationDesc" {% if sortBy|default('date') == 'remunerationDesc' %}selected{% endif %}>Prix décroissant</option>
                 </select>
             </div>
+            <ul class="list-unstyled d-flex gap-2 mt-3"> 
+                <li>
+                    <button id="resetFilters" class="btn btn-outline-secondary mt-3" onclick="document.getElementById('recherche').value = ''; document.getElementById('typeService').value = ''; document.getElementById('sortBy').value = 'date';">
+                        <i class="bi bi-x-circle me-1"></i>
+                        Réinitialiser les filtres
+                    </button>
+                </li>
+                <li>
+                    <button id="submitFilters" class="btn btn-outline-primary mt-3" type="submit">
+                        <i class="bi bi-search me-1"></i>
+                        Rechercher
+                    </button>
+                </li> 
+            </ul>
         </div>
     </div>
+    </form>
     <div id="zone_cartes" class="row g-4">
     {% for annonce in annonces %}
     <div class="col-12 col-lg-6">

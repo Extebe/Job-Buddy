@@ -456,7 +456,7 @@ class AnnonceDao
      * @param string $heureDebut Heure de début souhaitée.
      * @return array Tableau d'annonces filtrées.
      */
-    public function search(string $recherche, string $typeService, string $lieu, string $remunerationMin, string $remunerationMax, string $dateDebut, string $heureDebut): array
+    public function search(string $recherche, string $typeService, string $ordre): array
     {
         $sql = "SELECT * FROM Annonce WHERE etat = 'disponible' AND dateSuppression IS NULL";
         $params = [];
@@ -473,38 +473,17 @@ class AnnonceDao
             $params['typeService'] = $typeService;
         }
 
-        // Filtre lieu
-        if (!empty($lieu)) {
-            $sql .= " AND lieu LIKE :lieu";
-            $params['lieu'] = '%' . $lieu . '%';
+        switch ($ordre) {
+            case 'date':
+                $sql .= " ORDER BY datePublication DESC";
+                break;
+            case 'remunerationAsc':
+                $sql .= " ORDER BY remuneration ASC";
+                break;
+            case 'remunerationDesc':
+                $sql .= " ORDER BY remuneration DESC";
+                break;
         }
-
-        // Filtre rémunération minimale
-        if (!empty($remunerationMin)) {
-            $sql .= " AND remuneration >= :remunerationMin";
-            $params['remunerationMin'] = (float)$remunerationMin;
-        }
-
-        // Filtre rémunération maximale
-        if (!empty($remunerationMax)) {
-            $sql .= " AND remuneration <= :remunerationMax";
-            $params['remunerationMax'] = (float)$remunerationMax;
-        }
-
-        // Filtre date de début
-        if (!empty($dateDebut)) {
-            $sql .= " AND DATE(dateDebutRealisation) >= :dateDebut";
-            $params['dateDebut'] = $dateDebut;
-        }
-
-        // Filtre heure de début
-        if (!empty($heureDebut)) {
-            $sql .= " AND TIME(dateDebutRealisation) >= :heureDebut";
-            $params['heureDebut'] = $heureDebut;
-        }
-
-        $sql .= " ORDER BY datePublication DESC";
-
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute($params);
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);

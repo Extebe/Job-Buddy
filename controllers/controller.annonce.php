@@ -410,17 +410,13 @@ if ($utilisateurConnecte !== null) {
         // Récupérer les paramètres de recherche et filtres
         $recherche = $_POST['recherche'] ?? '';
         $typeService = $_POST['typeService'] ?? '';
-        $lieu = $_POST['lieu'] ?? '';
-        $remunerationMin = $_POST['remunerationMin'] ?? '';
-        $remunerationMax = $_POST['remunerationMax'] ?? '';
-        $dateDebut = $_POST['dateDebut'] ?? '';
-        $heureDebut = $_POST['heureDebut'] ?? '';
+        $ordre = $_POST['sortBy'] ?? 'date'; // Par défaut, trier par date
         
         // Construire la requête de recherche
         $annonces = [];
-        if (!empty($recherche) || !empty($typeService) || !empty($lieu) || !empty($remunerationMin) || !empty($remunerationMax) || !empty($dateDebut) || !empty($heureDebut)) {
+        if (!empty($recherche) || !empty($typeService) || !empty($ordre)) {
             // Utiliser la méthode search pour filtrer
-            $annonces = $managerAnnonce->search($recherche, $typeService, $lieu, $remunerationMin, $remunerationMax, $dateDebut, $heureDebut);
+            $annonces = $managerAnnonce->search($recherche, $typeService, $ordre);
         } else {
             // Si aucun critère, afficher toutes les annonces disponibles
             $tableau = $managerAnnonce->findAllAssocDispo();
@@ -433,11 +429,7 @@ if ($utilisateurConnecte !== null) {
             'user' => Utilisateur::getUser(),
             'recherche' => $recherche,
             'typeService' => $typeService,
-            'lieu' => $lieu,
-            'remunerationMin' => $remunerationMin,
-            'remunerationMax' => $remunerationMax,
-            'dateDebut' => $dateDebut,
-            'heureDebut' => $heureDebut
+            'sortBy' => $ordre
         ]);
     }
 }
