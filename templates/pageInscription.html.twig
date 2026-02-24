@@ -25,64 +25,66 @@
             </div>
             {# -------------------------------------------------------------------------------------------------- #}
             <div class="mb-3">
-                <label for="role" class="form-label">Rôle :</label>
-                <select name="role" id="role" class="form-control" required onchange="toggleEtudiantFields()">
-                    <option value="" {% if formData.role ?? '' == '' %}selected disabled{% endif %}>-- Choisissez une option --</option>
-                    <option value="Particulier" {% if formData.role ?? '' == 'particulier' %}selected{% endif %}>Particulier</option>
-                    <option value="Etudiant" {% if formData.role ?? '' == 'etudiant' %}selected{% endif %}>Etudiant</option>
-                </select>
-            </div>
+    <label for="role" class="form-label">Rôle :</label>
+    <select name="role" id="role" class="form-control" required onchange="toggleEtudiantFields()">
+        <option value="" {% if formData.role|default('') == '' %}selected disabled{% endif %}>-- Choisissez une option --</option>
+        
+        <option value="particulier" {% if formData.role|default('') == 'particulier' %}selected{% endif %}>Particulier</option>
+        
+        <option value="etudiant" {% if formData.role|default('') == 'etudiant' %}selected{% endif %}>Etudiant</option>
+    </select>
+</div>
 
-            <div class="mb-3" id="blocINE" style="display:none;">
-                <label for="codeINE" class="form-label">Code INE :</label>
-                <input type="text" name="codeINE" id="codeINE" class="form-control" value="{{ formData.codeINE ?? '' }}">
-            </div>
+<div class="mb-3" id="blocINE" style="display:none;">
+    <label for="codeINE" class="form-label">Code INE :</label>
+    <input type="text" name="codeINE" id="codeINE" class="form-control" value="{{ formData.codeINE|default('') }}">
+</div>
 
-            <div class="mb-3" id="blocCVEC" style="display:none;">
-                <label for="cvec" class="form-label">Numéro CVEC :</label>
-                <input 
-                    type="text" 
-                    name="cvec" 
-                    id="cvec" 
-                    class="form-control" 
-                    minlength="12" 
-                    maxlength="12" 
-                    pattern="^[A-Za-z0-9]{12}$" 
-                    title="Le CVEC doit comporter exactement 12 caractères sans espace"
-                    value="{{ formData.cvec ?? '' }}"
-                    required
-                >
-            </div>
+<div class="mb-3" id="blocCVEC" style="display:none;">
+    <label for="cvec" class="form-label">Numéro CVEC :</label>
+    <input 
+        type="text" 
+        name="cvec" 
+        id="cvec" 
+        class="form-control" 
+        minlength="12" 
+        maxlength="12" 
+        pattern="^[A-Za-z0-9]{12}$" 
+        title="Le CVEC doit comporter exactement 12 caractères sans espace"
+        value="{{ formData.cvec|default('') }}"
+        >
+</div>
 
+<script>
+    function toggleEtudiantFields() {
+        const role = document.getElementById('role').value;
 
-            <script>
-                function toggleEtudiantFields() {
-                    const role = document.getElementById('role').value;
+        const blocINE = document.getElementById('blocINE');
+        const blocCVEC = document.getElementById('blocCVEC');
+        const inputINE = document.getElementById('codeINE');
+        const inputCVEC = document.getElementById('cvec');
 
-                    const blocINE = document.getElementById('blocINE');
-                    const blocCVEC = document.getElementById('blocCVEC');
-                    const inputINE = document.getElementById('codeINE');
-                    const inputCVEC = document.getElementById('cvec');
-
-                    if (role === 'etudiant') {
-                        blocINE.style.display = 'block';
-                        blocCVEC.style.display = 'block';
-                        inputINE.required = true;
-                        inputCVEC.required = true;
-                    } else {
-                        blocINE.style.display = 'none';
-                        blocCVEC.style.display = 'none';
-                        inputINE.required = false;
-                        inputCVEC.required = false;
-                        inputINE.value = '';
-                        inputCVEC.value = '';
-                    }
-                }
-                // Appel au chargement de la page
-                toggleEtudiantFields();
-            </script>
-
-
+        // La condition fonctionne maintenant car l'option HTML envoie "etudiant"
+        if (role === 'etudiant') {
+            blocINE.style.display = 'block';
+            blocCVEC.style.display = 'block';
+            inputINE.required = true;
+            inputCVEC.required = true;
+        } else {
+            blocINE.style.display = 'none';
+            blocCVEC.style.display = 'none';
+            inputINE.required = false;
+            inputCVEC.required = false;
+            
+            // Vide les champs si on repasse sur "Particulier" pour ne pas envoyer de fausses données
+            inputINE.value = '';
+            inputCVEC.value = '';
+        }
+    }
+    
+    // Appel au chargement de la page pour restaurer l'état après une erreur de soumission
+    toggleEtudiantFields();
+</script>
             {# -------------------------------------------------------------------------------------------------- #}
 
             <div class="mb-3">

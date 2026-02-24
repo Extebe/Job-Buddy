@@ -1,321 +1,750 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="CSS/styles.css">
-    {# ---- PARTIE COOKIE ----   
-     # commande à écrirer pour installer la bibliothèque : 
-     #  npm i tarteaucitronjs 
-     #}
-    <script src="node_modules/tarteaucitronjs/tarteaucitron.min.js"></script>
-        <script>
-            (tarteaucitron.job = tarteaucitron.job || []).push('gcmanalyticsstorage');
-        </script>
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="JobBuddy - La plateforme qui connecte étudiants et particuliers pour des petits boulots">
+        <title>{% block title %}JobBuddy{% endblock %}</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        
+        <!-- Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        {# Tarteaucitron (Conformité RGPD) #}
+        <script src="node_modules/tarteaucitronjs/tarteaucitron.min.js"></script>
         <script type="text/javascript">
-        tarteaucitron.init({
-    	  "privacyUrl": "", /* Privacy policy url */
-          "bodyPosition": "top", /* top to bring it as first element for accessibility */
-
-    	  "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
-    	  "cookieName": "tarteaucitron", /* Cookie name */
-    
-    	  "orientation": "middle", /* Banner position (top - bottom) */
-       
-          "groupServices": true, /* Group services by category */
-          "showDetailsOnClick": true, /* Click to expand the description */
-          "serviceDefaultState": "wait", /* Default state (true - wait - false) */
-                           
-    	  "showAlertSmall": false, /* Show the small banner on bottom right */
-    	  "cookieslist": false, /* Show the cookie list in a mini banner */
-          "cookieslistEmbed": false, /* Show the cookie list on the control panel */
-                           
-          "closePopup": true, /* Show a close X on the banner */
-
-          "showIcon": true, /* Show cookie icon to manage cookies */
-          //"iconSrc": "", /* Optionnal: URL or base64 encoded image */
-          "iconPosition": "BottomRight", /* Position of the cookie (BottomRight - BottomLeft - TopRight - TopLeft) */
-
-    	  "adblocker": false, /* Show a Warning if an adblocker is detected */
-                           
-          "DenyAllCta" : true, /* Show the deny all button */
-          "AcceptAllCta" : true, /* Show the accept all button */
-          "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
-          "alwaysNeedConsent": false, /* Ask the consent for "Privacy by design" services */
-                           
-    	  "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
-
-    	  "removeCredit": false, /* Remove credit link */
-    	  "moreInfoLink": true, /* Show more info link */
-
-          "useExternalCss": false, /* Expert mode: do not load the tarteaucitron.css file */
-          "useExternalJs": false, /* Expert mode: do not load the tarteaucitron js files */
-
-    	  //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
-                          
-          "readmoreLink": "", /* Change the default readmore link */
-
-          "mandatory": true, /* Show a message about mandatory cookies */
-          "mandatoryCta": false, /* Show the disabled accept button when mandatory on */
-    
-          //"customCloserId": "", /* Optional a11y: Custom element ID used to open the panel */
-          
-          "googleConsentMode": true, /* Enable Google Consent Mode v2 for Google ads & GA4 */
-          "bingConsentMode": true, /* Enable Bing Consent Mode for Clarity & Bing Ads */
-          "pianoConsentMode": true, /* Enable Consent Mode for Piano Analytics */
-          "pianoConsentModeEssential": false, /* Load in Essential mode instead of opt-out by default */
-          "softConsentMode": false, /* Soft consent mode (consent is required to load the services) */
-
-          "dataLayer": false, /* Send an event to dataLayer with the services status */
-          "serverSide": false, /* Server side only, tags are not loaded client side */
-
-          "partnersList": true /* Show the number of partners on the popup/middle banner */
-        });
+            tarteaucitron.init({ 
+                "privacyUrl": "", 
+                "hashtag": "#tarteaucitron", 
+                "cookieName": "tarteaucitron", 
+                "orientation": "bottom", 
+                "groupServices": true, 
+                "showIcon": true, 
+                "iconPosition": "BottomRight", 
+                "adblocker": false, 
+                "DenyAllCta": true, 
+                "AcceptAllCta": true, 
+                "highPrivacy": true, 
+                "handleBrowserDNTRequest": false, 
+                "removeCredit": false, 
+                "moreInfoLink": true, 
+                "useExternalCss": false, 
+                "useExternalJs": false, 
+                "readmoreLink": "", 
+                "mandatory": true, 
+                "mandatoryCta": true 
+            });
         </script>
-        <script>
-            tarteaucitron.user.gtagUa = 'G-QQF2T8V2DZ';
-            // tarteaucitron.user.gtagCrossdomain = ['example.com', 'example2.com'];
-            tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
-            (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
-        </script>
-    {# ---- FIN PARTIE COOKIE ---- #}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Page du projet JobBuddy">
-   
-    <style>
-        :root {
-            {% if config.parameters.colors is defined %}
-                --primary: {{ config.parameters.colors.primary }};
-                --secondary: {{ config.parameters.colors.secondary }};
-                --accent: {{ config.parameters.colors.accent }};
-                --bg-color: {{ config.parameters.colors.bg_color }};
-                --card-bg: {{ config.parameters.colors.card_bg }};
-                --text-dark: {{ config.parameters.colors.text_dark }};
-                --text-light: {{ config.parameters.colors.text_light }};
-            {% endif %}
-        }
 
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1;
-        }
-
-        footer {
-            margin-top: auto;
-        }
-    </style>
-
-    {% block css %} {% endblock %}
-    <title> {% block title %} Page d'accueil de JobBuddy {% endblock %} </title>
-</head>
-
-
-<body>
-<header>
-     <nav class="navbar navbar-expand-lg" style="background-color: #F7F5EF;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">
-                <img src="./images/logo/logo_jobbuddy.png" alt="Logo" width="75" height="75" class="d-inline-block align-text-center ms-2">
-                Jobbuddy
-            </a>
-
-            <ul class="navbar-nav mx-auto d-flex align-items-center">
-                <form method='POST' action="index.php?controleur=annonce&methode=rechercher" id="filterForm">
-                    <div class="d-flex align-items-center gap-2">
-                        <li class="nav-item">
-                            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
-                                <span>Filtres</span>
-                            </button>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <input class="form-control form-control-lg" type="search" name="rechercheInput" id="searchInput" placeholder="Search" aria-label="Search" value="{{ recherche|default('') }}">
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-outline-primary" type="submit">Appliquer</button>
-                        </li>
-                        <!-- Champ de recherche caché pour le formulaire -->
-                        <input type="hidden" name="recherche" id="hiddenRecherche" value="{{ recherche|default('') }}">
-                    </div>
-                </form>
-            </ul>
-
-            {% if user.role == "particulier" %}
-                <div class="btn-compte d-flex align-items-center">
-                    <a href="index.php?controleur=annonce&methode=afficheFormAnnonce">
-                        <button class="btn btn-outline-primary my-2 my-sm-0 me-2" type="submit">Poster Une Annonce</button>
-                    </a>
-
-                    <a href="index.php?controleur=annonce&methode=afficherMesAnnonces">
-                        <button class="btn btn-outline-primary my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>
-                    </a>
-
-                    <div class="dropdown">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="./images/icons/account-black.png" width="30" height="30">
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=afficheCompte">Mon Compte</a></li>
-                            <li><a class="dropdown-item" href="index.php?controleur=note&methode=afficher">Mes notes</a></li>
-                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=deconnexion">Se Déconnecter</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            {% elseif user.role == "etudiant" %}
-                <div class="btn-compte d-flex align-items-center">
-                    <a href="index.php?controleur=annonce&methode=afficherMesAnnonces">
-                        <button class="btn btn-outline-primary my-2 my-sm-0 me-2" type="submit">Mes Annonces</button>
-                    </a>
-
-                    <div class="dropdown">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="./images/icons/account-black.png" width="30" height="30">
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=afficheCompte">Mon Compte</a></li>
-                            <li><a class="dropdown-item" href="index.php?controleur=note&methode=afficher">Mes notes</a></li>
-                            <li><a class="dropdown-item" href="index.php?controleur=utilisateur&methode=deconnexion">Se Déconnecter</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            {% else %}
-                <div class="btn-compte d-flex align-items-center">
-                    <a href="index.php?controleur=utilisateur&methode=pageConnexion"><button class="btn btn-outline-primary my-2 my-sm-0 me-2" type="submit">se connecter</button></a>
-                    <a href="index.php?controleur=utilisateur&methode=pageInscription"><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">s'inscrire</button></a>
-                </div>
-
-            {% endif %}
-            {% block headerListe %}
-            {% endblock %}
-        </div>
-    </nav>
-</header>
-
-<!-- Menu des filtres (collapsible) -->
-<div class="collapse" id="filterCollapse">
-    <div style="background-color: #F7F5EF; border-bottom: 2px solid #dee2e6; padding: 20px 0;">
-        <div class="container-fluid">
-            <div class="row g-3">
-                <div class="col-md-2">
-                    <label for="typeService" class="form-label">Type de Service</label>
-                    <select class="form-select" id="typeService" name="typeService" form="filterForm">
-                        <option value="">-- Tous --</option>
-                        <option value="baby-sitting" {% if typeService == 'baby-sitting' %}selected{% endif %}>Baby-sitting</option>
-                        <option value="jardinage" {% if typeService == 'jardinage' %}selected{% endif %}>Jardinage</option>
-                        <option value="bricolage" {% if typeService == 'bricolage' %}selected{% endif %}>Bricolage</option>
-                        <option value="ménage" {% if typeService == 'ménage' %}selected{% endif %}>Ménage</option>
-                        <option value="transport" {% if typeService == 'transport' %}selected{% endif %}>Transport</option>
-                        <option value="aide informatique" {% if typeService == 'aide informatique' %}selected{% endif %}>Aide informatique</option>
-                        <option value="aide aux devoirs" {% if typeService == 'aide aux devoirs' %}selected{% endif %}>Aide aux devoirs</option>
-                        <option value="autre" {% if typeService == 'autre' %}selected{% endif %}>Autre</option>
-                    </select>
-                </div>
-
-                <div class="col-md-2">
-                    <label for="lieu" class="form-label">Lieu</label>
-                    <input type="text" class="form-control" id="lieu" name="lieu" form="filterForm" placeholder="Ville ou code postal" value="{{ lieu|default('') }}">
-                </div>
-
-                <div class="col-md-2">
-                    <label for="remunerationMin" class="form-label">Montant Min</label>
-                    <input type="number" class="form-control" id="remunerationMin" name="remunerationMin" form="filterForm" placeholder="Min" step="0.01" value="{{ remunerationMin|default('') }}">
-                </div>
-
-                <div class="col-md-2">
-                    <label for="remunerationMax" class="form-label">Montant Max</label>
-                    <input type="number" class="form-control" id="remunerationMax" name="remunerationMax" form="filterForm" placeholder="Max" step="0.01" value="{{ remunerationMax|default('') }}">
-                </div>
-
-                <div class="col-md-2">
-                    <label for="dateDebut" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="dateDebut" name="dateDebut" form="filterForm" value="{{ dateDebut|default('') }}">
-                </div>
-
-                <div class="col-md-2">
-                    <label for="heureDebut" class="form-label">Heure</label>
-                    <input type="time" class="form-control" id="heureDebut" name="heureDebut" form="filterForm" value="{{ heureDebut|default('') }}">
-                </div>
-
-                <div class="col-12 d-flex justify-content-end gap-2 mt-3">
-                    <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('typeService').value = ''; document.getElementById('lieu').value = ''; document.getElementById('remunerationMin').value = ''; document.getElementById('remunerationMax').value = ''; document.getElementById('dateDebut').value = ''; document.getElementById('heureDebut').value = '';">Réinitialiser les filtres</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<main>
-{% block content %}
-<link rel="stylesheet" href="CSS/styles.css">
-{% endblock %}
-</main>
-
-<footer>
-    <div class="container-fluid">
-        <div class="row" style="min-height: 100px;">
-            <div class="col-sm-3 d-flex justify-content-center align-items-center">
-                <p class="mb-0">Jobbuddy</p>
-            </div>
-
-            <div class="col-sm-3 d-flex justify-content-center align-items-center">
-                <a class="mb-0" href='index.php?controleur=newsLetter&methode=afficher'>S'inscrire à la news letter</a>
-            </div>
-
-            <div class="col-sm-3 d-flex justify-content-center align-items-center">
-                <a class="mb-0" href='index.php?controleur=annonce&methode=afficherStatistiques'>Statistiques</a>
-            </div>
-
-            <div class="col-sm-3 d-flex justify-content-center align-items-center">
-                <p class="mb-0">Nous contacter</p>
-            </div>
-        </div>
-        <div class="row" style="min-height: 50px;">
-            <div class="col-sm-12 d-flex justify-content-center align-items-center">
-                <p class="mb-0">Copyrights</p>
-            </div>
-        </div>
-    </div>
-</footer>
-{% block script %}
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    <script>
-        // Synchronisation entre la barre de recherche et le champ caché du formulaire
-        const searchInput = document.getElementById('searchInput');
-        const hiddenRecherche = document.getElementById('hiddenRecherche');
-
-        searchInput.addEventListener('input', function() {
-            hiddenRecherche.value = this.value;
-        });
-
-        // Ouvrir automatiquement le formulaire de filtres s'il y a des filtres actifs
-        window.addEventListener('load', function() {
-            const hasFilters =
-                document.getElementById('typeService').value ||
-                document.getElementById('lieu').value ||
-                document.getElementById('remunerationMin').value ||
-                document.getElementById('remunerationMax').value ||
-                document.getElementById('dateDebut').value ||
-                document.getElementById('heureDebut').value;
-
-            if (hasFilters) {
-                const filterCollapse = new bootstrap.Collapse(document.getElementById('filterCollapse'), {
-                    toggle: true
-                });
+        <style>
+            /* ==================== DESIGN SYSTEM JOBBUDDY ==================== */
+            
+            :root {
+                /* Couleurs principales */
+                --primary-900: #9c3903;
+                --primary-800: #591b00;
+                --primary-700: #712200;
+                --primary-600: #8B2A00;
+                --primary-500: #A53300;
+                --primary-400: #C55D33;
+                --primary-300: #E08866;
+                --primary-200: #F0B299;
+                --primary-100: #FBF2DD;
+                --primary-50: #FDF8F0;
+                
+                /* Couleurs neutres */
+                --gray-900: #111827;
+                --gray-800: #1F2937;
+                --gray-700: #374151;
+                --gray-600: #4B5563;
+                --gray-500: #6B7280;
+                --gray-400: #9CA3AF;
+                --gray-300: #D1D5DB;
+                --gray-200: #E5E7EB;
+                --gray-100: #F3F4F6;
+                --gray-50: #F9FAFB;
+                
+                /* Couleurs sémantiques */
+                --success: #10B981;
+                --success-light: #D1FAE5;
+                --warning: #F59E0B;
+                --warning-light: #FEF3C7;
+                --danger: #EF4444;
+                --danger-light: #FEE2E2;
+                --info: #3B82F6;
+                --info-light: #DBEAFE;
+                
+                /* Ombres (Elevation) */
+                --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+                --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+                --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+                --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+                
+                /* Bordures arrondies */
+                --radius-sm: 6px;
+                --radius-md: 10px;
+                --radius-lg: 14px;
+                --radius-xl: 18px;
+                --radius-2xl: 24px;
+                --radius-full: 9999px;
+                
+                /* Espacements */
+                --space-xs: 0.25rem;
+                --space-sm: 0.5rem;
+                --space-md: 1rem;
+                --space-lg: 1.5rem;
+                --space-xl: 2rem;
+                --space-2xl: 3rem;
+                
+                /* Transitions */
+                --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+                --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+                --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
             }
-        });
-    </script>
-{% endblock %}
-</body>
-</html>
+
+            /* ==================== RESET & BASE ==================== */
+            
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                background-color: var(--gray-50);
+                color: var(--gray-800);
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                line-height: 1.6;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            main { 
+                flex: 1; 
+                padding-top: 80px; /* Espace pour navbar fixe */
+            }
+
+            /* ==================== TYPOGRAPHIE ==================== */
+            
+            h1, h2, h3, h4, h5, h6 { 
+                font-weight: 600; 
+                color: var(--gray-900);
+                line-height: 1.2;
+                margin-bottom: var(--space-md);
+            }
+            
+            h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+            h2 { font-size: 2rem; letter-spacing: -0.01em; }
+            h3 { font-size: 1.5rem; }
+            h4 { font-size: 1.25rem; }
+            
+            p { 
+                margin-bottom: var(--space-md); 
+                color: var(--gray-600);
+            }
+            
+            a { 
+                text-decoration: none; 
+                transition: all var(--transition-base);
+                color: var(--primary-700);
+            }
+            
+            a:hover {
+                color: var(--primary-800);
+            }
+
+            /* ==================== NAVIGATION ==================== */
+            
+            .navbar-custom {
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                box-shadow: var(--shadow-sm);
+                padding: var(--space-md) 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                border-bottom: 1px solid var(--gray-200);
+            }
+            
+            .navbar-brand-custom {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--primary-700) !important;
+                display: flex;
+                align-items: center;
+                gap: var(--space-sm);
+                transition: transform var(--transition-base);
+            }
+            
+            .navbar-brand-custom:hover {
+                transform: scale(1.02);
+            }
+            
+            .navbar-brand-custom i {
+                font-size: 1.8rem;
+            }
+            
+            .nav-link-custom {
+                color: var(--gray-700) !important;
+                font-weight: 500;
+                padding: var(--space-sm) var(--space-md) !important;
+                border-radius: var(--radius-md);
+                transition: all var(--transition-base);
+                position: relative;
+            }
+            
+            .nav-link-custom:hover {
+                background-color: var(--primary-50);
+                color: var(--primary-700) !important;
+            }
+            
+            .nav-link-custom.active {
+                background-color: var(--primary-100);
+                color: var(--primary-800) !important;
+            }
+            
+            .nav-link-custom i {
+                margin-right: var(--space-xs);
+            }
+
+            /* ==================== BOUTONS ==================== */
+            
+            .btn {
+                border-radius: var(--radius-full);
+                padding: 0.625rem 1.5rem;
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: all var(--transition-base);
+                border: 2px solid transparent;
+                display: inline-flex;
+                align-items: center;
+                gap: var(--space-xs);
+                cursor: pointer;
+                text-decoration: none;
+            }
+            
+            .btn:active { 
+                transform: scale(0.98); 
+            }
+            
+            .btn:focus {
+                outline: none;
+                box-shadow: 0 0 0 4px var(--primary-100);
+            }
+            
+            /* Bouton principal */
+            .btn-primary {
+                background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-800) 100%);
+                border-color: var(--primary-700);
+                color: #fff;
+            }
+            
+            .btn-primary:hover {
+                background: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-900) 100%);
+                border-color: var(--primary-800);
+                box-shadow: 0 4px 12px rgba(113, 34, 0, 0.25);
+                transform: translateY(-2px);
+            }
+            
+            /* Bouton outline */
+            .btn-outline-primary {
+                color: var(--primary-700);
+                border-color: var(--primary-700);
+                background: transparent;
+            }
+            
+            .btn-outline-primary:hover {
+                background-color: var(--primary-700);
+                color: #fff;
+                border-color: var(--primary-700);
+            }
+            
+            /* Bouton success */
+            .btn-success {
+                background-color: var(--success);
+                border-color: var(--success);
+                color: #fff;
+            }
+            
+            .btn-success:hover {
+                background-color: #059669;
+                border-color: #059669;
+                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+            }
+            
+            .btn-outline-success {
+                color: var(--primary-700);
+                border-color: var(--primary-700);
+                background: transparent;
+            }
+            
+            .btn-outline-success:hover {
+                background-color: var(--primary-700);
+                color: #fff;
+                border-color: var(--primary-700);
+            }
+            
+            /* Bouton danger */
+            .btn-danger {
+                background-color: var(--danger);
+                border-color: var(--danger);
+                color: #fff;
+            }
+            
+            .btn-danger:hover {
+                background-color: #DC2626;
+                border-color: #DC2626;
+                box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+            }
+            
+            .btn-outline-danger {
+                color: var(--danger);
+                border-color: var(--danger);
+                background: transparent;
+            }
+            
+            .btn-outline-danger:hover {
+                background-color: var(--danger);
+                color: #fff;
+                border-color: var(--danger);
+            }
+
+            /* Tailles des boutons */
+            .btn-sm {
+                padding: 0.4rem 1rem;
+                font-size: 0.875rem;
+            }
+            
+            .btn-lg {
+                padding: 0.75rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            /* ==================== CARTES ==================== */
+            
+            .card-custom {
+                background: #fff;
+                border: 1px solid var(--gray-200);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-sm);
+                transition: all var(--transition-base);
+                overflow: hidden;
+            }
+            
+            .card-custom:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-lg);
+                border-color: var(--primary-200);
+            }
+            
+            .card-header-custom {
+                background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-800) 100%);
+                color: #fff;
+                padding: var(--space-lg);
+                font-weight: 600;
+                border-bottom: none;
+            }
+
+            /* ==================== FORMULAIRES ==================== */
+            
+            .form-label {
+                font-weight: 500;
+                color: var(--gray-700);
+                margin-bottom: var(--space-xs);
+                display: block;
+                font-size: 0.95rem;
+            }
+            
+            .form-control, .form-select {
+                border-radius: var(--radius-md);
+                border: 2px solid var(--gray-300);
+                padding: 0.7rem 1rem;
+                background-color: #fff;
+                transition: all var(--transition-base);
+                font-size: 0.95rem;
+            }
+            
+            .form-control:focus, .form-select:focus {
+                box-shadow: 0 0 0 4px var(--primary-100);
+                border-color: var(--primary-700);
+                outline: none;
+            }
+            
+            .form-control:disabled, .form-select:disabled {
+                background-color: var(--gray-100);
+                cursor: not-allowed;
+                opacity: 0.6;
+            }
+            
+            .form-text {
+                font-size: 0.85rem;
+                color: var(--gray-500);
+                margin-top: var(--space-xs);
+            }
+            
+            /* Messages d'erreur */
+            .error-message {
+                background-color: var(--danger-light);
+                color: var(--danger);
+                padding: var(--space-md) var(--space-lg);
+                border-radius: var(--radius-md);
+                border-left: 4px solid var(--danger);
+                margin-bottom: var(--space-lg);
+                display: flex;
+                align-items: center;
+                gap: var(--space-sm);
+            }
+            
+            .error-message i {
+                font-size: 1.2rem;
+            }
+            
+            /* Messages de succès */
+            .success-message {
+                background-color: var(--success-light);
+                color: var(--success);
+                padding: var(--space-md) var(--space-lg);
+                border-radius: var(--radius-md);
+                border-left: 4px solid var(--success);
+                margin-bottom: var(--space-lg);
+                display: flex;
+                align-items: center;
+                gap: var(--space-sm);
+            }
+            
+            .success-message i {
+                font-size: 1.2rem;
+            }
+
+            /* ==================== BADGES ==================== */
+            
+            .badge-custom {
+                padding: 0.4rem 0.9rem;
+                border-radius: var(--radius-full);
+                font-weight: 500;
+                font-size: 0.85rem;
+                display: inline-flex;
+                align-items: center;
+                gap: var(--space-xs);
+            }
+            
+            .badge-primary {
+                background-color: var(--primary-100);
+                color: var(--primary-800);
+            }
+            
+            .badge-success {
+                background-color: var(--success-light);
+                color: var(--success);
+            }
+            
+            .badge-warning {
+                background-color: var(--warning-light);
+                color: var(--warning);
+            }
+            
+            .badge-danger {
+                background-color: var(--danger-light);
+                color: var(--danger);
+            }
+
+            /* ==================== FOOTER ==================== */
+            
+            footer {
+                background: linear-gradient(to bottom, #fff 0%, var(--gray-50) 100%);
+                border-top: 1px solid var(--gray-200);
+                padding: var(--space-2xl) 0 var(--space-lg);
+                margin-top: var(--space-2xl);
+            }
+            
+            .footer-heading {
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--gray-900);
+                margin-bottom: var(--space-md);
+            }
+            
+            .footer-link {
+                color: var(--gray-600);
+                font-size: 0.9rem;
+                margin-bottom: var(--space-sm);
+                display: block;
+                transition: all var(--transition-base);
+            }
+            
+            .footer-link:hover { 
+                color: var(--primary-700);
+                padding-left: var(--space-xs);
+            }
+            
+            .social-link {
+                color: var(--gray-500);
+                font-size: 1.3rem;
+                transition: all var(--transition-base);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: var(--radius-full);
+            }
+            
+            .social-link:hover {
+                background-color: var(--primary-100);
+                color: var(--primary-700);
+                transform: translateY(-2px);
+            }
+
+            /* ==================== UTILITAIRES ==================== */
+            
+            .container-narrow {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            
+            .container-medium {
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            
+            .text-muted {
+                color: var(--gray-500) !important;
+            }
+            
+            .divider {
+                height: 1px;
+                background-color: var(--gray-200);
+                margin: var(--space-xl) 0;
+            }
+            
+            /* Scroll smooth */
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            /* Loading spinner */
+            .spinner {
+                border: 3px solid var(--gray-200);
+                border-top: 3px solid var(--primary-700);
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            /* ==================== RESPONSIVE ==================== */
+            
+            @media (max-width: 768px) {
+                h1 { font-size: 2rem; }
+                h2 { font-size: 1.5rem; }
+                h3 { font-size: 1.25rem; }
+                
+                .navbar-custom {
+                    padding: var(--space-sm) 0;
+                }
+                
+                main {
+                    padding-top: 70px;
+                }
+            }
+            
+            /* ==================== ACCESSIBILITÉ ==================== */
+            
+            /* Focus visible pour clavier */
+            *:focus-visible {
+                outline: 3px solid var(--primary-700);
+                outline-offset: 2px;
+            }
+            
+            /* Mode sombre (si activé par l'utilisateur) */
+            @media (prefers-color-scheme: dark) {
+                /* Désactivé par défaut - peut être activé selon besoins */
+            }
+            
+            /* Réduction de mouvement */
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+
+        </style>
+        {% block css %}{% endblock %}
+    </head>
+    <body>
+
+        {# ==================== NAVIGATION ==================== #}
+        
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container">
+                <a class="navbar-brand-custom" href="index.php">
+                    JB
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        {% if user is defined and user %}
+                            <li class="nav-item">
+                                <a class="nav-link-custom" href="index.php">
+                                    <i class="bi bi-house-door"></i>
+                                    Accueil
+                                </a>
+                            </li>
+                            
+                            {% if user.role == "particulier" %}
+                            <li class="nav-item">
+                                <a class="nav-link-custom" href="index.php?controleur=annonce&methode=afficheFormAnnonce">
+                                    <i class="bi bi-plus-circle"></i>
+                                    Publier une annonce
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link-custom" href="index.php?controleur=annonce&methode=afficherMesAnnonces">
+                                    <i class="bi bi-card-list"></i>
+                                    Mes annonces
+                                </a>
+                            </li>
+                            {% endif %}
+                            
+                            <li class="nav-item">
+                                <a class="nav-link-custom" href="index.php?controleur=utilisateur&methode=afficheCompte">
+                                    <i class="bi bi-person-circle"></i>
+                                    Mon compte
+                                </a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-sm ms-2" href="index.php?controleur=utilisateur&methode=deconnexion">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    Déconnexion
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link-custom" href="index.php?controleur=utilisateur&methode=pageConnexion">
+                                    <i class="bi bi-box-arrow-in-right"></i>
+                                    Connexion
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary btn-sm ms-2" href="index.php?controleur=utilisateur&methode=pageInscription">
+                                    <i class="bi bi-person-plus"></i>
+                                    S'inscrire
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        {# ==================== CONTENU PRINCIPAL ==================== #}
+        <main class="pb-4">
+            {% block content %}{% endblock %}
+        </main>
+
+        {# ==================== FOOTER ==================== #}
+        <footer>
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <i class="fas fa-briefcase text-primary" style="font-size: 1.5rem;"></i>
+                            <h5 class="footer-heading mb-0">JobBuddy</h5>
+                        </div>
+                        <p class="text-muted small">
+                            La plateforme de confiance pour mettre en relation étudiants et particuliers. 
+                            Simple, rapide et sécurisé.
+                        </p>
+                        <div class="d-flex gap-2 mt-3">
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-3 col-6">
+                        <h6 class="footer-heading">À propos</h6>
+                        <a href="#" class="footer-link">Qui sommes-nous ?</a>
+                        <a href="index.php?controleur=utilisateur&methode=statistiques" class="footer-link">Statistiques</a>
+                        <a href="#" class="footer-link">Recrutement</a>
+                        <a href="#" class="footer-link">Blog</a>
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-3 col-6">
+                        <h6 class="footer-heading">Aide</h6>
+                        <a href="#" class="footer-link">Centre d'aide</a>
+                        <a href="#" class="footer-link">Sécurité</a>
+                        <a href="#" class="footer-link">Nous contacter</a>
+                        <a href="#" class="footer-link">FAQ</a>
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <h6 class="footer-heading">Légal</h6>
+                        <a href="index.php?controleur=utilisateur&methode=politiqueConfidentialite" class="footer-link">Confidentialité</a>
+                        <a href="#" class="footer-link">CGU</a>
+                        <a href="#" class="footer-link">Mentions légales</a>
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <h6 class="footer-heading">Newsletter</h6>
+                        <p class="small text-muted mb-2">Restez informé de nos actualités</p>
+                        <a href="index.php?controleur=newsLetter&methode=inscriptionNewsLetter" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-envelope"></i>
+                            S'abonner
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="text-center">
+                    <small class="text-muted">
+                        &copy; {{ "now"|date("Y") }} JobBuddy. Tous droits réservés. 
+                        Fait avec <i class="bi bi-heart-fill text-danger"></i> en France
+                    </small>
+                </div>
+            </div>
+        </footer>
+
+        {# ==================== SCRIPTS ==================== #}
+        {% block script %}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        {% endblock %}
+    </body>
+    </html>

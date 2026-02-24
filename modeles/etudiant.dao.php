@@ -13,7 +13,7 @@ class EtudiantDAO extends UtilisateurDAO
      */
     public function findAll()
     {
-        $sql = "SELECT * FROM Utilisateur WHERE role = 'ETUDIANT'";
+        $sql = "SELECT * FROM Utilisateur WHERE role = 'etudiant'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute();
         $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Utilisateur');
@@ -27,33 +27,43 @@ class EtudiantDAO extends UtilisateurDAO
      * @return Etudiant|null L'étudiant trouvé.
      */
     public function find(?int $id): ?Etudiant
-    {
-        $sql = "SELECT 
-    id,
-    codeINE,
-    nom,
-    prenom,
-    tel,
-    dateNaiss,
-    role,
-    email,
-    mdp,
-    adresse,
-    ville,
-    codePostal,
-    dateSuppression,
-    tentativesEchouees,
-    dateDernierEchecConnexion,
-    statutCompte
-FROM Utilisateur
-WHERE id = :id
-  AND role = 'ETUDIANT'";
-        $pdoStatement = $this->pdo->prepare($sql);
-        $pdoStatement->execute(array("id" => $id));
-        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Etudiant');
-        $etudiant = $pdoStatement->fetch();
-        return $etudiant;
+{
+    $sql = "SELECT 
+        id,
+        codeINE,
+        nom,
+        prenom,
+        tel,
+        dateNaiss,
+        role,
+        email,
+        mdp,
+        adresse,
+        ville,
+        codePostal,
+        dateSuppression,
+        tentativesEchouees,
+        dateDernierEchecConnexion,
+        statutCompte,
+        cvec
+    FROM Utilisateur
+    WHERE id = :id
+      AND role = 'etudiant'";
+      
+    $pdoStatement = $this->pdo->prepare($sql);
+    $pdoStatement->execute(array("id" => $id));
+    $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Etudiant');
+    
+    $etudiant = $pdoStatement->fetch();
+    
+    // Check if fetch() returned false (no record found)
+    // If it did, return null to satisfy the ?Etudiant return type
+    if ($etudiant === false) {
+        return null;
     }
+    
+    return $etudiant;
+}
 
     /**
      * @brief Récupère tous les étudiants sous forme de tableau associatif.
@@ -61,7 +71,7 @@ WHERE id = :id
      */
     public function findAllAssoc()
     {
-        $sql = "SELECT * FROM Utilisateur WHERE role = 'ETUDIANT'";
+        $sql = "SELECT * FROM Utilisateur WHERE role = 'etudiant'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute();
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
@@ -77,7 +87,7 @@ WHERE id = :id
      */
     public function findAssoc(?int $id): ?array
     {
-        $sql = "SELECT * FROM Utilisateur WHERE code = :id AND role = 'ETUDIANT'";
+        $sql = "SELECT * FROM Utilisateur WHERE code = :id AND role = 'etudiant'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id" => $id));
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
@@ -133,7 +143,7 @@ WHERE id = :id
      */
     public function findByAnnonce($annonceId): ?Etudiant
     {
-        $sql = "SELECT utilisateur.* FROM Annonce JOIN Postuler ON Postuler.idAnnonce=Annonce.id JOIN utilisateur ON Postuler.idEtudiant=utilisateur.id WHERE Annonce.id = :id AND utilisateur.role = 'ETUDIANT' AND Postuler.estAccepte='1'";
+        $sql = "SELECT utilisateur.* FROM Annonce JOIN Postuler ON Postuler.idAnnonce=Annonce.id JOIN utilisateur ON Postuler.idEtudiant=utilisateur.id WHERE Annonce.id = :id AND utilisateur.role = 'etudiant' AND Postuler.estAccepte='1'";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id" => $annonceId));
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);

@@ -1,86 +1,181 @@
     {% extends 'base_template.html.twig' %}
 
-    {% block content %}
-    <link rel="stylesheet" href="./CSS/annonces.css">
-    <h1 class="mt-3">
-        Bienvenue sur JobBuddy.
-    </h1>
-    {{ annonces|length }} annonce(s) trouvée(s).
-    <div class="container">
-        <div id="zone_cartes" class="row row-cols-1 g-4 justify-content-center">
+{% block title %}Accueil - JobBuddy{% endblock %}
 
-            {% for annonce in annonces %}
-<div class="col-12 col-md-6 col-lg-6 d-flex justify-content-center">
-    <div class="card-slot w-75">
-        <div class="card h-100 card-item d-flex flex-row position-relative">
-
-            <!-- Image -->
-            <div class="image-zone">
-                <img
-                    src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-white.png"
-                    class="icon-annoncea"
-                    alt="Icon {{ annonce.typeService }}"
-                >
+{% block content %}
+<div class="container">
+    {# Hero Section avec meilleur guidage #}
+    <div class="row align-items-center mb-5 mt-4">
+        <div class="col-lg-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <i class="bi bi-house-door me-1"></i>
+                        Accueil
+                    </li>
+                </ol>
+            </nav>
+            
+            <h1 class="display-5 fw-bold mb-3">
+                Trouvez le job étudiant idéal
+            </h1>
+            <p class="lead text-muted mb-4">
+                <span class="badge badge-custom badge-primary">
+                    <i class="bi bi-clock-history"></i>
+                    {{ annonces|length }} annonce{{ annonces|length > 1 ? 's' : '' }} disponible{{ annonces|length > 1 ? 's' : '' }}
+                </span>
+            </p>
+        </div>
+        
+        {% if user is defined and user and user.role == "Particulier" %}
+        <div class="col-lg-4 text-lg-end">
+            <a href="index.php?controleur=annonce&methode=ajouterAnnonce" class="btn btn-primary btn-lg">
+                <i class="bi bi-plus-circle me-2"></i>
+                Publier une annonce
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    
+    {# Filtres et Recherche (Guidage amélioré) #}
+    <div class="card-custom mb-4 p-4">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-5">
+                <label class="form-label">
+                    <i class="bi bi-search me-1"></i>
+                    Rechercher une annonce
+                </label>
+                <input type="text" id="searchInput" class="form-control" placeholder="Titre, description...">
             </div>
-
-            <!-- Contenu -->
-            <div class="content-zone">
-                <div class="card-body">
-
-                    <!-- lien carte -->
-                    <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}" class="stretched-link"></a>
-
-                    <div class="d-flex justify-content-between align-items-start">
-
-                        <div>
-                            <h5 class="card-title mb-1">{{ annonce.titre }}</h5>
-                            <span class="fw-bold">{{ annonce.remuneration }} €</span>
+            <div class="col-md-4">
+                <label class="form-label">
+                    <i class="bi bi-funnel me-1"></i>
+                    Type de service
+                </label>
+                <select id="filterType" class="form-select">
+                    <option value="">Tous les services</option>
+                    <option value="Baby-sitting">Baby-sitting</option>
+                    <option value="Jardinage">Jardinage</option>
+                    <option value="Bricolage">Bricolage</option>
+                    <option value="Ménage">Ménage</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Aide Informatique">Aide Informatique</option>
+                    <option value="Aide Aux Devoirs">Aide Aux Devoirs</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">
+                    <i class="bi bi-sort-down me-1"></i>
+                    Trier par
+                </label>
+                <select id="sortBy" class="form-select">
+                    <option value="date">Plus récentes</option>
+                    <option value="price-asc">Prix croissant</option>
+                    <option value="price-desc">Prix décroissant</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div id="zone_cartes" class="row g-4">
+    {% for annonce in annonces %}
+    <div class="col-12 col-lg-6">
+    <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}"> 
+        <div class="card-custom h-100 annonce-card" data-type="{{ annonce.typeService }}" data-title="{{ annonce.titre|lower }}" data-description="{{ annonce.description|lower }}" data-price="{{ annonce.remuneration }}">
+            <div class="card-body p-4">
+                <div class="d-flex gap-3">
+                    {# Icône du service #}
+                    <div class="flex-shrink-0">
+                        <div class="service-icon">
+                            {% set iconMap = {
+                                'Baby-sitting': 'bi-person-hearts',
+                                'Jardinage': 'bi-tree',
+                                'Bricolage': 'bi-hammer',
+                                'Ménage': 'bi-house-heart',
+                                'Transport': 'bi-car-front',
+                                'Aide Informatique': 'bi-laptop',
+                                'Aide Aux Devoirs': 'bi-book',
+                                'Autre': 'bi-briefcase'
+                            } %}
+                            <i class="bi {{ iconMap[annonce.typeService] ?? 'bi-briefcase' }}"></i>
                         </div>
-
-                        <!-- Boutons -->
-{% set aDejaPostule = false %}
-
-{# 2. Loop through the array to check IDs #}
-{% for candidat in annonce.postulations %}
-    {% if candidat.id == user.id %}
-        {% set aDejaPostule = true %}
-    {% endif %}
-{% endfor %}
-
-{# 3. Use the flag in your condition #}
-{% if user.role == "etudiant" and annonce.etat == "disponible" and not aDejaPostule %}
-                                            <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
-                                                <button class="btn btn-outline-success btn-sm">Postuler</button>
-                                            </a>
-{% endif %}
-
-
-
                     </div>
-
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        {{ annonce.lieu }} - {{ annonce.dateDebutRealisation|date("H:i d/m/y") }}
-                    </h6>
-
-                    <p class="card-text">
-                        {{ annonce.description }}
-                    </p>
-
+                    
+                    {# Contenu #}
+                    <div class="flex-grow-1 min-w-0">
+                        {# En-tête #}
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div class="flex-grow-1 min-w-0">
+                                <h5 class="card-title mb-1">
+                                    
+                                        {{ annonce.titre }}
+                                    
+                                </h5>
+                                <span class="badge badge-custom badge-primary mb-2">
+                                    {{ annonce.typeService }}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        {# Informations clés #}
+                        <div class="d-flex flex-wrap gap-3 mb-3 text-muted small">
+                            <span>
+                                <i class="bi bi-geo-alt me-1"></i>
+                                {{ annonce.lieu }}
+                            </span>
+                            <span>
+                                <i class="bi bi-calendar-event me-1"></i>
+                                {{ annonce.dateDebutRealisation|date("d/m/Y à H:i") }}
+                            </span>
+                        </div>
+                        
+                        {# Description #}
+                        <p class="card-text text-muted mb-3">
+                            {{ annonce.description|length > 120 ? annonce.description|slice(0, 120) ~ '...' : annonce.description }}
+                        </p>
+                        
+                        {# Footer avec prix et action #}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="price-tag">
+                                <span class="h4 mb-0 text-primary fw-bold">{{ annonce.remuneration }} €</span>
+                                <small class="text-muted d-block">Rémunération</small>
+                            </div>
+                            
+                            {# Vérification si l'utilisateur a déjà postulé #}
+                            {% set aDejaPostule = false %}
+                            {% for candidat in annonce.postulations %}
+                                {% if candidat.id == user.id %}
+                                    {% set aDejaPostule = true %}
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {# Affichage du bouton approprié #}
+                            {% if user is defined and user.role == "particulier" %}
+                                {% if annonce.etat == "disponible" and not aDejaPostule %}
+                                    <div style="position: relative; z-index: 2;">
+                                        <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-success">
+                                            <i class="bi bi-hand-thumbs-up me-1"></i>
+                                            Postuler
+                                        </a>
+                                    </div>
+                                {% elseif aDejaPostule %}
+                                    <div style="position: relative; z-index: 2;">
+                                        <span class="badge badge-custom badge-success">
+                                            <i class="bi bi-check-circle me-1"></i>
+                                            Candidature envoyée
+                                        </span>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        </a>
     </div>
-    <div class="d-flex gap-2 mt-2 justify-content-end" style="position: relative; z-index: 2;">
-    
-
+    {% endfor %}
 </div>
-</div>
-
-            {% endfor %}
-
-        </div>
-    </div>
-
 
 <style>
 /* Zone image : largeur fixe et petite */

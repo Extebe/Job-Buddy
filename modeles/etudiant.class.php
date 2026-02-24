@@ -92,6 +92,9 @@ class Etudiant extends Utilisateur
         return $this->codeINE;
     }
 
+    public function getId()
+    { return $this->id; }
+
     /**
      * @brief Définit le code INE.
      * @param string|null $codeINE Le code INE.
