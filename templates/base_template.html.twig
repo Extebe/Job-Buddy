@@ -599,7 +599,7 @@
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
                 <a class="navbar-brand-custom" href="index.php">
-                    JB
+                    Jobbuddy
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -609,14 +609,7 @@
                 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto align-items-center">
-                        {% if user is defined and user %}
-                            <li class="nav-item">
-                                <a class="nav-link-custom" href="index.php">
-                                    <i class="bi bi-house-door"></i>
-                                    Accueil
-                                </a>
-                            </li>
-                            
+                        {% if user is defined and user %}                            
                             {% if user.role == "particulier" %}
                             <li class="nav-item">
                                 <a class="nav-link-custom" href="index.php?controleur=annonce&methode=afficheFormAnnonce">
