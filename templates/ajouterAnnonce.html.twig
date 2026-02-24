@@ -1,10 +1,15 @@
 {% extends 'base_template.html.twig' %}
     {% block content %}
         <div class="container form-narrow">
+            <h1>Ajout d'une annonce</h1>
+            {% if msg_erreur %}
+                <p style="color:red;">{{ msg_erreur }}</p>
+            {% endif %}
+
             <form action="index.php?controleur=annonce&methode=traiteFormAnnonce" method="post">
                 <div class="mb-3">
                     <label for="" class="form-label">Titre de l'annonce</label>
-                    <input type="text" class="form-control" id="titreAnnonce" name="titreAnnonce" required>
+                    <input type="text" class="form-control" id="titreAnnonce" name="titreAnnonce" value="{{ dataForm.titre ?? '' }}" required>
                 </div>
 
                 <div class="mb-3">
@@ -24,12 +29,12 @@
 
                 <div class="mb-3">
                     <label for="text" class="form-label">Lieu</label>
-                    <input type="text" class="form-control" id="lieu" name="lieu" required >
+                    <input type="text" class="form-control" id="lieu" name="lieu"value="{{ dataForm.lieu ?? '' }}" required >
                 </div>
 
                 <div class="mb-3">
                     <label for="text" class="form-label">Prix</label>
-                    <input type="number" class="form-control" id="prix" name="prix" min="0" max="999" required >
+                    <input type="number" class="form-control" id="prix" name="prix" min="0" max="999" value="{{ dataForm.prix ?? '' }}"required >
                 </div>
 
                 <div class="mb-3">
@@ -41,6 +46,7 @@
                             name="dateDebut"
                             required
                             min="<?= date('Y-m-d\TH:i') ?>"
+                            value="{{ dataForm.dateDebut ?? '' }}"
                     >
                 </div>
 
@@ -53,12 +59,13 @@
                             name="dateFin"
                             required
                             min="<?= date('Y-m-d\TH:i') ?>"
+                            value="{{ dataForm.dateFin ?? '' }}"
                     >
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="form-label">Description</label>
-                    <textarea type="text" class="form-control" id="description" name="description" required></textarea>
+                    <textarea type="text" class="form-control" id="description" name="description" value="{{ dataForm.description ?? '' }}"required></textarea>
                 </div>
 
                 <div class="d-grid">

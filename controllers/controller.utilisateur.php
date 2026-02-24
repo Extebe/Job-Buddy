@@ -331,7 +331,7 @@ class ControllerUtilisateur extends Controller
         $donneeUtilisateurEnBD = $requete->fetch(PDO::FETCH_ASSOC);
         // Vérifie si l'utilisateur en BD existe
         if (!$donneeUtilisateurEnBD) {
-            throw new Exception("mail_invalide");
+            throw new Exception("mail_non_existant");
         }
 
         // Vérifie si le compte est supprimé
@@ -398,7 +398,7 @@ class ControllerUtilisateur extends Controller
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         $_SESSION['msg_erreur'] = "L'email ou le mot de passe est incorrect";
                         exit();
-                    case "mail_invalide":
+                    case "mail_non_existant":
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         $_SESSION['msg_erreur'] = "L'email est incorrect";
                         exit();

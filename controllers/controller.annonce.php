@@ -45,6 +45,18 @@ class ControllerAnnonce extends Controller
      */
     public function afficheFormAnnonce()
     {
+        $msg_erreur = null; // s'il n'y a pas d'erreur, on met la variable à null
+        $dataForm=null;
+        //En cas d'erreur 
+        if (isset($_SESSION['msg_erreur'])) {
+            $msg_erreur = $_SESSION['msg_erreur'];
+            unset($_SESSION['msg_erreur']);
+        }
+
+        if (isset($_SESSION['dataForm'])) {
+            $dataForm = $_SESSION['dataForm'];
+            unset($_SESSION['dataForm']);
+        }
 
         if (isset($_SESSION['role'])) {
             //À faire, verifier qu'ils sont valides
@@ -57,7 +69,9 @@ class ControllerAnnonce extends Controller
 
         echo $template->render('ajouterAnnonce.html.twig', [
             'role' => $role,
-            'user' => Utilisateur::getUser()
+            'user' => Utilisateur::getUser(),
+            'msg_erreur'=>$msg_erreur,
+            'dataForm'=>$dataForm
 
         ]);
     }
@@ -76,9 +90,55 @@ class ControllerAnnonce extends Controller
             $lieu = $_POST['lieu'];
             $remuneration = $_POST['prix'];
 
+            $formData=[
+                'titre'=>$titre,
+                'typeService'=>$typeService,
+                'dateDebut'=>$dateDebut,
+                'dateFin'=>$dateFin,
+                'description'=>$description,
+                'lieu'=>$lieu,
+                'remuneration'=>$remuneration
+            ];
+
+            $dateActuelle=new DateTime();
+            $dateDebutCompar = new DateTime($dateDebut);
+            $dateFinCompar = new  DateTime($dateFin);
+
             $particulierDao = new ParticulierDao($this->getPdo());
             $particulier = $particulierDao->find(Utilisateur::getUser()->getId());
 
+            try {
+                if (!$particulier) {
+                    throw new Exception("erreurCompte");
+                }
+
+                if($dateDebutCompar < $dateActuelle){
+                throw new Exception("datePasse");
+                }
+
+                if($dateFinCompar < $dateActuelle || $dateFinCompar < $dateDebutCompar){
+                    throw new Exception("dateFinSupDeb");
+                }
+
+            } catch (Exception $e) {
+                switch($e->getMessage()){
+                    case "erreurCompte":
+                        header("Location: index.php?controleur=annonce&methode=afficheFormAnnonce");
+                        $_SESSION['msg_erreur'] = "Impossible de récupérer le profil Particulier. Vérifiez que vous êtes connecté avec un compte Particulier.";
+                        $_SESSION['dataForm']= $formData;
+                        exit();
+                    case "datePasse":
+                        header("Location: index.php?controleur=annonce&methode=afficheFormAnnonce");
+                        $_SESSION['msg_erreur'] = "La date de début ne peut pas être dans le passé.";
+                        $_SESSION['dataForm']= $formData;
+                        exit();
+                    case "dateFinSupDeb":
+                        header("Location: index.php?controleur=annonce&methode=afficheFormAnnonce");
+                        $_SESSION['msg_erreur'] = "La date de fin doit être après la date de début.";
+                        $_SESSION['dataForm']= $formData;
+                        exit();
+                };
+            }
             $annonce1 = new Annonce(
                 null,
                 $particulier,
@@ -96,13 +156,6 @@ class ControllerAnnonce extends Controller
             );
             $managerAnnonce = new AnnonceDAO($this->getPdo());
             $managerAnnonce->insererAnnonce($annonce1);
-            try {
-                if (!$particulier) {
-                    throw new Exception("Erreur : Impossible de récupérer le profil Particulier. Verifiez que vous tes connecté avec un compte Particulier.");
-                }
-            } catch (\Exception $e) {
-                echo "Erreur lors de l'insertion : " . $e->getMessage();
-            }
             //Appel de la requête qui créé l'annonce
             header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
             exit();
