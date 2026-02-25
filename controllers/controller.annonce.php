@@ -249,28 +249,28 @@ class ControllerAnnonce extends Controller
 
     // 5. Initialize $aPostule Default Value (The Fix)
     // We set this to false (or null) by default so the variable exists for ALL roles.
-// On l'initialise à false par défaut pour que la variable existe toujours
-$aPostule = false; 
+    // On l'initialise à false par défaut pour que la variable existe toujours
+    $aPostule = false; 
 
-// 1. On récupère l'utilisateur. S'il n'est pas connecté, ça vaudra 'null'.
-$utilisateurConnecte = Utilisateur::getUser();
+    // 1. On récupère l'utilisateur. S'il n'est pas connecté, ça vaudra 'null'.
+    $utilisateurConnecte = Utilisateur::getUser();
 
-// 2. On vérifie SI l'utilisateur est bien connecté AVANT de vérifier ses postulations
-if ($utilisateurConnecte !== null) {
-    
-    // On boucle uniquement si on a bien un tableau valide de postulations
-    $postulations = $annonce->getPostulations();
-    if (is_iterable($postulations)) {
-        foreach ($postulations as $etudiant) {
-            
-            // Ici, plus de risque de crash : on sait que $utilisateurConnecte existe !
-            if ($etudiant->getId() === $utilisateurConnecte->getId()) {
-                $aPostule = true;
-                break;
+    // 2. On vérifie SI l'utilisateur est bien connecté AVANT de vérifier ses postulations
+    if ($utilisateurConnecte !== null) {
+        
+        // On boucle uniquement si on a bien un tableau valide de postulations
+        $postulations = $annonce->getPostulations();
+        if (is_iterable($postulations)) {
+            foreach ($postulations as $etudiant) {
+                
+                // Ici, plus de risque de crash : on sait que $utilisateurConnecte existe !
+                if ($etudiant->getId() === $utilisateurConnecte->getId()) {
+                    $aPostule = true;
+                    break;
+                }
             }
         }
     }
-}
 
     echo $template->render('detailAnnonce.html.twig', [
         'user'    => Utilisateur::getUser(),

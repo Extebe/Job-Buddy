@@ -54,7 +54,7 @@
     {# --- Card des étudiants ayant postulé --- #}
     <div class="card w-50 text-center">
         <div class="card-header bg-primary text-white">
-        {% if annonce.getEtat() == "DISPONIBLE" %}
+        {% if annonce.getEtat() == "disponible" %}
             Étudiants ayant postulé
         
         {% else %}
@@ -69,15 +69,15 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>{{ etudiant.prenom }} {{ etudiant.nom }}</span>
 
-                            {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
+                            {% if user.getRole() == "particulier" and annonce.getEtat() == "disponible" and annonce.getCreateur().getId() == user.getId() %}
                                 <div class="btn-group" role="group" aria-label="Sélection">
                                     <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=accepter"
-                                    class="btn btn-success btn-lg">
-                                        <i class="bi bi-check fs-4"></i>
+                                    class="btn btn-success btn-sm">
+                                        <i class="bi bi-check fs-8"></i>
                                     </a>
                                     <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=refuser"
-                                    class="btn btn-danger btn-lg">
-                                        <i class="bi bi-x fs-4"></i>
+                                    class="btn btn-danger btn-sm">
+                                        <i class="bi bi-x fs-8"></i>
                                     </a>
                                 </div>
                             {% endif %}
