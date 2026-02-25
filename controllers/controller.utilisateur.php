@@ -3,7 +3,6 @@ require_once "include.php";
 
 /**
  * @file    controller.utilisateur.php
- * 
  * @brief
  */
 

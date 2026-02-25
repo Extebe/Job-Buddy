@@ -27,8 +27,8 @@ class ControllerAnnonce extends Controller
         $tableau = $managerAnnonce->findAllAssocDispo();
         $annonces = $managerAnnonce->hydrateAll($tableau);
         $icons = Constantes::getConstantes()['icons'];
-        
-        foreach ($annonces as $key => $annonce) {
+
+        foreach ($annonces as $key => $annonce){
             $tab[$key] = $managerAnnonce->addRelations($annonce);
         }
 
