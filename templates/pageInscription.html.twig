@@ -35,10 +35,7 @@
     </select>
 </div>
 
-<div class="mb-3" id="blocINE" style="display:none;">
-    <label for="codeINE" class="form-label">Code INE :</label>
-    <input type="text" name="codeINE" id="codeINE" class="form-control" value="{{ formData.codeINE|default('') }}">
-</div>
+
 
 <div class="mb-3" id="blocCVEC" style="display:none;">
     <label for="cvec" class="form-label">Numéro CVEC :</label>
@@ -59,25 +56,19 @@
     function toggleEtudiantFields() {
         const role = document.getElementById('role').value;
 
-        const blocINE = document.getElementById('blocINE');
         const blocCVEC = document.getElementById('blocCVEC');
-        const inputINE = document.getElementById('codeINE');
         const inputCVEC = document.getElementById('cvec');
 
         // La condition fonctionne maintenant car l'option HTML envoie "etudiant"
         if (role === 'etudiant') {
-            blocINE.style.display = 'block';
             blocCVEC.style.display = 'block';
-            inputINE.required = true;
             inputCVEC.required = true;
         } else {
             blocINE.style.display = 'none';
             blocCVEC.style.display = 'none';
-            inputINE.required = false;
             inputCVEC.required = false;
             
             // Vide les champs si on repasse sur "Particulier" pour ne pas envoyer de fausses données
-            inputINE.value = '';
             inputCVEC.value = '';
         }
     }

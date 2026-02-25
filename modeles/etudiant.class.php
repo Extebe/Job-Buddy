@@ -116,7 +116,6 @@ class Etudiant extends Utilisateur
     {
         // Normalisation des entrées
         $cvec = strtoupper(trim($cvec));
-        $ineAttendu = strtoupper(trim($ineAttendu));
 
         // Extraction des 5 premières lettres du nom
         $nomComplet = strtoupper(trim($nomComplet));
