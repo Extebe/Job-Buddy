@@ -43,21 +43,34 @@ class ControllerNewsLetter extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'];
             $pdoNewsLetter = new NewLetterDao($this->getPdo());
+            $managerAnnonce = new AnnonceDao($this->getPdo());
+            $tableau = $managerAnnonce->findAllAssocDispo();
+            $annonces = $managerAnnonce->hydrateAll($tableau);
+            $icons = Constantes::getConstantes()['icons'];
+            
+            foreach ($annonces as $key => $annonce) {
+                $tab[$key] = $managerAnnonce->addRelations($annonce);
+            }
 
             if (!$pdoNewsLetter->emailExisteNewsletter($email)) {
                 $newsLetter = new NewLetter(null, $email);
                 $pdoNewsLetter->insererEmail($newsLetter);
                 $template = $this->getTwig();
-                echo $template->render('inscriptionNewsLetterSucces.html.twig', ['user' => Utilisateur::getUser()]);
+                echo $template->render('index.html.twig', ['user' => Utilisateur::getUser(),
+                    'annonces' => $tab,
+                    'message' => 'Merci pour votre inscription à la newsletter !'
+                ]);
             }
             else {
                 $template = $this->getTwig();
-                echo $template->render('inscriptionNewsLetter.html.twig', [
+                echo $template->render('index.html.twig', [
                     'user' => Utilisateur::getUser(),
-                    'erreur' => 'Cet email est déjà inscrit à la newsletter.'
+                    'message' => 'Cet email est déjà inscrit à la newsletter.',
+                    'annonces' => $tab
                 ]);
-                return;
+                
             }
+            
         }
     }
 }

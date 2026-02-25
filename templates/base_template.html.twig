@@ -114,7 +114,34 @@
 
         {# ==================== CONTENU PRINCIPAL ==================== #}
         <main class="pb-4">
-            {% block content %}{% endblock %}
+            {% block content %}
+                
+            {% endblock %}
+{% if message %}
+{% if message == "Merci pour votre inscription à la newsletter !" %}
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+  <div id="myToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+{% else %}
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+  <div id="myToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+{% endif %}
+    <div class="d-flex">
+      <div class="toast-body">
+        {{ message }}
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toastEl = document.getElementById('myToast');
+    const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+    toast.show();
+  });
+</script>
+{% endif %}
         </main>
 
         {# ==================== FOOTER ==================== #}
@@ -170,7 +197,7 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-6 mr-5">
-                        <form method='POST' action="index.php?controleur=newsLetter&methode=newsletter">
+                        <form method='POST' action="index.php?controleur=annonce&methode=newsletter">
                             <div class="text-center d-flex align-items-center gap-3 flex-wrap">
                                 <h6 class="mb-1">S'inscrire à la Newsletter</h6>
                                 
@@ -183,7 +210,7 @@
                                 <input class="form-check-input" type="checkbox" value="" id="checkDefault" required>
                                 <label class="small text-muted" for="checkDefault">
                                     J’accepte la 
-                                    <a href='index.php?controleur=newsLetter&methode=afficherPolitiqueConfidentialite'>Politique de Confidentialité </a>
+                                    <a href='index.php?controleur=annonce&methode=afficherPolitiqueConfidentialite'>Politique de Confidentialité </a>
                                     de <i>JobBuddy</i>.
                                 </label>
                             </div>
