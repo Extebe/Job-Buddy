@@ -54,8 +54,8 @@
                 </label>
                 <select id="sortBy" name="sortBy" class="form-select">
                     <option value="date" {% if sortBy|default('date') == 'date' %}selected{% endif %}>Plus récentes</option>
-                    <option value="remunerationAsc" {% if sortBy|default('date') == 'remunerationAsc' %}selected{% endif %}>Prix croissant</option>
-                    <option value="remunerationDesc" {% if sortBy|default('date') == 'remunerationDesc' %}selected{% endif %}>Prix décroissant</option>
+                    <option value="remunerationAsc" {% if sortBy|default('date') == 'remunerationAsc' %}selected{% endif %}>Rémunération croissant</option>
+                    <option value="remunerationDesc" {% if sortBy|default('date') == 'remunerationDesc' %}selected{% endif %}>Rémunération décroissant</option>
                 </select>
             </div>
             <ul class="list-unstyled d-flex gap-2 mt-3"> 
@@ -86,16 +86,17 @@
                     <div class="flex-shrink-0">
                         <div class="service-icon">
                             {% set iconMap = {
-                                'Baby-sitting': 'bi-person-hearts',
-                                'Jardinage': 'bi-tree',
-                                'Bricolage': 'bi-hammer',
-                                'Ménage': 'bi-house-heart',
-                                'Transport': 'bi-car-front',
-                                'Aide Informatique': 'bi-laptop',
-                                'Aide Aux Devoirs': 'bi-book',
-                                'Autre': 'bi-briefcase'
+                                'baby-sitting': 'bi-person-hearts',
+                                'jardinage': 'bi-tree',
+                                'bricolage': 'bi-hammer',
+                                'menage': 'bi-house-heart',
+                                'transport': 'bi-car-front',
+                                'aide informatique': 'bi-laptop',
+                                'aide aux devoirs': 'bi-book',
+                                'autre': 'bi-briefcase'
                             } %}
-                            <i class="bi {{ iconMap[annonce.typeService] ?? 'bi-briefcase' }}"></i>
+                            {# enlarge the icon using Bootstrap font-size utility #}
+                            <i class="bi {{ iconMap[annonce.typeService] ?? 'bi-briefcase' }} fs-2"></i>
                         </div>
                     </div>
                     
@@ -136,7 +137,6 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="price-tag">
                                 <span class="h4 mb-0 text-primary fw-bold">{{ annonce.remuneration }} €</span>
-                                <small class="text-muted d-block">Rémunération</small>
                             </div>
                             
                             {# Vérification si l'utilisateur a déjà postulé #}
@@ -148,7 +148,7 @@
                             {% endfor %}
                             
                             {# Affichage du bouton approprié #}
-                            {% if user is defined and user.role == "particulier" %}
+                            {% if user is defined and user.role == "etudiant" %}
                                 {% if annonce.etat == "disponible" and not aDejaPostule %}
                                     <div style="position: relative; z-index: 2;">
                                         <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-success">
