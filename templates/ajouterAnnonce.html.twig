@@ -1,5 +1,6 @@
 {% extends 'base_template.html.twig' %}
     {% block content %}
+    
         <div class="container form-narrow">
             <h1>Ajout d'une annonce</h1>
             {% if msg_erreur %}
@@ -15,15 +16,11 @@
                 <div class="mb-3">
                     <label for="select" class="form-label">Type de service</label>
                     <select name="typeService" id="typeService" class="form-control" required>
-                        <option value="" selected disabled>-- Choisissez une option --</option>
-                        <option>Baby-sitting</option>
-                        <option>Jardinage</option>
-                        <option>Bricolage</option>
-                        <option>Ménage</option>
-                        <option>Transport</option>
-                        <option>Aide Informatique</option>
-                        <option>Aide Aux Devoirs</option>
-                        <option>Autre</option>
+                        <option value="" {% if dataForm.typeService|default('') == '' %}selected disabled{% endif %}>-- Choisissez une option --</option>
+                        {% set services = ['Baby-sitting', 'Jardinage', 'Bricolage', 'Ménage', 'Transport', 'Aide Informatique', 'Aide Aux Devoirs', 'Autre'] %}
+                        {% for service in services %}
+                            <option value="{{ service }}" {% if dataForm.typeService|default('') == service %}selected{% endif %}>{{ service }}</option>
+                        {% endfor %}
                     </select>
                 </div>
 
@@ -34,18 +31,18 @@
 
                 <div class="mb-3">
                     <label for="text" class="form-label">Prix</label>
-                    <input type="number" class="form-control" id="prix" name="prix" min="0" max="999" value="{{ dataForm.prix ?? '' }}"required >
+                    <input type="number" class="form-control" id="prix" name="prix" min="0" max="999" value="{{ dataForm.remuneration ?? '' }}"required >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Date début réalisation</label>
                     <input
-                            type="datetime-local"
+                            type="text"
                             class="form-control"
                             id="dateDebut"
                             name="dateDebut"
+                            placeholder = "Selectionner une date de début de réalisation"
                             required
-                            min="<?= date('Y-m-d\TH:i') ?>"
                             value="{{ dataForm.dateDebut ?? '' }}"
                     >
                 </div>
@@ -53,12 +50,12 @@
                 <div class="mb-3">
                     <label class="form-label">Date fin de réalisation</label>
                     <input
-                            type="datetime-local"
+                            type="text"
                             class="form-control"
                             id="dateFin"
                             name="dateFin"
+                            placeholder = "Selectionner une date de fin de réalisation"
                             required
-                            min="<?= date('Y-m-d\TH:i') ?>"
                             value="{{ dataForm.dateFin ?? '' }}"
                     >
                 </div>
@@ -73,4 +70,14 @@
                 </div>
             </form>
         </div>
+
+        <!-- API flatpickr - Sélecteur de date et d'heure léger et puissant -->
+        {# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> #}
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+
+        <script src="JS/ajouterAnnonce.javascript.js"></script>
     {% endblock %}
