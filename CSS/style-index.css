@@ -1,0 +1,85 @@
+/* Zone image : largeur fixe et petite */
+.image-zone {
+    width: 120px;        /* ↓ réduit fortement */
+    min-width: 120px;
+    max-width: 120px;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;   /* empêche tout débordement */
+}
+
+/* Image elle-même */
+.icon-annoncea {
+    max-width: 70px;    /* ↓ image réellement petite */
+    max-height: 70px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Contenu : ne sort jamais de la carte */
+.content-zone {
+    flex: 1;
+    min-width: 0;       /* IMPORTANT : empêche le texte de déborder */
+}
+
+.card-item {
+    overflow: hidden;
+}
+
+
+
+
+.btn-outline-success {
+    color: #712200;
+    border-color: #712200;
+}
+
+.btn-outline-success:hover {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success:focus {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success::selection {
+    color: #fbf2dd;
+    background-color: #712200;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.btn-outline-success-danger:hover {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger:focus {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.btn-outline-success-danger::selection {
+    color: #fbf2dd;
+    background-color: #ff0000;
+    border-color: #fbf2dd;
+}
+
+.btn, .d-flex.gap-2 {
+    position: relative;
+    z-index: 1; /* pour être au-dessus du stretched-link */
+}

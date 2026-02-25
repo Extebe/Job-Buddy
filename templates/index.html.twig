@@ -1,10 +1,35 @@
-    {% extends 'base_template.html.twig' %}
+{% extends 'base_template.html.twig' %}
 
 {% block title %}Accueil - JobBuddy{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="./CSS/style.index.css">
+    {% if notifNewsLetter %}
+        {% if notifNewsLetter == "success" %}
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+                <div id="myToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            Merci pour votre inscription à la newsletter !
+                        </div>
+        {% elseif notifNewsLetter == "failed" %}
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+                <div id="myToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                                    <div class="d-flex">
+                        <div class="toast-body">
+                            Vous êtes déjà inscrit
+                        </div>
+        {% endif %}
+
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>     
+            </div>
+        <script src="JS/toast.javascript.js"></script>
+    {% endif %}
+
 <div class="container">
-    {# Hero Section avec meilleur guidage #}
+    {# Hero Section #}
     <div class="row align-items-center mb-5 mt-4">
         <div class="col-lg-8">            
             <h1 class="display-5 fw-bold mb-3">
@@ -19,7 +44,7 @@
         </div>
     </div>
     
-    {# Filtres et Recherche (Guidage amélioré) #}
+    {# Filtres et Recherche  #}
     <form id="filterForm" method="POST" action="index.php?controleur=annonce&methode=rechercher">
     <div class="card-custom mb-4 p-4">
         <div class="row g-3 align-items-end">
@@ -95,7 +120,7 @@
                                 'aide aux devoirs': 'bi-book',
                                 'autre': 'bi-briefcase'
                             } %}
-                            {# enlarge the icon using Bootstrap font-size utility #}
+
                             <i class="bi {{ iconMap[annonce.typeService] ?? 'bi-briefcase' }} fs-2"></i>
                         </div>
                     </div>
@@ -175,94 +200,6 @@
     {% endfor %}
 </div>
 
-<style>
-/* Zone image : largeur fixe et petite */
-.image-zone {
-    width: 120px;        /* ↓ réduit fortement */
-    min-width: 120px;
-    max-width: 120px;
-    height: 100%;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;   /* empêche tout débordement */
-}
-
-/* Image elle-même */
-.icon-annoncea {
-    max-width: 70px;    /* ↓ image réellement petite */
-    max-height: 70px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-}
-
-/* Contenu : ne sort jamais de la carte */
-.content-zone {
-    flex: 1;
-    min-width: 0;       /* IMPORTANT : empêche le texte de déborder */
-}
-
-.card-item {
-    overflow: hidden;
-}
-
-
-
-
-.btn-outline-success {
-    color: #712200;
-    border-color: #712200;
-}
-
-.btn-outline-success:hover {
-    color: #fbf2dd;
-    background-color: #712200;
-    border-color: #fbf2dd;
-}
-
-.btn-outline-success:focus {
-    color: #fbf2dd;
-    background-color: #712200;
-    border-color: #fbf2dd;
-}
-
-.btn-outline-success::selection {
-    color: #fbf2dd;
-    background-color: #712200;
-    border-color: #fbf2dd;
-}
-
-.btn-outline-success-danger {
-    color: #ff0000;
-    border-color: #ff0000;
-}
-
-.btn-outline-success-danger:hover {
-    color: #fbf2dd;
-    background-color: #ff0000;
-    border-color: #fbf2dd;
-}
-
-.btn-outline-success-danger:focus {
-    color: #fbf2dd;
-    background-color: #ff0000;
-    border-color: #fbf2dd;
-}
-
-.btn-outline-success-danger::selection {
-    color: #fbf2dd;
-    background-color: #ff0000;
-    border-color: #fbf2dd;
-}
-
-.btn, .d-flex.gap-2 {
-    position: relative;
-    z-index: 1; /* pour être au-dessus du stretched-link */
-}
-
-</style>
     {% endblock %}
 
 

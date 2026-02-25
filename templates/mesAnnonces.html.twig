@@ -40,7 +40,7 @@
     <div id="zone_cartes" class="row g-4">
 
         {# ============ AJOUT ANNONCE ============ #}
-        {% if user.role == "Particulier " %}
+        {% if user.role == "particulier" %}
         <div class="col-12 d-flex justify-content-center mb-2">
             <div class="card-slot">
                 <div class="card-item add-card-style">
@@ -55,6 +55,24 @@
             </div>
         </div>
         {% endif %}
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        
+        {% if msg %}
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+            {# On définit la couleur selon le type via un petit switch logique #}
+            {% set bgColor = 'bg-success' %}
+                <div id="myToast" class="toast align-items-center text-white {{ bgColor }} border-0" role="alert">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ msg }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            </div>
+        <script src="JS/toast.javascript.js"></script>
+        {% endif %}
+    </div>
 
         {# ============ CARTES ANNONCES ============ #}
         {% for annonce in annonces %}
@@ -90,14 +108,14 @@
                                     </h6>
 
                                     <div class="d-flex gap-2">
-                                        {% if annonce.etat == "ACCEPTE" and annonce.dateFinRealisation < "now"|date("Y-m-d") %}
+                                        {% if annonce.etat == "accepte" and annonce.dateFinRealisation < "now"|date("Y-m-d") %}
                                             <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}"
                                             class="btn btn-outline-success btn-sm">
                                                 Évaluer
                                             </a>
                                         {% endif %}
 
-                                        {% if user.getRole() == "Particulier " and annonce.getEtat() == "disponible"
+                                        {% if user.getRole() == "particulier" and annonce.getEtat() == "disponible"
                                             and annonce.getCreateur().getId() == user.getId() %}
                                             <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
                                             class="btn btn-outline-success btn-sm">
@@ -105,7 +123,7 @@
                                             </a>
                                         {% endif %}
 
-                                        {% if user.getRole() == "Particulier "
+                                        {% if user.getRole() == "particulier"
                                             and annonce.getCreateur().getId() == user.getId() %}
                                             <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
                                             class="btn btn-outline-danger btn-sm"
@@ -128,7 +146,7 @@
                                         {% endif %}
                                     </div>
 
-                                    {% if annonce.getEtat() == "TERMINE"%}
+                                    {% if annonce.getEtat() == "termine"%}
                                         <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}"
                                            class="btn btn-outline-danger btn-sm mt-1">Noter</a>
                                     {% endif %}

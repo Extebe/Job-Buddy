@@ -31,12 +31,16 @@ class ControllerAnnonce extends Controller
         foreach ($annonces as $key => $annonce){
             $tab[$key] = $managerAnnonce->addRelations($annonce);
         }
-
-
+        $variable=null;
+        if(isset($_SESSION["msg-abonne"])){
+            $variable = $_SESSION["msg-abonne"];
+            unset($_SESSION["msg-abonne"]);
+        }
         echo $template->render('index.html.twig', [
             'annonces' => $tab,
             'icons' => $icons,
-            'user' => Utilisateur::getUser()
+            'user' => Utilisateur::getUser(),
+            'notifNewsLetter'=> $variable
         ]);
     }
 
@@ -179,9 +183,9 @@ class ControllerAnnonce extends Controller
     public function afficherMesAnnonces()
     {
         $template = $this->getTwig();
-
-
         $managerAnnonce = new AnnonceDao($this->getPdo());
+        $msg=null;
+
         if (!isset($_SESSION['id'])) {
             header("Location: index.php");
             exit();
@@ -190,6 +194,10 @@ class ControllerAnnonce extends Controller
             $filtre = "all";
         } else {
             $filtre = $_GET['filtre'];
+        }
+        if(isset($_SESSION['flash'])){
+            $msg = $_SESSION['flash'];
+            unset($_SESSION['flash']);
         }
 
         if ($filtre === 'all' || $filtre === '') {
@@ -200,10 +208,12 @@ class ControllerAnnonce extends Controller
         foreach ($tableau as $key => $annonce) {
             $managerAnnonce->addRelations($annonce);
         }
+        
         echo $template->render('mesAnnonces.html.twig', [
             'user' => Utilisateur::getUser(),
             'annonces' => $tableau,
             'icons' => Constantes::getConstantes()['icons'],
+            'msg' =>$msg
         ]);
 
     }
@@ -323,9 +333,12 @@ class ControllerAnnonce extends Controller
 
         $managerAnnonce = new AnnonceDAO($this->getPdo());
         $managerAnnonce->supprimer($idAnnonce, Utilisateur::getUser()->getId());
+        
+        // Cas de succès (Suppression)
+        $_SESSION['flash'] = 'L\'annonce a bien été supprimer.';
 
-        header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
-        exit();
+       header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
+       exit();
     }
 
     /**
@@ -507,6 +520,7 @@ class ControllerAnnonce extends Controller
             $tableau = $managerAnnonce->findAllAssocDispo();
             $annonces = $managerAnnonce->hydrateAll($tableau);
             $icons = Constantes::getConstantes()['icons'];
+
             
             foreach ($annonces as $key => $annonce) {
                 $tab[$key] = $managerAnnonce->addRelations($annonce);
@@ -515,26 +529,13 @@ class ControllerAnnonce extends Controller
             if (!$pdoNewsLetter->emailExisteNewsletter($email)) {
                 $newsLetter = new NewLetter(null, $email);
                 $pdoNewsLetter->insererEmail($newsLetter);
-                $template = $this->getTwig();
-
-                echo $template->render('index.html.twig', ['user' => Utilisateur::getUser(),
-                    'annonces' => $tab,
-                    'message' => 'Merci pour votre inscription à la newsletter !'
-                ]);
-
+                $_SESSION['msg-abonne'] = "success";
             }
-            else {
-                $template = $this->getTwig();
-
-                echo $template->render('index.html.twig', [
-                    'user' => Utilisateur::getUser(),
-                    'message' => 'Cet email est déjà inscrit à la newsletter.',
-                    'annonces' => $tab
-                ]);
- 
+            else{
+                $_SESSION['msg-abonne'] = "failed";
             }
+            header("Location:index.php?controleur=annonce&methode=afficher");
 
-            
         }
     }
     
