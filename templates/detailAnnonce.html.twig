@@ -1,6 +1,7 @@
 {% extends 'base_template.html.twig' %}
 
 {% block content %}
+<style src="stylePageDetails.css"></style>
 <div class="container my-4 d-flex flex-column align-items-center">
 
     {# --- Bouton Retour à l'accueil --- #}
@@ -13,6 +14,15 @@
     {# --- Card principale de l'annonce --- #}
     <div class="card w-75 mb-4">
         <div class="card-body">
+                    {# --- LE BADGE DÉPLACÉ ICI POUR ÊTRE DANS LA CARTE --- #}
+            {% if user.getRole() != "particulier" or annonce.getCreateur().getId() != user.getId() %}
+                <div class="mb-3 pos-top-right">
+                    <span class="badge bg-primary">
+                        <i class="bi bi-clock-history"></i>
+                            {{ annonce.postulations|length }} étudiant{{ annonce.postulations|length > 1 ? 's' : '' }} ayant postulé{{ annonce.postulations|length > 1 ? 's' : '' }}
+                    </span>
+                </div>
+            {% endif %}
             <h4 class="card-title">{{ annonce.titre }}</h4>
 
             <p><strong>Description :</strong> {{ annonce.description }}</p>
@@ -59,6 +69,7 @@
     </div>
 
     {# --- Card des étudiants ayant postulé --- #}
+    {% if user.getRole() == "particulier" and annonce.getCreateur().getId() == user.getId() %}
     <div class="card w-50 text-center">
         <div class="card-header bg-primary text-white">
         {% if annonce.getEtat() == "disponible" %}
@@ -98,6 +109,6 @@
             {% endif %}
         </div>
     </div>
-
+        {% endif %}
 </div>
 {% endblock %}
