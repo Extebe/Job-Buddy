@@ -36,13 +36,25 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="date-time" class="form-label">Date début réalisation</label>
-                    <input type="datetime-local" class="form-control" id="dateDebut" name="dateDebut" value="{{ annonce.dateDebutRealisation }}" required >
+                    <label class="form-label">Date début réalisation</label>
+                    <input 
+                        type="text"
+                        class="form-control" 
+                        id="dateDebut" 
+                        name="dateDebut" 
+                        value="{{ annonce.dateDebutRealisation }}" 
+                        required >
                 </div>
 
                 <div class="date-time">
-                    <label for="" class="form-label">Date fin de réalisation</label>
-                    <input type="datetime-local" class="form-control" id="dateFin" name="dateFin" value="{{ annonce.dateFinRealisation }}" required>
+                    <label class="form-label">Date fin de réalisation</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="dateFin" 
+                        name="dateFin" 
+                        value="{{ annonce.dateFinRealisation }}" 
+                        required>
                 </div>
 
                 <div class="mb-3">
