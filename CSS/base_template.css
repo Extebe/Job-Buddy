@@ -175,14 +175,14 @@
             }
 
             /* ==================== BOUTONS ==================== */
-            
+
             .btn {
-                border-radius: var(--radius-full);
+                /*border-radius: var(--radius-full);*/
                 padding: 0.625rem 1.5rem;
                 font-weight: 500;
                 font-size: 0.95rem;
                 transition: all var(--transition-base);
-                border: 2px solid transparent;
+                border: 2px solid;
                 display: inline-flex;
                 align-items: center;
                 gap: var(--space-xs);
@@ -237,18 +237,6 @@
                 background-color: #059669;
                 border-color: #059669;
                 box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
-            }
-            
-            .btn-outline-success {
-                color: var(--primary-700);
-                border-color: var(--primary-700);
-                background: transparent;
-            }
-            
-            .btn-outline-success:hover {
-                background-color: var(--primary-700);
-                color: #fff;
-                border-color: var(--primary-700);
             }
             
             /* Bouton danger */

@@ -104,7 +104,7 @@
                                     </a>
                                 </li>
                                                                 <li>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="index.php?controleur=signalement&methode=mesSignalements">
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="index.php?controleur=signalement&methode=afficherMesSignalements">
                                         <span><i class="bi bi-dash-circle me-2"></i>Mes Signalements</span>
                                         <span class="badge bg-danger rounded-pill">3</span>
                                     </a>
@@ -125,7 +125,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-primary btn-sm ms-2" href="index.php?controleur=utilisateur&methode=pageInscription">
+                                <a class="btn btn-primary btn-sm ms-2 rounded-pill" href="index.php?controleur=utilisateur&methode=pageInscription">
                                     <i class="bi bi-person-plus"></i>
                                     S'inscrire
                                 </a>
@@ -188,7 +188,7 @@
                     
                     <div class="col-lg-2 col-md-6 col-8">
                         <h6 class="footer-heading">Légal</h6>
-                        <a href="index.php?controleur=utilisateur&methode=politiqueConfidentialite" class="footer-link">Confidentialité</a>
+                        <a href="index.php?controleur=annonce&methode=afficherPolitiqueConfidentialite" class="footer-link">Confidentialité</a>
                         <a href="#" class="footer-link">CGU</a>
                         <a href="#" class="footer-link">Mentions légales</a>
                     </div>
@@ -213,7 +213,7 @@
                             </div>
 
                             <div>
-                                <button type="submit" class="btn btn-outline-primary btn-sm">
+                                <button type="submit" class="btn btn-outline-primary btn-sm rounded-pill">
                                 <i class="bi bi-envelope"></i>
                                 S'abonner
                                 </button>
@@ -233,6 +233,23 @@
                     </small>
                 </div>
             </div>
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="confirmModalMessage">Voulez-vous vraiment continuer ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <a href="#" id="confirmModalBtn" class="btn btn-danger">Confirmer</a>
+                    </div>
+                    </div>
+                </div>
+            </div>
         </footer>
 
         {# ==================== SCRIPTS ==================== #}
@@ -246,6 +263,7 @@
 
             {# Chemin vers le fichier javascript #}
             <script src="JS/flatpickr.javascript.js"></script>
+            <script src="JS/confirm.js"></script>
         {% endblock %}
     </body>
     </html>
