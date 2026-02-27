@@ -28,6 +28,7 @@ CREATE TABLE Utilisateur(
                             statutCompte ENUM('actif', 'desactive') DEFAULT 'actif',
                             statutModeration ENUM('normal', 'banni', 'suspendu', 'suspect') DEFAULT 'normal',
                             cvec VARCHAR(12),
+                            photoProfil VARCHAR(255),
                             PRIMARY KEY(id)
 );
 
@@ -108,8 +109,8 @@ CREATE TABLE InscritNewsLetter(
 );
 
 -- INSERTIONS
-INSERT INTO Utilisateur VALUES(1, 'particulier', NULL, 'JobN', 'JobP', '0123456789', '1990-05-15', 'job@gmail.com', '$2y$10$P6Y.VZQx4p0HpM0znpUgSe.AMZHFYc6p0x.vLRKpW1aXy2o8DS6qO', NULL, 'Paris', '10 rue de Paris', '75001', 0, NULL, 'actif', 'normal', NULL);
-INSERT INTO Utilisateur VALUES(2, 'etudiant', '123456789013', 'Martin', 'Sophie', '0123456790', '2000-10-25', 'sophie@gmail.com', '$2y$10$OrQApLZOzpj9lLVG1JEdreVjSzzMlwunN8G.7pIZe2lLxoZ1Zzh3i', NULL, 'Lyon', '20 rue de Lyon', '69001', 0, NULL, 'actif', 'normal', NULL);
+INSERT INTO Utilisateur VALUES(1, 'particulier', NULL, 'JobN', 'JobP', '0123456789', '1990-05-15', 'job@gmail.com', '$2y$10$P6Y.VZQx4p0HpM0znpUgSe.AMZHFYc6p0x.vLRKpW1aXy2o8DS6qO', NULL, 'Paris', '10 rue de Paris', '75001', 0, NULL, 'actif', 'normal', NULL,NULL);
+INSERT INTO Utilisateur VALUES(2, 'etudiant', '123456789013', 'Martin', 'Sophie', '0123456790', '2000-10-25', 'sophie@gmail.com', '$2y$10$OrQApLZOzpj9lLVG1JEdreVjSzzMlwunN8G.7pIZe2lLxoZ1Zzh3i', NULL, 'Lyon', '20 rue de Lyon', '69001', 0, NULL, 'actif', 'normal', NULL,NULL);
 
 
 INSERT INTO Annonce VALUES (1, 1, "Garde d'enfant", "Garde d'enfant pour une journée complète.", 'baby-sitting', 'Paris', 100.00, '2025-11-01 10:00:00', '2025-11-10 18:00:00', 'disponible', '2025-11-01 10:00:00', NULL, NULL);

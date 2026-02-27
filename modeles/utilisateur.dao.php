@@ -58,6 +58,7 @@ class UtilisateurDAO
         $utilisateur->setVille($tableau['ville'] ?? null);
         $utilisateur->setAdresse($tableau['adresse'] ?? null);
         $utilisateur->setCodePostal($tableau['codePostal'] ?? null);
+        $utilisateur->setPhotoProfil($tableau['photoProfil'] ?? null);
 
         return $utilisateur;
     }
@@ -92,7 +93,9 @@ class UtilisateurDAO
             mdp = :mdp,
             ville = :ville,
             adresse = :adresse,
-            codePostal = :codePostal";
+            codePostal = :codePostal,
+            photoProfil = :photoProfil"
+            ;
 
         // Ajout du champ codeINE si l'utilisateur est un étudiant
         if ($user instanceof Etudiant) {
@@ -113,7 +116,9 @@ class UtilisateurDAO
             'ville' => $user->getVille(),
             'adresse' => $user->getAdresse(),
             'codePostal' => $user->getCodePostal(),
+            'photoProfil' => $user->getPhotoProfil(),
             'id' => $user->getId()
+            
         ];
 
         if ($user instanceof Etudiant) {
@@ -132,6 +137,16 @@ class UtilisateurDAO
         $sql = "UPDATE Utilisateur SET dateSuppression = NOW() WHERE id = :id";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(['id' => $id]);
+    }
+
+    public function updatePhotoProfil(?string $id, ?string $photoPath): void
+    {
+        $sql = "UPDATE Utilisateur SET photoProfil = :photoProfil WHERE id = :id";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute([
+            'photoProfil' => $photoPath,
+            'id' => $id
+        ]);
     }
 }
 ?>

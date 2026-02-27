@@ -14,8 +14,8 @@ class ControllerUtilisateur extends Controller
     }
 
     /**
-     *  Pous se connecter à la page 
-     *  de connexion
+     * Pour se connecter à la page 
+     * de connexion
      * @return void
      */
     public function pageConnexion()
@@ -35,7 +35,7 @@ class ControllerUtilisateur extends Controller
     }
 
     /**
-     * Pous se connecter à la page 
+     * Pour se connecter à la page 
      * d'inscription
      * @return void
      */
@@ -52,16 +52,14 @@ class ControllerUtilisateur extends Controller
 
     /**
      * Permet d'inscrire les données de
-     *  l'utilisateur dans la base de données
-     *  tout en chiffrant le mot de passe
-     * 
-     * @param Utilisateur $user
+     * l'utilisateur dans la base de données
+     * tout en chiffrant le mot de passe
+     * * @param Utilisateur $user
      * @throws Exception
      * @return void
      */
     public function inscriptionBd(Utilisateur $user)
     {
-
         // Vérifie si le mot de passe est robuste
         if (!Valide::estRobuste($user->getMdp())) {
             throw new Exception("mdp_faible");
@@ -79,32 +77,27 @@ class ControllerUtilisateur extends Controller
             throw new Exception("CVEC_utilise");
         }
 
-
         // Hachage du mot de passe
         $passwordHache = password_hash($user->getMdp(), PASSWORD_BCRYPT);
 
         // Obtention de l'instance PDO
         $pdo = $this->getPdo();
 
-
         //verification type d'utilisateur
         if (get_class($user) === 'Etudiant') {
             $managerEtudiant = new EtudiantDao($pdo);
             $managerEtudiant->insererUtilisateur($user, $passwordHache);
-
         } else {
             $managerParticulier = new ParticulierDao($pdo);
             $managerParticulier->insererUtilisateur($user, $passwordHache);
         }
-
     }
 
     /**
      * Permet de récupérer les informations
-     *  de l'utilisateur depuis le formulaire
-     *  et les inscrits dans la BD
-     * 
-     * @return void
+     * de l'utilisateur depuis le formulaire
+     * et les inscrits dans la BD
+     * * @return void
      */
     public function inscription()
     {
@@ -140,7 +133,6 @@ class ControllerUtilisateur extends Controller
 
             if ($role == 'Etudiant') {
                 $user = new Etudiant($id = null, $codeINE, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null, $cvec);
-
             } else {
                 $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null);
             }
@@ -162,24 +154,18 @@ class ControllerUtilisateur extends Controller
                     case "compte_existant":
                         $msg_erreur = "Ce compte existe déjà.";
                         break;
-
                     case "mdp_faible":
-                        $msg_erreur = "Erreur : Mot de passe invalide.
-                        Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
+                        $msg_erreur = "Erreur : Mot de passe invalide. Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
                         break;
-
                     case "CVEC invalide":
                         $msg_erreur = "Erreur : CVEC invalide.";
                         break;
-
                     case "INE _utilise":
                         $msg_erreur = "Erreur : Ce code INE est déjà utilisé.";
                         break;
-
                     case "CVEC_utilise":
                         $msg_erreur = "Erreur : Ce CVEC est déjà utilisé.";
                         break;
-
                     default:
                         $msg_erreur = "Une erreur inattendue est survenue : {$e->getMessage()}";
                 }
@@ -197,8 +183,7 @@ class ControllerUtilisateur extends Controller
     /**
      * Réinitialise les tentatives échouées 
      * après une authentification réussie
-     * 
-     * @param Utilisateur $user
+     * * @param Utilisateur $user
      * @return void
      */
     public function reinitialiserTentativesConnexion(Utilisateur $user): void
@@ -214,12 +199,11 @@ class ControllerUtilisateur extends Controller
                                dateDernierEchecConnexion = NULL 
                            WHERE id = :id');
         $requete->execute(['id' => $user->getId()]);
-
     }
 
     /**
      * Calcul le temps restant avant que le 
-     *  compte soit débloqué
+     * compte soit débloqué
      * @param Utilisateur $user
      * @return float|int
      */
@@ -227,7 +211,6 @@ class ControllerUtilisateur extends Controller
     {
         $constantesConnexion = Constantes::getConstantes()['tentative'];
         if (!$user->getDateDernierEchecConnexion()) {
-            // Si aucune tentative échouée n'a été enregistrée
             return 0;
         }
         $dernierEchecTimestamp = strtotime($user->getDateDernierEchecConnexion());
@@ -238,18 +221,16 @@ class ControllerUtilisateur extends Controller
 
     /**
      * Réactive le compte une fois que le 
-     *  délai soit écoulé
+     * délai soit écoulé
      * @param Utilisateur $user
      * @return void
      */
     public function reactiverCompte(Utilisateur $user): void
     {
-        //Mise à jour des attributs de l'utilisateur
         $user->setTentativesEchouees(0);
         $user->setDateDernierEchecConnexion(null);
         $user->setStatutCompte('actif');
 
-        // Mise à jour dans la base de données
         $bd = $this->getPdo();
         $requete = $bd->prepare('UPDATE Utilisateur 
                                SET tentativesEchouees = 0, 
@@ -259,12 +240,11 @@ class ControllerUtilisateur extends Controller
         $requete->execute(['id' => $user->getId()]);
     }
 
-
     /**
      * Gère les échecs de connexion,
-     *  incrémente le nombre de tentative échouée
-     *  et désactive le compte si le nombre de tentatives 
-     *  est supérieur au maximum autorisé (3)
+     * incrémente le nombre de tentative échouée
+     * et désactive le compte si le nombre de tentatives 
+     * est supérieur au maximum autorisé (3)
      * @param Utilisateur $user
      * @throws Exception
      * @return never
@@ -278,7 +258,6 @@ class ControllerUtilisateur extends Controller
         $bd = $this->getPdo();
 
         if ($user->getTentativesEchouees() >= $constantesConnexion['MAX_CONNEXIONS_ECHOUEES']) {
-            // Désactivation du compte
             $requete = $bd->prepare(
                 'UPDATE Utilisateur 
                  SET tentativesEchouees = :tentatives, 
@@ -289,7 +268,6 @@ class ControllerUtilisateur extends Controller
             $user->setStatutCompte('desactive');
             $exception = "nombre_tentative_depasse";
         } else {
-            // Mise à jour des tentatives échouées
             $requete = $bd->prepare(
                 'UPDATE Utilisateur 
                  SET tentativesEchouees = :tentatives, 
@@ -307,44 +285,37 @@ class ControllerUtilisateur extends Controller
 
     /**
      * Vérifie si les identifiants récupérés
-     *  correspondent à ceux de la base 
-     *  de données
+     * correspondent à ceux de la base 
+     * de données
      * @param Utilisateur $user
      * @throws Exception
      * @return bool
      */
     public function authentification(Utilisateur $user): bool
     {
-        // création d'une instance de la bd
         $pdo = $this->getPdo();
 
-        // Recherche de l'utilisateur
         $requete = $pdo->prepare(
             'SELECT id, mdp, tentativesEchouees, dateDernierEchecConnexion, statutCompte, dateSuppression,
              role FROM Utilisateur WHERE email =:email;'
         );
 
-        // Exécution de la requête avec l'email de l'utilisateur
         $requete->execute(['email' => $user->getEmail()]);
-        // Récupération des infos de l'utilisateur
         $donneeUtilisateurEnBD = $requete->fetch(PDO::FETCH_ASSOC);
-        // Vérifie si l'utilisateur en BD existe
+
         if (!$donneeUtilisateurEnBD) {
             throw new Exception("mail_non_existant");
         }
 
-        // Vérifie si le compte est supprimé
         if ($donneeUtilisateurEnBD['dateSuppression'] !== null) {
-            throw new Exception("mail_invalide"); // Or a specific "compte_supprime" message
+            throw new Exception("mail_invalide");
         }
 
-        // Hydrate l'objet utilisateur avec les données récupérées
         $user->setId($donneeUtilisateurEnBD['id']);
         $user->setTentativesEchouees($donneeUtilisateurEnBD['tentativesEchouees']);
         $user->setDateDernierEchecConnexion($donneeUtilisateurEnBD['dateDernierEchecConnexion']);
         $user->setStatutCompte($donneeUtilisateurEnBD['statutCompte']);
 
-        // Vérification du statut du compte
         if ($user->getStatutCompte() === 'desactive') {
             if ($this->tempsRestantAvantDeblocage($user) !== 0) {
                 throw new Exception("compte_desactive");
@@ -352,41 +323,33 @@ class ControllerUtilisateur extends Controller
             $this->reactiverCompte($user);
         }
 
-        // Vérification du mot de passe avec la fonction password_verify
         if (password_verify($user->getMdp(), $donneeUtilisateurEnBD['mdp'])) {
-            // throw new Exception("mdp_invalide");
             if ($user->getTentativesEchouees() > 0) {
                 $this->reinitialiserTentativesConnexion($user);
             }
             $_SESSION['id'] = $user->getId();
-            return true; // Authentification réussie
+            return true;
         }
         $this->gererEchecConnexion($user);
-        return false; // Authentification échoué
+        return false;
     }
-
 
     /**
      * Récupère les informations de connexions
-     *  de l'utilisateur, vérifie
-     *  s'ils sont valides et 
-     *  affiche la page d'accueil
-     *  selon le role de l'utilisateur
-     *  (particulier - étudiant)
+     * de l'utilisateur, vérifie
+     * s'ils sont valides et 
+     * affiche la page d'accueil
      * @return void
      */
     public function connexion()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //Récupération des données du formulaire
             $email = $_POST['email'] ?? '';
             $mdp = $_POST['mdp'] ?? '';
 
-            //Création d'une instance utilisateur avec les données récupérés
             $utilisateur = new Utilisateur(null, null, null, null, null, null, $email, $mdp);
 
             try {
-                //Tentative de connexion
                 if ($this->authentification($utilisateur)) {
                     header("Location: index.php");
                     exit();
@@ -414,15 +377,14 @@ class ControllerUtilisateur extends Controller
                         header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
                         echo "<h1>Une erreur inattendue est survenue</h1>";
                         exit();
-
                 }
             }
         }
     }
 
     /**
-     *  Affiche les informations du
-     *  du compte de l'utilisateur
+     * Affiche les informations du
+     * du compte de l'utilisateur
      * @return void
      */
     public function afficheCompte()
@@ -450,7 +412,7 @@ class ControllerUtilisateur extends Controller
             exit;
         }
         $template = $this->getTwig();
-
+        
         echo $template->render('pageModifierCompte.html.twig', [
             'user' => Utilisateur::getUser(),
             'err' => "",
@@ -459,18 +421,19 @@ class ControllerUtilisateur extends Controller
 
     /**
      * Se déconnecte et affiche
-     *  la page d'accueil
+     * la page d'accueil
      * @return never
      */
     public function deconnexion(): void
     {
-        $_SESSION = []; // On vide le tableau, pour libérer de l'espace
+        $_SESSION = []; 
         session_destroy();
         header('Location: index.php');
         exit();
     }
+
     /**
-     * @brief Traite la modification du compte.
+     * @brief Traite la modification du compte (Infos, MDP et Photo avec Écrasement).
      */
     public function modifierCompte()
     {
@@ -492,7 +455,7 @@ class ControllerUtilisateur extends Controller
             $adresse = $_POST['adresse'] ?? $currentUser->getAdresse();
             $codePostal = $_POST['codePostal'] ?? $currentUser->getCodePostal();
 
-            // Vérification email si changé
+            // 1. Vérification email si changé
             if ($email != $currentUser->getEmail()) {
                 if (Valide::emailExiste($email)) {
                     echo $template->render('pageModifierCompte.html.twig', [
@@ -504,7 +467,7 @@ class ControllerUtilisateur extends Controller
                 }
             }
 
-            // Mise à jour des champs
+            // Mise à jour des champs basiques
             $currentUser->setNom($nom);
             $currentUser->setPrenom($prenom);
             $currentUser->setDateNaiss($dateNaiss);
@@ -520,24 +483,18 @@ class ControllerUtilisateur extends Controller
                 $currentUser->setCodeINE($codeINE);
             }
 
-            // Gestion Mot de passe
+            // 2. Gestion Mot de passe
             $mdp = $_POST['mdp'] ?? '';
             if (!empty($mdp)) {
                 if (!Valide::estRobuste($mdp)) {
                     echo $template->render('pageModifierCompte.html.twig', [
                         'user' => $currentUser,
-                        'err' => "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial."
+                        'err' => "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère."
                     ]);
                     return;
                 }
                 $currentUser->setMdp(password_hash($mdp, PASSWORD_BCRYPT));
             } else {
-                // Si pas de nouveau mot de passe, on doit récupérer l'ancien hash car le getUser() le vide
-                // Astuce : on ne touche pas au mot de passe s'il est vide, mais le DAO l'attend.
-                // Le getUser() a fait setMdp("") pour la sécurité.
-                // Il faut récupérer le vrai mdp en base si on ne le change pas ?
-                // OU mieux : UtilisateurDAO::update doit gérer ça. Mais ma méthode update update tout.
-                // Donc je dois récupérer l'ancien mdp haché.
                 $bd = $this->getPdo();
                 $req = $bd->prepare("SELECT mdp FROM Utilisateur WHERE id = :id");
                 $req->execute(['id' => $currentUser->getId()]);
@@ -545,15 +502,117 @@ class ControllerUtilisateur extends Controller
                 $currentUser->setMdp($oldMdp);
             }
 
-            // Sauvegarde dans la BD
-            try {
-                $dao = new UtilisateurDAO($this->getPdo());
-                $dao->update($currentUser);
+            $dao = new UtilisateurDAO($this->getPdo());
 
-                // Redirection vers la page compte avec succès
+            // 3. GESTION DE LA PHOTO DE PROFIL (AVEC ÉCRASEMENT)
+            if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+                $fichier = $_FILES['photo'];
+                $extensionsAutorisees = ['jpg', 'jpeg', 'png', 'webp'];
+                $extension = strtolower(pathinfo($fichier['name'], PATHINFO_EXTENSION));
+                $tailleMax = 2 * 1024 * 1024; // 2 Mo max
+
+                if (!in_array($extension, $extensionsAutorisees)) {
+                    echo $template->render('pageModifierCompte.html.twig', ['user' => $currentUser, 'err' => "Format d'image non autorisé."]); 
+                    return;
+                } elseif ($fichier['size'] > $tailleMax) {
+                    echo $template->render('pageModifierCompte.html.twig', ['user' => $currentUser, 'err' => "L'image dépasse 2 Mo."]); 
+                    return;
+                } else {
+                    $dossierDestination = './uploads/profiles/';
+
+                    if (!is_dir($dossierDestination)) {
+                        mkdir($dossierDestination, 0777, true);
+                    }
+
+                    // --- LOGIQUE D'ÉCRASEMENT DE L'ANCIENNE PHOTO ---
+                    $anciennePhoto = $currentUser->getPhotoProfil(); 
+
+                    if (!empty($anciennePhoto)) {
+                        // On extrait le nom de base pour conserver le même ID dans le nom du fichier
+                        $nomDeBase = pathinfo($anciennePhoto, PATHINFO_FILENAME);
+                        $nouveauNom = $nomDeBase . '.' . $extension;
+                        
+                        // Si le format (extension) a changé (ex: .png vers .jpg), on supprime l'ancien fichier
+                        if ($anciennePhoto !== $nouveauNom && file_exists($dossierDestination . $anciennePhoto) && is_file($dossierDestination . $anciennePhoto)) {
+                            unlink($dossierDestination . $anciennePhoto);
+                        }
+                    } else {
+                        // C'est sa toute première photo, on génère un nom standardisé basé sur son ID
+                        $nouveauNom = 'profil_user_' . $currentUser->getId() . '.' . $extension;
+                    }
+
+                    $cheminFinal = $dossierDestination . $nouveauNom;
+                    $fichierSource = $fichier['tmp_name'];
+
+                    // --- DÉBUT DE LA CRÉATION DE LA VIGNETTE ---
+                    list($width, $height, $type) = getimagesize($fichierSource);
+                    $max_size = 400;
+
+                    $ratio = $width / $height;
+                    if ($width > $height) {
+                        $new_width = $max_size;
+                        $new_height = $max_size / $ratio;
+                    } else {
+                        $new_height = $max_size;
+                        $new_width = $max_size * $ratio;
+                    }
+
+                    $image_p = imagecreatetruecolor($new_width, $new_height);
+
+                    if ($type == IMAGETYPE_PNG || $type == IMAGETYPE_WEBP) {
+                        imagealphablending($image_p, false);
+                        imagesavealpha($image_p, true);
+                        $transparent = imagecolorallocatealpha($image_p, 255, 255, 255, 127);
+                        imagefilledrectangle($image_p, 0, 0, $new_width, $new_height, $transparent);
+                    }
+
+                    switch ($type) {
+                        case IMAGETYPE_JPEG:
+                            $image = imagecreatefromjpeg($fichierSource);
+                            break;
+                        case IMAGETYPE_PNG:
+                            $image = imagecreatefrompng($fichierSource);
+                            break;
+                        case IMAGETYPE_WEBP:
+                            $image = imagecreatefromwebp($fichierSource);
+                            break;
+                        default:
+                            $image = null;
+                    }
+
+                    if ($image !== null) {
+                        imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+                        
+                        // Ces fonctions écrasent physiquement le fichier s'il porte déjà le nom $cheminFinal
+                        switch ($type) {
+                            case IMAGETYPE_JPEG:
+                                imagejpeg($image_p, $cheminFinal, 85); 
+                                break;
+                            case IMAGETYPE_PNG:
+                                imagepng($image_p, $cheminFinal);
+                                break;
+                            case IMAGETYPE_WEBP:
+                                imagewebp($image_p, $cheminFinal, 85);
+                                break;
+                        }
+
+                        imagedestroy($image_p);
+                        imagedestroy($image);
+                        
+                        $currentUser->setPhotoProfil($nouveauNom); 
+                    } else {
+                        // Sécurité de repli
+                        move_uploaded_file($fichierSource, $cheminFinal);
+                        $currentUser->setPhotoProfil($nouveauNom); 
+                    }
+                }
+            }
+
+            // 4. Sauvegarde Globale dans la BD
+            try {
+                $dao->update($currentUser);
                 header("Location: index.php?controleur=utilisateur&methode=afficheCompte");
                 exit();
-
             } catch (Exception $e) {
                 echo $template->render('pageModifierCompte.html.twig', [
                     'user' => $currentUser,
@@ -561,7 +620,6 @@ class ControllerUtilisateur extends Controller
                 ]);
             }
         } else {
-            // Si pas POST, redirection ou affichage formulaire (géré par pageModifierCompte)
             $this->pageModifierCompte();
         }
     }
@@ -635,25 +693,21 @@ class ControllerUtilisateur extends Controller
     }
 
     /**
-     * Pous afficher le compte
+     * Pour afficher le compte
      * d'un utilisateur
      * @return void
      */
     public function pageUtilisateur()
     {
-        // création d'une instance de la bd
         $pdo = $this->getPdo();
 
-        // Recherche de l'utilisateur
         $requete = $pdo->prepare(
-            'SELECT id, nom, prenom, tel, ville, codePostal, role FROM Utilisateur WHERE id =:id;'
+            'SELECT id, nom, prenom, tel, ville, codePostal, role, photo FROM Utilisateur WHERE id =:id;'
         );
 
         $idUser = (int)$_GET['id'];
 
-        // Exécution de la requête avec l'email de l'utilisateur
         $requete->execute(['id' => $idUser]);
-        // Récupération des infos de l'utilisateur
         $other = $requete->fetch(PDO::FETCH_ASSOC);
 
         $template = $this->getTwig();
@@ -663,64 +717,4 @@ class ControllerUtilisateur extends Controller
             'other' => $other
         ]);
     }
-
-    public function pageModifierPhoto() {
-    $template = $this->getTwig();
-    // On suppose que les infos de l'utilisateur sont dans $_SESSION['user']
-    $user = $_SESSION['user'];
-    $erreur = null;
-
-    // Si le formulaire a été soumis
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photo'])) {
-        $fichier = $_FILES['photo'];
-
-        // 1. Vérifier s'il y a une erreur d'upload
-        if ($fichier['error'] === UPLOAD_ERR_OK) {
-            
-            // 2. Sécurité : Vérifier l'extension et la taille
-            $extensionsAutorisees = ['jpg', 'jpeg', 'png', 'webp'];
-            $extension = strtolower(pathinfo($fichier['name'], PATHINFO_EXTENSION));
-            $tailleMax = 2 * 1024 * 1024; // 2 Mo max
-
-            if (!in_array($extension, $extensionsAutorisees)) {
-                $erreur = "Format non autorisé (JPG, PNG, WEBP uniquement).";
-            } elseif ($fichier['size'] > $tailleMax) {
-                $erreur = "L'image est trop volumineuse (Maximum 2 Mo).";
-            } else {
-                // 3. Générer un nom unique pour éviter d'écraser d'autres photos
-                $nouveauNom = uniqid('profil_') . '.' . $extension;
-                $dossierDestination = './uploads/profiles/';
-
-                // Créer le dossier s'il n'existe pas
-                if (!is_dir($dossierDestination)) {
-                    mkdir($dossierDestination, 0777, true);
-                }
-
-                // 4. Déplacer l'image du dossier temporaire vers le dossier final
-                if (move_uploaded_file($fichier['tmp_name'], $dossierDestination . $nouveauNom)) {
-                    
-                    // --- TODO : METTRE À JOUR LA BASE DE DONNÉES ICI ---
-                    // Exemple : $this->modele->updatePhotoProfil($user['id'], $nouveauNom);
-                    
-                    // Mettre à jour la session avec la nouvelle photo
-                    $_SESSION['user']['photo'] = $nouveauNom;
-
-                    // 5. Rediriger vers la page Mon Compte
-                    header('Location: index.php?controleur=utilisateur&methode=afficheCompte');
-                    exit();
-                } else {
-                    $erreur = "Erreur lors de l'enregistrement de l'image.";
-                }
-            }
-        } else {
-            $erreur = "Veuillez sélectionner une image valide.";
-        }
-    }
-
-    // Affichage de la vue Twig (en lui passant l'erreur s'il y en a une)
-    echo $template->render('modifier_photo.html.twig', [
-        'user' => $user,
-        'erreur' => $erreur
-    ]);
-}
 }

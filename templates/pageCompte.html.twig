@@ -9,8 +9,8 @@
             <div class="card shadow-sm text-center h-100">
                 <div class="card-body d-flex flex-column align-items-center justify-content-center">
                     
-                    {% if user.photo %}
-                        <img src="./uploads/profiles/{{ user.photo }}" alt="Photo de profil" 
+                    {% if user.photoProfil %}
+                        <img src="./uploads/profiles/{{ user.photoProfil }}" alt="Photo de profil" 
                              class="rounded-circle img-fluid mb-3 shadow-sm" 
                              style="width: 150px; height: 150px; object-fit: cover;">
                     {% else %}

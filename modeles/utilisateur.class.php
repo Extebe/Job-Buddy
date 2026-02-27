@@ -42,7 +42,7 @@ class Utilisateur
     protected array $notesDonnees = [];
     /** @var array $notesRecues Liste des notes reçues par l'utilisateur. */
     protected array $notesRecues = [];
-
+    protected ?string $photoProfil;
     /**
      * @brief Constructeur de la classe Utilisateur.
      * 
@@ -62,7 +62,7 @@ class Utilisateur
      * @param string|null $dateDernierEchecConnexion Date dernier échec.
      * @param string $statutCompte Statut du compte (défaut: 'actif').
      */
-    public function __construct(?int $id = null, ?string $nom = null, ?string $prenom = null, ?string $tel = null, ?string $dateNaiss = null, ?string $role = null, ?string $email = null, ?string $mdp = null, ?string $adresse = null, ?string $ville = null, ?string $codePostal = null, ?string $dateSuppression = null, ?int $tentativesEchouees = 0, ?string $dateDernierEchecConnexion = null, ?string $statutCompte = 'actif')
+    public function __construct(?int $id = null, ?string $nom = null, ?string $prenom = null, ?string $tel = null, ?string $dateNaiss = null, ?string $role = null, ?string $email = null, ?string $mdp = null, ?string $adresse = null, ?string $ville = null, ?string $codePostal = null, ?string $dateSuppression = null, ?int $tentativesEchouees = 0, ?string $dateDernierEchecConnexion = null, ?string $statutCompte = 'actif', ?string $photoProfil = null)
     {
         $this->id = $id;
         $this->nom = $nom;
@@ -79,6 +79,7 @@ class Utilisateur
         $this->tentativesEchouees = $tentativesEchouees;
         $this->dateDernierEchecConnexion = $dateDernierEchecConnexion;
         $this->statutCompte = $statutCompte;
+        $this->photoProfil = $photoProfil;
     }
 
     /**
@@ -454,6 +455,16 @@ class Utilisateur
             return $user;
         }
         return null;
+    }
+
+    public function getPhotoProfil(): ?string
+    {
+        return $this->photoProfil;
+    }
+
+    public function setPhotoProfil(?string $photoProfil): void
+    {
+        $this->photoProfil = $photoProfil;
     }
 }
 ?>
