@@ -6,7 +6,7 @@
 
     {# --- Bouton Retour à l'accueil --- #}
     <div class="w-75 mb-3 text-start">
-        <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm">
+        <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm rounded-pill">
             <i class="bi bi-arrow-left"></i> Retour 
         </a>
     </div>
@@ -36,35 +36,33 @@
             {% if user.role == "etudiant" and annonce.etat == "disponible" and not aPostule %}
                 <div class="d-flex gap-2 mt-3 justify-content-end">
                     <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
-                        <button class="btn btn-outline-primary">Postuler</button>
+                        <button class="btn btn-outline-success rounded-pill">Postuler</button>
                     </a>
-                </div>
             {% endif %}
-            <div class="d-flex gap-2 mt-3 justify-content-end">
                 {# bouton pour signaler une annonce  #}
                 {% if annonce.getCreateur().getId()!=user.getId() %}
                 <a href="index.php?controleur=signalement&methode=signalerAnnonce&idAnnonce={{ annonce.id }}"
-                    class="btn btn-outline-primary btn-sm">
+                    class="btn btn-outline-danger btn-sm rounded-pill">
                     Signaler
                 </a>
+            </div>
                 {% endif %}
 
                 {% if user.getRole() == "Particulier " and annonce.getEtat() == "DISPONIBLE" and annonce.getCreateur().getId() == user.getId() %}
                     
                         <a href="index.php?controleur=annonce&methode=editerAnnonce&idAnnonce={{ annonce.id }}&idCreateur={{ annonce.getCreateur().getId() }}"
-                        class="btn btn-outline-primary btn-sm">
+                        class="btn btn-outline-primary btn-sm rounded-pill">
                             Modifier
                         </a>
                     {% endif %}
 
                 {% if user.getRole() == "Particulier " and annonce.getCreateur().getId() == user.getId() %}
                         <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
-                        class="btn btn-outline-danger btn-sm"
+                        class="btn btn-outline-danger btn-sm rounded-pill"
                         onclick="return confirm('Supprimer cette annonce ?');">
                             Supprimer
                         </a>
                 {% endif %}
-            </div>
         </div>
     </div>
 
@@ -90,11 +88,11 @@
                             {% if user.getRole() == "particulier" and annonce.getEtat() == "disponible" and annonce.getCreateur().getId() == user.getId() %}
                                 <div class="btn-group" role="group" aria-label="Sélection">
                                     <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=accepter"
-                                    class="btn btn-primary btn-sm">
+                                    class="btn btn-primary btn-sm rounded-pill">
                                         <i class="bi bi-check fs-8"></i>
                                     </a>
                                     <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=refuser"
-                                    class="btn btn-danger btn-sm">
+                                    class="btn btn-danger btn-sm rounded-pill">
                                         <i class="bi bi-x fs-8"></i>
                                     </a>
                                 </div>
