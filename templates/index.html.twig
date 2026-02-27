@@ -85,13 +85,13 @@
             </div>
             <ul class="list-unstyled d-flex gap-2 mt-3"> 
                 <li>
-                    <button id="resetFilters" class="btn btn-outline-secondary mt-3" onclick="document.getElementById('recherche').value = ''; document.getElementById('typeService').value = ''; document.getElementById('sortBy').value = 'date';">
+                    <button id="resetFilters" class="btn btn-outline-secondary mt-3 rounded-pill" onclick="document.getElementById('recherche').value = ''; document.getElementById('typeService').value = ''; document.getElementById('sortBy').value = 'date';">
                         <i class="bi bi-x-circle me-1"></i>
                         Réinitialiser les filtres
                     </button>
                 </li>
                 <li>
-                    <button id="submitFilters" class="btn btn-outline-primary mt-3" type="submit">
+                    <button id="submitFilters" class="btn btn-outline-primary mt-3 rounded-pill" type="submit">
                         <i class="bi bi-search me-1"></i>
                         Rechercher
                     </button>
@@ -176,7 +176,7 @@
                             {% if user is defined and user.role == "etudiant" %}
                                 {% if annonce.etat == "disponible" and not aDejaPostule %}
                                     <div style="position: relative; z-index: 2;">
-                                        <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-success">
+                                        <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-success rounded-pill">
                                             <i class="bi bi-hand-thumbs-up me-1"></i>
                                             Postuler
                                         </a>

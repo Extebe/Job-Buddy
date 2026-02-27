@@ -514,7 +514,7 @@ class ControllerAnnonce extends Controller
     public function newsletter(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'];
+            $email = $_POST['emailNewsletter'];
             $pdoNewsLetter = new NewLetterDao($this->getPdo());
             $managerAnnonce = new AnnonceDao($this->getPdo());
             $tableau = $managerAnnonce->findAllAssocDispo();

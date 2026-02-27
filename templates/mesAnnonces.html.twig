@@ -134,7 +134,7 @@
                                         <div class="d-flex gap-2 align-items-center">
                                             {% if annonce.etat == "accepte" and annonce.dateFinRealisation < "now"|date("Y-m-d") %}
                                                 <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}"
-                                                   class="btn btn-outline-success btn-sm">
+                                                   class="btn btn-outline-success btn-sm rounded-pill">
                                                     Évaluer
                                                 </a>
                                             {% endif %}
@@ -142,7 +142,7 @@
                                             {% if user.getRole() == "particulier" and annonce.getEtat() == "disponible"
                                                 and annonce.getCreateur().getId() == user.getId() %}
                                                 <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
-                                                   class="btn btn-outline-primary btn-sm">
+                                                   class="btn btn-outline-primary btn-sm rounded-pill">
                                                     Modifier
                                                 </a>
                                             {% endif %}
@@ -150,7 +150,7 @@
                                             {% if user.getRole() == "particulier"
                                                 and annonce.getCreateur().getId() == user.getId() %}
                                                 <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
-                                                   class="btn btn-outline-danger btn-sm"
+                                                   class="btn btn-outline-danger btn-sm rounded-pill"
                                                    data-confirm="Êtes-vous sûr de vouloir supprimer cette annonce ?">
                                                     Supprimer
                                                 </a>

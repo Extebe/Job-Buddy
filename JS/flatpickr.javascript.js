@@ -23,12 +23,15 @@ document.addEventListener("DOMContentLoaded",()=>{
 document.addEventListener("DOMContentLoaded",()=>{
     //configuration en français
     const configFr={
-        enableTime: true,
+        enableTime: false,
         time_24hr: true,
         dateFormat: "Y-m-d",
+        maxDate: "today",
         locale: "fr"
     };
-
-    const dateNaiss = flatpickr("#dateNaiss",{configFr});
+    //
+    if (document.querySelector("#dateNaiss")) {
+        flatpickr("#dateNaiss", {...configFr});
+    }
 });
 

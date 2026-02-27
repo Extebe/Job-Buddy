@@ -4,10 +4,12 @@
 // 2. Tes variables perso
 $primary: #5D2A18;
 $secondary: #838383;
-$success: #716B00;
+$success: #00ac56;
 $danger: #FF4A4A;
 
-// 3. Redéfinition des couleurs thématiques
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+
 $theme-colors: (
         "primary": $primary,
         "secondary": $secondary,
@@ -15,9 +17,6 @@ $theme-colors: (
         "danger": $danger
 );
 
-// 4. Imports de Bootstrap (ordre obligatoire)
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/variables-dark";
 @import "../node_modules/bootstrap/scss/maps";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/root";
