@@ -77,6 +77,12 @@
                             </a>
                         {% endif %}
 
+                        {% if user.role|lower == "etudiant" and annonce.etat|lower == "disponible" and aPostule %}
+                            <a href="index.php?controleur=annonce&methode=annulerCandidature&id={{ annonce.id }}" class="btn btn-danger px-4">
+                                <i class="bi bi-send me-2"></i>Annuler ma candidature
+                            </a>
+                        {% endif %}
+
                         {# Action : Signaler (Si ce n'est pas mon annonce) #}
                         {% if annonce.createur.id != user.id %}
                             <a href="index.php?controleur=signalement&methode=signalerAnnonce&idAnnonce={{ annonce.id }}" class="btn btn-outline-danger">
