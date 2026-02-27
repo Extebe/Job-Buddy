@@ -663,4 +663,64 @@ class ControllerUtilisateur extends Controller
             'other' => $other
         ]);
     }
+
+    public function pageModifierPhoto() {
+    $template = $this->getTwig();
+    // On suppose que les infos de l'utilisateur sont dans $_SESSION['user']
+    $user = $_SESSION['user'];
+    $erreur = null;
+
+    // Si le formulaire a été soumis
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photo'])) {
+        $fichier = $_FILES['photo'];
+
+        // 1. Vérifier s'il y a une erreur d'upload
+        if ($fichier['error'] === UPLOAD_ERR_OK) {
+            
+            // 2. Sécurité : Vérifier l'extension et la taille
+            $extensionsAutorisees = ['jpg', 'jpeg', 'png', 'webp'];
+            $extension = strtolower(pathinfo($fichier['name'], PATHINFO_EXTENSION));
+            $tailleMax = 2 * 1024 * 1024; // 2 Mo max
+
+            if (!in_array($extension, $extensionsAutorisees)) {
+                $erreur = "Format non autorisé (JPG, PNG, WEBP uniquement).";
+            } elseif ($fichier['size'] > $tailleMax) {
+                $erreur = "L'image est trop volumineuse (Maximum 2 Mo).";
+            } else {
+                // 3. Générer un nom unique pour éviter d'écraser d'autres photos
+                $nouveauNom = uniqid('profil_') . '.' . $extension;
+                $dossierDestination = './uploads/profiles/';
+
+                // Créer le dossier s'il n'existe pas
+                if (!is_dir($dossierDestination)) {
+                    mkdir($dossierDestination, 0777, true);
+                }
+
+                // 4. Déplacer l'image du dossier temporaire vers le dossier final
+                if (move_uploaded_file($fichier['tmp_name'], $dossierDestination . $nouveauNom)) {
+                    
+                    // --- TODO : METTRE À JOUR LA BASE DE DONNÉES ICI ---
+                    // Exemple : $this->modele->updatePhotoProfil($user['id'], $nouveauNom);
+                    
+                    // Mettre à jour la session avec la nouvelle photo
+                    $_SESSION['user']['photo'] = $nouveauNom;
+
+                    // 5. Rediriger vers la page Mon Compte
+                    header('Location: index.php?controleur=utilisateur&methode=afficheCompte');
+                    exit();
+                } else {
+                    $erreur = "Erreur lors de l'enregistrement de l'image.";
+                }
+            }
+        } else {
+            $erreur = "Veuillez sélectionner une image valide.";
+        }
+    }
+
+    // Affichage de la vue Twig (en lui passant l'erreur s'il y en a une)
+    echo $template->render('modifier_photo.html.twig', [
+        'user' => $user,
+        'erreur' => $erreur
+    ]);
+}
 }

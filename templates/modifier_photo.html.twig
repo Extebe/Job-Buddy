@@ -1,0 +1,51 @@
+{% extends 'base_template.html.twig' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 text-center">
+                    
+                    <h4 class="card-title border-bottom pb-3 mb-4">Modifier ma photo</h4>
+
+                    {% if erreur is defined and erreur %}
+                        <div class="alert alert-danger text-start small" role="alert">
+                            <i class="bi bi-exclamation-triangle me-2"></i>{{ erreur }}
+                        </div>
+                    {% endif %}
+
+                    <form action="index.php?controleur=utilisateur&methode=pageModifierPhoto" method="POST" enctype="multipart/form-data">
+                        
+                        <div class="mb-4">
+                            {% if user.photo %}
+                                <img src="./uploads/profiles/{{ user.photo }}" alt="Photo actuelle" 
+                                     class="rounded-circle img-thumbnail shadow-sm" 
+                                     style="width: 120px; height: 120px; object-fit: cover;">
+                            {% else %}
+                                <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto shadow-sm" 
+                                     style="width: 120px; height: 120px;">
+                                    <i class="bi bi-person text-secondary" style="font-size: 3.5rem;"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4 text-start">
+                            <label for="photo" class="form-label fw-bold text-muted small">CHOISIR UNE NOUVELLE IMAGE</label>
+                            <input class="form-control" type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png, .webp" required>
+                            <div class="form-text small">Formats acceptés : JPG, PNG, WEBP. Taille max : 2 Mo.</div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Enregistrer la photo</button>
+                            <a href="index.php?controleur=utilisateur&methode=afficheCompte" class="btn btn-light border">Annuler</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

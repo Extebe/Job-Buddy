@@ -1,0 +1,16 @@
+.pos-top-right {
+    position: absolute;
+    top: 10px;    /* Ajuste selon ton besoin */
+    right: 15px;  /* Ajuste selon ton besoin */
+    margin-bottom: 0; /* On retire la marge pour éviter les décalages */
+    z-index: 10;  /* Pour passer au-dessus d'éventuelles images */
+}
+
+/* Optionnel : Sur mobile, si c'est trop serré, on peut le remettre en flux normal */
+@media (max-width: 576px) {
+    .pos-top-right {
+        position: static;
+        text-align: right;
+        margin-bottom: 1rem;
+    }
+}

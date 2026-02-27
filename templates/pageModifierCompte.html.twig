@@ -1,76 +1,140 @@
 {% extends 'base_template.html.twig' %}
-    {% block css %} <link rel="stylesheet" href="./CSS/compte.css"> {% endblock %}
-    {% block content %}
-    <div class="card-container">
-        <div class="card">
-            <div class="card-body mx-auto p-4">
-                <h4 class="card-title">Modifier Mon Compte {{user.role}}</h4>
 
-                {% if err is defined and err != "" %}
-                    <div class="alert alert-danger">{{ err }}</div>
-                {% endif %}
+{% block css %} 
+    <link rel="stylesheet" href="./CSS/compte.css"> 
+    <style>
+        /* Couleur marron pour les titres */
+        .text-marron {
+            color: #8B4513 !important; 
+        }
 
-                <form action="index.php?controleur=utilisateur&methode=modifierCompte" method="POST" class="form-compte">
-                    <div class="mb-3">
-                        <label for="text" class="form-label">Nom de famille :</label>
-                        <input type="text" name="nom" id="nom" value="{{user.nom}}" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="text" class="form-label">Prenom :</label>
-                        <input type="text" name="prenom" id="prenom" value="{{user.prenom}}" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Date de naissance :</label>
-                        <input 
-                            type="text"
-                            class="form-control"
-                            id="dateNaiss" 
-                            name="dateNaiss" 
-                            value="{{user.dateNaiss}}" 
-                            >
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email :</label>
-                        <input type="email" name="email" id="email" value="{{user.email}}" class="form-control">
-                        {% if errEmail is defined and errEmail != "" %}
-                            <p class="texte-rouge">{{errEmail}}</p>
+        /* Style sur mesure pour le bouton Marron Foncé */
+        .btn-marron-fonce {
+            background-color: #5C4033; /* Marron foncé */
+            border-color: #5C4033;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        /* Effet au survol du bouton (devient un peu plus sombre) */
+        .btn-marron-fonce:hover {
+            background-color: #3e2723; 
+            border-color: #3e2723;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
+                    
+                    <h4 class="card-title border-bottom pb-3 mb-4 fw-bold text-marron">Modifier Mon Compte </h4>
+
+                    {% if err is defined and err != "" %}
+                        <div class="alert alert-danger" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ err }}
+                        </div>
+                    {% endif %}
+
+                    <form action="index.php?controleur=utilisateur&methode=modifierCompte" method="POST" class="form-compte" enctype="multipart/form-data">
+                        
+                        <h6 class="text-marron mt-3 mb-3 text-uppercase fw-bold small">Photo de profil</h6>
+                        <div class="d-flex align-items-center gap-4 mb-4 p-3 bg-light rounded border">
+                            {% if user.photo %}
+                                <img src="./uploads/profiles/{{ user.photo }}" alt="Photo actuelle" class="rounded-circle object-fit-cover border shadow-sm" style="width: 80px; height: 80px;">
+                            {% else %}
+                                <div class="rounded-circle bg-white d-flex align-items-center justify-content-center border shadow-sm" style="width: 80px; height: 80px;">
+                                    <i class="bi bi-person text-secondary fs-1"></i>
+                                </div>
+                            {% endif %}
+                            
+                            <div class="flex-grow-1">
+                                <label for="photo" class="form-label fw-bold mb-1">Changer la photo (Optionnel)</label>
+                                <input class="form-control" type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png, .webp">
+                                <div class="form-text small">Formats : JPG, PNG, WEBP. Max 2 Mo.</div>
+                            </div>
+                        </div>
+
+                        <h6 class="text-marron mt-4 mb-3 text-uppercase fw-bold small">Identité</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="nom" class="form-label">Nom de famille :</label>
+                                <input type="text" name="nom" id="nom" value="{{ user.nom }}" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="prenom" class="form-label">Prénom :</label>
+                                <input type="text" name="prenom" id="prenom" value="{{ user.prenom }}" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dateNaiss" class="form-label">Date de naissance :</label>
+                                <input type="date" name="dateNaiss" id="dateNaiss" value="{{ user.dateNaiss }}" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email :</label>
+                                <input type="email" name="email" id="email" value="{{ user.email }}" class="form-control" required>
+                                {% if errEmail is defined and errEmail != "" %}
+                                    <div class="text-danger small mt-1">{{ errEmail }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <h6 class="text-marron mt-4 mb-3 text-uppercase fw-bold small">Coordonnées</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-12">
+                                <label for="tel" class="form-label">N° de téléphone :</label>
+                                <input type="text" name="tel" id="tel" value="{{ user.tel }}" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label for="adresse" class="form-label">Adresse :</label>
+                                <input type="text" name="adresse" id="adresse" value="{{ user.adresse }}" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="codePostal" class="form-label">Code postal :</label>
+                                <input type="text" name="codePostal" id="codePostal" value="{{ user.codePostal }}" class="form-control">
+                            </div>
+                            <div class="col-md-8">
+                                <label for="ville" class="form-label">Ville :</label>
+                                <input type="text" name="ville" id="ville" value="{{ user.ville }}" class="form-control">
+                            </div>
+                        </div>
+
+                        {% if user.role == "etudiant" %}
+                            <h6 class="text-marron mt-4 mb-3 text-uppercase fw-bold small">Informations Étudiant</h6>
+                            <div class="mb-4">
+                                <label for="codeINE" class="form-label">Code INE :</label>
+                                <input type="text" name="codeINE" id="codeINE" value="{{ user.codeINE }}" class="form-control">
+                            </div>
                         {% endif %}
-                    </div>
-                    <div class="mb-3">
-                        <label for="text" class="form-label">N° de téléphone :</label>
-                        <input type="text" name="tel" id="tel" value="{{user.tel}}" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="text" class="form-label">Ville :</label>
-                        <input type="text" name="ville" id="ville" value="{{user.ville}}" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="text" class="form-label">Adresse :</label>
-                        <input type="text" name="adresse" id="adresse" value="{{user.adresse}}" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="text" class="form-label">Code postal :</label>
-                        <input type="text" name="codePostal" id="codePostal" value="{{user.codePostal}}" class="form-control">
-                    </div>
 
-                {% if user.role == "etudiant" %}
-                    <div class="mb-3">
-                        <label for="text" class="form-label">Code INE :</label>
-                        <input type="text" name="codeINE" id="codeINE" value="{{user.codeINE}}" class="form-control">
-                    </div>
-                {% endif %}
+                        <h6 class="text-marron mt-4 mb-3 text-uppercase fw-bold small">Sécurité</h6>
+                        <div class="mb-5 p-3 bg-light rounded border">
+                            <label for="mdp" class="form-label">Nouveau mot de passe :</label>
+                            <input type="password" name="mdp" id="mdp" class="form-control">
+                            <div class="form-text text-warning mt-2 fw-bold">
+                                <i class="bi bi-info-circle me-1"></i>* Remplir uniquement si vous souhaitez changer de mot de passe !
+                            </div>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Nouveau mot de passe :</label>
-                        <input type="password" name="mdp" id="mdp" class="form-control">
-                        <p class="texte-attention">* Remplir uniquement si vous souhaitez changer de mot de passe !</p>
-                    </div>
+                        <hr class="mb-4">
 
-                <div class="d-grid gap-2 ">
-                    <button type="submit" class="btn btn-outline-success mt-2">Sauvegarder modification</button>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="index.php?controleur=utilisateur&methode=afficheCompte" class="btn btn-outline-secondary">Annuler</a>
+                            
+                            <button type="submit" class="btn btn-marron-fonce px-4 fw-bold">Sauvegarder les modifications</button>
+                        </div>
+
+                    </form>
+
                 </div>
-                </form>
             </div>
+            
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
