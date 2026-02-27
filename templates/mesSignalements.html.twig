@@ -1,0 +1,69 @@
+{% extends 'base_template.html.twig' %}
+
+{% block content %}
+{% if reponse is defined %}
+    <div class="container mt-4">
+        <div class="alert alert-success shadow-sm" role="alert">
+            <i class="bi bi-check-circle me-2"></i>
+            {{ reponse }}
+        </div>
+    </div>
+{% endif %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h2 text-primary">Mes signalements</h1>
+        <span class="badge bg-secondary">{{ signalements|length }} au total</span>
+    </div>
+
+    {% if signalements is empty %}
+        <div class="alert alert-info shadow-sm" role="alert">
+            <i class="bi bi-info-circle me-2"></i>
+            Vous n'avez signalé aucune annonce ni utilisateur.
+        </div>
+    {% else %}
+        <div class="card shadow-sm">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">N°</th>
+                            <th>Motif</th>
+                            <th>Description</th>
+                            <th>Date de signalement</th>
+                            <th class="text-end pe-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for signalement in signalements %}
+                            <tr>
+                                <td class="ps-4 fw-bold text-muted">{{ loop.index }}</td>
+                                <td>
+                                    <span class="badge rounded-pill bg-warning text-dark">
+                                        {{ signalement.motif }}
+                                    </span>
+                                </td>
+                                <td class="text-truncate" style="max-width: 250px;">
+                                    {{ signalement.description }}
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar3 me-1"></i>
+                                        {{ signalement.dateSignalement|date("d/m/Y à H:i") }}
+                                    </small>
+                                </td>
+                                <td class="text-end pe-4">
+                                    <a href="index.php?controleur=signalement&methode=deleteSignalement&id={{ signalement.id }}" onclick="return confirm('Êtes-vous sûr de vouloir retirer ce signalement ?');">
+                                        <button class="btn btn-outline-danger btn-sm shadow-sm" >
+                                            <i class="bi bi-trash me-1"></i> Retirer
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

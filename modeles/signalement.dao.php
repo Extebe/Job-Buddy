@@ -144,5 +144,32 @@ class SignalementDao
         header("Location: index.php");
                 exit();
     }
+
+    // /**
+    //  * @brief Trouve les signalements par l'ID l'utilisateur qui signale (retourne tableau assoc).
+    //  * @param int|null $id ID de l'utilisateur.
+    //  * @return Signalement|null Le signalement.
+    //  */
+    public function findBySignaleur(?int $id): ?array
+    {
+        $sql = "SELECT * FROM signalement WHERE idSignaleur = :id";
+    
+        $pdoStatement = $this->getPdo()->prepare($sql);
+        $pdoStatement->execute(["id" => $id]);
+        
+        return $pdoStatement->fetchAll(PDO::FETCH_ASSOC) ?: [];
+    }
+
+    /**
+     * @brief Supprime un signalement de la base de données.
+     */
+    public function delete($id): bool
+    {
+        $id = (int)$id;
+        $sql = "DELETE FROM signalement WHERE id = :id";
+        $pdoStatement = $this->getPdo()->prepare($sql);
+        $pdoStatement->execute(["id" => $id]);
+        return $pdoStatement->rowCount() > 0;
+    }
 }
 ?>

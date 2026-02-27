@@ -93,4 +93,36 @@ class ControllerSignalement extends Controller
             $signalement = $managerSignalement->updateSignalementUtilisateur($motif,$description,$idSignaleur,$idOther);
         }        
     }
+
+    /**
+     * @brief Affiche les signalements de l'utilisateur connecté.
+     */
+    public function afficherMesSignalements()
+    {
+        $template = $this->getTwig();
+        $signaleur = Utilisateur::getUser();
+        if(!$signaleur){
+            header('Location: index.php?controleur=utilisateur&methode=pageConnexion');
+            exit();
+        }
+        $managerSignalement= new SignalementDao($this->getPdo());
+        $signalements = $managerSignalement->findBySignaleur($signaleur->getId());
+
+        echo $template->render('mesSignalements.html.twig', [
+            'user' => Utilisateur::getUser(),
+            'signalements' => $signalements
+        ]);
+    }
+
+    /**
+     * @brief Supprime un signalement de la base de données.
+     */
+    public function deleteSignalement()
+    {
+        $id = $_GET['id'];
+        $managerSignalement = new SignalementDao($this->getPdo());
+        $reponse = $managerSignalement->delete($id);
+        header("Location: index.php?controleur=signalement&methode=afficherMesSignalements&reponse=$reponse");
+        exit();
+    }
 }
