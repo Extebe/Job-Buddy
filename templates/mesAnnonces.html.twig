@@ -151,7 +151,7 @@
                                                 and annonce.getCreateur().getId() == user.getId() %}
                                                 <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
                                                    class="btn btn-outline-danger btn-sm"
-                                                   onclick="return confirm('Supprimer cette annonce ?');">
+                                                   data-confirm="Êtes-vous sûr de vouloir supprimer cette annonce ?">
                                                     Supprimer
                                                 </a>
                                             {% endif %}
