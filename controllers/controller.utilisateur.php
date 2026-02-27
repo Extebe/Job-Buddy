@@ -702,7 +702,7 @@ class ControllerUtilisateur extends Controller
         $pdo = $this->getPdo();
 
         $requete = $pdo->prepare(
-            'SELECT id, nom, prenom, tel, ville, codePostal, role, photo FROM Utilisateur WHERE id =:id;'
+            'SELECT id, nom, prenom, tel, ville, codePostal, role, photoProfil FROM Utilisateur WHERE id =:id;'
         );
 
         $idUser = (int)$_GET['id'];

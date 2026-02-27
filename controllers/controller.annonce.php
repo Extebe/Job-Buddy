@@ -281,10 +281,14 @@ class ControllerAnnonce extends Controller
             }
         }
     }
+    $createur = $annonce->getCreateur();
+    $managerUtilisateur = new UtilisateurDao($this->getPdo());
+    $createur = $managerUtilisateur->findById($createur->getId());
 
     echo $template->render('detailAnnonce.html.twig', [
         'user'    => Utilisateur::getUser(),
         'annonce' => $annonce,
+        'createur' => $createur,
         'icons'   => Constantes::getConstantes()['icons'],
         'aPostule' => $aPostule 
     ]);
