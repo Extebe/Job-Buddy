@@ -1,0 +1,76 @@
+{% extends 'base_template.html.twig' %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { 
+            height: 600px; 
+            width: 100%; 
+            border-radius: 8px; /* Un peu de style */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div id="map"></div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // 1. Initialisation avec des options de performance
+        const map = L.map('map', {
+            tap: false, // Améliore l'interaction sur mobile
+            zoomControl: true
+        }).setView([46.603354, 1.888334], 6);
+
+        // 2. Fond de carte (OpenStreetMap)
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // 3. Fonction de succès : on a trouvé l'utilisateur
+        function onLocationFound(e) {
+            const radius = e.accuracy / 2;
+
+            // Ajouter un marqueur bleu à l'endroit exact
+            L.marker(e.latlng).addTo(map)
+                .bindPopup(`Vous êtes ici.`)
+                .openPopup();
+
+            // Ajouter un cercle bleu pour montrer la zone d'incertitude
+            L.circle(e.latlng, radius, {
+                color: '#3388ff',
+                fillColor: '#3388ff',
+                fillOpacity: 0.15
+            }).addTo(map);
+        }
+
+        // 4. Gestion des erreurs
+        function onLocationError(e) {
+            console.error(e.message);
+            // On peut informer l'utilisateur discrètement au lieu d'une alert invasive
+            console.log("Localisation refusée ou impossible.");
+        }
+
+        // Ecouteurs d'événements
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+
+        // 5. Lancer la localisation au chargement
+        // enableHighAccuracy: true permet d'utiliser le GPS si dispo
+        map.locate({
+            setView: true, 
+            maxZoom: 16, 
+            enableHighAccuracy: true 
+        });
+
+        // ASTUCE BUG : Si la carte est dans un onglet ou chargée dynamiquement
+        // on force le recalcul de la taille après un court instant
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 100);
+    </script>
+{% endblock %}

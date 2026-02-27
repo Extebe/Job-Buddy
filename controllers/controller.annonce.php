@@ -539,4 +539,22 @@ class ControllerAnnonce extends Controller
         }
     }
     
+
+    public function afficherMaps()
+    {
+        $template = $this->getTwig();
+
+        $managerAnnonce = new AnnonceDao($this->getPdo());
+        $tableau = $managerAnnonce->findAllAssocDispo();
+        $annonces = $managerAnnonce->hydrateAll($tableau);
+
+        foreach ($annonces as $key => $annonce){
+            $tab[$key] = $managerAnnonce->addRelations($annonce);
+        }
+
+        echo $template->render('maps.html.twig', [
+            'user' => Utilisateur::getUser(),
+            'annonces' => $tab
+        ]);
+    }
 }

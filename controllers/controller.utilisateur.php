@@ -131,7 +131,7 @@ class ControllerUtilisateur extends Controller
                 'cvec' => $cvec
             ];
 
-            if ($role == 'Etudiant') {
+            if ($role == 'etudiant') {
                 $user = new Etudiant($id = null, $codeINE, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null, $cvec);
             } else {
                 $user = new Particulier(null, $nom, $prenom, $phone, $dateNaiss, $role, $email, $password, $adresse, $ville, $codePostal, null);
