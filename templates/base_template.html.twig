@@ -199,7 +199,7 @@
                                 
                             </div>
                             <div class="mt-2 mb-3 d-flex justify-content-center">
-                                <input type="email" placeholder="exemple@gmail.com" class="form-control w-100 mx-auto" id="email" name="email" required>
+                                <input type="email" placeholder="exemple@gmail.com" class="form-control w-100 mx-auto" id="emailNewsletter" name="emailNewsletter" required>
                             </div>
 
                             <div class="form-check">
@@ -237,6 +237,14 @@
         {# ==================== SCRIPTS ==================== #}
         {% block script %}
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+            <!-- API flatpickr - Sélecteur de date et d'heure léger et puissant -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+
+            {# Chemin vers le fichier javascript #}
+            <script src="JS/flatpickr.javascript.js"></script>
         {% endblock %}
     </body>
     </html>

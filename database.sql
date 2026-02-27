@@ -10,104 +10,104 @@ DROP TABLE IF EXISTS InscritNewsLetter;
 
 -- Création des tables :
 CREATE TABLE Utilisateur(
-  id int AUTO_INCREMENT,
-  role VARCHAR(14) NOT NULL CHECK (role IN ('particulier', 'etudiant', 'administrateur')),
-  codeINE VARCHAR(20) UNIQUE,
-  nom VARCHAR(50) NOT NULL,
-  prenom VARCHAR(50) NOT NULL,
-  tel CHAR(10) UNIQUE,
-  dateNaiss DATE NOT NULL,
-  email VARCHAR(50) NOT NULL UNIQUE,
-  mdp VARCHAR(250) NOT NULL,
-  dateSuppression DATE,
-  ville VARCHAR(50),
-  adresse VARCHAR(50),
-  codePostal VARCHAR(5),
-  tentativesEchouees INT DEFAULT 0 NOT NULL,
-  dateDernierEchecConnexion DATETIME DEFAULT NULL,
-  statutCompte ENUM('actif', 'desactive') DEFAULT 'actif',
-  statutModeration ENUM('normal', 'banni', 'suspendu', 'suspect') DEFAULT 'normal',
-  cvec VARCHAR(12),
-  PRIMARY KEY(id)
+                            id int AUTO_INCREMENT,
+                            role VARCHAR(14) NOT NULL CHECK (role IN ('particulier', 'etudiant', 'administrateur')),
+                            codeINE VARCHAR(20) UNIQUE,
+                            nom VARCHAR(50) NOT NULL,
+                            prenom VARCHAR(50) NOT NULL,
+                            tel CHAR(10) UNIQUE,
+                            dateNaiss DATE NOT NULL,
+                            email VARCHAR(50) NOT NULL UNIQUE,
+                            mdp VARCHAR(250) NOT NULL,
+                            dateSuppression DATE,
+                            ville VARCHAR(50),
+                            adresse VARCHAR(50),
+                            codePostal VARCHAR(5),
+                            tentativesEchouees INT DEFAULT 0 NOT NULL,
+                            dateDernierEchecConnexion DATETIME DEFAULT NULL,
+                            statutCompte ENUM('actif', 'desactive') DEFAULT 'actif',
+                            statutModeration ENUM('normal', 'banni', 'suspendu', 'suspect') DEFAULT 'normal',
+                            cvec VARCHAR(12),
+                            PRIMARY KEY(id)
 );
 
 
 CREATE TABLE Annonce(
-  id int AUTO_INCREMENT,
-  idParticulier int NOT NULL,
+                        id int AUTO_INCREMENT,
+                        idParticulier int NOT NULL,
 
 
-  titre VARCHAR(100),
-  description VARCHAR(1000),
-  typeService VARCHAR(25) CHECK (typeService IN ('baby-sitting', 'jardinage', 'bricolage','ménage', 'transport', 'aide informatique', 'aide aux devoirs', 'autre')),
-  lieu VARCHAR(100),
-  remuneration DECIMAL(6,2) CHECK (remuneration >= 0),
+                        titre VARCHAR(100),
+                        description VARCHAR(1000),
+                        typeService VARCHAR(25) CHECK (typeService IN ('baby-sitting', 'jardinage', 'bricolage','ménage', 'transport', 'aide informatique', 'aide aux devoirs', 'autre')),
+                        lieu VARCHAR(100),
+                        remuneration DECIMAL(6,2) CHECK (remuneration >= 0),
 
 
-  dateDebutRealisation DATETIME,
-  dateFinRealisation DATETIME CHECK (dateFinRealisation > dateDebutRealisation),
+                        dateDebutRealisation DATETIME,
+                        dateFinRealisation DATETIME CHECK (dateFinRealisation > dateDebutRealisation),
 
 
-  etat VARCHAR(20) NOT NULL CHECK (etat IN ('disponible','accepte','termine')),
+                        etat VARCHAR(20) NOT NULL CHECK (etat IN ('disponible','accepte','termine')),
 
 
-  datePublication DATETIME,
-  dateSuppression DATETIME,
-  motifSuppression VARCHAR(50),
+                        datePublication DATETIME,
+                        dateSuppression DATETIME,
+                        motifSuppression VARCHAR(50),
 
 
-  PRIMARY KEY(id),
-  FOREIGN KEY(idParticulier) REFERENCES Utilisateur(id),
-  FULLTEXT(titre, description, typeService, lieu)
+                        PRIMARY KEY(id),
+                        FOREIGN KEY(idParticulier) REFERENCES Utilisateur(id),
+                        FULLTEXT(titre, description, typeService, lieu)
 );
 
 
 CREATE TABLE Signalement(
-  id int AUTO_INCREMENT,
-  dateSignalement DATETIME NOT NULL,
-  motif VARCHAR(20),
-  description VARCHAR(500),
-  idSignaleur int NOT NULL,
-  idUtilisateurSignale int,
-  idAnnonceSignale int,
-  PRIMARY KEY(id),
-  FOREIGN KEY(idSignaleur) REFERENCES Utilisateur(id),
-  FOREIGN KEY(idUtilisateurSignale) REFERENCES Utilisateur(id),
-  FOREIGN KEY(idAnnonceSignale) REFERENCES Annonce(id)
-  );
+                            id int AUTO_INCREMENT,
+                            dateSignalement DATETIME NOT NULL,
+                            motif VARCHAR(20),
+                            description VARCHAR(500),
+                            idSignaleur int NOT NULL,
+                            idUtilisateurSignale int,
+                            idAnnonceSignale int,
+                            PRIMARY KEY(id),
+                            FOREIGN KEY(idSignaleur) REFERENCES Utilisateur(id),
+                            FOREIGN KEY(idUtilisateurSignale) REFERENCES Utilisateur(id),
+                            FOREIGN KEY(idAnnonceSignale) REFERENCES Annonce(id)
+);
 
 
 CREATE TABLE Postuler(
-  idAnnonce int,
-  idEtudiant int,
-  datePostulat DATETIME NOT NULL,
-  estAccepte BOOLEAN NOT NULL,
-  PRIMARY KEY(idAnnonce, idEtudiant),
-  FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
-  FOREIGN KEY(idEtudiant) REFERENCES Utilisateur(id)
+                         idAnnonce int,
+                         idEtudiant int,
+                         datePostulat DATETIME NOT NULL,
+                         estAccepte BOOLEAN NOT NULL,
+                         PRIMARY KEY(idAnnonce, idEtudiant),
+                         FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
+                         FOREIGN KEY(idEtudiant) REFERENCES Utilisateur(id)
 );
 
 
 CREATE TABLE Note(
-  id int AUTO_INCREMENT,
-  idAnnonce int NOT NULL,
-  idUtilisateurNoteur int NOT NULL,
-  idUtilisateurNote int NOT NULL,
-  note SMALLINT NOT NULL CHECK (note >= 0 AND note <= 5),
-  commentaire VARCHAR(100),
-  PRIMARY KEY(id),
-  FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
-  FOREIGN KEY(idUtilisateurNoteur) REFERENCES Utilisateur(id),
-  FOREIGN KEY(idUtilisateurNote) REFERENCES Utilisateur(id)
+                     id int AUTO_INCREMENT,
+                     idAnnonce int NOT NULL,
+                     idUtilisateurNoteur int NOT NULL,
+                     idUtilisateurNote int NOT NULL,
+                     note SMALLINT NOT NULL CHECK (note >= 0 AND note <= 5),
+                     commentaire VARCHAR(100),
+                     PRIMARY KEY(id),
+                     FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
+                     FOREIGN KEY(idUtilisateurNoteur) REFERENCES Utilisateur(id),
+                     FOREIGN KEY(idUtilisateurNote) REFERENCES Utilisateur(id)
 );
 
 
 CREATE TABLE InscritNewsLetter(
-  id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  email varchar(50)
+                                  id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+                                  email varchar(50)
 );
 
--- INSERTIONS 
+-- INSERTIONS
 INSERT INTO Utilisateur VALUES(1, 'particulier', NULL, 'JobN', 'JobP', '0123456789', '1990-05-15', 'job@gmail.com', '$2y$10$P6Y.VZQx4p0HpM0znpUgSe.AMZHFYc6p0x.vLRKpW1aXy2o8DS6qO', NULL, 'Paris', '10 rue de Paris', '75001', 0, NULL, 'actif', 'normal', NULL);
 INSERT INTO Utilisateur VALUES(2, 'etudiant', '123456789013', 'Martin', 'Sophie', '0123456790', '2000-10-25', 'sophie@gmail.com', '$2y$10$OrQApLZOzpj9lLVG1JEdreVjSzzMlwunN8G.7pIZe2lLxoZ1Zzh3i', NULL, 'Lyon', '20 rue de Lyon', '69001', 0, NULL, 'actif', 'normal', NULL);
 
@@ -147,13 +147,13 @@ INSERT INTO Note VALUES(2, 2, 2, 1, 2, "Le travail n'a pas été bien fait.");
 DELIMITER $$
 DROP TRIGGER IF EXISTS verif_bcp_signalement$$
 CREATE TRIGGER verif_bcp_signalement
-BEFORE INSERT
-ON Signalement
-FOR EACH ROW
+    BEFORE INSERT
+    ON Signalement
+    FOR EACH ROW
 BEGIN
-DECLARE nbSignalement INT;
-SELECT COUNT(*) INTO nbSignalement FROM Signalement WHERE idUtilisateurSignale = NEW.idUtilisateurSignale;
-IF nbSignalement >= 5 THEN
-	UPDATE Utilisateur SET statutModeration = 'suspect' WHERE id = NEW.idUtilisateurSignale;
+    DECLARE nbSignalement INT;
+    SELECT COUNT(*) INTO nbSignalement FROM Signalement WHERE idUtilisateurSignale = NEW.idUtilisateurSignale;
+    IF nbSignalement >= 5 THEN
+    UPDATE Utilisateur SET statutModeration = 'suspect' WHERE id = NEW.idUtilisateurSignale;
 END IF;
 END$$

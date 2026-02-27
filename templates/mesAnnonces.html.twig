@@ -1,7 +1,6 @@
 {% extends 'base_template.html.twig' %}
 
 {% block content %}
-<link rel="stylesheet" href="./CSS/annonces.css">
 
 {# ================= MENU ONGLET ================= #}
 {% set filtreActif = filtre ?? '' %}
@@ -10,7 +9,7 @@
     <li class="nav-item">
         <a class="nav-link {{ filtreActif == 'all' ? 'active' : '' }}"
            href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=all">
-            Toutes
+            Toutessqqssq
         </a>
     </li>
 
@@ -41,19 +40,14 @@
 
         {# ============ AJOUT ANNONCE ============ #}
         {% if user.role == "particulier" %}
-        <div class="col-12 d-flex justify-content-center mb-2">
-            <div class="card-slot">
-                <div class="card-item add-card-style">
-                    <div class="card-body d-flex align-items-center justify-content-center w-100" style="min-height: 120px;">
-                        <a href="index.php?controleur=annonce&methode=afficheFormAnnonce"
-                           class="stretched-link d-flex align-items-center text-decoration-none">
-                            <span class="display-4 fw-bold me-3" style="color: #712200;">+</span>
-                            <h4 class="mb-0 text-dark">Publier une nouvelle annonce</h4>
-                        </a>
+            <div class="col-12 col-lg-6">
+                <a href="index.php?controleur=annonce&methode=afficheFormAnnonce">
+                    <div class="card-custom h-100 add-card-style" style="display: flex; align-items: center; justify-content: center; min-height: 160px;">
+                        <span style="font-size: 2rem; font-weight: 700; color: #712200; margin-right: 10px;">+</span>
+                        <span style="font-size: 1.4rem; font-weight: 600; color: #591B00;">Publier une annonce</span>
                     </div>
-                </div>
+                </a>
             </div>
-        </div>
         {% endif %}
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
         
@@ -76,105 +70,100 @@
 
         {# ============ CARTES ANNONCES ============ #}
         {% for annonce in annonces %}
-        <div class="col-12 d-flex justify-content-center">
-            <div class="card-slot">
-                <div class="card-item">
+            <div class="col-12 col-lg-6">
+                <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}">
+                    <div class="card-custom h-100 annonce-card" data-type="{{ annonce.typeService }}" data-title="{{ annonce.titre|lower }}" data-description="{{ annonce.description|lower }}" data-price="{{ annonce.remuneration }}">
+                        <div class="card-body p-4">
+                            <div class="d-flex gap-3">
+                                {# Icône du service #}
+                                <div class="flex-shrink-0">
+                                    <div class="service-icon">
+                                        {% set iconMap = {
+                                            'baby-sitting': 'bi-person-hearts',
+                                            'jardinage': 'bi-tree',
+                                            'bricolage': 'bi-hammer',
+                                            'menage': 'bi-house-heart',
+                                            'transport': 'bi-car-front',
+                                            'aide informatique': 'bi-laptop',
+                                            'aide aux devoirs': 'bi-book',
+                                            'autre': 'bi-briefcase'
+                                        } %}
 
-                    <!-- Image -->
-                    <div class="image-zone">
-                        <img
-                            src="{{ icons.base_path }}/{{ icons.types[annonce.typeService] }}-white.png"
-                            class="icon-annoncea"
-                            alt="Icon {{ annonce.typeService }}"
-                        >
-                    </div>
-
-                    <!-- Contenu -->
-                    <div class="content-zone">
-                        <div class="card-body p-0">
-
-                            <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}"
-                               class="stretched-link"></a>
-
-                            <div class="d-flex justify-content-between align-items-start">
-                                <div>
-                                    <h5 class="card-title mb-1">{{ annonce.titre }}</h5>
-                                    <span class="fw-bold">{{ annonce.remuneration }} €</span>
+                                        <i class="bi {{ iconMap[annonce.typeService] ?? 'bi-briefcase' }} fs-2"></i>
+                                    </div>
                                 </div>
 
-                                <div class="btn-group-ads">
-                                    <h6 class="card-title mb-1 text-end">
-                                        {{annonce.etat}}
-                                    </h6>
+                                {# Contenu #}
+                                <div class="flex-grow-1 min-w-0">
+                                    {# En-tête #}
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div class="flex-grow-1 min-w-0">
+                                            <h5 class="card-title mb-1">
 
-                                    <div class="d-flex gap-2">
-                                        {% if annonce.etat == "accepte" and annonce.dateFinRealisation < "now"|date("Y-m-d") %}
-                                            <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}"
-                                            class="btn btn-outline-success btn-sm">
-                                                Évaluer
-                                            </a>
-                                        {% endif %}
+                                                {{ annonce.titre }}
 
-                                        {% if user.getRole() == "particulier" and annonce.getEtat() == "disponible"
-                                            and annonce.getCreateur().getId() == user.getId() %}
-                                            <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
-                                            class="btn btn-outline-success btn-sm">
-                                                Modifier
-                                            </a>
-                                        {% endif %}
-
-                                        {% if user.getRole() == "particulier"
-                                            and annonce.getCreateur().getId() == user.getId() %}
-                                            <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
-                                            class="btn btn-outline-danger btn-sm"
-                                            onclick="return confirm('Supprimer cette annonce ?');">
-                                                Supprimer
-                                            </a>
-                                        {% endif %}
-
-                                        {% set aDejaPostule = false %}
-                                        {% for candidat in annonce.postulations %}
-                                            {% if candidat.id == user.id %}
-                                                {% set aDejaPostule = true %}
-                                            {% endif %}
-                                        {% endfor %}
-
-                                        {% if user.role == "etudiant" and annonce.etat == "disponible" and not aDejaPostule %}
-                                            <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}">
-                                                <button class="btn btn-outline-success btn-sm">Postuler</button>
-                                            </a>
-                                        {% endif %}
+                                            </h5>
+                                            <span class="badge badge-custom badge-primary mb-2">
+                                    {{ annonce.typeService }}
+                                </span>
+                                        </div>
                                     </div>
 
-                                    {% if annonce.getEtat() == "termine"%}
-                                        <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}"
-                                           class="btn btn-outline-danger btn-sm mt-1">Noter</a>
-                                    {% endif %}
+                                    {# Informations clés #}
+                                    <div class="d-flex flex-wrap gap-3 mb-3 text-muted small">
+                            <span>
+                                <i class="bi bi-geo-alt me-1"></i>
+                                {{ annonce.lieu }}
+                            </span>
+                                        <span>
+                                <i class="bi bi-calendar-event me-1"></i>
+                                {{ annonce.dateDebutRealisation|date("d/m/Y à H:i") }}
+                            </span>
+                                    </div>
 
+                                    {# Description #}
+                                    <p class="card-text text-muted mb-3">
+                                        {{ annonce.description|length > 120 ? annonce.description|slice(0, 120) ~ '...' : annonce.description }}
+                                    </p>
+
+                                    {# Footer avec prix et action #}
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="price-tag">
+                                            <span class="h4 mb-0 text-primary fw-bold">{{ annonce.remuneration }} €</span>
+                                        </div>
+                                        <div class="d-flex gap-2 align-items-center">
+                                            {% if annonce.etat == "accepte" and annonce.dateFinRealisation < "now"|date("Y-m-d") %}
+                                                <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}"
+                                                   class="btn btn-outline-success btn-sm">
+                                                    Évaluer
+                                                </a>
+                                            {% endif %}
+
+                                            {% if user.getRole() == "particulier" and annonce.getEtat() == "disponible"
+                                                and annonce.getCreateur().getId() == user.getId() %}
+                                                <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
+                                                   class="btn btn-outline-success btn-sm">
+                                                    Modifier
+                                                </a>
+                                            {% endif %}
+
+                                            {% if user.getRole() == "particulier"
+                                                and annonce.getCreateur().getId() == user.getId() %}
+                                                <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
+                                                   class="btn btn-outline-danger btn-sm"
+                                                   onclick="return confirm('Supprimer cette annonce ?');">
+                                                    Supprimer
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                {{ annonce.lieu }} - {{ annonce.dateDebutRealisation|date("H:i d/m/Y") }}
-                            </h6>
-
-                            <p class="card-text">{{ annonce.description }}</p>
-
                         </div>
                     </div>
-
-                </div>
+                </a>
             </div>
-        </div>
-        {% else %}
-        <div class="col-12 d-flex justify-content-center">
-        <p class="text-muted fst-italic mb-0">
-            Aucune annonce à afficher pour cet onglet.
-        </p>
-        </div>
-
         {% endfor %}
-
     </div>
 </div>
 

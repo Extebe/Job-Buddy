@@ -1,3 +1,4 @@
+//pour la page ajouterAnnonce
 document.addEventListener("DOMContentLoaded",()=>{
     //configuration en français
     const configFr={
@@ -17,3 +18,17 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     const dateFin = flatpickr("#dateFin",configFr);
 });
+
+//pour la page modifierCompte
+document.addEventListener("DOMContentLoaded",()=>{
+    //configuration en français
+    const configFr={
+        enableTime: true,
+        time_24hr: true,
+        dateFormat: "Y-m-d",
+        locale: "fr"
+    };
+
+    const dateNaiss = flatpickr("#dateNaiss",{configFr});
+});
+
