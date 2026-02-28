@@ -258,6 +258,17 @@ class AnnonceDao
         ));
     }
 
+        public function dePostuler($idAnnonce, $idEtudiant)
+    {
+        // Postuler a une annonce   
+        $sql = "DELETE FROM Postuler WHERE idAnnonce = :idAnnonce AND idEtudiant = :idEtudiant";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(array(
+            "idAnnonce" => $idAnnonce,
+            "idEtudiant" => $idEtudiant,
+        ));
+    }
+
     /**
      * @brief Supprime une annonce (et ses dépendances).
      * @param int $idAnnonce ID de l'annonce.

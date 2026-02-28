@@ -44,6 +44,7 @@ class ControllerAnnonce extends Controller
         //     echo $feedbackSignalement;
         //     unset($_SESSION['d']);
         // }
+        $_SESSION['lienRetour'] = "index.php?controleur=annonce&methode=afficher";
 
         echo $template->render('index.html.twig', [
             'annonces' => $tab,
@@ -228,6 +229,8 @@ class ControllerAnnonce extends Controller
         foreach ($tableau as $key => $annonce) {
             $managerAnnonce->addRelations($annonce);
         }
+        $_SESSION['lienRetour'] = "index.php?controleur=annonce&methode=afficherMesAnnonces";
+
         
         echo $template->render('mesAnnonces.html.twig', [
             'user' => Utilisateur::getUser(),
@@ -310,7 +313,8 @@ class ControllerAnnonce extends Controller
         'annonce' => $annonce,
         'createur' => $createur,
         'icons'   => Constantes::getConstantes()['icons'],
-        'aPostule' => $aPostule 
+        'aPostule' => $aPostule ,
+        'lienRetour' => $_SESSION['lienRetour'] ?? "index.php?controleur=annonce&methode=afficher"
     ]);
 }
 
@@ -324,6 +328,11 @@ class ControllerAnnonce extends Controller
             exit();
         }
 
+        if (Utilisateur::getUser()->getRole() !== 'etudiant') {
+            header("Location: index.php");
+            exit();
+        }
+
         if (!isset($_GET['id'])) {
             header("Location: index.php");
             exit();
@@ -333,6 +342,32 @@ class ControllerAnnonce extends Controller
 
         $managerAnnonce = new AnnonceDAO($this->getPdo());
         $managerAnnonce->postuler($idAnnonce, Utilisateur::getUser()->getId());
+
+        header("Location: index.php?controleur=annonce&methode=afficherDetail&id=" . $idAnnonce);
+        exit();
+    }
+
+    public function depostulerAnnonce()
+    {
+        if (!isset($_SESSION['id'])) {
+            header("Location: index.php?controleur=utilisateur&methode=pageConnexion");
+            exit();
+        }
+
+        if (Utilisateur::getUser()->getRole() !== 'etudiant') {
+            header("Location: index.php");
+            exit();
+        }
+
+        if (!isset($_GET['id'])) {
+            header("Location: index.php");
+            exit();
+        }
+
+        $idAnnonce = $_GET['id'];
+
+        $managerAnnonce = new AnnonceDAO($this->getPdo());
+        $managerAnnonce->dePostuler($idAnnonce, Utilisateur::getUser()->getId());
 
         header("Location: index.php?controleur=annonce&methode=afficherDetail&id=" . $idAnnonce);
         exit();
