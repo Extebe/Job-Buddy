@@ -125,8 +125,7 @@ class SignalementDao
         $pdoStatement=$this->pdo->prepare($sql);
         $pdoStatement->execute();
         
-        header("Location: index.php");
-                exit();
+        
     }
 
     /**
@@ -140,7 +139,7 @@ class SignalementDao
               
         $pdoStatement=$this->pdo->prepare($sql);
         $pdoStatement->execute();
-        
+
         header("Location: index.php");
                 exit();
     }

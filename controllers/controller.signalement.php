@@ -54,9 +54,14 @@ class ControllerSignalement extends Controller
 
             $managerSignalement= new SignalementDao($this->getPdo());
             $signalement = $managerSignalement->updateSignalementAnnonce($motif,$description,$idSignaleur,$idAnnonce);
+            
+
+            $_SESSION['msg']="annonceSignale";
+            header("Location: index.php?controleur=annonce&methode=afficher");
+            exit();           
+            
         }        
     }
-
     /**
      * @brief Affiche la page pour signaler un utilisateur.
      */

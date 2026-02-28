@@ -31,16 +31,26 @@ class ControllerAnnonce extends Controller
         foreach ($annonces as $key => $annonce){
             $tab[$key] = $managerAnnonce->addRelations($annonce);
         }
+
         $variable=null;
-        if(isset($_SESSION["msg-abonne"])){
-            $variable = $_SESSION["msg-abonne"];
-            unset($_SESSION["msg-abonne"]);
+        if(isset($_SESSION["msg"])){
+            $variable = $_SESSION["msg"];
+            unset($_SESSION["msg"]);
         }
+
+        // $feedbackSignalement=null;
+        // if(isset($_SESSION['d'])){
+        //     $feedbackSignalement=$_SESSION['d'];
+        //     echo $feedbackSignalement;
+        //     unset($_SESSION['d']);
+        // }
+
         echo $template->render('index.html.twig', [
             'annonces' => $tab,
             'icons' => $icons,
             'user' => Utilisateur::getUser(),
-            'notifNewsLetter'=> $variable
+            'notif'=> $variable,
+            // 'notifSignalement'=> $feedbackSignalement
         ]);
     }
 
@@ -158,6 +168,8 @@ class ControllerAnnonce extends Controller
                 null,
                 null
             );
+
+            $_SESSION["ajoutAnnonce"]="L'annonce a bien été créée.";
             $managerAnnonce = new AnnonceDAO($this->getPdo());
             $managerAnnonce->insererAnnonce($annonce1);
             //Appel de la requête qui créé l'annonce
@@ -195,9 +207,17 @@ class ControllerAnnonce extends Controller
         } else {
             $filtre = $_GET['filtre'];
         }
-        if(isset($_SESSION['flash'])){
-            $msg = $_SESSION['flash'];
-            unset($_SESSION['flash']);
+        if(isset($_SESSION['suppAnnonce'])){
+            $msg = $_SESSION['suppAnnonce'];
+            unset($_SESSION['suppAnnonce']);
+        }
+        if(isset($_SESSION['ajoutAnnonce'])){
+            $msg=$_SESSION['ajoutAnnonce'];
+            unset($_SESSION['ajoutAnnonce']);
+        }
+        if(isset($_SESSION['modifAnnonce'])){
+            $msg=$_SESSION['modifAnnonce'];
+            unset($_SESSION['modifAnnonce']);
         }
 
         if ($filtre === 'all' || $filtre === '') {
@@ -339,7 +359,7 @@ class ControllerAnnonce extends Controller
         $managerAnnonce->supprimer($idAnnonce, Utilisateur::getUser()->getId());
         
         // Cas de succès (Suppression)
-        $_SESSION['flash'] = 'L\'annonce a bien été supprimer.';
+        $_SESSION['suppAnnonce'] = 'L\'annonce a bien été supprimer.';
 
        header("Location: index.php?controleur=annonce&methode=afficherMesAnnonces");
        exit();
@@ -414,6 +434,7 @@ class ControllerAnnonce extends Controller
             );
             $annonceDao= New AnnonceDao($this->getPdo());
             $annonceDao->modifier($annonce);
+            $_SESSION['modifAnnonce']="L'annonce a bien été modifié.";
             header('Location:index.php?controleur=annonce&methode=afficherMesAnnonces');
             exit();
         }
@@ -533,10 +554,10 @@ class ControllerAnnonce extends Controller
             if (!$pdoNewsLetter->emailExisteNewsletter($email)) {
                 $newsLetter = new NewLetter(null, $email);
                 $pdoNewsLetter->insererEmail($newsLetter);
-                $_SESSION['msg-abonne'] = "success";
+                $_SESSION['msg'] = "newletterSuccess";
             }
             else{
-                $_SESSION['msg-abonne'] = "failed";
+                $_SESSION['msg'] = "newletterFailed";
             }
             header("Location:index.php?controleur=annonce&methode=afficher");
 
