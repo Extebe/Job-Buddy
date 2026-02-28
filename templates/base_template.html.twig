@@ -72,15 +72,22 @@
                                     Publier une annonce
                                 </a>
                             </li>
-
-                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link-custom" href="index.php?controleur=annonce&methode=afficherMesAnnonces">
                                     <i class="bi bi-card-list"></i>
                                     Mes annonces
                                 </a>
                             </li>
+
                             
+                            {% elseif user.role == "etudiant" %}
+                            <li class="nav-item">
+                                <a class="nav-link-custom" href="index.php?controleur=annonce&methode=afficherMesAnnonces">
+                                    <i class="bi bi-card-list"></i>
+                                    Mes candidatures
+                                </a>
+                            </li>
+                            {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link-custom dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-person-circle me-1"></i>
