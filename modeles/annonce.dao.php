@@ -367,6 +367,25 @@ class AnnonceDao
             "idEtudiant" => $idEtudiant
         ));
     }
+
+    public function confirmerAnnonce($idEtudiant, $idAnnonce){
+
+        $sql1 = "UPDATE Annonce SET etat = 'confirme' WHERE id = :idAnnonce";
+        $pdoStatement1 = $this->pdo->prepare($sql1);
+        $pdoStatement1->execute(array(
+            "idAnnonce" => $idAnnonce
+        ));
+
+        $sql2 = "UPDATE Postuler SET estAccepte = '2' WHERE idAnnonce = :idAnnonce AND idEtudiant= :idEtudiant";
+        $pdoStatement2 = $this->pdo->prepare($sql2);
+        $pdoStatement2->execute(array(
+            "idAnnonce" => $idAnnonce,
+            "idEtudiant" => $idEtudiant
+        ));
+    }
+
+
+
     /**
      * @brief Trouve l'annonces par l'id de l'utilisateur et l'id de l'annonce.
      * @param int $utilisateur ID de l'utilisateur.

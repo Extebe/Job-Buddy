@@ -343,7 +343,7 @@ class ControllerAnnonce extends Controller
         $managerAnnonce = new AnnonceDAO($this->getPdo());
         $managerAnnonce->postuler($idAnnonce, Utilisateur::getUser()->getId());
 
-        header("Location: index.php?controleur=annonce&methode=afficherDetail&id=" . $idAnnonce);
+        header("Location: index.php");
         exit();
     }
 
@@ -430,12 +430,38 @@ class ControllerAnnonce extends Controller
         if ($_GET['action'] === 'accepter') {
             // Accepter un étudiant
             $managerAnnonce->accepterEtudiant($idAnnonce, $idEtudiant);
+            $annonce->setEtat('confirme');
             header("Location: index.php?controleur=annonce&methode=afficherDetail&id=" . $idAnnonce);
             exit();
         }
         if ($_GET['action'] === 'refuser') {
             $managerAnnonce->refuserEtudiant($idAnnonce, $idEtudiant);
             header("Location: index.php?controleur=annonce&methode=afficherDetail&id=" . $idAnnonce);
+            exit();
+        }
+    }
+
+    public function confirmePostulation(){
+
+        $idEtudiant = $_GET['idEtudiant'];
+        $idAnnonce = $_GET['idAnnonce'];
+        $managerAnnonce = new AnnonceDao($this->getPdo());
+        $annonce = $managerAnnonce->find($idAnnonce);
+
+        if ($idEtudiant != Utilisateur::getUser()->getId()) {
+            throw new Exception("Vous n'êtes pas autorisé à accepter cette mission.");
+        }
+
+        if ($_GET['action'] === 'confirme'){
+            $managerAnnonce->confirmerAnnonce($idEtudiant, $idAnnonce);
+            $annonce->setEtat('confirme');
+            header("Location: index.php?controleur=annonce&methode=afficherDetail&id=" . $idAnnonce);
+            exit();
+        }
+
+        if ($_GET['action'] === 'refuser'){
+            $managerAnnonce->refuserEtudiant($idAnnonce, $idEtudiant);
+            header("Location: index.php");
             exit();
         }
     }

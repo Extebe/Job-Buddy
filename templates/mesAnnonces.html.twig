@@ -2,76 +2,73 @@
 
 {% block content %}
 
-{# ================= MENU ONGLET ================= #}
-{% set filtreActif = filtre ?? '' %}
+    {# ================= MENU ONGLET ================= #}
+    {% set filtreActif = filtre ?? '' %}
 
-<ul class="nav nav-tabs mb-4 justify-content-center">
-    <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'all' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=all">
-            Toutes
-        </a>
-    </li>
+    <ul class="nav nav-tabs mb-4 justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link {{ filtreActif == 'all' ? 'active' : '' }}"
+               href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=all">
+                Toutes
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ filtreActif == 'disponible' ? 'active' : '' }}"
+               href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=disponible">
+                Disponibles
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ filtreActif == 'accepte' ? 'active' : '' }}"
+               href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=accepte">
+                Acceptées
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ filtreActif == 'confirme' ? 'active' : '' }}"
+               href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=confirme">
+                Confirmées
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ filtreActif == 'termine' ? 'active' : '' }}"
+               href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=termine">
+                Terminées
+            </a>
+        </li>
+    </ul>
 
-    <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'disponible' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=disponible">
-            Disponibles
-        </a>
-    </li>
+    <div class="container">
+        <div id="zone_cartes" class="row g-4">
 
-    <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'accepte' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=accepte">
-            Acceptées
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link {{ filtreActif == 'termine' ? 'active' : '' }}"
-           href="index.php?controleur=annonce&methode=afficherMesAnnonces&filtre=termine">
-            Terminées
-        </a>
-    </li>
-</ul>
-
-<div class="container">
-    <div id="zone_cartes" class="row g-4">
-
-        {# ============ AJOUT ANNONCE ============ #}
-        {% if user.role == "particulier" %}
-            <div class="col-12 col-lg-6">
-                <a href="index.php?controleur=annonce&methode=afficheFormAnnonce">
-                    <div class="card-custom h-100 add-card-style" style="display: flex; align-items: center; justify-content: center; min-height: 160px;">
-                        <span style="font-size: 2rem; font-weight: 700; color: #712200; margin-right: 10px;">+</span>
-                        <span style="font-size: 1.4rem; font-weight: 600; color: #591B00;">Publier une annonce</span>
-                    </div>
-                </a>
-            </div>
-        {% endif %}
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        
-        {% if msg %}
-            <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
-            {# On définit la couleur selon le type via un petit switch logique #}
-            {% set bgColor = 'bg-success' %}
-                <div id="myToast" class="toast align-items-center text-white {{ bgColor }} border-0" role="alert">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            {{ msg }}
+            {# ============ AJOUT ANNONCE ============ #}
+            {% if user.role == "particulier" %}
+                <div class="col-12 col-lg-6">
+                    <a href="index.php?controleur=annonce&methode=afficheFormAnnonce" class="text-decoration-none">
+                        <div class="card-custom h-100 add-card-style d-flex align-items-center justify-content-center" style="min-height: 160px;">
+                            <span style="font-size: 2rem; font-weight: 700; color: #712200; margin-right: 10px;">+</span>
+                            <span style="font-size: 1.4rem; font-weight: 600; color: #591B00;">Publier une annonce</span>
                         </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-                    </div>
+                    </a>
                 </div>
-            </div>
-        {% endif %}
-    </div>
+            {% endif %}
 
-        {# ============ CARTES ANNONCES ============ #}
-        {% for annonce in annonces %}
-            <div class="col-12 col-lg-6">
-                <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}">
-                    <div class="card-custom h-100 annonce-card" data-type="{{ annonce.typeService }}" data-title="{{ annonce.titre|lower }}" data-description="{{ annonce.description|lower }}" data-price="{{ annonce.remuneration }}">
+            {# ============ TOAST MESSAGES ============ #}
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                {% if msg %}
+                    <div id="myToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+                        <div class="d-flex">
+                            <div class="toast-body">{{ msg }}</div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            {# ============ CARTES ANNONCES ============ #}
+            {% for annonce in annonces %}
+                <div class="col-12 col-lg-6">
+                    <div class="card-custom h-100 annonce-card position-relative">
                         <div class="card-body p-4">
                             <div class="d-flex gap-3">
                                 {# Icône du service #}
@@ -87,37 +84,43 @@
                                             'aide aux devoirs': 'bi-book',
                                             'autre': 'bi-briefcase'
                                         } %}
-
                                         <i class="bi {{ iconMap[annonce.typeService] ?? 'bi-briefcase' }} fs-2"></i>
                                     </div>
                                 </div>
 
                                 {# Contenu #}
                                 <div class="flex-grow-1 min-w-0">
-                                    {# En-tête #}
+                                    {# En-tête avec TITRE et ÉTAT #}
                                     <div class="d-flex justify-content-between align-items-start mb-2">
-                                        <div class="flex-grow-1 min-w-0">
-                                            <h5 class="card-title mb-1">
+                                        <div class="w-100">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h5 class="card-title mb-0 text-truncate">
+                                                    <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}" class="text-decoration-none text-dark">
+                                                        {{ annonce.titre }}
+                                                    </a>
+                                                </h5>
 
-                                                {{ annonce.titre }}
-
-                                            </h5>
-                                            <span class="badge badge-custom badge-primary mb-2">
-                                    {{ annonce.typeService }}
-                                </span>
+                                                {# --- LOGIQUE D'AFFICHAGE DE L'ÉTAT --- #}
+                                                {% set statusStyles = {
+                                                    'disponible': 'bg-info',
+                                                    'accepte':    'bg-warning text-dark',
+                                                    'confirme':   'bg-primary',
+                                                    'termine':    'bg-success'
+                                                } %}
+                                                <span class="badge {{ statusStyles[annonce.etat] ?? 'bg-secondary' }} ms-2 text-uppercase" style="font-size: 0.7rem;">
+                                                {{ annonce.etat }}
+                                            </span>
+                                            </div>
+                                            <span class="badge badge-custom badge-primary mt-2">
+                                            {{ annonce.typeService }}
+                                        </span>
                                         </div>
                                     </div>
 
                                     {# Informations clés #}
                                     <div class="d-flex flex-wrap gap-3 mb-3 text-muted small">
-                            <span>
-                                <i class="bi bi-geo-alt me-1"></i>
-                                {{ annonce.lieu }}
-                            </span>
-                                        <span>
-                                <i class="bi bi-calendar-event me-1"></i>
-                                {{ annonce.dateDebutRealisation|date("d/m/Y à H:i") }}
-                            </span>
+                                        <span><i class="bi bi-geo-alt me-1"></i>{{ annonce.lieu }}</span>
+                                        <span><i class="bi bi-calendar-event me-1"></i>{{ annonce.dateDebutRealisation|date("d/m/Y à H:i") }}</span>
                                     </div>
 
                                     {# Description #}
@@ -126,33 +129,25 @@
                                     </p>
 
                                     {# Footer avec prix et action #}
-                                    <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
                                         <div class="price-tag">
                                             <span class="h4 mb-0 text-primary fw-bold">{{ annonce.remuneration }} €</span>
                                         </div>
-                                        <div class="d-flex gap-2 align-items-center">
-                                            {% if annonce.etat == "accepte" and annonce.dateFinRealisation < "now"|date("Y-m-d") %}
-                                                <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}"
-                                                   class="btn btn-outline-success btn-sm rounded-pill">
-                                                    Évaluer
-                                                </a>
+                                        <div class="d-flex gap-2 flex-wrap justify-content-end">
+                                            {% if annonce.etat == "confirme" and annonce.dateFinRealisation < "now"|date("Y-m-d") %}
+                                                <a href="index.php?controleur=note&methode=saisieNote&id={{ annonce.id }}" class="btn btn-outline-success btn-sm rounded-pill">Évaluer</a>
                                             {% endif %}
 
-                                            {% if user.getRole() == "particulier" and annonce.getEtat() == "disponible"
-                                                and annonce.getCreateur().getId() == user.getId() %}
-                                                <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}"
-                                                   class="btn btn-outline-primary btn-sm rounded-pill">
-                                                    Modifier
-                                                </a>
+                                            {% if user.getRole() == "particulier" and annonce.getEtat() == "disponible" and annonce.getCreateur().getId() == user.getId() %}
+                                                <a href="index.php?controleur=annonce&methode=editerAnnonce&id={{ annonce.id }}" class="btn btn-outline-primary btn-sm rounded-pill">Modifier</a>
                                             {% endif %}
 
-                                            {% if user.getRole() == "particulier"
-                                                and annonce.getCreateur().getId() == user.getId() %}
-                                                <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}"
-                                                   class="btn btn-outline-danger btn-sm rounded-pill"
-                                                   data-confirm="Êtes-vous sûr de vouloir supprimer cette annonce ?">
-                                                    Supprimer
-                                                </a>
+                                            {% if user.getRole() == "particulier" and annonce.getCreateur().getId() == user.getId() %}
+                                                <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}" class="btn btn-outline-danger btn-sm rounded-pill" onclick="return confirm('Êtes-vous sûr ?')">Supprimer</a>
+                                            {% endif %}
+
+                                            {% if user.getRole() == "etudiant" and annonce.getEtat() == "accepte" %}
+                                                <a href="index.php?controleur=annonce&methode=confirmePostulation&idEtudiant={{ user.getId() }}&idAnnonce={{ annonce.id }}&action=confirme" class="btn btn-outline-primary btn-sm rounded-pill" onclick="return confirm('Confirmer votre présence ?')">Confirmer ma présence</a>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -160,21 +155,10 @@
                             </div>
                         </div>
                     </div>
-                </a>
-            </div>
-        {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
 
 
-<style>
-/* Ajustements spécifiques pour la zone d'action */
-.btn-group-ads {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-</style>
 {% endblock %}

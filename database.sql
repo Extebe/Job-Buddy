@@ -49,7 +49,7 @@ CREATE TABLE Annonce(
                         dateFinRealisation DATETIME CHECK (dateFinRealisation > dateDebutRealisation),
 
 
-                        etat VARCHAR(20) NOT NULL CHECK (etat IN ('disponible','accepte','termine')),
+                        etat VARCHAR(20) NOT NULL CHECK (etat IN ('disponible','accepte','confirme','termine')),
 
 
                         datePublication DATETIME,
@@ -82,7 +82,7 @@ CREATE TABLE Postuler(
                          idAnnonce int,
                          idEtudiant int,
                          datePostulat DATETIME NOT NULL,
-                         estAccepte BOOLEAN NOT NULL,
+                         estAccepte SMALLINT NOT NULL,
                          PRIMARY KEY(idAnnonce, idEtudiant),
                          FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
                          FOREIGN KEY(idEtudiant) REFERENCES Utilisateur(id)
