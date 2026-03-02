@@ -29,6 +29,12 @@ $theme-colors: (
   --bs-btn-focus-color: white;
 }
 
+.btn{
+  --bs-btn-hover-color: white;
+  --bs-btn-active-color: white;
+  --bs-btn-focus-color: white;
+}
+
 .btn-outline-success {
   --bs-btn-hover-color: white;
   --bs-btn-active-color: white;

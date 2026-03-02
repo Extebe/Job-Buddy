@@ -10,7 +10,7 @@
             <form action="index.php?controleur=annonce&methode=traiteFormAnnonce" method="post">
                 <div class="mb-3">
                     <label for="" class="form-label">Titre de l'annonce</label>
-                    <input type="text" class="form-control" id="titreAnnonce" name="titreAnnonce" value="{{ dataForm.titre ?? '' }}" required>
+                    <input type="text" class="form-control" id="titreAnnonce" name="titreAnnonce" value="{{ dataForm.titre ?? '' }}" placeholder="Ex : Jardinage sur bayonne" required>
                 </div>
 
                 <div class="mb-3">
@@ -26,12 +26,12 @@
 
                 <div class="mb-3">
                     <label for="text" class="form-label">Lieu</label>
-                    <input type="text" class="form-control" id="lieu" name="lieu"value="{{ dataForm.lieu ?? '' }}" required >
+                    <input type="text" class="form-control" id="lieu" name="lieu"value="{{ dataForm.lieu ?? '' }}" placeholder="Ex : 41 rue de Chassin" required >
                 </div>
 
                 <div class="mb-3">
                     <label for="text" class="form-label">Prix</label>
-                    <input type="number" class="form-control" id="prix" name="prix" min="0" max="999" value="{{ dataForm.remuneration ?? '' }}"required >
+                    <input type="number" class="form-control" id="prix" name="prix" min="0" max="999" value="{{ dataForm.remuneration ?? '' }}" placeholder="Ex : 40" required >
                 </div>
 
                 <div class="mb-3">
@@ -62,7 +62,7 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">Description</label>
-                    <textarea type="text" class="form-control" id="description" name="description" value="{{ dataForm.description ?? '' }}"required></textarea>
+                    <textarea type="text" class="form-control" id="description" name="description" value="{{ dataForm.description ?? '' }}" placeholder="Ex : Jardinage d'un petit jardin" required></textarea>
                 </div>
 
                 <div class="d-grid">
