@@ -112,10 +112,17 @@ class ControllerSignalement extends Controller
         }
         $managerSignalement= new SignalementDao($this->getPdo());
         $signalements = $managerSignalement->findBySignaleur($signaleur->getId());
+        
+        $varDelete=null;
+        if(isset($_SESSION['msg'])){
+            $varDelete=$_SESSION['msg'];
+            unset($_SESSION['msg']);
+        }
 
         echo $template->render('mesSignalements.html.twig', [
             'user' => Utilisateur::getUser(),
-            'signalements' => $signalements
+            'signalements' => $signalements,
+            'notif'=>$varDelete
         ]);
     }
 
@@ -127,6 +134,7 @@ class ControllerSignalement extends Controller
         $id = $_GET['id'];
         $managerSignalement = new SignalementDao($this->getPdo());
         $reponse = $managerSignalement->delete($id);
+        $_SESSION['msg']='deleteSignalement';
         header("Location: index.php?controleur=signalement&methode=afficherMesSignalements&reponse=$reponse");
         exit();
     }

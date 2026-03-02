@@ -164,7 +164,7 @@
                                         <div class="d-flex align-items-center">
                                             {# Optionnel : Afficher la petite photo de l'étudiant s'il en a une #}
                                             {% if etudiant.photo is not empty %}
-                                                <img src="/uploads/profiles/{{ etudiant.photo }}" class="rounded-circle me-3 object-fit-cover" style="width: 40px; height: 40px;">
+                                                <img src="./uploads/profiles/{{ etudiant.photoProfil }}" class="rounded-circle me-3 object-fit-cover" style="width: 40px; height: 40px;">
                                             {% else %}
                                                 <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
                                                     <i class="bi bi-person text-secondary"></i>

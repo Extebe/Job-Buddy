@@ -50,7 +50,43 @@
     <body>
 
         {# ==================== NAVIGATION ==================== #}
-        
+
+
+{% if notif %}
+    {# Si la notification n'est pas un message d'alert, on l'affiche en vert #}
+    {% set textColor = "text-bg-success" %}
+    {# Si c'en est un, on l'affiche en rouge #}
+    {% if notif=="newletterFailed"%}
+        {% set textColor= "text-bg-danger" %}
+    {% endif %}
+
+    <div class="position-fixed top-1 end-0 p-3" style="z-index: 1050;">
+                <div id="myToast" class="toast align-items-center {{ textColor }} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {% if notif == "newletterSuccess" %}
+                                Merci pour votre inscription à la newsletter !
+
+                            {% elseif notif == "newletterFailed" %}
+                                Vous êtes déjà inscrit !
+
+                            {% elseif notif == "annonceSignale" %} 
+                                Annonce signalé !
+
+                            {% elseif notif == "deleteSignalement" %}
+                                Signalement supprimé !
+
+                            {% elseif notif == "modifCompte" %}
+                                Compte modifé !
+                                
+                            {% endif %}
+                            </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>     
+            </div>
+    {% endif %}
+
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
                 <a class="navbar-brand-custom" href="index.php">

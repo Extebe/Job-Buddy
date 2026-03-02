@@ -4,38 +4,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="./CSS/style.index.css">
-    {% if notif %}
 
-        {% if notif == "newletterSuccess" %}
-            <div class="position-fixed top-1 end-0 p-3" style="z-index: 1050;">
-                <div id="myToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            Merci pour votre inscription à la newsletter !
-                        </div>
-
-        {% elseif notif == "newletterFailed" %}
-            <div class="position-fixed top-1 end-0 p-3" style="z-index: 1050;">
-                <div id="myToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                                    <div class="d-flex">
-                        <div class="toast-body">
-                            Vous êtes déjà inscrit
-                        </div>
-
-        {% elseif notif == "annonceSignale" %} 
-            <div class="position-fixed top-1 end-0 p-3" style="z-index: 1050;">
-                <div id="myToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            Annonce signalé.
-                        </div>
-
-        {% endif %}
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                </div>     
-            </div>
-    {% endif %}
 <div class="container">
     {# Hero Section #}
     <div class="row align-items-center mb-5 mt-4">

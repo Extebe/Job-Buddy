@@ -395,8 +395,16 @@ class ControllerUtilisateur extends Controller
         }
         $template = $this->getTwig();
 
+        $modifCompte=null;
+        if(isset($_SESSION['msg'])){
+            $modifCompte=$_SESSION['msg'];
+            unset($_SESSION['msg']);
+        }
+
+
         echo $template->render('pageCompte.html.twig', [
             'user' => Utilisateur::getUser(),
+            'notif'=>$modifCompte
         ]);
     }
 
@@ -611,6 +619,7 @@ class ControllerUtilisateur extends Controller
             // 4. Sauvegarde Globale dans la BD
             try {
                 $dao->update($currentUser);
+                $_SESSION['msg']="modifCompte";
                 header("Location: index.php?controleur=utilisateur&methode=afficheCompte");
                 exit();
             } catch (Exception $e) {
