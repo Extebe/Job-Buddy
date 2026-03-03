@@ -42,6 +42,7 @@ class Utilisateur
     protected array $notesDonnees = [];
     /** @var array $notesRecues Liste des notes reçues par l'utilisateur. */
     protected array $notesRecues = [];
+    
     protected ?string $photoProfil;
     /**
      * @brief Constructeur de la classe Utilisateur.

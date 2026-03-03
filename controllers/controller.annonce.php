@@ -314,7 +314,8 @@ class ControllerAnnonce extends Controller
         'createur' => $createur,
         'icons'   => Constantes::getConstantes()['icons'],
         'aPostule' => $aPostule ,
-        'lienRetour' => $_SESSION['lienRetour'] ?? "index.php?controleur=annonce&methode=afficher"
+        'lienRetour' => $_SESSION['lienRetour'] ?? "index.php?controleur=annonce&methode=afficher",
+        'etudiants' => $postulations ?? [] // Passer un tableau vide si aucune postulation, pour éviter les erreurs dans Twig
     ]);
 }
 

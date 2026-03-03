@@ -11,7 +11,7 @@
     {# --- Bouton Retour --- #}
     <div class="mb-4 text-start">
         <a href="{{ lienRetour }}" class="btn btn-outline-secondary btn-sm shadow-sm rounded-pill">
-            <i class="bi bi-arrow-left me-1"></i> Retour
+            <i class="bi bi-arrow-left me-1"></i> Retour 
         </a>
     </div>
 
@@ -72,20 +72,20 @@
                         
                         {# Action Étudiant : Postuler #}
                         {% if user.role|lower == "etudiant" and annonce.etat|lower == "disponible" and not aPostule %}
-                            <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-primary rounded-pill">
+                            <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-primary px-4">
                                 <i class="bi bi-send me-2"></i>Postuler
                             </a>
                         {% endif %}
 
                         {% if user.role|lower == "etudiant" and annonce.etat|lower == "disponible" and aPostule %}
-                            <a href="index.php?controleur=annonce&methode=depostulerAnnonce&id={{ annonce.id }}" class="btn btn-danger rounded-pill">
+                            <a href="index.php?controleur=annonce&methode=depostulerAnnonce&id={{ annonce.id }}" class="btn btn-danger px-4">
                                 <i class="bi bi-send me-2"></i>Annuler ma candidature
                             </a>
                         {% endif %}
 
                         {# Action : Signaler (Si ce n'est pas mon annonce) #}
                         {% if annonce.createur.id != user.id %}
-                            <a href="index.php?controleur=signalement&methode=signalerAnnonce&idAnnonce={{ annonce.id }}" class="btn btn-outline-danger rounded-pill">
+                            <a href="index.php?controleur=signalement&methode=signalerAnnonce&idAnnonce={{ annonce.id }}" class="btn btn-outline-danger">
                                 <i class="bi bi-flag me-1"></i> Signaler
                             </a>
                         {% endif %}
@@ -93,7 +93,7 @@
                         {# Actions Créateur : Modifier / Supprimer #}
                         {% if user.role|lower == "particulier" and annonce.createur.id == user.id %}
                             {% if annonce.etat|lower == "disponible" %}
-                                <a href="index.php?controleur=annonce&methode=editerAnnonce&idAnnonce={{ annonce.id }}&idCreateur={{ annonce.createur.id }}" class="btn btn-outline-primary rounded-pill">
+                                <a href="index.php?controleur=annonce&methode=editerAnnonce&idAnnonce={{ annonce.id }}&idCreateur={{ annonce.createur.id }}" class="btn btn-outline-primary">
                                     <i class="bi bi-pencil me-1"></i> Modifier
                                 </a>
                             {% endif %}
@@ -111,13 +111,13 @@
         {# COLONNE DROITE : PROFIL DU CRÉATEUR        #}
         {# ========================================== #}
         <div class="col-lg-4 mb-4">
-            <div class="card shadow-sm border-0 text-center {#sticky-top#}fix-bottom" style="top: 20px;">
-                <div class="card-body p-4 ">
+            <div class="card shadow-sm border-0 text-center fix-bottom" style="top: 20px;">
+                <div class="card-body p-4">
                     <h6 class="text-muted text-uppercase small fw-bold mb-4">Annonce publiée par</h6>
                     
                     <div class="mb-3">
                         {% if createur.photoProfil is not empty %}
-                            <img src="./uploads/profiles/{{ createur.photoProfil }}" alt="Photo de {{ annoncecreateur.prenom }}" 
+                            <img src="./uploads/profiles/{{ createur.photoProfil }}" alt="Photo de {{ createur.prenom }}" 
                                  class="rounded-circle object-fit-cover shadow-sm border" 
                                  style="width: 120px; height: 120px;">
                         {% else %}
@@ -163,14 +163,15 @@
                                     <li class="list-group-item d-flex justify-content-between align-items-center p-4">
                                         <div class="d-flex align-items-center">
                                             {# Optionnel : Afficher la petite photo de l'étudiant s'il en a une #}
-                                            {% if etudiant.photo is not empty %}
+                                            
+                                            {% if etudiant.photoProfil %}
                                                 <img src="./uploads/profiles/{{ etudiant.photoProfil }}" class="rounded-circle me-3 object-fit-cover" style="width: 40px; height: 40px;">
                                             {% else %}
                                                 <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
                                                     <i class="bi bi-person text-secondary"></i>
                                                 </div>
                                             {% endif %}
-                                            <span class="fw-medium">{{ etudiant.prenom }} {{ etudiant.nom }}</span>
+                                            <span class="fw-medium">{{ etudiant.photoProfil }} {{ etudiant.nom }}</span>
                                         </div>
 
                                         {% if user.role|lower == "particulier" and annonce.etat|lower == "disponible" and annonce.createur.id == user.id %}
