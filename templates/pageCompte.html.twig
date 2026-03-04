@@ -56,13 +56,6 @@
                         </div>
                     </div>
 
-                    {% if user.role == "etudiant" %}
-                    <hr class="text-muted opacity-25">
-                    <div class="row mb-3">
-                        <div class="col-sm-4"><h6 class="mb-0 text-muted">Code INE</h6></div>
-                        <div class="col-sm-8 text-dark fw-medium">{{ user.codeINE }}</div>
-                    </div>
-                    {% endif %}
 
                     <div class="mt-5 pt-3 border-top d-flex justify-content-between align-items-center">
                         <a href="index.php?controleur=utilisateur&methode=pageModifierCompte" class="btn btn-primary">
@@ -70,7 +63,7 @@
                         </a>
                         <a href="index.php?controleur=utilisateur&methode=supprimerCompte" 
                            class="btn btn-outline-danger" 
-                           data-confirm="Êtes-vous sûr de vouloir supprimer votre compte ?">
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
                             Supprimer le compte
                         </a>
                     </div>

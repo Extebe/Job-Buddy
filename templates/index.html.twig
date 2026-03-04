@@ -77,10 +77,12 @@
         </div>
     </div>
     </form>
+    
     <div id="zone_cartes" class="row g-4">
     {% for annonce in annonces %}
-    <div class="col-12 col-lg-6">
-    <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}"> 
+    {# Ajout de la classe "annonce-item" ici pour cibler les éléments avec JS #}
+    <div class="col-12 col-lg-6 annonce-item">
+    <a href="index.php?controleur=annonce&methode=afficherDetail&id={{ annonce.id }}" class="text-decoration-none text-dark"> 
         <div class="card-custom h-100 annonce-card" data-type="{{ annonce.typeService }}" data-title="{{ annonce.titre|lower }}" data-description="{{ annonce.description|lower }}" data-price="{{ annonce.remuneration }}">
             <div class="card-body p-4">
                 <div class="d-flex gap-3">
@@ -108,9 +110,7 @@
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <div class="flex-grow-1 min-w-0">
                                 <h5 class="card-title mb-1">
-                                    
-                                        {{ annonce.titre }}
-                                    
+                                    {{ annonce.titre }}
                                 </h5>
                                 <span class="badge badge-custom badge-primary mb-2">
                                     {{ annonce.typeService }}
@@ -129,11 +129,6 @@
                                 {{ annonce.dateDebutRealisation|date("d/m/Y à H:i") }}
                             </span>
                         </div>
-                        
-                        {# Description #}
-                        <p class="card-text text-muted mb-3">
-                            {{ annonce.description|length > 120 ? annonce.description|slice(0, 120) ~ '...' : annonce.description }}
-                        </p>
                         
                         {# Footer avec prix et action #}
                         <div class="d-flex justify-content-between align-items-center">
@@ -175,10 +170,59 @@
         </a>
     </div>
     {% endfor %}
+    
+    {# Zone pour le bouton "Voir plus" - Initialement masquée par le JS si pas nécessaire #}
+    <div class="col-12 text-center mt-4 mb-5" id="loadMoreContainer" style="display: none;">
+        <button id="loadMoreBtn" class="btn btn-outline-primary rounded-pill px-4 py-2">
+            <i class="bi bi-plus-circle me-2"></i>Voir plus d'annonces
+        </button>
+    </div>
 </div>
 
-    {% endblock %}
+</div>
 
+{# Script pour le système d'affichage limité #}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const items = document.querySelectorAll('.annonce-item');
+    const loadMoreContainer = document.getElementById('loadMoreContainer');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    
+    // Nombre d'annonces à afficher par défaut
+    let currentVisible = 6; 
+    // Nombre d'annonces supplémentaires à charger au clic
+    const step = 6; 
 
+    function updateVisibility() {
+        items.forEach((item, index) => {
+            if (index < currentVisible) {
+                item.classList.remove('d-none');
+            } else {
+                item.classList.add('d-none');
+            }
+        });
 
+        // Masquer le bouton s'il n'y a plus rien à charger
+        if (currentVisible >= items.length) {
+            loadMoreContainer.style.display = 'none';
+        } else {
+            loadMoreContainer.style.display = 'block';
+        }
+    }
 
+    // Initialisation
+    if (items.length > 0) {
+        updateVisibility();
+    }
+
+    // Evénement au clic sur le bouton "Voir plus"
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            currentVisible += step;
+            updateVisibility();
+        });
+    }
+});
+</script>
+
+{% endblock %}
