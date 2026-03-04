@@ -205,14 +205,14 @@
                                         {% endif %}
                                         <div class="d-flex flex-column">
                                             <span class="fw-bold">{{ etudiant.prenom }} {{ etudiant.nom }}</span>
-                                            {% if etudiant.noteMoyenne > 0 %}
+                                            {#{% if etudiant.noteRecue > 0 %}
                                                 <span class="small text-muted mt-1">
-                                                    <i class="bi bi-star-fill text-warning"></i> {{ etudiant.noteMoyenne|number_format(1, ',', ' ') }} 
+                                                    <i class="bi bi-star-fill text-warning"></i> {{ etudiant.noteRecue|number_format(1, ',', ' ') }} 
                                                     <span class="opacity-75">({{ etudiant.notesRecues|length }} avis)</span>
                                                 </span>
                                             {% else %}
                                                 <span class="small text-muted mt-1 fst-italic">Nouveau profil</span>
-                                            {% endif %}
+                                            {% endif %} #}
                                         </div>
                                     </a>
                                     <div class="btn-group shadow-sm ms-3">
