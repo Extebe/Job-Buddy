@@ -55,6 +55,39 @@
                             {{ user.adresse }}<br>{{ user.codePostal }} {{ user.ville }}
                         </div>
                     </div>
+                    <hr class="text-muted opacity-25">
+<div class="row mb-3 align-items-center">
+    <div class="col-sm-4">
+        <h6 class="mb-0 text-muted">Évaluation</h6>
+    </div>
+    <div class="col-sm-8 d-flex align-items-center">
+        {# Remplace "user.noteMoyenne" par le nom exact de ta variable dans ton modèle #}
+        {% set note = moyenne|default(0) %}
+        
+        {% if note > 0 %}
+            <div class="d-flex text-warning fs-5 me-2">
+                {% for i in 1..5 %}
+                    {% if note >= i %}
+                        {# Étoile pleine #}
+                        <i class="bi bi-star-fill"></i>
+                    {% elseif note >= (i - 0.5) %}
+                        {# Demi-étoile #}
+                        <i class="bi bi-star-half"></i>
+                    {% else %}
+                        {# Étoile vide #}
+                        <i class="bi bi-star text-secondary" style="opacity: 0.3;"></i>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <span class="text-muted fw-medium">{{ note|number_format(1, ',', ' ') }} / 5</span>
+            {% else %}
+                <span class="text-muted fst-italic small">
+                    Pas encore d'avis pour le moment
+                </span>
+            {% endif %}
+    </div>
+</div>
+
 
 
                     <div class="mt-5 pt-3 border-top d-flex justify-content-between align-items-center">

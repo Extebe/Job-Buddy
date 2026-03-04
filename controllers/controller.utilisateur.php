@@ -400,11 +400,15 @@ class ControllerUtilisateur extends Controller
             $modifCompte=$_SESSION['msg'];
             unset($_SESSION['msg']);
         }
-
+        $managerNote = new NoteDAO($this->getPdo());
+        $user = Utilisateur::getUser();
+        $user = $managerNote->addNoteRecue($user);
+        $moyenne = $user->calculerMoyenneNotes();
 
         echo $template->render('pageCompte.html.twig', [
-            'user' => Utilisateur::getUser(),
-            'notif'=>$modifCompte
+            'user' => $user,
+            'notif'=>$modifCompte,
+            'moyenne'=>$moyenne
         ]);
     }
 
@@ -718,12 +722,16 @@ class ControllerUtilisateur extends Controller
 
         $requete->execute(['id' => $idUser]);
         $other = $requete->fetch(PDO::FETCH_ASSOC);
-
+        $managerUtilisateur = new UtilisateurDAO($pdo);
+        $other = $managerUtilisateur->findById($idUser);
+        $managerNote = new NoteDAO($pdo);
         $template = $this->getTwig();
-
+        $other = $managerNote->addNoteRecue($other);
+        $moyenne = $other->calculerMoyenneNotes();
         echo $template->render('compteUtilisateur.html.twig', [
             'user' => Utilisateur::getUser(),
-            'other' => $other
+            'other' => $other,
+            'moyenne' => $moyenne
         ]);
     }
 }

@@ -14,6 +14,7 @@ class Etudiant extends Utilisateur
     /** @var array $annoncesPostule Annonces auxquelles l'étudiant a postulé. */
     private array $annoncesPostule = [];
 
+
     /**
      * @brief Constructeur de la classe Etudiant.
      * @param int|null $id Identifiant.
@@ -45,7 +46,7 @@ class Etudiant extends Utilisateur
         ?string $ville = null,
         ?string $codePostal = null,
         ?string $dateSuppression = null,
-        ?string $cvec = null
+        ?string $cvec = null,
     ) {
         parent::__construct(
             $id,
@@ -59,7 +60,7 @@ class Etudiant extends Utilisateur
             $adresse,
             $ville,
             $codePostal,
-            $dateSuppression
+            $dateSuppression,
         );
         $this->setCodeINE($codeINE);
         $this->setCvec($cvec);
@@ -194,4 +195,6 @@ class Etudiant extends Utilisateur
 
         return is_array($data) ? $data : null;
     }
+
+
 }

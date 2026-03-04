@@ -163,15 +163,15 @@ class AnnonceDao
     public function addRelations(Annonce $annonce): Annonce
     {
         // Creation de la liste de postulations
-        $sql = "SELECT Postuler.idEtudiant, Postuler.datePostulat FROM Annonce JOIN Postuler ON Annonce.id=Postuler.idAnnonce WHERE Postuler.idAnnonce= :id";
+        $sql = "SELECT Postuler.idEtudiant, Postuler.datePostulat FROM Annonce JOIN Postuler ON Annonce.id=Postuler.idAnnonce WHERE Postuler.idAnnonce= :id and Postuler.estAccepte=0";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id" => $annonce->getId()));
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
         $assocPostulations = $pdoStatement->fetchAll();
-        $etudiantDao = new EtudiantDao($this->pdo);
+        $etudiantDao = new UtilisateurDao($this->pdo);
         $postulations = [];
         foreach ($assocPostulations as $assocPostulation) {
-            $etudiant = $etudiantDao->find($assocPostulation['idEtudiant']);
+            $etudiant = $etudiantDao->findById($assocPostulation['idEtudiant']);
             $postulations[] = $etudiant;
         }
         $annonce->setPostulations($postulations);
@@ -186,19 +186,19 @@ class AnnonceDao
      */
     public function addSelectedStudents(Annonce $annonce): Annonce
     {
-        // Creation de la liste des etudiants selectionnes
-        $sql = "SELECT Postuler.idEtudiant, Postuler.datePostulat FROM Annonce JOIN Postuler ON Annonce.id=Postuler.idAnnonce WHERE Postuler.idAnnonce= :id AND Postuler.estAccepte='1'";
+        // Creation de la liste de postulations
+        $sql = "SELECT Postuler.idEtudiant, Postuler.datePostulat FROM Annonce JOIN Postuler ON Annonce.id=Postuler.idAnnonce WHERE Postuler.idAnnonce= :id and Postuler.estAccepte=1";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->execute(array("id" => $annonce->getId()));
         $pdoStatement->setFetchMode(PDO::FETCH_ASSOC);
-        $assocEtudiants = $pdoStatement->fetchAll();
-        $etudiantDao = new EtudiantDao($this->pdo);
-        $etudiantsSelectionnes = [];
-        foreach ($assocEtudiants as $assocEtudiant) {
-            $etudiant = $etudiantDao->find($assocEtudiant['idEtudiant']);
-            $etudiantsSelectionnes[] = $etudiant;
+        $assocPostulations = $pdoStatement->fetchAll();
+        $etudiantDao = new UtilisateurDao($this->pdo);
+        $postulations = [];
+        foreach ($assocPostulations as $assocPostulation) {
+            $etudiant = $etudiantDao->findById($assocPostulation['idEtudiant']);
+            $postulations[] = $etudiant;
         }
-        $annonce->setEtuditantsSelectionnes($etudiantsSelectionnes);
+        $annonce->setEtudiantsSelectionnes($postulations);
 
         return $annonce;
     }

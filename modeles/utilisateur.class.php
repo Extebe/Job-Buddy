@@ -42,8 +42,13 @@ class Utilisateur
     protected array $notesDonnees = [];
     /** @var array $notesRecues Liste des notes reçues par l'utilisateur. */
     protected array $notesRecues = [];
+
+
+     /** @var string|null $photoProfil Chemin vers la photo de profil de l'utilisateur. */
     
     protected ?string $photoProfil;
+    protected ?bool $estAccepted = null;
+
     /**
      * @brief Constructeur de la classe Utilisateur.
      * 
@@ -81,6 +86,7 @@ class Utilisateur
         $this->dateDernierEchecConnexion = $dateDernierEchecConnexion;
         $this->statutCompte = $statutCompte;
         $this->photoProfil = $photoProfil;
+
     }
 
     /**
@@ -434,7 +440,7 @@ class Utilisateur
             return 0.0;
         }
         foreach ($this->notesRecues as $note) {
-            $total += $note->getValeur();
+            $total += $note;
         }
         return $total / $count;
     }
@@ -466,6 +472,16 @@ class Utilisateur
     public function setPhotoProfil(?string $photoProfil): void
     {
         $this->photoProfil = $photoProfil;
+    }
+
+        public function getEstAccepted(): ?bool
+    {
+        return $this->estAccepted;
+    }
+
+    public function setEstAccepted(?bool $estAccepted): void
+    {
+        $this->estAccepted = $estAccepted;
     }
 }
 ?>

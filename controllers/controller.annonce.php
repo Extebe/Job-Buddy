@@ -274,11 +274,11 @@ class ControllerAnnonce extends Controller
     }
 
     // 4. Hydration Logic
-    if ($annonce->getEtuditantsSelectionnes() == null) {
-        $annonce = $managerAnnonce->addRelations($annonce);
-    } else {
-        $annonce = $managerAnnonce->addSelectedStudents($annonce);
-    }
+    
+    $annonce = $managerAnnonce->addRelations($annonce);
+    
+    $annonce = $managerAnnonce->addSelectedStudents($annonce);
+    
 
     // 5. Initialize $aPostule Default Value (The Fix)
     // We set this to false (or null) by default so the variable exists for ALL roles.
@@ -293,6 +293,8 @@ class ControllerAnnonce extends Controller
         
         // On boucle uniquement si on a bien un tableau valide de postulations
         $postulations = $annonce->getPostulations();
+        $etudiantsSelectionnes = $annonce->getEtuditantsSelectionnes();
+
         if (is_iterable($postulations)) {
             foreach ($postulations as $etudiant) {
                 
@@ -307,6 +309,10 @@ class ControllerAnnonce extends Controller
     $createur = $annonce->getCreateur();
     $managerUtilisateur = new UtilisateurDao($this->getPdo());
     $createur = $managerUtilisateur->findById($createur->getId());
+    
+    $managerNote = new NoteDAO($this->getPdo());
+    $createur = $managerNote->addNoteRecue($createur);
+    $noteCreateur = $createur->calculerMoyenneNotes();
 
     echo $template->render('detailAnnonce.html.twig', [
         'user'    => Utilisateur::getUser(),
@@ -315,7 +321,9 @@ class ControllerAnnonce extends Controller
         'icons'   => Constantes::getConstantes()['icons'],
         'aPostule' => $aPostule ,
         'lienRetour' => $_SESSION['lienRetour'] ?? "index.php?controleur=annonce&methode=afficher",
-        'etudiants' => $postulations ?? [] // Passer un tableau vide si aucune postulation, pour éviter les erreurs dans Twig
+        'etudiants' => $postulations ?? [],
+        'etudiantsSelectionnes' => $etudiantsSelectionnes ?? [],
+        'noteCreateur' => $noteCreateur ?? 0, // Passer la note du créateur, ou 0 si aucune note
     ]);
 }
 

@@ -43,7 +43,6 @@ class Annonce
     private ?string $dateSuppression;
     /** @var string|null $motifSuppression Motif de suppression. */
     private ?string $motifSuppression;
-
     /**
      * @brief Constructeur de la classe Annonce.
      * @param int|null $id Identifiant.
@@ -78,6 +77,7 @@ class Annonce
         ?string $datePublication = null,
         ?string $dateSuppression = null,
         ?string $motifSuppression = null,
+
     ) {
         $this->id = $id;
         $this->particulier = $particulier;
@@ -363,10 +363,11 @@ class Annonce
      * @brief Définit les étudiants sélectionnés.
      * @param array|null $etuditantsSelectionnes Les étudiants sélectionnés.
      */
-    public function setEtuditantsSelectionnes(?array $etuditantsSelectionnes): void
+    public function setEtudiantsSelectionnes(?array $postulations): void
     {
-        $this->etudiantsSelectionnes = $etuditantsSelectionnes;
+        $this->etudiantsSelectionnes = $postulations;
     }
+
 
     public function __toString(): string
     {

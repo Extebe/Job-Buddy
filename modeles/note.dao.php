@@ -73,6 +73,27 @@ class NoteDao
 
     }
 
+public function addNoteRecue(Utilisateur $user): Utilisateur
+    {
+        $idReceveur = $user->getId();
+        
+        // On ne sélectionne que la colonne 'note'
+        $sql = "SELECT note FROM Note WHERE idUtilisateurNote = :idReceveur";
+        
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->execute(['idReceveur' => $idReceveur]);
+        
+        // PDO::FETCH_COLUMN te retourne un tableau simple : [5, 4, 3, 5...] 
+        // (au lieu d'un tableau associatif lourd de type [['note' => 5], ['note' => 4]])
+        $notes = $pdoStatement->fetchAll(PDO::FETCH_COLUMN);
+
+        // On met à jour l'array notesRecues de l'utilisateur
+        $user->setNotesRecues($notes);
+
+        // On retourne l'utilisateur mis à jour !
+        return $user;
+    }
+
     /**
      * @brief Hydrate un objet Note.
      * @param array $tableau Données de la note.

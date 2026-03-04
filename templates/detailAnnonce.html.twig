@@ -3,6 +3,11 @@
 {% block css %}
     <link rel="stylesheet" href="./stylePageDetails.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        /* Petit effet au survol pour les profils cliquables */
+        .profil-link { transition: opacity 0.2s; }
+        .profil-link:hover { opacity: 0.7; }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -28,7 +33,7 @@
                         <div class="text-end mb-3">
                             <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill">
                                 <i class="bi bi-clock-history me-1"></i>
-                                {{ annonce.postulations|length }} étudiant{{ annonce.postulations|length > 1 ? 's' : '' }} ayant postulé{{ annonce.postulations|length > 1 ? 's' : '' }}
+                                {{ annonce.postulations|length }} étudiant{{ annonce.postulations|length > 1 ? 's' : '' }} ayant postulé
                             </span>
                         </div>
                     {% endif %}
@@ -67,10 +72,7 @@
                         </div>
                     </div>
 
-                    {# Actions sur l'annonce (Postuler, Signaler, Modifier, Supprimer) #}
                     <div class="d-flex flex-wrap gap-2 mt-4 pt-4 border-top justify-content-end">
-                        
-                        {# Action Étudiant : Postuler #}
                         {% if user.role|lower == "etudiant" and annonce.etat|lower == "disponible" and not aPostule %}
                             <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-primary px-4">
                                 <i class="bi bi-send me-2"></i>Postuler
@@ -83,22 +85,19 @@
                             </a>
                         {% endif %}
 
-                        {# Action : Signaler (Si ce n'est pas mon annonce) #}
                         {% if annonce.createur.id != user.id %}
                             <a href="index.php?controleur=signalement&methode=signalerAnnonce&idAnnonce={{ annonce.id }}" class="btn btn-outline-danger">
                                 <i class="bi bi-flag me-1"></i> Signaler
                             </a>
                         {% endif %}
 
-                        {# Actions Créateur : Modifier / Supprimer #}
                         {% if user.role|lower == "particulier" and annonce.createur.id == user.id %}
-                            {% if annonce.etat|lower == "disponible" %}
+                            {% if annonce.etat|lower == "disponible" or annonce.etat|lower == "accepte" %}
                                 <a href="index.php?controleur=annonce&methode=editerAnnonce&idAnnonce={{ annonce.id }}&idCreateur={{ annonce.createur.id }}" class="btn btn-outline-primary">
                                     <i class="bi bi-pencil me-1"></i> Modifier
                                 </a>
                             {% endif %}
-                            
-                            <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette annonce ?');">
+                            <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?');">
                                 <i class="bi bi-trash me-1"></i> Supprimer
                             </a>
                         {% endif %}
@@ -117,20 +116,57 @@
                     
                     <div class="mb-3">
                         {% if createur.photoProfil is not empty %}
-                            <img src="./uploads/profiles/{{ createur.photoProfil }}" alt="Photo de {{ createur.prenom }}" 
-                                 class="rounded-circle object-fit-cover shadow-sm border" 
-                                 style="width: 120px; height: 120px;">
+                            <img src="./uploads/profiles/{{ createur.photoProfil }}" alt="Photo" class="rounded-circle object-fit-cover shadow-sm border" style="width: 120px; height: 120px;">
                         {% else %}
-                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto shadow-sm border" 
-                                 style="width: 120px; height: 120px;">
+                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto shadow-sm border" style="width: 120px; height: 120px;">
                                 <i class="bi bi-person text-secondary" style="font-size: 4rem;"></i>
                             </div>
                         {% endif %}
                     </div>
 
-                    <h5 class="card-title fw-bold text-dark mb-1">{{ annonce.createur.prenom }} {{ annonce.createur.nom }}</h5>
+                    <h5 class="card-title fw-bold text-dark mb-2">{{ createur.prenom }} {{ createur.nom }}</h5>
                     
-                    <a href="index.php?controleur=utilisateur&methode=pageUtilisateur&id={{ annonce.createur.id }}" class="btn btn-outline-primary w-100 mt-4">
+                    {# Note du créateur passée par le contrôleur #}
+                    {% if noteCreateur > 0 %}
+<div class="mt-2 mb-3">
+    {# Conteneur principal #}
+    <div class="d-inline-flex flex-column align-items-center p-3 bg-white  rounded shadow-sm">
+        
+        {# Ligne des 5 étoiles #}
+        <div class="text-warning fs-4 mb-1">
+            {% for i in 1..5 %}
+                {% if noteCreateur >= i %}
+                    {# Étoile pleine #}
+                    <i class="bi bi-star-fill"></i>
+                {% elseif noteCreateur >= i - 0.5 %}
+                    {# Étoile moitié #}
+                    <i class="bi bi-star-half"></i>
+                {% else %}
+                    {# Étoile vide (légèrement grisée) #}
+                    <i class="bi bi-star text-secondary opacity-25"></i>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {# Texte de résumé sous les étoiles #}
+        <div class="d-flex align-items-center gap-2">
+            <span class="fw-bold text-dark fs-5">
+                {{ noteCreateur|number_format(1, ',', ' ') }}
+            </span>
+            <span class="text-muted small">
+                • {{ createur.notesRecues|length }} avis
+            </span>
+        </div>
+    </div>
+</div>
+                        </div>
+                    {% else %}
+                        <div class="mt-2 mb-3">
+                            <span class="badge bg-light text-muted border px-3 py-2 rounded-pill fst-italic">Nouveau profil</span>
+                        </div>
+                    {% endif %}
+                    
+                    <a href="index.php?controleur=utilisateur&methode=pageUtilisateur&id={{ createur.id }}" class="btn btn-outline-primary w-100 mt-3">
                         <i class="bi bi-person-badge me-2"></i>Consulter son profil
                     </a>
                 </div>
@@ -141,65 +177,103 @@
     {# ========================================== #}
     {# SECTION DU BAS : LISTE DES POSTULATIONS    #}
     {# ========================================== #}
-    {% if user.role|lower == "particulier" and annonce.createur.id == user.id %}
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card shadow-sm border-0">
-                    <div class="card-header bg-white border-bottom py-3">
-                        <h5 class="mb-0 fw-bold text-dark">
-                            <i class="bi bi-people me-2 text-primary"></i>
-                            {% if annonce.etat|lower == "disponible" %}
-                                Étudiants ayant postulé
-                            {% else %}
-                                Étudiants acceptés
-                            {% endif %}
-                        </h5>
-                    </div>
-                    
-                    <div class="card-body p-0">
-                        {% if annonce.postulations|length > 0 %}
-                            <ul class="list-group list-group-flush">
-                                {% for etudiant in annonce.postulations %}
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-4">
-                                        <div class="d-flex align-items-center">
-                                            {# Optionnel : Afficher la petite photo de l'étudiant s'il en a une #}
-                                            
-                                            {% if etudiant.photoProfil %}
-                                                <img src="./uploads/profiles/{{ etudiant.photoProfil }}" class="rounded-circle me-3 object-fit-cover" style="width: 40px; height: 40px;">
-                                            {% else %}
-                                                <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                                    <i class="bi bi-person text-secondary"></i>
-                                                </div>
-                                            {% endif %}
-                                            <span class="fw-medium">{{ etudiant.photoProfil }} {{ etudiant.nom }}</span>
-                                        </div>
-
-                                        {% if user.role|lower == "particulier" and annonce.etat|lower == "disponible" and annonce.createur.id == user.id %}
-                                            <div class="btn-group shadow-sm" role="group">
-                                                <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=accepter"
-                                                   class="btn btn-success btn-sm px-3" title="Accepter">
-                                                    <i class="bi bi-check-lg"></i>
-                                                </a>
-                                                <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=refuser"
-                                                   class="btn btn-danger btn-sm px-3" title="Refuser">
-                                                    <i class="bi bi-x-lg"></i>
-                                                </a>
+   {% if user.role|lower == "particulier" and annonce.createur.id == user.id %}
+    
+    <div class="row g-4 mt-2">
+        {# CARTE 1 : CANDIDATURES EN ATTENTE #}
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-white border-bottom py-3">
+                    <h5 class="mb-0 fw-bold text-dark">
+                        <i class="bi bi-hourglass-split me-2 text-warning"></i>
+                        Candidatures en attente
+                        <span class="badge bg-secondary ms-2 rounded-pill">{{ etudiants|length }}</span>
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    {% if etudiants|length > 0 %}
+                        <ul class="list-group list-group-flush">
+                            {% for etudiant in etudiants %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-4">
+                                    <a href="index.php?controleur=utilisateur&methode=pageUtilisateur&id={{ etudiant.id }}" class="d-flex align-items-center text-decoration-none text-dark profil-link">
+                                        {% if etudiant.photoProfil %}
+                                            <img src="./uploads/profiles/{{ etudiant.photoProfil }}" class="rounded-circle me-3 object-fit-cover shadow-sm" style="width: 48px; height: 48px;">
+                                        {% else %}
+                                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 48px; height: 48px;">
+                                                <i class="bi bi-person text-secondary fs-5"></i>
                                             </div>
                                         {% endif %}
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <div class="p-5 text-center">
-                                <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
-                                <p class="text-muted mt-3 mb-0">Aucun étudiant n’a postulé pour cette annonce pour le moment.</p>
-                            </div>
-                        {% endif %}
-                    </div>
+                                        <div class="d-flex flex-column">
+                                            <span class="fw-bold">{{ etudiant.prenom }} {{ etudiant.nom }}</span>
+                                            {% if etudiant.noteMoyenne > 0 %}
+                                                <span class="small text-muted mt-1">
+                                                    <i class="bi bi-star-fill text-warning"></i> {{ etudiant.noteMoyenne|number_format(1, ',', ' ') }} 
+                                                    <span class="opacity-75">({{ etudiant.notesRecues|length }} avis)</span>
+                                                </span>
+                                            {% else %}
+                                                <span class="small text-muted mt-1 fst-italic">Nouveau profil</span>
+                                            {% endif %}
+                                        </div>
+                                    </a>
+                                    <div class="btn-group shadow-sm ms-3">
+                                        <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=accepter" class="btn btn-success btn-sm px-3"><i class="bi bi-check-lg"></i></a>
+                                        <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=refuser" class="btn btn-danger btn-sm px-3"><i class="bi bi-x-lg"></i></a>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="p-5 text-center text-muted">Aucune candidature en attente.</div>
+                    {% endif %}
                 </div>
             </div>
         </div>
-    {% endif %}
+
+        {# CARTE 2 : ÉTUDIANTS ACCEPTÉS #}
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 h-100 border-start border-success border-4">
+                <div class="card-header bg-white border-bottom py-3">
+                    <h5 class="mb-0 fw-bold text-dark">
+                        <i class="bi bi-check-circle-fill me-2 text-success"></i>
+                        Étudiants acceptés
+                        <span class="badge bg-success ms-2 rounded-pill">{{ etudiantsSelectionnes|length }}</span>
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    {% if etudiantsSelectionnes|length > 0 %}
+                        <ul class="list-group list-group-flush">
+                            {% for etudiant in etudiantsSelectionnes %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-4">
+                                    <a href="index.php?controleur=utilisateur&methode=pageUtilisateur&id={{ etudiant.id }}" class="d-flex align-items-center text-decoration-none text-dark profil-link">
+                                        {% if etudiant.photoProfil %}
+                                            <img src="./uploads/profiles/{{ etudiant.photoProfil }}" class="rounded-circle me-3 object-fit-cover shadow-sm" style="width: 48px; height: 48px;">
+                                        {% else %}
+                                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 48px; height: 48px;">
+                                                <i class="bi bi-person text-success fs-5"></i>
+                                            </div>
+                                        {% endif %}
+                                        <div class="d-flex flex-column">
+                                            <span class="fw-bold">{{ etudiant.prenom }} {{ etudiant.nom }}</span>
+                                            {% if etudiant.noteMoyenne > 0 %}
+                                                <span class="small text-muted mt-1"><i class="bi bi-star-fill text-warning"></i> {{ etudiant.noteMoyenne|number_format(1, ',', ' ') }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-success-subtle text-success border py-2 px-3 rounded-pill">Attribuée</span>
+                                        <a href="index.php?controleur=annonce&methode=selectionnerEtudiant&idAnnonce={{ annonce.id }}&idEtudiant={{ etudiant.id }}&action=refuser" class="btn btn-outline-danger btn-sm rounded-pill" onclick="return confirm('Annuler l\'attribution ?');"><i class="bi bi-x-lg"></i></a>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="p-5 text-center text-muted">Aucun étudiant accepté.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 </div>
 {% endblock %}

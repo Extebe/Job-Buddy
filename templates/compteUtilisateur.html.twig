@@ -59,8 +59,39 @@
                         <div class="col-sm-4"><h6 class="mb-0 text-muted"><i class="bi bi-mailbox me-2"></i>Code postal</h6></div>
                         <div class="col-sm-8 text-dark fw-medium">{{ other.codePostal }}</div>
                     </div>
+                    <hr class="text-muted opacity-25">
+<div class="row mb-3 align-items-center ">
+    <div class="col-sm-4">
+        <h6 class="mb-0 text-muted">Évaluation</h6>
+    </div>
+    <div class="col-sm-8 d-flex align-items-center">
+        {# Remplace "user.noteMoyenne" par le nom exact de ta variable dans ton modèle #}
+        {% set note = moyenne|default(0) %}
+        
+        {% if note > 0 %}
+            <div class="d-flex text-warning fs-5 me-2">
+                {% for i in 1..5 %}
+                    {% if note >= i %}
+                        {# Étoile pleine #}
+                        <i class="bi bi-star-fill"></i>
+                    {% elseif note >= (i - 0.5) %}
+                        {# Demi-étoile #}
+                        <i class="bi bi-star-half"></i>
+                    {% else %}
+                        {# Étoile vide #}
+                        <i class="bi bi-star text-secondary" style="opacity: 0.3;"></i>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <span class="text-muted fw-medium">{{ note|number_format(1, ',', ' ') }} / 5</span>
+            {% else %}
+                <span class="text-muted fst-italic small">
+                    Pas encore d'avis pour le moment
+                </span>
+            {% endif %}
+    </div>
 
-                    <div class="mt-auto pt-4 border-top text-end">
+                    <div class="mt-5 pt-4 border-top text-end">
                         {% if other.id != user.id %}
                             <a href="index.php?controleur=signalement&methode=signalerUtilisateur&idOther={{ other.id }}" 
                                class="btn btn-outline-danger">
