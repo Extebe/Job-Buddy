@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS InscritNewsLetter;
 CREATE TABLE Utilisateur(
                             id int AUTO_INCREMENT,
                             role VARCHAR(14) NOT NULL CHECK (role IN ('particulier', 'etudiant', 'administrateur')),
-                            codeINE VARCHAR(20) UNIQUE,
+                            codeINE VARCHAR(20),
                             nom VARCHAR(50) NOT NULL,
                             prenom VARCHAR(50) NOT NULL,
                             tel CHAR(10) UNIQUE,

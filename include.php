@@ -30,6 +30,9 @@ require_once "modeles/newsLetter.dao.php";
 
 require_once "modeles/valide.class.php";
 
+require_once "modeles/notification.class.php";
+require_once "modeles/notification.dao.php";
+
 // Controleurs
 require_once "controllers/controller.class.php";
 require_once "controllers/controller.factory.php";
@@ -38,6 +41,7 @@ require_once "controllers/controller.note.php";
 require_once "controllers/controller.particulier.php";
 require_once "controllers/controller.newsLetter.php";
 require_once "controllers/controller.signalement.php";
+require_once "controllers/controller.notification.php";
 
 // Constantes
 require_once "config/constantes.class.php";
