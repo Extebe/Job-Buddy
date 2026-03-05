@@ -74,30 +74,31 @@
 
                     <div class="d-flex flex-wrap gap-2 mt-4 pt-4 border-top justify-content-end">
                         {% if user.role|lower == "etudiant" and annonce.etat|lower == "disponible" and not aPostule %}
-                            <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-primary px-4">
+                            <a href="index.php?controleur=annonce&methode=postulerAnnonce&id={{ annonce.id }}" class="btn btn-primary px-4 rounded-pill">
                                 <i class="bi bi-send me-2"></i>Postuler
                             </a>
                         {% endif %}
 
                         {% if user.role|lower == "etudiant" and annonce.etat|lower == "disponible" and aPostule %}
-                            <a href="index.php?controleur=annonce&methode=depostulerAnnonce&id={{ annonce.id }}" class="btn btn-danger px-4">
+                            <a href="index.php?controleur=annonce&methode=depostulerAnnonce&id={{ annonce.id }}" class="btn btn-danger px-4 rounded-pill">
+                                 <i class="bi bi-x-lg
                                 <i class="bi bi-send me-2"></i>Annuler ma candidature
                             </a>
                         {% endif %}
 
                         {% if annonce.createur.id != user.id %}
-                            <a href="index.php?controleur=signalement&methode=signalerAnnonce&idAnnonce={{ annonce.id }}" class="btn btn-outline-danger">
+                            <a href="index.php?controleur=signalement&methode=signalerAnnonce&idAnnonce={{ annonce.id }}" class="btn btn-outline-danger rounded-pill">
                                 <i class="bi bi-flag me-1"></i> Signaler
                             </a>
                         {% endif %}
 
                         {% if user.role|lower == "particulier" and annonce.createur.id == user.id %}
                             {% if annonce.etat|lower == "disponible" or annonce.etat|lower == "accepte" %}
-                                <a href="index.php?controleur=annonce&methode=editerAnnonce&idAnnonce={{ annonce.id }}&idCreateur={{ annonce.createur.id }}" class="btn btn-outline-primary">
+                                <a href="index.php?controleur=annonce&methode=editerAnnonce&idAnnonce={{ annonce.id }}&idCreateur={{ annonce.createur.id }}" class="btn btn-outline-primary rounded-pill">
                                     <i class="bi bi-pencil me-1"></i> Modifier
                                 </a>
                             {% endif %}
-                            <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?');">
+                            <a href="index.php?controleur=annonce&methode=supprimerAnnonce&id={{ annonce.id }}" class="btn btn-danger rounded-pill" onclick="return confirm('Êtes-vous sûr ?');">
                                 <i class="bi bi-trash me-1"></i> Supprimer
                             </a>
                         {% endif %}

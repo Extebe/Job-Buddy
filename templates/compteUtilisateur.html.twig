@@ -11,7 +11,7 @@
 <div class="container py-5">
     {# --- Bouton Retour --- #}
     <div class="mb-4 text-start">
-        <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm shadow-sm">
+        <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm shadow-sm rounded-pill">
             <i class="bi bi-arrow-left me-1"></i> Retour 
         </a>
     </div>
@@ -94,7 +94,7 @@
                     <div class="mt-5 pt-4 border-top text-end">
                         {% if other.id != user.id %}
                             <a href="index.php?controleur=signalement&methode=signalerUtilisateur&idOther={{ other.id }}" 
-                               class="btn btn-outline-danger">
+                               class="btn btn-outline-danger rounded-pill ">
                                 <i class="bi bi-flag-fill me-2"></i>Signaler cet utilisateur
                             </a>
                         {% endif %}
