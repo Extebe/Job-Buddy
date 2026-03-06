@@ -151,7 +151,7 @@ class SignalementDao
     //  */
     public function findBySignaleur(?int $id): ?array
     {
-        $sql = "SELECT * FROM signalement WHERE idSignaleur = :id";
+        $sql = "SELECT * FROM Signalement WHERE idSignaleur = :id";
     
         $pdoStatement = $this->getPdo()->prepare($sql);
         $pdoStatement->execute(["id" => $id]);
@@ -165,7 +165,7 @@ class SignalementDao
     public function delete($id): bool
     {
         $id = (int)$id;
-        $sql = "DELETE FROM signalement WHERE id = :id";
+        $sql = "DELETE FROM Signalement WHERE id = :id";
         $pdoStatement = $this->getPdo()->prepare($sql);
         $pdoStatement->execute(["id" => $id]);
         return $pdoStatement->rowCount() > 0;

@@ -2,7 +2,6 @@
 DROP TABLE IF EXISTS Signalement;
 DROP TABLE IF EXISTS Note;
 DROP TABLE IF EXISTS Postuler;
-DROP TABLE IF EXISTS Signalement;
 DROP TABLE IF EXISTS Annonce;
 DROP TABLE IF EXISTS Utilisateur;
 DROP TABLE IF EXISTS InscritNewsLetter;
@@ -95,7 +94,7 @@ CREATE TABLE Note(
                      idUtilisateurNoteur int NOT NULL,
                      idUtilisateurNote int NOT NULL,
                      note SMALLINT NOT NULL CHECK (note >= 0 AND note <= 5),
-                     commentaire VARCHAR(100),
+                     commentaire VARCHAR(200),
                      PRIMARY KEY(id),
                      FOREIGN KEY(idAnnonce) REFERENCES Annonce(id),
                      FOREIGN KEY(idUtilisateurNoteur) REFERENCES Utilisateur(id),
@@ -226,17 +225,103 @@ INSERT INTO Note VALUES(20, 23, 6, 10, 5, 'Mon chien est rentré ravi et bien d�
 INSERT INTO Note VALUES(21, 5, 1, 9, 2, 'Le travail n''a été fait qu''à moitié, la taille des haies n''était pas droite.');
 INSERT INTO Note VALUES(22, 5, 9, 1, 1, 'Je n''avais pas les bons outils à disposition, impossible de faire un travail correct dans ces conditions.');
 
--- TRIGGERS
+
+-- TRIGGER 1
+DELIMITER $$
+DROP TRIGGER IF EXISTS modifStatutAnnonce$$
+CREATE TRIGGER modifStatutAnnonce
+AFTER UPDATE ON Utilisateur 
+FOR EACH ROW
+BEGIN
+    IF NEW.dateSuppression IS NOT NULL AND (OLD.dateSuppression IS NULL OR NEW.dateSuppression != OLD.dateSuppression) THEN
+        UPDATE Annonce
+        SET dateSuppression = SYSDATE() , motifSuppression = 'Supression du compte de l’utilisateur'
+    WHERE idParticulier= OLD.id;
+END IF;
+END$$
+
+-- TRIGGER 2
 DELIMITER $$
 DROP TRIGGER IF EXISTS verif_bcp_signalement$$
 CREATE TRIGGER verif_bcp_signalement
-    BEFORE INSERT
-    ON Signalement
-    FOR EACH ROW
+BEFORE INSERT
+ON Signalement
+FOR EACH ROW
 BEGIN
     DECLARE nbSignalement INT;
     SELECT COUNT(*) INTO nbSignalement FROM Signalement WHERE idUtilisateurSignale = NEW.idUtilisateurSignale;
     IF nbSignalement >= 5 THEN
     UPDATE Utilisateur SET statutModeration = 'suspect' WHERE id = NEW.idUtilisateurSignale;
 END IF;
+END$$
+
+
+-- TRIGGER 3
+DELIMITER $$
+
+CREATE OR REPLACE TRIGGER trigger_chevauchement_annonces_acceptees
+BEFORE UPDATE ON Postuler
+FOR EACH ROW
+BEGIN
+    DECLARE nbChevauchements INT;
+
+    IF OLD.estAccepte = FALSE AND NEW.estAccepte = TRUE THEN
+
+        SELECT COUNT(*)
+        INTO nbChevauchements
+        FROM Postuler p
+        JOIN Annonce a_existante ON a_existante.id = p.idAnnonce
+        JOIN Annonce a_nouvelle ON a_nouvelle.id = NEW.idAnnonce
+        WHERE
+            p.idEtudiant = NEW.idEtudiant
+            AND p.estAccepte = TRUE
+            AND a_existante.dateDebutRealisation < a_nouvelle.dateFinRealisation
+            AND a_existante.dateFinRealisation > a_nouvelle.dateDebutRealisation;
+
+        IF nbChevauchements > 0 THEN
+            SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Chevauchement détecté : mission déjà acceptée sur cette période';
+        END IF;
+
+    END IF;
+END$$
+
+DELIMITER ;
+
+
+-- TRIGGER 4
+DELIMITER $$
+CREATE TRIGGER verificationCoherenceEtatAnnonce
+AFTER UPDATE ON Postuler
+FOR EACH ROW
+BEGIN
+    IF NEW.estAccepte = 1 THEN
+        UPDATE Annonce
+        SET etat = 'accepte'
+        WHERE id = NEW.idAnnonce;
+    ELSEIF NEW.estAccepte = 2 THEN
+        UPDATE Annonce
+        SET etat = 'confirme'
+        WHERE id = NEW.idAnnonce;
+    END IF;
+END $$
+
+
+-- TRIGGER 5
+DELIMITER $$
+DROP TRIGGER IF EXISTS verif_note_basse$$
+CREATE TRIGGER verif_note_basse
+BEFORE INSERT
+ON Note
+FOR EACH ROW
+BEGIN
+    DECLARE noteAvg FLOAT;
+    DECLARE totalNote INT;
+    SELECT AVG(Note.note) INTO noteAvg FROM Note WHERE idUtilisateurNoteur = NEW.idUtilisateurNoteur;
+    SELECT COUNT(*) INTO totalNote FROM Note WHERE idUtilisateurNoteur = NEW.idUtilisateurNoteur;
+    IF totalNote >= 10 THEN
+        IF noteAvg < 2 THEN
+            UPDATE Utilisateur SET statutModeration = 'suspect' WHERE id = NEW.idUtilisateurNoteur;
+        END IF;
+    END IF;
 END$$
